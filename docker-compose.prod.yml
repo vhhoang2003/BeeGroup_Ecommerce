@@ -1,0 +1,126 @@
+# Production stack for one Debian server behind Cloudflare Tunnel (README §12.6, Decision Log D-14 / D-15).
+#
+#   cloudflared (host service) -> 127.0.0.1:${PROXY_PORT} -> proxy (Caddy) -> /api, /uploads -> api
+#                                                                        -> everything else -> web
+#
+# Nothing is published on public interfaces: TLS terminates at Cloudflare and the database is internal only.
+# Resource limits keep the whole stack around 1.6 GB RAM and 3.25 CPU on a shared machine.
+#
+# Usage (from /opt/beestore):  docker compose -f docker-compose.prod.yml --env-file .env up -d --build
+name: beestore
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-beestore}
+      POSTGRES_USER: ${DB_USER:-beestore}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+    # Small-footprint tuning: 20 products and low traffic do not need more.
+    command:
+      - postgres
+      - -c
+      - shared_buffers=96MB
+      - -c
+      - effective_cache_size=256MB
+      - -c
+      - work_mem=4MB
+      - -c
+      - maintenance_work_mem=32MB
+      - -c
+      - max_connections=30
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-beestore} -d ${DB_NAME:-beestore}"]
+      interval: 10s
+      retries: 10
+    deploy:
+      resources:
+        limits: { cpus: "1.0", memory: 384M }
+    logging: *logging
+
+  api:
+    build: ./be
+    image: beestore-api:${IMAGE_TAG:-local}
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${DB_NAME:-beestore}
+      SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE: "5"
+      STORAGE_DRIVER: local
+      STORAGE_LOCAL_PATH: /data/uploads
+      CATALOG_SOURCE_PATH: /data/product
+      PUBLIC_ASSET_BASE_URL: https://${DOMAIN:?set DOMAIN in .env}/uploads
+      NEXT_PUBLIC_SITE_URL: https://${DOMAIN}
+      CORS_ALLOWED_ORIGINS: https://${DOMAIN}
+      COOKIE_SECURE: "true"
+      # Serial GC has the smallest footprint for a single small heap.
+      JAVA_TOOL_OPTIONS: -XX:+UseSerialGC -Xss512k
+    volumes:
+      - ./product:/data/product:ro
+      - uploads:/data/uploads
+    depends_on:
+      db: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/actuator/health"]
+      interval: 15s
+      start_period: 60s
+      retries: 8
+    deploy:
+      resources:
+        limits: { cpus: "1.0", memory: 768M }
+    logging: *logging
+
+  web:
+    build:
+      context: ./fe
+      args:
+        # The FE still uses its in-app mock API (reads ./product) until it is wired to the BE.
+        NEXT_PUBLIC_USE_MOCK: ${NEXT_PUBLIC_USE_MOCK:-true}
+        NEXT_PUBLIC_API_URL: /api/v1
+        NEXT_PUBLIC_SITE_URL: https://${DOMAIN}
+    image: beestore-web:${IMAGE_TAG:-local}
+    restart: unless-stopped
+    environment:
+      CATALOG_SOURCE_DIR: /data/product
+      NODE_OPTIONS: --max-old-space-size=256
+    volumes:
+      - ./product:/data/product:ro
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/"]
+      interval: 30s
+      start_period: 30s
+      retries: 5
+    deploy:
+      resources:
+        limits: { cpus: "1.0", memory: 384M }
+    logging: *logging
+
+  proxy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    volumes:
+      - ./infra/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+    # Loopback only: reachable by cloudflared on this host, never from the internet directly.
+    ports:
+      - "127.0.0.1:${PROXY_PORT:-8088}:80"
+    depends_on:
+      api: { condition: service_healthy }
+      web: { condition: service_started }
+    deploy:
+      resources:
+        limits: { cpus: "0.25", memory: 64M }
+    logging: *logging
+
+volumes:
+  pgdata:
+  uploads:

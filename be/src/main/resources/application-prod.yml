@@ -8,3 +8,13 @@ springdoc:
 beestore:
   security:
     cookie-secure: ${COOKIE_SECURE:true}
+
+# Real SMTP providers (Resend / Brevo / SES) need authentication and STARTTLS on port 587.
+spring:
+  mail:
+    properties:
+      mail:
+        smtp:
+          auth: ${MAIL_SMTP_AUTH:true}
+          starttls:
+            enable: ${MAIL_SMTP_STARTTLS:true}

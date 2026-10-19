@@ -45,6 +45,10 @@ server:
       enabled: false
 
 management:
+  health:
+    # Mail is sent asynchronously with retries; an SMTP outage must not take the API out of service.
+    mail:
+      enabled: false
   endpoints:
     web:
       exposure:

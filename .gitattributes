@@ -1,0 +1,6 @@
+# Shell scripts and the Maven wrapper run inside Linux containers / on the Debian server: always LF.
+*.sh        text eol=lf
+mvnw        text eol=lf
+Dockerfile  text eol=lf
+Caddyfile   text eol=lf
+*.cmd       text eol=crlf
