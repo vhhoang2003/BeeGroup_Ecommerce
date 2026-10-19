@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import type { ProductImage } from '@/types/product';
-import { cn } from '@/lib/utils';
+import { cn, isLoopbackUrl } from '@/lib/utils';
 import CategoryIcon from './CategoryIcon';
 
 interface ProductThumbProps {
@@ -26,6 +26,7 @@ export default function ProductThumb({ image, categorySlug, sizes, priority, cla
   return (
     <Image
       src={image.url}
+      unoptimized={isLoopbackUrl(image.url)}
       alt={image.alt}
       fill
       sizes={sizes}

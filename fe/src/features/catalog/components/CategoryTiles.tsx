@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import SectionTitle from '@/components/ui/SectionTitle';
 import { CatalogApi } from '@/lib/api/endpoints';
+import { isLoopbackUrl } from '@/lib/utils';
 import CategoryIcon from './CategoryIcon';
 
 export default function CategoryTiles() {
@@ -31,6 +32,7 @@ export default function CategoryTiles() {
                   <>
                     <Image
                       src={cat.image}
+                      unoptimized={isLoopbackUrl(cat.image)}
                       alt={cat.name}
                       fill
                       sizes="(max-width: 768px) 50vw, 300px"
