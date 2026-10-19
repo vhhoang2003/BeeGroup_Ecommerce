@@ -31,6 +31,7 @@ class AdminBootstrapIT extends IntegrationTest {
                 props.mail(),
                 props.siteUrl(),
                 props.storage(),
+                props.catalogSourcePath(),
                 props.revalidate(),
                 new AppProperties.BootstrapAdmin(" Root@BeeStore.vn ", "Admin-pass-2026"),
                 props.rateLimit(),

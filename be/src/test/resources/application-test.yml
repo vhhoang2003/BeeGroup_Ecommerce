@@ -6,6 +6,7 @@ beestore:
   rate-limit:
     enabled: false
   import-endpoint-enabled: true
+  catalog-source-path: ../product
 
 spring:
   mail:

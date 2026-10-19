@@ -11,6 +11,7 @@ public record AppProperties(
         Mail mail,
         String siteUrl,
         Storage storage,
+        String catalogSourcePath,
         Revalidate revalidate,
         BootstrapAdmin bootstrapAdmin,
         RateLimit rateLimit,

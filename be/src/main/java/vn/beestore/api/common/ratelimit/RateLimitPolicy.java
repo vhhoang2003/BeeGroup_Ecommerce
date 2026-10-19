@@ -9,7 +9,9 @@ public enum RateLimitPolicy {
     REGISTER_IP(5, Duration.ofHours(1)),
     FORGOT_PASSWORD_EMAIL(3, Duration.ofHours(1)),
     RESEND_VERIFICATION_EMAIL(3, Duration.ofHours(1)),
-    INQUIRY_IP(5, Duration.ofHours(1));
+    INQUIRY_IP(5, Duration.ofHours(1)),
+    /** Not a client-facing limit: de-duplicates product view counts per IP (README §6.5). */
+    PRODUCT_VIEW(1, Duration.ofMinutes(30));
 
     private final long capacity;
     private final Duration period;

@@ -12,7 +12,7 @@ import vn.beestore.api.common.error.ErrorCode;
 class RateLimiterTest {
 
     private final RateLimiter limiter = new RateLimiter(
-            new AppProperties(null, null, null, null, null, null, new AppProperties.RateLimit(true), false));
+            new AppProperties(null, null, null, null, null, null, null, new AppProperties.RateLimit(true), false));
 
     @Test
     void registerAllowsFivePerHourPerIp() {
@@ -41,7 +41,7 @@ class RateLimiterTest {
     @Test
     void disabledLimiterNeverThrows() {
         RateLimiter off = new RateLimiter(
-                new AppProperties(null, null, null, null, null, null, new AppProperties.RateLimit(false), false));
+                new AppProperties(null, null, null, null, null, null, null, new AppProperties.RateLimit(false), false));
         for (int i = 0; i < 50; i++) {
             off.check(RateLimitPolicy.REGISTER_IP, "10.0.0.9");
         }
