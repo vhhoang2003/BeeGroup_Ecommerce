@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Menu, Phone, User as UserIcon } from 'lucide-react';
+import { LayoutDashboard, Menu, Phone, User as UserIcon } from 'lucide-react';
 import SearchSuggestions from '@/features/catalog/components/SearchSuggestions';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
 import Logo from '@/components/ui/Logo';
@@ -41,6 +41,15 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
 
         {/* Right: Auth + Hotline */}
         <div className="flex items-center gap-3 sm:gap-6 shrink-0">
+          {user?.role === 'ADMIN' && (
+            <Link
+              href="/admin/products"
+              className="flex items-center gap-1.5 text-[13px] sm:text-[14px] font-medium text-[#222222] hover:text-[#008ECC] transition-colors"
+            >
+              <LayoutDashboard className="w-[18px] h-[18px] text-[#008ECC]" />
+              <span className="hidden sm:inline">Quản trị</span>
+            </Link>
+          )}
           {isAuthenticated && user ? (
             <Link
               href="/account"

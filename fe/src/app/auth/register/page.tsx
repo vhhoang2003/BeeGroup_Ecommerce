@@ -3,8 +3,19 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { UserPlus, User, Mail, Lock, ArrowRight } from 'lucide-react';
+import { UserPlus, User, Mail, Lock, ArrowRight, MailCheck } from 'lucide-react';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
+
+const inputClass =
+  'w-full bg-[#F9FBFD] border border-gray-200 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#222222] outline-none focus:border-[#008ECC]';
+
+/** Mirrors the API's password policy (AUTH-03) so most mistakes are caught before the request. */
+function passwordProblem(password: string, email: string): string | null {
+  if (password.length < 8 || password.length > 72) return 'Mật khẩu cần 8-72 ký tự.';
+  if (!/[A-Za-z]/.test(password) || !/\d/.test(password)) return 'Mật khẩu cần có cả chữ và số.';
+  if (password.toLowerCase() === email.trim().toLowerCase()) return 'Mật khẩu không được trùng email.';
+  return null;
+}
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -12,24 +23,67 @@ export default function RegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmation, setConfirmation] = useState('');
+  const [acceptTerms, setAcceptTerms] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [sentTo, setSentTo] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password.length < 4) {
-      setError('Password must be at least 4 characters');
+    setError('');
+    const problem = passwordProblem(password, email);
+    if (problem) {
+      setError(problem);
+      return;
+    }
+    if (password !== confirmation) {
+      setError('Mật khẩu xác nhận không khớp.');
+      return;
+    }
+    if (!acceptTerms) {
+      setError('Vui lòng đồng ý với Điều khoản và Chính sách bảo mật.');
       return;
     }
     setLoading(true);
-    const success = await register(name, email, password);
+    const result = await register({
+      fullName: name,
+      email,
+      password,
+      passwordConfirmation: confirmation,
+      acceptTerms,
+    });
     setLoading(false);
-    if (success) {
-      router.push('/account');
+    if (!result.ok) {
+      setError(result.error);
+    } else if (result.pendingVerification) {
+      setSentTo(email);
     } else {
-      setError('Failed to create account. Please try again.');
+      router.push('/account');
     }
   };
+
+  if (sentTo) {
+    return (
+      <div className="max-w-[480px] mx-auto px-4 py-12 sm:py-16">
+        <div className="bg-white rounded-3xl border border-gray-200/80 p-6 sm:p-8 shadow-xs text-center">
+          <div className="w-12 h-12 rounded-2xl bg-[#EBF6FA] text-[#008ECC] flex items-center justify-center mx-auto mb-3">
+            <MailCheck className="w-6 h-6" />
+          </div>
+          <h1 className="text-2xl font-extrabold text-[#222222]">Kiểm tra email của bạn</h1>
+          <p className="text-sm text-gray-600 mt-2">
+            Chúng tôi đã gửi liên kết xác thực tới <strong>{sentTo}</strong>. Mở liên kết đó rồi đăng nhập.
+          </p>
+          <Link
+            href="/auth/login"
+            className="inline-block mt-6 bg-[#008ECC] hover:bg-[#0077b0] text-white px-8 py-3 rounded-full font-bold text-sm shadow-md transition-all"
+          >
+            Đến trang đăng nhập
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-[480px] mx-auto px-4 py-12 sm:py-16">
@@ -60,10 +114,11 @@ export default function RegisterPage() {
               <input
                 type="text"
                 required
+                maxLength={100}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Hoang Nguyen"
-                className="w-full bg-[#F9FBFD] border border-gray-200 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#222222] outline-none focus:border-[#008ECC]"
+                className={inputClass}
               />
             </div>
           </div>
@@ -80,7 +135,7 @@ export default function RegisterPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@example.com"
-                className="w-full bg-[#F9FBFD] border border-gray-200 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#222222] outline-none focus:border-[#008ECC]"
+                className={inputClass}
               />
             </div>
           </div>
@@ -97,10 +152,38 @@ export default function RegisterPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-[#F9FBFD] border border-gray-200 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#222222] outline-none focus:border-[#008ECC]"
+                className={inputClass}
+              />
+            </div>
+            <p className="text-[11px] text-gray-400 mt-1">8-72 ký tự, gồm cả chữ và số.</p>
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-gray-700 mb-1">
+              Confirm Password
+            </label>
+            <div className="relative">
+              <Lock className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <input
+                type="password"
+                required
+                value={confirmation}
+                onChange={(e) => setConfirmation(e.target.value)}
+                placeholder="••••••••"
+                className={inputClass}
               />
             </div>
           </div>
+
+          <label className="flex items-start gap-2 text-xs text-gray-600 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={acceptTerms}
+              onChange={(e) => setAcceptTerms(e.target.checked)}
+              className="accent-[#008ECC] mt-0.5"
+            />
+            Tôi đồng ý với Điều khoản sử dụng và Chính sách bảo mật.
+          </label>
 
           <button
             type="submit"
