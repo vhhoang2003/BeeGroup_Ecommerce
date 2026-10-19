@@ -64,6 +64,15 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   >
                     Tài khoản của tôi
                   </Link>
+                  {user.role === 'ADMIN' && (
+                    <Link
+                      href="/admin/products"
+                      onClick={onClose}
+                      className="ml-3 text-xs text-[#008ECC] font-medium hover:underline"
+                    >
+                      Quản trị
+                    </Link>
+                  )}
                 </>
               ) : (
                 <>

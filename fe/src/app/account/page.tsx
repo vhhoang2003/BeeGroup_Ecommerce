@@ -3,12 +3,16 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { User, LogOut, MessageSquareText } from 'lucide-react';
+import { User, LogOut, MessageSquareText, LayoutDashboard } from 'lucide-react';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
 
 export default function AccountPage() {
   const router = useRouter();
-  const { user, isAuthenticated, logout } = useAuthStore();
+  const { user, isAuthenticated, initialized, logout } = useAuthStore();
+
+  if (!initialized) {
+    return <div className="min-h-[50vh]" />;
+  }
 
   if (!isAuthenticated || !user) {
     return (
@@ -30,8 +34,8 @@ export default function AccountPage() {
     );
   }
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     router.push('/');
   };
 
@@ -54,14 +58,25 @@ export default function AccountPage() {
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={handleLogout}
-          className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-4 py-2 rounded-xl transition-colors w-fit"
-        >
-          <LogOut className="w-4 h-4" />
-          <span>Đăng xuất</span>
-        </button>
+        <div className="flex items-center gap-2">
+          {user.role === 'ADMIN' && (
+            <Link
+              href="/admin/products"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#008ECC] bg-[#EBF6FA] hover:bg-[#dbeff7] px-4 py-2 rounded-xl transition-colors w-fit"
+            >
+              <LayoutDashboard className="w-4 h-4" />
+              <span>Trang quản trị</span>
+            </Link>
+          )}
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-4 py-2 rounded-xl transition-colors w-fit"
+          >
+            <LogOut className="w-4 h-4" />
+            <span>Đăng xuất</span>
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">

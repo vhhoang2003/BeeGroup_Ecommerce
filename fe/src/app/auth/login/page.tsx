@@ -6,11 +6,19 @@ import { useRouter } from 'next/navigation';
 import { LogIn, Lock, Mail, ArrowRight } from 'lucide-react';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
 
+/** `?next=` from a guarded page (same-site paths only), else the home of the user's role. */
+function redirectTarget(role: string | undefined): string {
+  const next = new URLSearchParams(window.location.search).get('next');
+  if (next && next.startsWith('/') && !next.startsWith('//')) return next;
+  return role === 'ADMIN' ? '/admin/products' : '/account';
+}
+
 export default function LoginPage() {
   const router = useRouter();
   const login = useAuthStore((state) => state.login);
-  const [email, setEmail] = useState('hoang@framelab.dev');
-  const [password, setPassword] = useState('password123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -18,12 +26,12 @@ export default function LoginPage() {
     e.preventDefault();
     setError('');
     setLoading(true);
-    const success = await login(email, password);
+    const result = await login(email, password, rememberMe);
     setLoading(false);
-    if (success) {
-      router.push('/account');
+    if (result.ok) {
+      router.push(redirectTarget(result.user?.role));
     } else {
-      setError('Invalid credentials. Password must be at least 4 characters.');
+      setError(result.error);
     }
   };
 
@@ -85,6 +93,16 @@ export default function LoginPage() {
               />
             </div>
           </div>
+
+          <label className="flex items-center gap-2 text-xs text-gray-600 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+              className="accent-[#008ECC]"
+            />
+            Remember me
+          </label>
 
           <button
             type="submit"

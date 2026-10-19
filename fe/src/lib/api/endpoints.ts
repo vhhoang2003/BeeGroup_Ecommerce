@@ -3,7 +3,7 @@ import type { ProductDetail, ProductFilterParams, ProductSummary } from '@/types
 import type { Category } from '@/types/category';
 import type { PaginatedResponse } from '@/types/api';
 
-function toQuery(params: Record<string, string | number | undefined>): string {
+export function toQuery(params: Record<string, string | number | undefined>): string {
   const query = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
     if (value !== undefined && value !== '') query.set(key, String(value));
