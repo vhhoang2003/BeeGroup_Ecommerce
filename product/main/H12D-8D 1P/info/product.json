@@ -1,0 +1,385 @@
+{
+  "id": "13",
+  "name": "HUANANZHI H12D-8D 1P",
+  "slug": "huananzhi-h12d-8d-1p",
+  "brand": "HUANANZHI",
+  "category": "Mainboard",
+  "categorySlug": "mainboard",
+  "subCategory": "Huananzhi",
+  "price": 11710400,
+  "specs": {
+    "Socket": "SP3 (LGA 4094)",
+    "Brand": "HUANANZHI",
+    "Form factor": "ATX",
+    "Dimensions": "305 × 245 mm",
+    "CPU sockets": "1 × SP3",
+    "CPU support": "AMD EPYC 7002 (Rome) / 7003 (Milan)",
+    "Memory slots": "8 × DDR4 (8-channel), 3200/2933/2666/2400/2133 MHz, up to 2 TB",
+    "Expansion slots": "4 × PCIe 4.0 x16",
+    "M.2": "3 × M.2 2280 NVMe (PCIe 4.0 x4)",
+    "SATA / SAS connectors": "4 × SATA 3.0 + 3 × SFF-8643 (each = 4 × SATA or 1 × U.2 PCIe 4.0 x4)",
+    "LAN": "2 × Intel 2.5 GbE",
+    "USB": "Rear: 4 × USB 3.2 Gen1, 2 × USB 2.0; front headers: 1 × USB 3.2 Gen1, 1 × USB 2.0",
+    "Audio": "CJC6811A",
+    "Power connectors": "24-pin ATX + 2 × 8-pin EPS",
+    "Fan headers": "6 fan headers",
+    "Remote management (BMC)": "Not included (optional AST2500 module can be added)",
+    "Warranty": "12 months"
+  },
+  "description": "HUANANZHI H12D-8D đưa EPYC vào vỏ case ATX thông thường. RAM DDR4 8 kênh (tối đa 2 TB), 4 khe PCIe 4.0 x16 cho card đồ hoạ hoặc card NVMe, 3 khe M.2 NVMe và 3 cổng SFF-8643 mở rộng thêm tới 12 ổ SATA hoặc SSD U.2 – nền tảng lý tưởng cho home lab, máy render và workstation AI.",
+  "features": [
+    "SP3, EPYC 7002/7003",
+    "DDR4 8 kênh, tối đa 2 TB",
+    "4 khe PCIe 4.0 x16",
+    "3 khe M.2 NVMe + 3 cổng SFF-8643",
+    "2 cổng Intel 2.5 GbE, kích thước ATX"
+  ],
+  "specsDetailed": [
+    {
+      "key": "socket",
+      "label": {
+        "en": "Socket",
+        "vi": "Socket",
+        "zh": "插槽"
+      },
+      "value": {
+        "en": "SP3 (LGA 4094)",
+        "vi": "SP3 (LGA 4094)",
+        "zh": "SP3 (LGA 4094)"
+      }
+    },
+    {
+      "key": "brand",
+      "label": {
+        "en": "Brand",
+        "vi": "Thương hiệu",
+        "zh": "品牌"
+      },
+      "value": {
+        "en": "HUANANZHI",
+        "vi": "HUANANZHI",
+        "zh": "HUANANZHI"
+      }
+    },
+    {
+      "key": "formfactor",
+      "label": {
+        "en": "Form factor",
+        "vi": "Kích thước chuẩn",
+        "zh": "板型"
+      },
+      "value": {
+        "en": "ATX",
+        "vi": "ATX",
+        "zh": "ATX"
+      }
+    },
+    {
+      "key": "dims",
+      "label": {
+        "en": "Dimensions",
+        "vi": "Kích thước",
+        "zh": "尺寸"
+      },
+      "value": {
+        "en": "305 × 245 mm",
+        "vi": "305 × 245 mm",
+        "zh": "305 × 245 mm"
+      }
+    },
+    {
+      "key": "cpucount",
+      "label": {
+        "en": "CPU sockets",
+        "vi": "Số socket CPU",
+        "zh": "CPU 插槽数量"
+      },
+      "value": {
+        "en": "1 × SP3",
+        "vi": "1 × SP3 (1 CPU)",
+        "zh": "1 × SP3 (单路)"
+      }
+    },
+    {
+      "key": "cpusupport",
+      "label": {
+        "en": "CPU support",
+        "vi": "CPU hỗ trợ",
+        "zh": "支持处理器"
+      },
+      "value": {
+        "en": "AMD EPYC 7002 (Rome) / 7003 (Milan)",
+        "vi": "AMD EPYC 7002 (Rome) / 7003 (Milan)",
+        "zh": "AMD EPYC 7002 (Rome) / 7003 (Milan)"
+      }
+    },
+    {
+      "key": "dimm",
+      "label": {
+        "en": "Memory slots",
+        "vi": "Khe RAM",
+        "zh": "内存插槽"
+      },
+      "value": {
+        "en": "8 × DDR4 (8-channel), 3200/2933/2666/2400/2133 MHz, up to 2 TB",
+        "vi": "8 khe DDR4 (8 kênh), 3200/2933/2666/2400/2133 MHz, tối đa 2 TB",
+        "zh": "8 条 DDR4 插槽 (八通道)，3200/2933/2666/2400/2133 MHz，最大 2 TB"
+      }
+    },
+    {
+      "key": "slots",
+      "label": {
+        "en": "Expansion slots",
+        "vi": "Khe mở rộng",
+        "zh": "扩展插槽"
+      },
+      "value": {
+        "en": "4 × PCIe 4.0 x16",
+        "vi": "4 × PCIe 4.0 x16",
+        "zh": "4 × PCIe 4.0 x16"
+      }
+    },
+    {
+      "key": "m2",
+      "label": {
+        "en": "M.2",
+        "vi": "M.2",
+        "zh": "M.2"
+      },
+      "value": {
+        "en": "3 × M.2 2280 NVMe (PCIe 4.0 x4)",
+        "vi": "3 × M.2 2280 NVMe (PCIe 4.0 x4)",
+        "zh": "3 × M.2 2280 NVMe (PCIe 4.0 x4)"
+      }
+    },
+    {
+      "key": "sata",
+      "label": {
+        "en": "SATA / SAS connectors",
+        "vi": "Cổng SATA / SAS",
+        "zh": "SATA / SAS 接口"
+      },
+      "value": {
+        "en": "4 × SATA 3.0 + 3 × SFF-8643 (each = 4 × SATA or 1 × U.2 PCIe 4.0 x4)",
+        "vi": "4 × SATA 3.0 + 3 × SFF-8643 (mỗi cổng = 4 × SATA hoặc 1 × U.2 PCIe 4.0 x4)",
+        "zh": "4 × SATA 3.0 + 3 × SFF-8643 (每个可扩展 4 × SATA 或 1 × U.2 PCIe 4.0 x4)"
+      }
+    },
+    {
+      "key": "lan",
+      "label": {
+        "en": "LAN",
+        "vi": "Mạng LAN",
+        "zh": "网卡"
+      },
+      "value": {
+        "en": "2 × Intel 2.5 GbE",
+        "vi": "2 × Intel 2.5 GbE",
+        "zh": "2 × Intel 2.5G 网口"
+      }
+    },
+    {
+      "key": "usb",
+      "label": {
+        "en": "USB",
+        "vi": "USB",
+        "zh": "USB"
+      },
+      "value": {
+        "en": "Rear: 4 × USB 3.2 Gen1, 2 × USB 2.0; front headers: 1 × USB 3.2 Gen1, 1 × USB 2.0",
+        "vi": "Sau: 4 × USB 3.2 Gen1, 2 × USB 2.0; header trước: 1 × USB 3.2 Gen1, 1 × USB 2.0",
+        "zh": "后置：4 × USB 3.2 Gen1、2 × USB 2.0；前置插针：1 × USB 3.2 Gen1、1 × USB 2.0"
+      }
+    },
+    {
+      "key": "audio",
+      "label": {
+        "en": "Audio",
+        "vi": "Âm thanh",
+        "zh": "音频"
+      },
+      "value": {
+        "en": "CJC6811A",
+        "vi": "CJC6811A",
+        "zh": "CJC6811A"
+      }
+    },
+    {
+      "key": "power",
+      "label": {
+        "en": "Power connectors",
+        "vi": "Đầu cấp nguồn",
+        "zh": "供电接口"
+      },
+      "value": {
+        "en": "24-pin ATX + 2 × 8-pin EPS",
+        "vi": "24-pin ATX + 2 × 8-pin EPS",
+        "zh": "24-pin ATX + 2 × 8-pin EPS"
+      }
+    },
+    {
+      "key": "fans",
+      "label": {
+        "en": "Fan headers",
+        "vi": "Chân cắm quạt",
+        "zh": "风扇接口"
+      },
+      "value": {
+        "en": "6 fan headers",
+        "vi": "6 chân cắm quạt",
+        "zh": "6 个风扇接口"
+      }
+    },
+    {
+      "key": "bmc",
+      "label": {
+        "en": "Remote management (BMC)",
+        "vi": "Quản lý từ xa (BMC)",
+        "zh": "远程管理 (BMC)"
+      },
+      "value": {
+        "en": "Not included (optional AST2500 module can be added)",
+        "vi": "Không kèm (có thể gắn thêm module AST2500)",
+        "zh": "不含 (可选配 AST2500 模块)"
+      }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "12 months",
+        "vi": "12 tháng",
+        "zh": "12 个月"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "shortDescription": "Single-socket SP3 board for EPYC 7002/7003 with 4 × PCIe 4.0 x16, 3 × M.2 NVMe and dual 2.5 GbE in a standard ATX size.",
+      "description": "The HUANANZHI H12D-8D brings EPYC to a regular ATX case. Eight DDR4 channels (up to 2 TB), four full-length PCIe 4.0 x16 slots for GPUs or NVMe cards, three M.2 NVMe slots and three SFF-8643 ports for up to 12 extra SATA drives or U.2 SSDs make it a great base for home labs, render boxes and AI workstations.",
+      "highlights": [
+        "SP3, EPYC 7002/7003",
+        "8-channel DDR4, up to 2 TB",
+        "4 × PCIe 4.0 x16",
+        "3 × M.2 NVMe + 3 × SFF-8643",
+        "Dual Intel 2.5 GbE, ATX size"
+      ],
+      "useCases": [
+        "Render farms",
+        "Virtualization hosts",
+        "Home lab / NAS",
+        "AI / GPU workstations"
+      ],
+      "name": "HUANANZHI H12D-8D 1P",
+      "specs": {
+        "Socket": "SP3 (LGA 4094)",
+        "Brand": "HUANANZHI",
+        "Form factor": "ATX",
+        "Dimensions": "305 × 245 mm",
+        "CPU sockets": "1 × SP3",
+        "CPU support": "AMD EPYC 7002 (Rome) / 7003 (Milan)",
+        "Memory slots": "8 × DDR4 (8-channel), 3200/2933/2666/2400/2133 MHz, up to 2 TB",
+        "Expansion slots": "4 × PCIe 4.0 x16",
+        "M.2": "3 × M.2 2280 NVMe (PCIe 4.0 x4)",
+        "SATA / SAS connectors": "4 × SATA 3.0 + 3 × SFF-8643 (each = 4 × SATA or 1 × U.2 PCIe 4.0 x4)",
+        "LAN": "2 × Intel 2.5 GbE",
+        "USB": "Rear: 4 × USB 3.2 Gen1, 2 × USB 2.0; front headers: 1 × USB 3.2 Gen1, 1 × USB 2.0",
+        "Audio": "CJC6811A",
+        "Power connectors": "24-pin ATX + 2 × 8-pin EPS",
+        "Fan headers": "6 fan headers",
+        "Remote management (BMC)": "Not included (optional AST2500 module can be added)",
+        "Warranty": "12 months"
+      },
+      "notes": [
+        "This version has no BMC: no IPMI remote management and the rear VGA port is inactive – you need a graphics card for display output."
+      ]
+    },
+    "vi": {
+      "shortDescription": "Mainboard 1 CPU SP3 cho EPYC 7002/7003, 4 khe PCIe 4.0 x16, 3 khe M.2 NVMe và 2 cổng LAN 2.5 GbE, kích thước ATX tiêu chuẩn.",
+      "description": "HUANANZHI H12D-8D đưa EPYC vào vỏ case ATX thông thường. RAM DDR4 8 kênh (tối đa 2 TB), 4 khe PCIe 4.0 x16 cho card đồ hoạ hoặc card NVMe, 3 khe M.2 NVMe và 3 cổng SFF-8643 mở rộng thêm tới 12 ổ SATA hoặc SSD U.2 – nền tảng lý tưởng cho home lab, máy render và workstation AI.",
+      "highlights": [
+        "SP3, EPYC 7002/7003",
+        "DDR4 8 kênh, tối đa 2 TB",
+        "4 khe PCIe 4.0 x16",
+        "3 khe M.2 NVMe + 3 cổng SFF-8643",
+        "2 cổng Intel 2.5 GbE, kích thước ATX"
+      ],
+      "useCases": [
+        "Render farm",
+        "Máy chủ ảo hoá",
+        "Home lab / NAS",
+        "Workstation AI / GPU"
+      ],
+      "name": "HUANANZHI H12D-8D 1P",
+      "specs": {
+        "Socket": "SP3 (LGA 4094)",
+        "Thương hiệu": "HUANANZHI",
+        "Kích thước chuẩn": "ATX",
+        "Kích thước": "305 × 245 mm",
+        "Số socket CPU": "1 × SP3 (1 CPU)",
+        "CPU hỗ trợ": "AMD EPYC 7002 (Rome) / 7003 (Milan)",
+        "Khe RAM": "8 khe DDR4 (8 kênh), 3200/2933/2666/2400/2133 MHz, tối đa 2 TB",
+        "Khe mở rộng": "4 × PCIe 4.0 x16",
+        "M.2": "3 × M.2 2280 NVMe (PCIe 4.0 x4)",
+        "Cổng SATA / SAS": "4 × SATA 3.0 + 3 × SFF-8643 (mỗi cổng = 4 × SATA hoặc 1 × U.2 PCIe 4.0 x4)",
+        "Mạng LAN": "2 × Intel 2.5 GbE",
+        "USB": "Sau: 4 × USB 3.2 Gen1, 2 × USB 2.0; header trước: 1 × USB 3.2 Gen1, 1 × USB 2.0",
+        "Âm thanh": "CJC6811A",
+        "Đầu cấp nguồn": "24-pin ATX + 2 × 8-pin EPS",
+        "Chân cắm quạt": "6 chân cắm quạt",
+        "Quản lý từ xa (BMC)": "Không kèm (có thể gắn thêm module AST2500)",
+        "Bảo hành": "12 tháng"
+      },
+      "notes": [
+        "Bản này không có BMC: không quản lý từ xa IPMI và cổng VGA phía sau không hoạt động – cần lắp card đồ hoạ để xuất hình."
+      ]
+    },
+    "zh": {
+      "shortDescription": "SP3 单路主板，支持 EPYC 7002/7003，4 条 PCIe 4.0 x16、3 个 M.2 NVMe、双 2.5G 网口，标准 ATX 尺寸。",
+      "description": "华南金牌 H12D-8D 让 EPYC 装进普通 ATX 机箱。八通道 DDR4 (最大 2 TB)、4 条全长 PCIe 4.0 x16 插槽可装显卡或 NVMe 扩展卡，3 个 M.2 NVMe 和 3 个 SFF-8643 接口可再扩展 12 块 SATA 硬盘或 U.2 固态，是家庭实验室、渲染主机和 AI 工作站的理想平台。",
+      "highlights": [
+        "SP3，支持 EPYC 7002/7003",
+        "八通道 DDR4，最大 2 TB",
+        "4 条 PCIe 4.0 x16",
+        "3 × M.2 NVMe + 3 × SFF-8643",
+        "双 Intel 2.5G 网口，ATX 板型"
+      ],
+      "useCases": [
+        "渲染农场",
+        "虚拟化主机",
+        "家庭实验室 / NAS",
+        "AI / GPU 工作站"
+      ],
+      "name": "HUANANZHI H12D-8D 1P",
+      "specs": {
+        "插槽": "SP3 (LGA 4094)",
+        "品牌": "HUANANZHI",
+        "板型": "ATX",
+        "尺寸": "305 × 245 mm",
+        "CPU 插槽数量": "1 × SP3 (单路)",
+        "支持处理器": "AMD EPYC 7002 (Rome) / 7003 (Milan)",
+        "内存插槽": "8 条 DDR4 插槽 (八通道)，3200/2933/2666/2400/2133 MHz，最大 2 TB",
+        "扩展插槽": "4 × PCIe 4.0 x16",
+        "M.2": "3 × M.2 2280 NVMe (PCIe 4.0 x4)",
+        "SATA / SAS 接口": "4 × SATA 3.0 + 3 × SFF-8643 (每个可扩展 4 × SATA 或 1 × U.2 PCIe 4.0 x4)",
+        "网卡": "2 × Intel 2.5G 网口",
+        "USB": "后置：4 × USB 3.2 Gen1、2 × USB 2.0；前置插针：1 × USB 3.2 Gen1、1 × USB 2.0",
+        "音频": "CJC6811A",
+        "供电接口": "24-pin ATX + 2 × 8-pin EPS",
+        "风扇接口": "6 个风扇接口",
+        "远程管理 (BMC)": "不含 (可选配 AST2500 模块)",
+        "保修": "12 个月"
+      },
+      "notes": [
+        "此版本不带 BMC：无 IPMI 远程管理，后置 VGA 无法输出，需要另装显卡才能显示。"
+      ]
+    }
+  },
+  "sources": [
+    "https://huananzhi.com/en/list_6/177.html"
+  ]
+}

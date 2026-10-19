@@ -1,0 +1,423 @@
+{
+  "id": "12",
+  "name": "GIGABYTE MZ71-CE1 2P",
+  "slug": "gigabyte-mz71-ce1-2p",
+  "brand": "GIGABYTE",
+  "category": "Mainboard",
+  "categorySlug": "mainboard",
+  "subCategory": "Gigabyte",
+  "price": 21944000,
+  "specs": {
+    "Socket": "SP3 (LGA 4094)",
+    "Brand": "GIGABYTE",
+    "Form factor": "E-ATX",
+    "Dimensions": "305 × 330 mm (12\" × 13\")",
+    "CPU sockets": "2 × SP3",
+    "CPU support": "AMD EPYC 7001 / 7002 (rev 1.x); 7003 on rev 3.x / 4.x",
+    "Memory slots": "16 × DDR4 (8 channels per CPU), RDIMM/LRDIMM up to 3200 MHz, up to 128 GB per module",
+    "Expansion slots": "Up to 5 × PCIe x16 (Gen3; one slot runs Gen4 with EPYC 7002)",
+    "M.2": "1 × M.2 (PCIe x4)",
+    "SATA / SAS connectors": "4 × SATA 6Gb/s + 5 × SlimSAS (up to 12 × SATA and 5 × NVMe Gen3 x4)",
+    "LAN": "2 × 1 GbE (Broadcom BCM5720) + 1 × dedicated management port",
+    "Rear I/O": "2 × USB 3.0, 1 × VGA, 1 × COM, 2 × RJ45, 1 × MLAN, ID button",
+    "Remote management (BMC)": "ASPEED AST2500, GIGABYTE Management Console (AMI MegaRAC SP-X)",
+    "TPM": "TPM header (SPI), optional TPM 2.0 kit CTM010",
+    "Power connectors": "24-pin ATX + 2 × 8-pin ATX 12V",
+    "Fan headers": "2 × CPU fan, 4 × system fan headers",
+    "OS compatibility": "Windows Server 2016/2019, RHEL 8.3+, SLES 12 SP5 / 15 SP2+, Ubuntu 18.04.5 / 20.04+, VMware ESXi 6.7 U3 / 7.0 U1+, Citrix Hypervisor 8.2+",
+    "Operating temperature": "10 °C – 40 °C",
+    "Warranty": "12 months"
+  },
+  "description": "GIGABYTE MZ71-CE1 chạy được 2 CPU AMD EPYC, tối đa 128 nhân trên một bo mạch. 16 khe DDR4 (8 kênh mỗi CPU), tối đa 5 khe PCIe x16, 5 cổng SlimSAS cho ổ SATA hoặc NVMe và chip BMC ASPEED AST2500 với cổng quản lý riêng – nền tảng đã được kiểm chứng cho render farm, cụm ảo hoá và server lưu trữ.",
+  "features": [
+    "2 socket SP3 – tối đa 2 × 64 nhân",
+    "16 khe DDR4, 8 kênh mỗi CPU",
+    "5 cổng SlimSAS + 4 SATA + M.2",
+    "BMC ASPEED AST2500 hỗ trợ IPMI",
+    "Nền tảng server chính hãng GIGABYTE"
+  ],
+  "specsDetailed": [
+    {
+      "key": "socket",
+      "label": {
+        "en": "Socket",
+        "vi": "Socket",
+        "zh": "插槽"
+      },
+      "value": {
+        "en": "SP3 (LGA 4094)",
+        "vi": "SP3 (LGA 4094)",
+        "zh": "SP3 (LGA 4094)"
+      }
+    },
+    {
+      "key": "brand",
+      "label": {
+        "en": "Brand",
+        "vi": "Thương hiệu",
+        "zh": "品牌"
+      },
+      "value": {
+        "en": "GIGABYTE",
+        "vi": "GIGABYTE",
+        "zh": "GIGABYTE"
+      }
+    },
+    {
+      "key": "formfactor",
+      "label": {
+        "en": "Form factor",
+        "vi": "Kích thước chuẩn",
+        "zh": "板型"
+      },
+      "value": {
+        "en": "E-ATX",
+        "vi": "E-ATX",
+        "zh": "E-ATX"
+      }
+    },
+    {
+      "key": "dims",
+      "label": {
+        "en": "Dimensions",
+        "vi": "Kích thước",
+        "zh": "尺寸"
+      },
+      "value": {
+        "en": "305 × 330 mm (12\" × 13\")",
+        "vi": "305 × 330 mm (12\" × 13\")",
+        "zh": "305 × 330 mm (12\" × 13\")"
+      }
+    },
+    {
+      "key": "cpucount",
+      "label": {
+        "en": "CPU sockets",
+        "vi": "Số socket CPU",
+        "zh": "CPU 插槽数量"
+      },
+      "value": {
+        "en": "2 × SP3",
+        "vi": "2 × SP3 (2 CPU)",
+        "zh": "2 × SP3 (双路)"
+      }
+    },
+    {
+      "key": "cpusupport",
+      "label": {
+        "en": "CPU support",
+        "vi": "CPU hỗ trợ",
+        "zh": "支持处理器"
+      },
+      "value": {
+        "en": "AMD EPYC 7001 / 7002 (rev 1.x); 7003 on rev 3.x / 4.x",
+        "vi": "AMD EPYC 7001 / 7002 (rev 1.x); 7003 từ rev 3.x / 4.x",
+        "zh": "AMD EPYC 7001 / 7002 (rev 1.x)；rev 3.x / 4.x 支持 7003"
+      }
+    },
+    {
+      "key": "dimm",
+      "label": {
+        "en": "Memory slots",
+        "vi": "Khe RAM",
+        "zh": "内存插槽"
+      },
+      "value": {
+        "en": "16 × DDR4 (8 channels per CPU), RDIMM/LRDIMM up to 3200 MHz, up to 128 GB per module",
+        "vi": "16 khe DDR4 (8 kênh mỗi CPU), RDIMM/LRDIMM tới 3200 MHz, tối đa 128 GB mỗi thanh",
+        "zh": "16 条 DDR4 (每 CPU 八通道)，RDIMM/LRDIMM 最高 3200 MHz，单条最大 128 GB"
+      }
+    },
+    {
+      "key": "slots",
+      "label": {
+        "en": "Expansion slots",
+        "vi": "Khe mở rộng",
+        "zh": "扩展插槽"
+      },
+      "value": {
+        "en": "Up to 5 × PCIe x16 (Gen3; one slot runs Gen4 with EPYC 7002)",
+        "vi": "Tối đa 5 khe PCIe x16 (Gen3; 1 khe chạy Gen4 khi dùng EPYC 7002)",
+        "zh": "最多 5 条 PCIe x16 (Gen3；搭配 EPYC 7002 时其中一条为 Gen4)"
+      }
+    },
+    {
+      "key": "m2",
+      "label": {
+        "en": "M.2",
+        "vi": "M.2",
+        "zh": "M.2"
+      },
+      "value": {
+        "en": "1 × M.2 (PCIe x4)",
+        "vi": "1 × M.2 (PCIe x4)",
+        "zh": "1 × M.2 (PCIe x4)"
+      }
+    },
+    {
+      "key": "sata",
+      "label": {
+        "en": "SATA / SAS connectors",
+        "vi": "Cổng SATA / SAS",
+        "zh": "SATA / SAS 接口"
+      },
+      "value": {
+        "en": "4 × SATA 6Gb/s + 5 × SlimSAS (up to 12 × SATA and 5 × NVMe Gen3 x4)",
+        "vi": "4 × SATA 6Gb/s + 5 × SlimSAS (tới 12 × SATA và 5 × NVMe Gen3 x4)",
+        "zh": "4 × SATA 6Gb/s + 5 × SlimSAS (最多 12 × SATA 和 5 × NVMe Gen3 x4)"
+      }
+    },
+    {
+      "key": "lan",
+      "label": {
+        "en": "LAN",
+        "vi": "Mạng LAN",
+        "zh": "网卡"
+      },
+      "value": {
+        "en": "2 × 1 GbE (Broadcom BCM5720) + 1 × dedicated management port",
+        "vi": "2 × 1 GbE (Broadcom BCM5720) + 1 cổng quản lý riêng",
+        "zh": "2 × 千兆网口 (Broadcom BCM5720) + 1 个独立管理网口"
+      }
+    },
+    {
+      "key": "rearIO",
+      "label": {
+        "en": "Rear I/O",
+        "vi": "Cổng I/O phía sau",
+        "zh": "后置 I/O"
+      },
+      "value": {
+        "en": "2 × USB 3.0, 1 × VGA, 1 × COM, 2 × RJ45, 1 × MLAN, ID button",
+        "vi": "2 × USB 3.0, 1 × VGA, 1 × COM, 2 × RJ45, 1 × MLAN, ID button",
+        "zh": "2 × USB 3.0, 1 × VGA, 1 × COM, 2 × RJ45, 1 × MLAN, ID button"
+      }
+    },
+    {
+      "key": "bmc",
+      "label": {
+        "en": "Remote management (BMC)",
+        "vi": "Quản lý từ xa (BMC)",
+        "zh": "远程管理 (BMC)"
+      },
+      "value": {
+        "en": "ASPEED AST2500, GIGABYTE Management Console (AMI MegaRAC SP-X)",
+        "vi": "ASPEED AST2500, GIGABYTE Management Console (AMI MegaRAC SP-X)",
+        "zh": "ASPEED AST2500，GIGABYTE Management Console (AMI MegaRAC SP-X)"
+      }
+    },
+    {
+      "key": "tpm",
+      "label": {
+        "en": "TPM",
+        "vi": "TPM",
+        "zh": "TPM"
+      },
+      "value": {
+        "en": "TPM header (SPI), optional TPM 2.0 kit CTM010",
+        "vi": "Header TPM (SPI), kit TPM 2.0 CTM010 tuỳ chọn",
+        "zh": "TPM 插针 (SPI)，可选 TPM 2.0 模块 CTM010"
+      }
+    },
+    {
+      "key": "power",
+      "label": {
+        "en": "Power connectors",
+        "vi": "Đầu cấp nguồn",
+        "zh": "供电接口"
+      },
+      "value": {
+        "en": "24-pin ATX + 2 × 8-pin ATX 12V",
+        "vi": "24-pin ATX + 2 × 8-pin ATX 12V",
+        "zh": "24-pin ATX + 2 × 8-pin ATX 12V"
+      }
+    },
+    {
+      "key": "fans",
+      "label": {
+        "en": "Fan headers",
+        "vi": "Chân cắm quạt",
+        "zh": "风扇接口"
+      },
+      "value": {
+        "en": "2 × CPU fan, 4 × system fan headers",
+        "vi": "2 chân quạt CPU, 4 chân quạt hệ thống",
+        "zh": "2 个 CPU 风扇接口，4 个系统风扇接口"
+      }
+    },
+    {
+      "key": "os",
+      "label": {
+        "en": "OS compatibility",
+        "vi": "Hệ điều hành hỗ trợ",
+        "zh": "兼容操作系统"
+      },
+      "value": {
+        "en": "Windows Server 2016/2019, RHEL 8.3+, SLES 12 SP5 / 15 SP2+, Ubuntu 18.04.5 / 20.04+, VMware ESXi 6.7 U3 / 7.0 U1+, Citrix Hypervisor 8.2+",
+        "vi": "Windows Server 2016/2019, RHEL 8.3+, SLES 12 SP5 / 15 SP2+, Ubuntu 18.04.5 / 20.04+, VMware ESXi 6.7 U3 / 7.0 U1+, Citrix Hypervisor 8.2+",
+        "zh": "Windows Server 2016/2019, RHEL 8.3+, SLES 12 SP5 / 15 SP2+, Ubuntu 18.04.5 / 20.04+, VMware ESXi 6.7 U3 / 7.0 U1+, Citrix Hypervisor 8.2+"
+      }
+    },
+    {
+      "key": "temp",
+      "label": {
+        "en": "Operating temperature",
+        "vi": "Nhiệt độ hoạt động",
+        "zh": "工作温度"
+      },
+      "value": {
+        "en": "10 °C – 40 °C",
+        "vi": "10 °C – 40 °C",
+        "zh": "10 °C – 40 °C"
+      }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "12 months",
+        "vi": "12 tháng",
+        "zh": "12 个月"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "shortDescription": "Dual-socket SP3 server board: 2 × EPYC, 16 DIMM slots, 5 SlimSAS ports and built-in IPMI management.",
+      "description": "The GIGABYTE MZ71-CE1 runs two AMD EPYC processors for up to 128 cores on one board. 16 DDR4 slots (8 channels per CPU), up to five PCIe x16 slots, five SlimSAS connectors for SATA or NVMe drives and an ASPEED AST2500 BMC with a dedicated management port make it a proven foundation for render farms, virtualization clusters and storage servers.",
+      "highlights": [
+        "Dual SP3 – up to 2 × 64 cores",
+        "16 × DDR4 slots, 8 channels per CPU",
+        "5 × SlimSAS + 4 × SATA + M.2",
+        "ASPEED AST2500 BMC with IPMI",
+        "Official GIGABYTE server platform"
+      ],
+      "useCases": [
+        "Render farms",
+        "Virtualization hosts",
+        "Home lab / NAS",
+        "AI / GPU workstations"
+      ],
+      "name": "GIGABYTE MZ71-CE1 2P",
+      "specs": {
+        "Socket": "SP3 (LGA 4094)",
+        "Brand": "GIGABYTE",
+        "Form factor": "E-ATX",
+        "Dimensions": "305 × 330 mm (12\" × 13\")",
+        "CPU sockets": "2 × SP3",
+        "CPU support": "AMD EPYC 7001 / 7002 (rev 1.x); 7003 on rev 3.x / 4.x",
+        "Memory slots": "16 × DDR4 (8 channels per CPU), RDIMM/LRDIMM up to 3200 MHz, up to 128 GB per module",
+        "Expansion slots": "Up to 5 × PCIe x16 (Gen3; one slot runs Gen4 with EPYC 7002)",
+        "M.2": "1 × M.2 (PCIe x4)",
+        "SATA / SAS connectors": "4 × SATA 6Gb/s + 5 × SlimSAS (up to 12 × SATA and 5 × NVMe Gen3 x4)",
+        "LAN": "2 × 1 GbE (Broadcom BCM5720) + 1 × dedicated management port",
+        "Rear I/O": "2 × USB 3.0, 1 × VGA, 1 × COM, 2 × RJ45, 1 × MLAN, ID button",
+        "Remote management (BMC)": "ASPEED AST2500, GIGABYTE Management Console (AMI MegaRAC SP-X)",
+        "TPM": "TPM header (SPI), optional TPM 2.0 kit CTM010",
+        "Power connectors": "24-pin ATX + 2 × 8-pin ATX 12V",
+        "Fan headers": "2 × CPU fan, 4 × system fan headers",
+        "OS compatibility": "Windows Server 2016/2019, RHEL 8.3+, SLES 12 SP5 / 15 SP2+, Ubuntu 18.04.5 / 20.04+, VMware ESXi 6.7 U3 / 7.0 U1+, Citrix Hypervisor 8.2+",
+        "Operating temperature": "10 °C – 40 °C",
+        "Warranty": "12 months"
+      },
+      "notes": [
+        "CPU support depends on board revision: rev 1.x supports EPYC 7001/7002; EPYC 7003 (Zen 3) requires rev 3.x or later. Check the revision sticker before selling with Milan CPUs.",
+        "E-ATX (305 × 330 mm) – needs a case that supports E-ATX / SSI-EEB."
+      ]
+    },
+    "vi": {
+      "shortDescription": "Mainboard server 2 socket SP3: chạy 2 CPU EPYC, 16 khe RAM, 5 cổng SlimSAS và quản lý từ xa IPMI tích hợp.",
+      "description": "GIGABYTE MZ71-CE1 chạy được 2 CPU AMD EPYC, tối đa 128 nhân trên một bo mạch. 16 khe DDR4 (8 kênh mỗi CPU), tối đa 5 khe PCIe x16, 5 cổng SlimSAS cho ổ SATA hoặc NVMe và chip BMC ASPEED AST2500 với cổng quản lý riêng – nền tảng đã được kiểm chứng cho render farm, cụm ảo hoá và server lưu trữ.",
+      "highlights": [
+        "2 socket SP3 – tối đa 2 × 64 nhân",
+        "16 khe DDR4, 8 kênh mỗi CPU",
+        "5 cổng SlimSAS + 4 SATA + M.2",
+        "BMC ASPEED AST2500 hỗ trợ IPMI",
+        "Nền tảng server chính hãng GIGABYTE"
+      ],
+      "useCases": [
+        "Render farm",
+        "Máy chủ ảo hoá",
+        "Home lab / NAS",
+        "Workstation AI / GPU"
+      ],
+      "name": "GIGABYTE MZ71-CE1 2P",
+      "specs": {
+        "Socket": "SP3 (LGA 4094)",
+        "Thương hiệu": "GIGABYTE",
+        "Kích thước chuẩn": "E-ATX",
+        "Kích thước": "305 × 330 mm (12\" × 13\")",
+        "Số socket CPU": "2 × SP3 (2 CPU)",
+        "CPU hỗ trợ": "AMD EPYC 7001 / 7002 (rev 1.x); 7003 từ rev 3.x / 4.x",
+        "Khe RAM": "16 khe DDR4 (8 kênh mỗi CPU), RDIMM/LRDIMM tới 3200 MHz, tối đa 128 GB mỗi thanh",
+        "Khe mở rộng": "Tối đa 5 khe PCIe x16 (Gen3; 1 khe chạy Gen4 khi dùng EPYC 7002)",
+        "M.2": "1 × M.2 (PCIe x4)",
+        "Cổng SATA / SAS": "4 × SATA 6Gb/s + 5 × SlimSAS (tới 12 × SATA và 5 × NVMe Gen3 x4)",
+        "Mạng LAN": "2 × 1 GbE (Broadcom BCM5720) + 1 cổng quản lý riêng",
+        "Cổng I/O phía sau": "2 × USB 3.0, 1 × VGA, 1 × COM, 2 × RJ45, 1 × MLAN, ID button",
+        "Quản lý từ xa (BMC)": "ASPEED AST2500, GIGABYTE Management Console (AMI MegaRAC SP-X)",
+        "TPM": "Header TPM (SPI), kit TPM 2.0 CTM010 tuỳ chọn",
+        "Đầu cấp nguồn": "24-pin ATX + 2 × 8-pin ATX 12V",
+        "Chân cắm quạt": "2 chân quạt CPU, 4 chân quạt hệ thống",
+        "Hệ điều hành hỗ trợ": "Windows Server 2016/2019, RHEL 8.3+, SLES 12 SP5 / 15 SP2+, Ubuntu 18.04.5 / 20.04+, VMware ESXi 6.7 U3 / 7.0 U1+, Citrix Hypervisor 8.2+",
+        "Nhiệt độ hoạt động": "10 °C – 40 °C",
+        "Bảo hành": "12 tháng"
+      },
+      "notes": [
+        "CPU hỗ trợ phụ thuộc revision mainboard: rev 1.x chạy EPYC 7001/7002; EPYC 7003 (Zen 3) cần rev 3.x trở lên. Kiểm tra tem revision trước khi bán kèm CPU Milan.",
+        "Kích thước E-ATX (305 × 330 mm) – cần case hỗ trợ E-ATX / SSI-EEB."
+      ]
+    },
+    "zh": {
+      "shortDescription": "SP3 双路服务器主板：支持 2 颗 EPYC、16 条内存插槽、5 个 SlimSAS 接口并内置 IPMI 管理。",
+      "description": "技嘉 MZ71-CE1 可同时运行两颗 AMD EPYC 处理器，单板最多 128 核。16 条 DDR4 插槽 (每 CPU 八通道)、最多 5 条 PCIe x16、5 个 SlimSAS 接口可接 SATA 或 NVMe 硬盘，并配备带独立管理网口的 ASPEED AST2500 BMC，是渲染农场、虚拟化集群和存储服务器的可靠平台。",
+      "highlights": [
+        "双路 SP3，最多 2 × 64 核",
+        "16 条 DDR4，每 CPU 八通道",
+        "5 × SlimSAS + 4 × SATA + M.2",
+        "ASPEED AST2500 BMC，支持 IPMI",
+        "技嘉官方服务器平台"
+      ],
+      "useCases": [
+        "渲染农场",
+        "虚拟化主机",
+        "家庭实验室 / NAS",
+        "AI / GPU 工作站"
+      ],
+      "name": "GIGABYTE MZ71-CE1 2P",
+      "specs": {
+        "插槽": "SP3 (LGA 4094)",
+        "品牌": "GIGABYTE",
+        "板型": "E-ATX",
+        "尺寸": "305 × 330 mm (12\" × 13\")",
+        "CPU 插槽数量": "2 × SP3 (双路)",
+        "支持处理器": "AMD EPYC 7001 / 7002 (rev 1.x)；rev 3.x / 4.x 支持 7003",
+        "内存插槽": "16 条 DDR4 (每 CPU 八通道)，RDIMM/LRDIMM 最高 3200 MHz，单条最大 128 GB",
+        "扩展插槽": "最多 5 条 PCIe x16 (Gen3；搭配 EPYC 7002 时其中一条为 Gen4)",
+        "M.2": "1 × M.2 (PCIe x4)",
+        "SATA / SAS 接口": "4 × SATA 6Gb/s + 5 × SlimSAS (最多 12 × SATA 和 5 × NVMe Gen3 x4)",
+        "网卡": "2 × 千兆网口 (Broadcom BCM5720) + 1 个独立管理网口",
+        "后置 I/O": "2 × USB 3.0, 1 × VGA, 1 × COM, 2 × RJ45, 1 × MLAN, ID button",
+        "远程管理 (BMC)": "ASPEED AST2500，GIGABYTE Management Console (AMI MegaRAC SP-X)",
+        "TPM": "TPM 插针 (SPI)，可选 TPM 2.0 模块 CTM010",
+        "供电接口": "24-pin ATX + 2 × 8-pin ATX 12V",
+        "风扇接口": "2 个 CPU 风扇接口，4 个系统风扇接口",
+        "兼容操作系统": "Windows Server 2016/2019, RHEL 8.3+, SLES 12 SP5 / 15 SP2+, Ubuntu 18.04.5 / 20.04+, VMware ESXi 6.7 U3 / 7.0 U1+, Citrix Hypervisor 8.2+",
+        "工作温度": "10 °C – 40 °C",
+        "保修": "12 个月"
+      },
+      "notes": [
+        "支持的 CPU 取决于主板版本：rev 1.x 支持 EPYC 7001/7002；EPYC 7003 (Zen 3) 需要 rev 3.x 或以上。搭配 Milan CPU 销售前请核对版本贴纸。",
+        "E-ATX 板型 (305 × 330 mm)，需要支持 E-ATX / SSI-EEB 的机箱。"
+      ]
+    }
+  },
+  "sources": [
+    "https://www.gigabyte.com/Server-Motherboard/MZ71-CE1-rev-1x",
+    "https://update.shared.it/DOCS/Gigabyte/MZ71-CE1_rev30_datasheet_v1.0.pdf"
+  ]
+}

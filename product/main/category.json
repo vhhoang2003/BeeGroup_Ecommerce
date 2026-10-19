@@ -1,0 +1,22 @@
+{
+  "name": "Mainboard",
+  "slug": "mainboard",
+  "itemCount": 3,
+  "subCategories": [
+    {
+      "name": "Gigabyte",
+      "slug": "gigabyte",
+      "products": [
+        "MZ71-CE1 2P"
+      ]
+    },
+    {
+      "name": "Huananzhi",
+      "slug": "huananzhi",
+      "products": [
+        "H12D-8D 1P",
+        "H12D-8D 1P BMC"
+      ]
+    }
+  ]
+}

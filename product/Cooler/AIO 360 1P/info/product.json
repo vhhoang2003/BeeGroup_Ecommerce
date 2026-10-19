@@ -1,0 +1,190 @@
+{
+  "id": "16",
+  "name": "AIO 360 1P SP3 Liquid Cooler",
+  "slug": "cooler-aio-360-1p",
+  "brand": "OEM",
+  "category": "Cooler",
+  "categorySlug": "cooler",
+  "subCategory": "AIO",
+  "price": 4420000,
+  "specs": {
+    "Type": "All-in-one liquid cooler",
+    "Socket": "AMD SP3",
+    "Radiator": "360 mm (3 × 120 mm fans)",
+    "CPU blocks": "1 (single CPU)",
+    "Rated cooling capacity": "1000 W",
+    "Warranty": "12 months"
+  },
+  "description": "Tản nhiệt nước AIO 360 mm với block SP3. Giữ CPU EPYC 64 nhân mát và êm trong case workstation, két gắn nóc hoặc mặt trước.",
+  "features": [
+    "Két 360 mm",
+    "Công suất 1000 W",
+    "1 block SP3",
+    "Êm khi tải nặng"
+  ],
+  "specsDetailed": [
+    {
+      "key": "type",
+      "label": {
+        "en": "Type",
+        "vi": "Loại",
+        "zh": "类型"
+      },
+      "value": {
+        "en": "All-in-one liquid cooler",
+        "vi": "Tản nhiệt nước AIO",
+        "zh": "一体式水冷"
+      }
+    },
+    {
+      "key": "socket",
+      "label": {
+        "en": "Socket",
+        "vi": "Socket",
+        "zh": "插槽"
+      },
+      "value": {
+        "en": "AMD SP3",
+        "vi": "AMD SP3",
+        "zh": "AMD SP3"
+      }
+    },
+    {
+      "key": "radiator",
+      "label": {
+        "en": "Radiator",
+        "vi": "Két tản nhiệt",
+        "zh": "冷排"
+      },
+      "value": {
+        "en": "360 mm (3 × 120 mm fans)",
+        "vi": "360 mm (3 × 120 mm fans)",
+        "zh": "360 mm (3 × 120 mm fans)"
+      }
+    },
+    {
+      "key": "blocks",
+      "label": {
+        "en": "CPU blocks",
+        "vi": "Số block CPU",
+        "zh": "冷头数量"
+      },
+      "value": {
+        "en": "1 (single CPU)",
+        "vi": "1 (1 CPU)",
+        "zh": "1 (单路)"
+      }
+    },
+    {
+      "key": "rated",
+      "label": {
+        "en": "Rated cooling capacity",
+        "vi": "Công suất tản nhiệt",
+        "zh": "额定散热功率"
+      },
+      "value": {
+        "en": "1000 W",
+        "vi": "1000 W",
+        "zh": "1000 W"
+      },
+      "verified": false
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "12 months",
+        "vi": "12 tháng",
+        "zh": "12 个月"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "shortDescription": "360 mm AIO liquid cooler for one SP3 EPYC CPU, rated 1000 W.",
+      "description": "A 360 mm all-in-one liquid cooler with an SP3 cold plate. Keeps 64-core EPYC chips cool and quiet in workstation cases, with the radiator mounted at the top or front.",
+      "highlights": [
+        "360 mm radiator",
+        "Rated 1000 W",
+        "1 × SP3 cold plate",
+        "Quiet under heavy load"
+      ],
+      "useCases": [
+        "EPYC workstations",
+        "4U rack servers",
+        "Render / AI rigs"
+      ],
+      "name": "AIO 360 1P SP3 Liquid Cooler",
+      "specs": {
+        "Type": "All-in-one liquid cooler",
+        "Socket": "AMD SP3",
+        "Radiator": "360 mm (3 × 120 mm fans)",
+        "CPU blocks": "1 (single CPU)",
+        "Rated cooling capacity": "1000 W",
+        "Warranty": "12 months"
+      },
+      "notes": [
+        "Brand, pump and fan specifications are not identified – fill in from the supplier's spec sheet before publishing."
+      ]
+    },
+    "vi": {
+      "shortDescription": "Tản nhiệt nước AIO 360 mm cho 1 CPU EPYC SP3, công suất 1000 W.",
+      "description": "Tản nhiệt nước AIO 360 mm với block SP3. Giữ CPU EPYC 64 nhân mát và êm trong case workstation, két gắn nóc hoặc mặt trước.",
+      "highlights": [
+        "Két 360 mm",
+        "Công suất 1000 W",
+        "1 block SP3",
+        "Êm khi tải nặng"
+      ],
+      "useCases": [
+        "Workstation EPYC",
+        "Server rack 4U",
+        "Máy render / AI"
+      ],
+      "name": "AIO 360 1P SP3 Liquid Cooler",
+      "specs": {
+        "Loại": "Tản nhiệt nước AIO",
+        "Socket": "AMD SP3",
+        "Két tản nhiệt": "360 mm (3 × 120 mm fans)",
+        "Số block CPU": "1 (1 CPU)",
+        "Công suất tản nhiệt": "1000 W",
+        "Bảo hành": "12 tháng"
+      },
+      "notes": [
+        "Chưa xác định được thương hiệu, thông số bơm và quạt – cần bổ sung từ tài liệu của nhà cung cấp trước khi đăng bán."
+      ]
+    },
+    "zh": {
+      "shortDescription": "360 mm 一体式水冷，适用于 单路 SP3 EPYC，额定 1000 W。",
+      "description": "配备 SP3 冷头的 360 mm 一体式水冷，可在工作站机箱中安静压制 64 核 EPYC，冷排可装于顶部或前部。",
+      "highlights": [
+        "360 mm 冷排",
+        "额定 1000 W",
+        "1 个 SP3 冷头",
+        "高负载下依然安静"
+      ],
+      "useCases": [
+        "EPYC 工作站",
+        "4U 机架服务器",
+        "渲染 / AI 主机"
+      ],
+      "name": "AIO 360 1P SP3 Liquid Cooler",
+      "specs": {
+        "类型": "一体式水冷",
+        "插槽": "AMD SP3",
+        "冷排": "360 mm (3 × 120 mm fans)",
+        "冷头数量": "1 (单路)",
+        "额定散热功率": "1000 W",
+        "保修": "12 个月"
+      },
+      "notes": [
+        "品牌、水泵和风扇参数尚未确认，发布前请根据供应商规格书补充。"
+      ]
+    }
+  },
+  "sources": []
+}

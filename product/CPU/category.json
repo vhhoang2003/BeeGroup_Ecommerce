@@ -1,0 +1,30 @@
+{
+  "name": "CPU",
+  "slug": "cpu",
+  "itemCount": 11,
+  "subCategories": [
+    {
+      "name": "Zen 2",
+      "slug": "zen-2",
+      "products": [
+        "Epyc 7F32",
+        "Epyc 7F52",
+        "Epyc 7402",
+        "Epyc 7532",
+        "Epyc 7K62",
+        "Epyc 7642",
+        "Epyc 7B12"
+      ]
+    },
+    {
+      "name": "Zen 3",
+      "slug": "zen-3",
+      "products": [
+        "Epyc 7663",
+        "Epyc 7B13",
+        "Epyc 7V13",
+        "Epyc 7V73X"
+      ]
+    }
+  ]
+}

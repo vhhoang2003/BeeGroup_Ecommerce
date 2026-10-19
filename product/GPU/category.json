@@ -1,0 +1,14 @@
+{
+  "name": "GPU",
+  "slug": "gpu",
+  "itemCount": 1,
+  "subCategories": [
+    {
+      "name": "NVIDIA",
+      "slug": "nvidia",
+      "products": [
+        "Tesla A2"
+      ]
+    }
+  ]
+}

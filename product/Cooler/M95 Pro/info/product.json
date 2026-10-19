@@ -1,0 +1,348 @@
+{
+  "id": "19",
+  "name": "COOLSERVER M95 Pro",
+  "slug": "cooler-m95-pro",
+  "brand": "COOLSERVER",
+  "category": "Cooler",
+  "categorySlug": "cooler",
+  "subCategory": "Air",
+  "price": 1040000,
+  "specs": {
+    "Brand": "COOLSERVER",
+    "Model": "CS-SP3-4UM95 PRO",
+    "Type": "Air tower cooler, 4U server",
+    "Socket": "AMD SP3",
+    "Rated cooling capacity": "380 W",
+    "Heat pipes": "6",
+    "Dimensions": "118 × 103 × 124.5 mm",
+    "Height class": "4U",
+    "Fan": "1 × PWM",
+    "Fan speed": "2000 – 5000 RPM",
+    "Max noise": "45 dBA",
+    "Max airflow": "128 CFM",
+    "Bearing": "Double ball bearing",
+    "Connector": "4-pin PWM",
+    "Warranty": "12 months"
+  },
+  "description": "M95 Pro là mẫu nhỏ gọn nhất trong dòng, chỉ cao 124.5 mm, nhưng 6 ống đồng và quạt 5000 vòng/phút thổi 128 CFM vẫn tản được tới 380 W. Lý tưởng cho server rack 4U có luồng gió trước–sau mạnh.",
+  "features": [
+    "6 ống đồng",
+    "Công suất 380 W",
+    "Lưu lượng gió lớn 128 CFM",
+    "Nhỏ gọn, cao 124.5 mm"
+  ],
+  "specsDetailed": [
+    {
+      "key": "brand",
+      "label": {
+        "en": "Brand",
+        "vi": "Thương hiệu",
+        "zh": "品牌"
+      },
+      "value": {
+        "en": "COOLSERVER",
+        "vi": "COOLSERVER",
+        "zh": "COOLSERVER"
+      }
+    },
+    {
+      "key": "model",
+      "label": {
+        "en": "Model",
+        "vi": "Mã sản phẩm",
+        "zh": "型号"
+      },
+      "value": {
+        "en": "CS-SP3-4UM95 PRO",
+        "vi": "CS-SP3-4UM95 PRO",
+        "zh": "CS-SP3-4UM95 PRO"
+      }
+    },
+    {
+      "key": "type",
+      "label": {
+        "en": "Type",
+        "vi": "Loại",
+        "zh": "类型"
+      },
+      "value": {
+        "en": "Air tower cooler, 4U server",
+        "vi": "Tản khí dạng tháp, chuẩn server 4U",
+        "zh": "4U 服务器风冷塔式散热器"
+      }
+    },
+    {
+      "key": "socket",
+      "label": {
+        "en": "Socket",
+        "vi": "Socket",
+        "zh": "插槽"
+      },
+      "value": {
+        "en": "AMD SP3",
+        "vi": "AMD SP3",
+        "zh": "AMD SP3"
+      }
+    },
+    {
+      "key": "rated",
+      "label": {
+        "en": "Rated cooling capacity",
+        "vi": "Công suất tản nhiệt",
+        "zh": "额定散热功率"
+      },
+      "value": {
+        "en": "380 W",
+        "vi": "380 W",
+        "zh": "380 W"
+      }
+    },
+    {
+      "key": "heatpipes",
+      "label": {
+        "en": "Heat pipes",
+        "vi": "Số ống đồng",
+        "zh": "热管数量"
+      },
+      "value": {
+        "en": "6",
+        "vi": "6",
+        "zh": "6"
+      }
+    },
+    {
+      "key": "dims",
+      "label": {
+        "en": "Dimensions",
+        "vi": "Kích thước",
+        "zh": "尺寸"
+      },
+      "value": {
+        "en": "118 × 103 × 124.5 mm",
+        "vi": "118 × 103 × 124.5 mm",
+        "zh": "118 × 103 × 124.5 mm"
+      }
+    },
+    {
+      "key": "height",
+      "label": {
+        "en": "Height class",
+        "vi": "Chiều cao (chuẩn rack)",
+        "zh": "高度规格"
+      },
+      "value": {
+        "en": "4U",
+        "vi": "4U",
+        "zh": "4U"
+      }
+    },
+    {
+      "key": "fan",
+      "label": {
+        "en": "Fan",
+        "vi": "Quạt",
+        "zh": "风扇"
+      },
+      "value": {
+        "en": "1 × PWM",
+        "vi": "1 × PWM",
+        "zh": "1 × PWM"
+      }
+    },
+    {
+      "key": "rpm",
+      "label": {
+        "en": "Fan speed",
+        "vi": "Tốc độ quạt",
+        "zh": "风扇转速"
+      },
+      "value": {
+        "en": "2000 – 5000 RPM",
+        "vi": "2000 – 5000 RPM",
+        "zh": "2000 – 5000 RPM"
+      }
+    },
+    {
+      "key": "noise",
+      "label": {
+        "en": "Max noise",
+        "vi": "Độ ồn tối đa",
+        "zh": "最大噪音"
+      },
+      "value": {
+        "en": "45 dBA",
+        "vi": "45 dBA",
+        "zh": "45 dBA"
+      }
+    },
+    {
+      "key": "airflow",
+      "label": {
+        "en": "Max airflow",
+        "vi": "Lưu lượng gió tối đa",
+        "zh": "最大风量"
+      },
+      "value": {
+        "en": "128 CFM",
+        "vi": "128 CFM",
+        "zh": "128 CFM"
+      }
+    },
+    {
+      "key": "bearing",
+      "label": {
+        "en": "Bearing",
+        "vi": "Vòng bi",
+        "zh": "轴承"
+      },
+      "value": {
+        "en": "Double ball bearing",
+        "vi": "Vòng bi đôi",
+        "zh": "双滚珠轴承"
+      }
+    },
+    {
+      "key": "connector",
+      "label": {
+        "en": "Connector",
+        "vi": "Đầu cắm",
+        "zh": "接口"
+      },
+      "value": {
+        "en": "4-pin PWM",
+        "vi": "4-pin PWM",
+        "zh": "4-pin PWM"
+      }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "12 months",
+        "vi": "12 tháng",
+        "zh": "12 个月"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "shortDescription": "Compact 4U SP3 cooler with 6 heat pipes and a 128 CFM high-pressure fan – rated 380 W.",
+      "description": "The M95 Pro is the most compact cooler in the range at 124.5 mm tall, but its six heat pipes and 5000 RPM fan pushing 128 CFM still handle up to 380 W. Ideal for 4U rack servers with strong front-to-back airflow.",
+      "highlights": [
+        "6 copper heat pipes",
+        "Rated 380 W",
+        "High airflow 128 CFM",
+        "Compact 124.5 mm height"
+      ],
+      "useCases": [
+        "EPYC workstations",
+        "4U rack servers",
+        "Render / AI rigs"
+      ],
+      "name": "COOLSERVER M95 Pro",
+      "specs": {
+        "Brand": "COOLSERVER",
+        "Model": "CS-SP3-4UM95 PRO",
+        "Type": "Air tower cooler, 4U server",
+        "Socket": "AMD SP3",
+        "Rated cooling capacity": "380 W",
+        "Heat pipes": "6",
+        "Dimensions": "118 × 103 × 124.5 mm",
+        "Height class": "4U",
+        "Fan": "1 × PWM",
+        "Fan speed": "2000 – 5000 RPM",
+        "Max noise": "45 dBA",
+        "Max airflow": "128 CFM",
+        "Bearing": "Double ball bearing",
+        "Connector": "4-pin PWM",
+        "Warranty": "12 months"
+      },
+      "notes": [
+        "High-RPM fan (up to 5000 RPM, 45 dBA) – best suited for rack servers rather than desks.",
+        "Brand inferred as COOLSERVER from the model names; confirm with your supplier."
+      ]
+    },
+    "vi": {
+      "shortDescription": "Tản SP3 4U nhỏ gọn, 6 ống đồng, quạt áp suất cao 128 CFM – công suất 380 W.",
+      "description": "M95 Pro là mẫu nhỏ gọn nhất trong dòng, chỉ cao 124.5 mm, nhưng 6 ống đồng và quạt 5000 vòng/phút thổi 128 CFM vẫn tản được tới 380 W. Lý tưởng cho server rack 4U có luồng gió trước–sau mạnh.",
+      "highlights": [
+        "6 ống đồng",
+        "Công suất 380 W",
+        "Lưu lượng gió lớn 128 CFM",
+        "Nhỏ gọn, cao 124.5 mm"
+      ],
+      "useCases": [
+        "Workstation EPYC",
+        "Server rack 4U",
+        "Máy render / AI"
+      ],
+      "name": "COOLSERVER M95 Pro",
+      "specs": {
+        "Thương hiệu": "COOLSERVER",
+        "Mã sản phẩm": "CS-SP3-4UM95 PRO",
+        "Loại": "Tản khí dạng tháp, chuẩn server 4U",
+        "Socket": "AMD SP3",
+        "Công suất tản nhiệt": "380 W",
+        "Số ống đồng": "6",
+        "Kích thước": "118 × 103 × 124.5 mm",
+        "Chiều cao (chuẩn rack)": "4U",
+        "Quạt": "1 × PWM",
+        "Tốc độ quạt": "2000 – 5000 RPM",
+        "Độ ồn tối đa": "45 dBA",
+        "Lưu lượng gió tối đa": "128 CFM",
+        "Vòng bi": "Vòng bi đôi",
+        "Đầu cắm": "4-pin PWM",
+        "Bảo hành": "12 tháng"
+      },
+      "notes": [
+        "Quạt tốc độ cao (tới 5000 vòng/phút, 45 dBA) – phù hợp server đặt trong rack hơn là để trên bàn làm việc.",
+        "Thương hiệu được suy ra là COOLSERVER dựa trên mã sản phẩm; nên xác nhận lại với nhà cung cấp."
+      ]
+    },
+    "zh": {
+      "shortDescription": "紧凑型 4U SP3 散热器，6 根热管，128 CFM 高风压风扇，额定 380 W。",
+      "description": "M95 Pro 是该系列最紧凑的型号，高度仅 124.5 mm，但凭借 6 根热管和 5000 RPM、128 CFM 的风扇，依然可压制 380 W。适合前后风道强劲的 4U 机架服务器。",
+      "highlights": [
+        "6 根铜热管",
+        "额定 380 W",
+        "大风量 128 CFM",
+        "紧凑，高 124.5 mm"
+      ],
+      "useCases": [
+        "EPYC 工作站",
+        "4U 机架服务器",
+        "渲染 / AI 主机"
+      ],
+      "name": "COOLSERVER M95 Pro",
+      "specs": {
+        "品牌": "COOLSERVER",
+        "型号": "CS-SP3-4UM95 PRO",
+        "类型": "4U 服务器风冷塔式散热器",
+        "插槽": "AMD SP3",
+        "额定散热功率": "380 W",
+        "热管数量": "6",
+        "尺寸": "118 × 103 × 124.5 mm",
+        "高度规格": "4U",
+        "风扇": "1 × PWM",
+        "风扇转速": "2000 – 5000 RPM",
+        "最大噪音": "45 dBA",
+        "最大风量": "128 CFM",
+        "轴承": "双滚珠轴承",
+        "接口": "4-pin PWM",
+        "保修": "12 个月"
+      },
+      "notes": [
+        "高转速风扇 (最高 5000 RPM，45 dBA)，更适合机架服务器而非桌面使用。",
+        "根据型号推断品牌为 COOLSERVER，请与供应商确认。"
+      ]
+    }
+  },
+  "sources": [
+    "https://serverflow.ru/catalog/komplektuyushchie/sistemy-okhlazhdeniya/coolserver-cs-sp3-4um95-pro/",
+    "https://www.finn.no/445792700"
+  ]
+}

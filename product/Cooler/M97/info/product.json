@@ -1,0 +1,346 @@
+{
+  "id": "20",
+  "name": "COOLSERVER M97",
+  "slug": "cooler-m97",
+  "brand": "COOLSERVER",
+  "category": "Cooler",
+  "categorySlug": "cooler",
+  "subCategory": "Air",
+  "price": 1560000,
+  "specs": {
+    "Brand": "COOLSERVER",
+    "Model": "CS-SP3-4UM97",
+    "Type": "Air tower cooler, 4U server",
+    "Socket": "AMD SP3",
+    "Rated cooling capacity": "380 W (some listings 350 W)",
+    "Heat pipes": "5",
+    "Dimensions": "126.7 × 102 × 155 mm",
+    "Height class": "4U",
+    "Fan": "1 × PWM, 12 V",
+    "Fan speed": "1000 – 2200 RPM",
+    "Max noise": "36 dBA",
+    "Max airflow": "72.68 CFM",
+    "Bearing": "Double ball bearing",
+    "Connector": "4-pin PWM",
+    "Warranty": "12 months"
+  },
+  "description": "M97 dùng 5 ống đồng và quạt PWM vòng bi đôi bền bỉ, tản được tới 380 W mà chỉ ồn 36 dBA. Lựa chọn cân bằng cho các CPU EPYC 180–240 W như 7402, 7532, 7642 hay 7B13, lắp trong server 4U hoặc case tháp.",
+  "features": [
+    "5 ống đồng",
+    "Công suất 380 W",
+    "Êm 36 dBA, vòng bi đôi",
+    "Cao chuẩn 4U"
+  ],
+  "specsDetailed": [
+    {
+      "key": "brand",
+      "label": {
+        "en": "Brand",
+        "vi": "Thương hiệu",
+        "zh": "品牌"
+      },
+      "value": {
+        "en": "COOLSERVER",
+        "vi": "COOLSERVER",
+        "zh": "COOLSERVER"
+      }
+    },
+    {
+      "key": "model",
+      "label": {
+        "en": "Model",
+        "vi": "Mã sản phẩm",
+        "zh": "型号"
+      },
+      "value": {
+        "en": "CS-SP3-4UM97",
+        "vi": "CS-SP3-4UM97",
+        "zh": "CS-SP3-4UM97"
+      }
+    },
+    {
+      "key": "type",
+      "label": {
+        "en": "Type",
+        "vi": "Loại",
+        "zh": "类型"
+      },
+      "value": {
+        "en": "Air tower cooler, 4U server",
+        "vi": "Tản khí dạng tháp, chuẩn server 4U",
+        "zh": "4U 服务器风冷塔式散热器"
+      }
+    },
+    {
+      "key": "socket",
+      "label": {
+        "en": "Socket",
+        "vi": "Socket",
+        "zh": "插槽"
+      },
+      "value": {
+        "en": "AMD SP3",
+        "vi": "AMD SP3",
+        "zh": "AMD SP3"
+      }
+    },
+    {
+      "key": "rated",
+      "label": {
+        "en": "Rated cooling capacity",
+        "vi": "Công suất tản nhiệt",
+        "zh": "额定散热功率"
+      },
+      "value": {
+        "en": "380 W (some listings 350 W)",
+        "vi": "380 W (một số nơi ghi 350 W)",
+        "zh": "380 W (部分渠道标注 350 W)"
+      },
+      "verified": false
+    },
+    {
+      "key": "heatpipes",
+      "label": {
+        "en": "Heat pipes",
+        "vi": "Số ống đồng",
+        "zh": "热管数量"
+      },
+      "value": {
+        "en": "5",
+        "vi": "5",
+        "zh": "5"
+      }
+    },
+    {
+      "key": "dims",
+      "label": {
+        "en": "Dimensions",
+        "vi": "Kích thước",
+        "zh": "尺寸"
+      },
+      "value": {
+        "en": "126.7 × 102 × 155 mm",
+        "vi": "126.7 × 102 × 155 mm",
+        "zh": "126.7 × 102 × 155 mm"
+      }
+    },
+    {
+      "key": "height",
+      "label": {
+        "en": "Height class",
+        "vi": "Chiều cao (chuẩn rack)",
+        "zh": "高度规格"
+      },
+      "value": {
+        "en": "4U",
+        "vi": "4U",
+        "zh": "4U"
+      }
+    },
+    {
+      "key": "fan",
+      "label": {
+        "en": "Fan",
+        "vi": "Quạt",
+        "zh": "风扇"
+      },
+      "value": {
+        "en": "1 × PWM, 12 V",
+        "vi": "1 × PWM, 12 V",
+        "zh": "1 × PWM, 12 V"
+      }
+    },
+    {
+      "key": "rpm",
+      "label": {
+        "en": "Fan speed",
+        "vi": "Tốc độ quạt",
+        "zh": "风扇转速"
+      },
+      "value": {
+        "en": "1000 – 2200 RPM",
+        "vi": "1000 – 2200 RPM",
+        "zh": "1000 – 2200 RPM"
+      }
+    },
+    {
+      "key": "noise",
+      "label": {
+        "en": "Max noise",
+        "vi": "Độ ồn tối đa",
+        "zh": "最大噪音"
+      },
+      "value": {
+        "en": "36 dBA",
+        "vi": "36 dBA",
+        "zh": "36 dBA"
+      }
+    },
+    {
+      "key": "airflow",
+      "label": {
+        "en": "Max airflow",
+        "vi": "Lưu lượng gió tối đa",
+        "zh": "最大风量"
+      },
+      "value": {
+        "en": "72.68 CFM",
+        "vi": "72.68 CFM",
+        "zh": "72.68 CFM"
+      }
+    },
+    {
+      "key": "bearing",
+      "label": {
+        "en": "Bearing",
+        "vi": "Vòng bi",
+        "zh": "轴承"
+      },
+      "value": {
+        "en": "Double ball bearing",
+        "vi": "Vòng bi đôi",
+        "zh": "双滚珠轴承"
+      }
+    },
+    {
+      "key": "connector",
+      "label": {
+        "en": "Connector",
+        "vi": "Đầu cắm",
+        "zh": "接口"
+      },
+      "value": {
+        "en": "4-pin PWM",
+        "vi": "4-pin PWM",
+        "zh": "4-pin PWM"
+      }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "12 months",
+        "vi": "12 tháng",
+        "zh": "12 个月"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "shortDescription": "5-heat-pipe 4U SP3 tower cooler, 380 W, quiet 36 dBA – the sweet spot for 180–240 W EPYC.",
+      "description": "The M97 uses five copper heat pipes and a long-life double-ball-bearing PWM fan to handle up to 380 W at just 36 dBA. A balanced choice for EPYC CPUs from 180 W to 240 W such as the 7402, 7532, 7642 or 7B13, in 4U servers or tower cases.",
+      "highlights": [
+        "5 copper heat pipes",
+        "Rated 380 W",
+        "Quiet 36 dBA, double ball bearing",
+        "4U height"
+      ],
+      "useCases": [
+        "EPYC workstations",
+        "4U rack servers",
+        "Render / AI rigs"
+      ],
+      "name": "COOLSERVER M97",
+      "specs": {
+        "Brand": "COOLSERVER",
+        "Model": "CS-SP3-4UM97",
+        "Type": "Air tower cooler, 4U server",
+        "Socket": "AMD SP3",
+        "Rated cooling capacity": "380 W (some listings 350 W)",
+        "Heat pipes": "5",
+        "Dimensions": "126.7 × 102 × 155 mm",
+        "Height class": "4U",
+        "Fan": "1 × PWM, 12 V",
+        "Fan speed": "1000 – 2200 RPM",
+        "Max noise": "36 dBA",
+        "Max airflow": "72.68 CFM",
+        "Bearing": "Double ball bearing",
+        "Connector": "4-pin PWM",
+        "Warranty": "12 months"
+      },
+      "notes": [
+        "Brand inferred as COOLSERVER from the model names; confirm with your supplier."
+      ]
+    },
+    "vi": {
+      "shortDescription": "Tản khí tháp 5 ống đồng chuẩn 4U cho SP3, 380 W, êm 36 dBA – vừa đẹp cho EPYC 180–240 W.",
+      "description": "M97 dùng 5 ống đồng và quạt PWM vòng bi đôi bền bỉ, tản được tới 380 W mà chỉ ồn 36 dBA. Lựa chọn cân bằng cho các CPU EPYC 180–240 W như 7402, 7532, 7642 hay 7B13, lắp trong server 4U hoặc case tháp.",
+      "highlights": [
+        "5 ống đồng",
+        "Công suất 380 W",
+        "Êm 36 dBA, vòng bi đôi",
+        "Cao chuẩn 4U"
+      ],
+      "useCases": [
+        "Workstation EPYC",
+        "Server rack 4U",
+        "Máy render / AI"
+      ],
+      "name": "COOLSERVER M97",
+      "specs": {
+        "Thương hiệu": "COOLSERVER",
+        "Mã sản phẩm": "CS-SP3-4UM97",
+        "Loại": "Tản khí dạng tháp, chuẩn server 4U",
+        "Socket": "AMD SP3",
+        "Công suất tản nhiệt": "380 W (một số nơi ghi 350 W)",
+        "Số ống đồng": "5",
+        "Kích thước": "126.7 × 102 × 155 mm",
+        "Chiều cao (chuẩn rack)": "4U",
+        "Quạt": "1 × PWM, 12 V",
+        "Tốc độ quạt": "1000 – 2200 RPM",
+        "Độ ồn tối đa": "36 dBA",
+        "Lưu lượng gió tối đa": "72.68 CFM",
+        "Vòng bi": "Vòng bi đôi",
+        "Đầu cắm": "4-pin PWM",
+        "Bảo hành": "12 tháng"
+      },
+      "notes": [
+        "Thương hiệu được suy ra là COOLSERVER dựa trên mã sản phẩm; nên xác nhận lại với nhà cung cấp."
+      ]
+    },
+    "zh": {
+      "shortDescription": "5 热管 4U SP3 塔式散热器，380 W，36 dBA 低噪，是 180–240 W EPYC 的最佳搭配。",
+      "description": "M97 采用 5 根铜热管和长寿命双滚珠 PWM 风扇，可压制 380 W 热量，噪音仅 36 dBA。适合 7402、7532、7642、7B13 等 180–240 W 的 EPYC，可用于 4U 服务器或塔式机箱。",
+      "highlights": [
+        "5 根铜热管",
+        "额定 380 W",
+        "36 dBA 低噪，双滚珠轴承",
+        "4U 高度"
+      ],
+      "useCases": [
+        "EPYC 工作站",
+        "4U 机架服务器",
+        "渲染 / AI 主机"
+      ],
+      "name": "COOLSERVER M97",
+      "specs": {
+        "品牌": "COOLSERVER",
+        "型号": "CS-SP3-4UM97",
+        "类型": "4U 服务器风冷塔式散热器",
+        "插槽": "AMD SP3",
+        "额定散热功率": "380 W (部分渠道标注 350 W)",
+        "热管数量": "5",
+        "尺寸": "126.7 × 102 × 155 mm",
+        "高度规格": "4U",
+        "风扇": "1 × PWM, 12 V",
+        "风扇转速": "1000 – 2200 RPM",
+        "最大噪音": "36 dBA",
+        "最大风量": "72.68 CFM",
+        "轴承": "双滚珠轴承",
+        "接口": "4-pin PWM",
+        "保修": "12 个月"
+      },
+      "notes": [
+        "根据型号推断品牌为 COOLSERVER，请与供应商确认。"
+      ]
+    }
+  },
+  "sources": [
+    "https://serverflow.ru/catalog/komplektuyushchie/sistemy-okhlazhdeniya/coolserver-cs-sp3-4um97/",
+    "https://www.ebay.de/itm/135183207949"
+  ]
+}

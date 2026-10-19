@@ -1,0 +1,328 @@
+{
+  "id": "18",
+  "name": "COOLSERVER M99",
+  "slug": "cooler-m99",
+  "brand": "COOLSERVER",
+  "category": "Cooler",
+  "categorySlug": "cooler",
+  "subCategory": "Air",
+  "price": 2184000,
+  "specs": {
+    "Brand": "COOLSERVER",
+    "Model": "CS-SP3-4UM99",
+    "Type": "Air tower cooler, 4U server",
+    "Socket": "AMD SP3 / TR4 / sTRX4 / sWRX8",
+    "Rated cooling capacity": "450 W (some retailers list 420 W)",
+    "Heat pipes": "6",
+    "Dimensions": "132 × 120 × 152.8 mm",
+    "Height class": "4U",
+    "Fan": "1 × 120 mm PWM",
+    "Fan speed": "1000 – 2200 RPM",
+    "Max noise": "36 dBA",
+    "Max airflow": "72.68 CFM",
+    "Connector": "4-pin PWM",
+    "Warranty": "12 months"
+  },
+  "description": "M99 là mẫu tản khí mạnh nhất trong dòng: 6 ống đồng, quạt PWM 120 mm 1000–2200 vòng/phút và công suất 450 W, dư sức cho các CPU EPYC 64 nhân như 7V13 hay 7V73X mà vẫn chỉ ồn 36 dBA. Lắp được trong case 4U và case workstation dạng tháp.",
+  "features": [
+    "6 ống đồng",
+    "Công suất 450 W",
+    "Êm 36 dBA",
+    "Cao chuẩn 4U, SP3/TR4"
+  ],
+  "specsDetailed": [
+    {
+      "key": "brand",
+      "label": {
+        "en": "Brand",
+        "vi": "Thương hiệu",
+        "zh": "品牌"
+      },
+      "value": {
+        "en": "COOLSERVER",
+        "vi": "COOLSERVER",
+        "zh": "COOLSERVER"
+      }
+    },
+    {
+      "key": "model",
+      "label": {
+        "en": "Model",
+        "vi": "Mã sản phẩm",
+        "zh": "型号"
+      },
+      "value": {
+        "en": "CS-SP3-4UM99",
+        "vi": "CS-SP3-4UM99",
+        "zh": "CS-SP3-4UM99"
+      }
+    },
+    {
+      "key": "type",
+      "label": {
+        "en": "Type",
+        "vi": "Loại",
+        "zh": "类型"
+      },
+      "value": {
+        "en": "Air tower cooler, 4U server",
+        "vi": "Tản khí dạng tháp, chuẩn server 4U",
+        "zh": "4U 服务器风冷塔式散热器"
+      }
+    },
+    {
+      "key": "socket",
+      "label": {
+        "en": "Socket",
+        "vi": "Socket",
+        "zh": "插槽"
+      },
+      "value": {
+        "en": "AMD SP3 / TR4 / sTRX4 / sWRX8",
+        "vi": "AMD SP3 / TR4 / sTRX4 / sWRX8",
+        "zh": "AMD SP3 / TR4 / sTRX4 / sWRX8"
+      }
+    },
+    {
+      "key": "rated",
+      "label": {
+        "en": "Rated cooling capacity",
+        "vi": "Công suất tản nhiệt",
+        "zh": "额定散热功率"
+      },
+      "value": {
+        "en": "450 W (some retailers list 420 W)",
+        "vi": "450 W (một số nơi ghi 420 W)",
+        "zh": "450 W (部分渠道标注 420 W)"
+      },
+      "verified": false
+    },
+    {
+      "key": "heatpipes",
+      "label": {
+        "en": "Heat pipes",
+        "vi": "Số ống đồng",
+        "zh": "热管数量"
+      },
+      "value": {
+        "en": "6",
+        "vi": "6",
+        "zh": "6"
+      }
+    },
+    {
+      "key": "dims",
+      "label": {
+        "en": "Dimensions",
+        "vi": "Kích thước",
+        "zh": "尺寸"
+      },
+      "value": {
+        "en": "132 × 120 × 152.8 mm",
+        "vi": "132 × 120 × 152.8 mm",
+        "zh": "132 × 120 × 152.8 mm"
+      }
+    },
+    {
+      "key": "height",
+      "label": {
+        "en": "Height class",
+        "vi": "Chiều cao (chuẩn rack)",
+        "zh": "高度规格"
+      },
+      "value": {
+        "en": "4U",
+        "vi": "4U",
+        "zh": "4U"
+      }
+    },
+    {
+      "key": "fan",
+      "label": {
+        "en": "Fan",
+        "vi": "Quạt",
+        "zh": "风扇"
+      },
+      "value": {
+        "en": "1 × 120 mm PWM",
+        "vi": "1 × 120 mm PWM",
+        "zh": "1 × 120 mm PWM"
+      }
+    },
+    {
+      "key": "rpm",
+      "label": {
+        "en": "Fan speed",
+        "vi": "Tốc độ quạt",
+        "zh": "风扇转速"
+      },
+      "value": {
+        "en": "1000 – 2200 RPM",
+        "vi": "1000 – 2200 RPM",
+        "zh": "1000 – 2200 RPM"
+      }
+    },
+    {
+      "key": "noise",
+      "label": {
+        "en": "Max noise",
+        "vi": "Độ ồn tối đa",
+        "zh": "最大噪音"
+      },
+      "value": {
+        "en": "36 dBA",
+        "vi": "36 dBA",
+        "zh": "36 dBA"
+      }
+    },
+    {
+      "key": "airflow",
+      "label": {
+        "en": "Max airflow",
+        "vi": "Lưu lượng gió tối đa",
+        "zh": "最大风量"
+      },
+      "value": {
+        "en": "72.68 CFM",
+        "vi": "72.68 CFM",
+        "zh": "72.68 CFM"
+      }
+    },
+    {
+      "key": "connector",
+      "label": {
+        "en": "Connector",
+        "vi": "Đầu cắm",
+        "zh": "接口"
+      },
+      "value": {
+        "en": "4-pin PWM",
+        "vi": "4-pin PWM",
+        "zh": "4-pin PWM"
+      }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "12 months",
+        "vi": "12 tháng",
+        "zh": "12 个月"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "shortDescription": "6-heat-pipe 4U tower cooler for SP3 rated up to 450 W – quiet enough for 280 W EPYC chips.",
+      "description": "The M99 is the top air cooler in the range: six copper heat pipes, a 120 mm PWM fan running 1000–2200 RPM and a 450 W rating give plenty of headroom for 64-core EPYC parts like the 7V13 or 7V73X, while staying at only 36 dBA. Fits 4U cases and tower workstations.",
+      "highlights": [
+        "6 copper heat pipes",
+        "Rated 450 W",
+        "Quiet 36 dBA",
+        "4U height, SP3/TR4"
+      ],
+      "useCases": [
+        "EPYC workstations",
+        "4U rack servers",
+        "Render / AI rigs"
+      ],
+      "name": "COOLSERVER M99",
+      "specs": {
+        "Brand": "COOLSERVER",
+        "Model": "CS-SP3-4UM99",
+        "Type": "Air tower cooler, 4U server",
+        "Socket": "AMD SP3 / TR4 / sTRX4 / sWRX8",
+        "Rated cooling capacity": "450 W (some retailers list 420 W)",
+        "Heat pipes": "6",
+        "Dimensions": "132 × 120 × 152.8 mm",
+        "Height class": "4U",
+        "Fan": "1 × 120 mm PWM",
+        "Fan speed": "1000 – 2200 RPM",
+        "Max noise": "36 dBA",
+        "Max airflow": "72.68 CFM",
+        "Connector": "4-pin PWM",
+        "Warranty": "12 months"
+      },
+      "notes": [
+        "Brand inferred as COOLSERVER from the model names; confirm with your supplier."
+      ]
+    },
+    "vi": {
+      "shortDescription": "Tản khí tháp 6 ống đồng chuẩn 4U cho SP3, công suất tới 450 W – đủ mát và êm cho EPYC 280 W.",
+      "description": "M99 là mẫu tản khí mạnh nhất trong dòng: 6 ống đồng, quạt PWM 120 mm 1000–2200 vòng/phút và công suất 450 W, dư sức cho các CPU EPYC 64 nhân như 7V13 hay 7V73X mà vẫn chỉ ồn 36 dBA. Lắp được trong case 4U và case workstation dạng tháp.",
+      "highlights": [
+        "6 ống đồng",
+        "Công suất 450 W",
+        "Êm 36 dBA",
+        "Cao chuẩn 4U, SP3/TR4"
+      ],
+      "useCases": [
+        "Workstation EPYC",
+        "Server rack 4U",
+        "Máy render / AI"
+      ],
+      "name": "COOLSERVER M99",
+      "specs": {
+        "Thương hiệu": "COOLSERVER",
+        "Mã sản phẩm": "CS-SP3-4UM99",
+        "Loại": "Tản khí dạng tháp, chuẩn server 4U",
+        "Socket": "AMD SP3 / TR4 / sTRX4 / sWRX8",
+        "Công suất tản nhiệt": "450 W (một số nơi ghi 420 W)",
+        "Số ống đồng": "6",
+        "Kích thước": "132 × 120 × 152.8 mm",
+        "Chiều cao (chuẩn rack)": "4U",
+        "Quạt": "1 × 120 mm PWM",
+        "Tốc độ quạt": "1000 – 2200 RPM",
+        "Độ ồn tối đa": "36 dBA",
+        "Lưu lượng gió tối đa": "72.68 CFM",
+        "Đầu cắm": "4-pin PWM",
+        "Bảo hành": "12 tháng"
+      },
+      "notes": [
+        "Thương hiệu được suy ra là COOLSERVER dựa trên mã sản phẩm; nên xác nhận lại với nhà cung cấp."
+      ]
+    },
+    "zh": {
+      "shortDescription": "6 热管 4U 塔式 SP3 散热器，额定 450 W，可安静压制 280 W 的 EPYC。",
+      "description": "M99 是该系列最强的风冷散热器：6 根铜热管、120 mm PWM 风扇 (1000–2200 RPM)、额定 450 W，可轻松压制 7V13、7V73X 等 64 核 EPYC，噪音仅 36 dBA。适用于 4U 机箱和塔式工作站。",
+      "highlights": [
+        "6 根铜热管",
+        "额定 450 W",
+        "低噪 36 dBA",
+        "4U 高度，SP3/TR4"
+      ],
+      "useCases": [
+        "EPYC 工作站",
+        "4U 机架服务器",
+        "渲染 / AI 主机"
+      ],
+      "name": "COOLSERVER M99",
+      "specs": {
+        "品牌": "COOLSERVER",
+        "型号": "CS-SP3-4UM99",
+        "类型": "4U 服务器风冷塔式散热器",
+        "插槽": "AMD SP3 / TR4 / sTRX4 / sWRX8",
+        "额定散热功率": "450 W (部分渠道标注 420 W)",
+        "热管数量": "6",
+        "尺寸": "132 × 120 × 152.8 mm",
+        "高度规格": "4U",
+        "风扇": "1 × 120 mm PWM",
+        "风扇转速": "1000 – 2200 RPM",
+        "最大噪音": "36 dBA",
+        "最大风量": "72.68 CFM",
+        "接口": "4-pin PWM",
+        "保修": "12 个月"
+      },
+      "notes": [
+        "根据型号推断品牌为 COOLSERVER，请与供应商确认。"
+      ]
+    }
+  },
+  "sources": [
+    "https://serverflow.ru/catalog/komplektuyushchie/sistemy-okhlazhdeniya/coolserver-cs-sp3-4um99/"
+  ]
+}

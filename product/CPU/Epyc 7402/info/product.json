@@ -1,0 +1,417 @@
+{
+  "id": "3",
+  "name": "AMD EPYC 7402",
+  "slug": "amd-epyc-7402",
+  "brand": "AMD",
+  "category": "CPU",
+  "categorySlug": "cpu",
+  "subCategory": "Zen 2",
+  "price": 3380000,
+  "specs": {
+    "Brand": "AMD",
+    "Product family": "AMD EPYC 7002 Series",
+    "Codename": "Rome",
+    "Architecture": "Zen 2",
+    "Cores / Threads": "24 / 48",
+    "Base clock": "2.8 GHz",
+    "Max boost clock": "3.35 GHz",
+    "L2 cache": "12 MB",
+    "L3 cache": "128 MB",
+    "TDP": "180 W (cTDP 165–200 W)",
+    "Socket": "SP3 (LGA 4094)",
+    "Process": "7 nm (CCD) + 14 nm (I/O die)",
+    "Memory support": "8-channel DDR4-3200 RDIMM/LRDIMM",
+    "Max memory per socket": "4 TB",
+    "PCIe lanes": "128 × PCIe 4.0",
+    "Multi-socket": "1P / 2P",
+    "Launch": "Q3 2019",
+    "Variant": "Retail SKU (official AMD lineup)",
+    "Warranty": "12 months"
+  },
+  "image": "images/01-top.jpg",
+  "images": [
+    "images/01-top.jpg",
+    "images/02-bottom.jpg",
+    "images/03-in-socket.jpg",
+    "images/04-carrier.jpg"
+  ],
+  "description": "AMD EPYC 7402 thuộc dòng AMD EPYC 7002 Series (tên mã Rome), kiến trúc Zen 2. EPYC 24 nhân cân bằng – lựa chọn đáng tiền cho home lab, máy chủ ảo hoá/NAS và server doanh nghiệp nhỏ. Hỗ trợ RAM DDR4-3200 8 kênh và 128 lane PCIe 4.0, chạy được trên mainboard SP3 1 CPU hoặc 2 CPU.",
+  "features": [
+    "24 nhân / 48 luồng (Zen 2)",
+    "Xung cơ bản 2.8 GHz, boost tới 3.35 GHz",
+    "Bộ nhớ đệm L3 128 MB",
+    "RAM DDR4-3200 8 kênh, 128 lane PCIe 4.0",
+    "Socket SP3, chạy 1 hoặc 2 CPU"
+  ],
+  "specsDetailed": [
+    {
+      "key": "brand",
+      "label": {
+        "en": "Brand",
+        "vi": "Thương hiệu",
+        "zh": "品牌"
+      },
+      "value": {
+        "en": "AMD",
+        "vi": "AMD",
+        "zh": "AMD"
+      }
+    },
+    {
+      "key": "family",
+      "label": {
+        "en": "Product family",
+        "vi": "Dòng sản phẩm",
+        "zh": "产品系列"
+      },
+      "value": {
+        "en": "AMD EPYC 7002 Series",
+        "vi": "AMD EPYC 7002 Series",
+        "zh": "AMD EPYC 7002 Series"
+      }
+    },
+    {
+      "key": "codename",
+      "label": {
+        "en": "Codename",
+        "vi": "Tên mã",
+        "zh": "代号"
+      },
+      "value": {
+        "en": "Rome",
+        "vi": "Rome",
+        "zh": "Rome"
+      }
+    },
+    {
+      "key": "arch",
+      "label": {
+        "en": "Architecture",
+        "vi": "Kiến trúc",
+        "zh": "架构"
+      },
+      "value": {
+        "en": "Zen 2",
+        "vi": "Zen 2",
+        "zh": "Zen 2"
+      }
+    },
+    {
+      "key": "cores",
+      "label": {
+        "en": "Cores / Threads",
+        "vi": "Số nhân / luồng",
+        "zh": "核心 / 线程"
+      },
+      "value": {
+        "en": "24 / 48",
+        "vi": "24 / 48",
+        "zh": "24 / 48"
+      }
+    },
+    {
+      "key": "base",
+      "label": {
+        "en": "Base clock",
+        "vi": "Xung cơ bản",
+        "zh": "基础频率"
+      },
+      "value": {
+        "en": "2.8 GHz",
+        "vi": "2.8 GHz",
+        "zh": "2.8 GHz"
+      }
+    },
+    {
+      "key": "boost",
+      "label": {
+        "en": "Max boost clock",
+        "vi": "Xung boost tối đa",
+        "zh": "最大加速频率"
+      },
+      "value": {
+        "en": "3.35 GHz",
+        "vi": "3.35 GHz",
+        "zh": "3.35 GHz"
+      }
+    },
+    {
+      "key": "l2",
+      "label": {
+        "en": "L2 cache",
+        "vi": "Bộ nhớ đệm L2",
+        "zh": "二级缓存"
+      },
+      "value": {
+        "en": "12 MB",
+        "vi": "12 MB",
+        "zh": "12 MB"
+      }
+    },
+    {
+      "key": "l3",
+      "label": {
+        "en": "L3 cache",
+        "vi": "Bộ nhớ đệm L3",
+        "zh": "三级缓存"
+      },
+      "value": {
+        "en": "128 MB",
+        "vi": "128 MB",
+        "zh": "128 MB"
+      }
+    },
+    {
+      "key": "tdp",
+      "label": {
+        "en": "TDP",
+        "vi": "TDP (công suất nhiệt)",
+        "zh": "热设计功耗 (TDP)"
+      },
+      "value": {
+        "en": "180 W (cTDP 165–200 W)",
+        "vi": "180 W (cTDP 165–200 W)",
+        "zh": "180 W (cTDP 165–200 W)"
+      }
+    },
+    {
+      "key": "socket",
+      "label": {
+        "en": "Socket",
+        "vi": "Socket",
+        "zh": "插槽"
+      },
+      "value": {
+        "en": "SP3 (LGA 4094)",
+        "vi": "SP3 (LGA 4094)",
+        "zh": "SP3 (LGA 4094)"
+      }
+    },
+    {
+      "key": "process",
+      "label": {
+        "en": "Process",
+        "vi": "Tiến trình sản xuất",
+        "zh": "制程工艺"
+      },
+      "value": {
+        "en": "7 nm (CCD) + 14 nm (I/O die)",
+        "vi": "7 nm (CCD) + 14 nm (I/O die)",
+        "zh": "7 纳米 (CCD) + 14 纳米 (I/O 芯片)"
+      }
+    },
+    {
+      "key": "memory",
+      "label": {
+        "en": "Memory support",
+        "vi": "Hỗ trợ RAM",
+        "zh": "内存支持"
+      },
+      "value": {
+        "en": "8-channel DDR4-3200 RDIMM/LRDIMM",
+        "vi": "DDR4-3200 8 kênh, RDIMM/LRDIMM",
+        "zh": "八通道 DDR4-3200 RDIMM/LRDIMM"
+      }
+    },
+    {
+      "key": "maxmem",
+      "label": {
+        "en": "Max memory per socket",
+        "vi": "RAM tối đa mỗi CPU",
+        "zh": "单路最大内存"
+      },
+      "value": {
+        "en": "4 TB",
+        "vi": "4 TB",
+        "zh": "4 TB"
+      }
+    },
+    {
+      "key": "pcie",
+      "label": {
+        "en": "PCIe lanes",
+        "vi": "Số lane PCIe",
+        "zh": "PCIe 通道"
+      },
+      "value": {
+        "en": "128 × PCIe 4.0",
+        "vi": "128 lane PCIe 4.0",
+        "zh": "128 条 PCIe 4.0"
+      }
+    },
+    {
+      "key": "scal",
+      "label": {
+        "en": "Multi-socket",
+        "vi": "Hỗ trợ đa CPU",
+        "zh": "多路支持"
+      },
+      "value": {
+        "en": "1P / 2P",
+        "vi": "1 CPU hoặc 2 CPU",
+        "zh": "单路 / 双路"
+      }
+    },
+    {
+      "key": "launch",
+      "label": {
+        "en": "Launch",
+        "vi": "Ra mắt",
+        "zh": "发布时间"
+      },
+      "value": {
+        "en": "Q3 2019",
+        "vi": "Q3 2019",
+        "zh": "Q3 2019"
+      }
+    },
+    {
+      "key": "variant",
+      "label": {
+        "en": "Variant",
+        "vi": "Phiên bản",
+        "zh": "版本类型"
+      },
+      "value": {
+        "en": "Retail SKU (official AMD lineup)",
+        "vi": "Bản thương mại (có trong danh mục chính thức của AMD)",
+        "zh": "正式零售型号 (AMD 官方产品线)"
+      }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "12 months",
+        "vi": "12 tháng",
+        "zh": "12 个月"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "AMD EPYC 7402",
+      "shortDescription": "24-core / 48-thread Zen 2 server CPU, up to 3.35 GHz, 128 MB L3, socket SP3.",
+      "description": "The AMD EPYC 7402 is a AMD EPYC 7002 Series (Rome) processor built on the Zen 2 architecture. Balanced 24-core EPYC – great value for home labs, NAS/virtualization hosts and small business servers. It supports 8-channel DDR4-3200 and 128 PCIe 4.0 lanes, and runs in single- or dual-socket SP3 platforms.",
+      "highlights": [
+        "24 cores / 48 threads (Zen 2)",
+        "Base 2.8 GHz, boost up to 3.35 GHz",
+        "128 MB L3 cache",
+        "8-channel DDR4-3200, 128 PCIe 4.0 lanes",
+        "Socket SP3, 1P/2P"
+      ],
+      "useCases": [
+        "Home lab",
+        "Virtualization (Proxmox, VMware, Hyper-V)",
+        "NAS / file server"
+      ],
+      "specs": {
+        "Brand": "AMD",
+        "Product family": "AMD EPYC 7002 Series",
+        "Codename": "Rome",
+        "Architecture": "Zen 2",
+        "Cores / Threads": "24 / 48",
+        "Base clock": "2.8 GHz",
+        "Max boost clock": "3.35 GHz",
+        "L2 cache": "12 MB",
+        "L3 cache": "128 MB",
+        "TDP": "180 W (cTDP 165–200 W)",
+        "Socket": "SP3 (LGA 4094)",
+        "Process": "7 nm (CCD) + 14 nm (I/O die)",
+        "Memory support": "8-channel DDR4-3200 RDIMM/LRDIMM",
+        "Max memory per socket": "4 TB",
+        "PCIe lanes": "128 × PCIe 4.0",
+        "Multi-socket": "1P / 2P",
+        "Launch": "Q3 2019",
+        "Variant": "Retail SKU (official AMD lineup)",
+        "Warranty": "12 months"
+      },
+      "notes": []
+    },
+    "vi": {
+      "name": "AMD EPYC 7402",
+      "shortDescription": "CPU máy chủ 24 nhân / 48 luồng, kiến trúc Zen 2, boost tới 3.35 GHz, L3 128 MB, socket SP3.",
+      "description": "AMD EPYC 7402 thuộc dòng AMD EPYC 7002 Series (tên mã Rome), kiến trúc Zen 2. EPYC 24 nhân cân bằng – lựa chọn đáng tiền cho home lab, máy chủ ảo hoá/NAS và server doanh nghiệp nhỏ. Hỗ trợ RAM DDR4-3200 8 kênh và 128 lane PCIe 4.0, chạy được trên mainboard SP3 1 CPU hoặc 2 CPU.",
+      "highlights": [
+        "24 nhân / 48 luồng (Zen 2)",
+        "Xung cơ bản 2.8 GHz, boost tới 3.35 GHz",
+        "Bộ nhớ đệm L3 128 MB",
+        "RAM DDR4-3200 8 kênh, 128 lane PCIe 4.0",
+        "Socket SP3, chạy 1 hoặc 2 CPU"
+      ],
+      "useCases": [
+        "Home lab",
+        "Ảo hoá (Proxmox, VMware, Hyper-V)",
+        "NAS / máy chủ lưu trữ"
+      ],
+      "specs": {
+        "Thương hiệu": "AMD",
+        "Dòng sản phẩm": "AMD EPYC 7002 Series",
+        "Tên mã": "Rome",
+        "Kiến trúc": "Zen 2",
+        "Số nhân / luồng": "24 / 48",
+        "Xung cơ bản": "2.8 GHz",
+        "Xung boost tối đa": "3.35 GHz",
+        "Bộ nhớ đệm L2": "12 MB",
+        "Bộ nhớ đệm L3": "128 MB",
+        "TDP (công suất nhiệt)": "180 W (cTDP 165–200 W)",
+        "Socket": "SP3 (LGA 4094)",
+        "Tiến trình sản xuất": "7 nm (CCD) + 14 nm (I/O die)",
+        "Hỗ trợ RAM": "DDR4-3200 8 kênh, RDIMM/LRDIMM",
+        "RAM tối đa mỗi CPU": "4 TB",
+        "Số lane PCIe": "128 lane PCIe 4.0",
+        "Hỗ trợ đa CPU": "1 CPU hoặc 2 CPU",
+        "Ra mắt": "Q3 2019",
+        "Phiên bản": "Bản thương mại (có trong danh mục chính thức của AMD)",
+        "Bảo hành": "12 tháng"
+      },
+      "notes": []
+    },
+    "zh": {
+      "name": "AMD EPYC 7402",
+      "shortDescription": "24 核 48 线程 Zen 2 服务器处理器，最高加速 3.35 GHz，128 MB 三级缓存，SP3 插槽。",
+      "description": "AMD EPYC 7402 属于 AMD EPYC 7002 Series (代号 Rome)，采用 Zen 2 架构。均衡的 24 核 EPYC，非常适合家庭实验室、虚拟化/NAS 主机和中小企业服务器，性价比高。 支持八通道 DDR4-3200 内存和 128 条 PCIe 4.0 通道，可用于单路或双路 SP3 平台。",
+      "highlights": [
+        "24 核心 / 48 线程 (Zen 2)",
+        "基础频率 2.8 GHz，最高加速 3.35 GHz",
+        "128 MB 三级缓存",
+        "八通道 DDR4-3200，128 条 PCIe 4.0",
+        "SP3 插槽，支持单路/双路"
+      ],
+      "useCases": [
+        "家庭实验室",
+        "虚拟化 (Proxmox、VMware、Hyper-V)",
+        "NAS / 文件服务器"
+      ],
+      "specs": {
+        "品牌": "AMD",
+        "产品系列": "AMD EPYC 7002 Series",
+        "代号": "Rome",
+        "架构": "Zen 2",
+        "核心 / 线程": "24 / 48",
+        "基础频率": "2.8 GHz",
+        "最大加速频率": "3.35 GHz",
+        "二级缓存": "12 MB",
+        "三级缓存": "128 MB",
+        "热设计功耗 (TDP)": "180 W (cTDP 165–200 W)",
+        "插槽": "SP3 (LGA 4094)",
+        "制程工艺": "7 纳米 (CCD) + 14 纳米 (I/O 芯片)",
+        "内存支持": "八通道 DDR4-3200 RDIMM/LRDIMM",
+        "单路最大内存": "4 TB",
+        "PCIe 通道": "128 条 PCIe 4.0",
+        "多路支持": "单路 / 双路",
+        "发布时间": "Q3 2019",
+        "版本类型": "正式零售型号 (AMD 官方产品线)",
+        "保修": "12 个月"
+      },
+      "notes": []
+    }
+  },
+  "sources": [
+    "https://www.amd.com/en/products/processors/server/epyc/7002-series.html"
+  ]
+}
