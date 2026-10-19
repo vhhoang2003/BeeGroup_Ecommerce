@@ -16,13 +16,13 @@ concurrency:
 jobs:
   changes:
     name: Detect changed areas
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       frontend: ${{ steps.filter.outputs.frontend }}
       backend: ${{ steps.filter.outputs.backend }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: dorny/paths-filter@v3
+      - uses: actions/checkout@v7
+      - uses: dorny/paths-filter@v4
         id: filter
         with:
           filters: |
@@ -39,19 +39,21 @@ jobs:
     name: Frontend (lint, typecheck, test, build)
     needs: changes
     if: needs.changes.outputs.frontend == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     defaults:
       run:
         working-directory: fe
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
           cache-dependency-path: fe/package-lock.json
       - run: npm ci --legacy-peer-deps
       - run: npm run lint
+      # PageProps / RouteContext are global types that Next.js generates; tsc needs them first.
+      - run: npx next typegen
       - run: npx tsc --noEmit
       - run: npm test
       - run: npm run build
@@ -62,13 +64,13 @@ jobs:
     name: Backend (Spotless, unit + Testcontainers tests, coverage)
     needs: changes
     if: needs.changes.outputs.backend == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     defaults:
       run:
         working-directory: be
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: 21
@@ -76,31 +78,26 @@ jobs:
       - run: ./mvnw -B verify
       - name: Upload test and coverage reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: backend-reports
           path: |
             be/target/surefire-reports/
             be/target/site/jacoco/
           retention-days: 7
+          if-no-files-found: ignore
 
   security:
     name: Security (secrets, vulnerable dependencies)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
+      # Pinned scanner images instead of third-party actions (an action tag used here was withdrawn upstream).
       - name: Secret scan (gitleaks)
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Dependency scan (Trivy, HIGH/CRITICAL)
-        uses: aquasecurity/trivy-action@0.28.0
-        with:
-          scan-type: fs
-          scan-ref: .
-          scanners: vuln
-          severity: HIGH,CRITICAL
-          ignore-unfixed: true
-          exit-code: "1"
+        run: docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:v8.21.2 git /repo --no-banner --redact
+      - name: Dependency scan (Trivy, HIGH/CRITICAL with a fix available)
+        run: >
+          docker run --rm -v "$PWD:/repo" aquasec/trivy:0.57.1
+          fs /repo --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 --quiet
