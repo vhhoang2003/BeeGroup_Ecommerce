@@ -1,12 +1,13 @@
 # Bee Store E-commerce — Software Requirements Specification (SRS)
 
-> **Version:** 1.0 (draft) · **Date:** 2026-10-19 · **Status:** Proposed
+> **Version:** 1.1 · **Date:** 2026-10-19 · **Status:** Implemented: catalog, accounts and admin product management are live (§0)
 > **Stack:** Next.js (FE) · Java / Spring Boot (BE) · PostgreSQL (DB) · Docker · GitHub Actions (CI/CD)
 
 ---
 
 ## Table of Contents
 
+0. [Project at a Glance](#0-project-at-a-glance)
 1. [Introduction](#1-introduction)
 2. [Overall Description](#2-overall-description)
 3. [Technology Stack & Database Choice](#3-technology-stack--database-choice)
@@ -27,6 +28,85 @@
 18. [Glossary](#18-glossary)
 19. [Decision Log](#19-decision-log)
 20. [Backend Traceability Matrix](#20-backend-traceability-matrix)
+
+---
+
+## 0. Project at a Glance
+
+**Bee Store** is a catalog and lead-generation website for server and workstation hardware (AMD EPYC CPUs, SP3 mainboards, NVIDIA data-center GPUs, coolers). Visitors browse a trilingual catalog and contact the sales team by phone, Zalo or email; customers have accounts; staff manage the catalog from an admin area. There is no cart or online payment: sales close offline (§1.2).
+
+The whole system is a **Next.js 16 web app**, a **Spring Boot 3.5 / Java 21 API** and **PostgreSQL 16**, shipped as Docker images by GitHub Actions and running on **one shared Debian server behind a Cloudflare Tunnel**.
+
+### 0.1 What Is Built (status 2026-10-19)
+
+| Area | Status | What is there |
+|---|---|---|
+| Public catalog site | ✅ | Home with hero and featured products, category pages, product listing with filters and sorting, search with suggestions, product detail with images, localized specs, highlights and related products, contact buttons (hotline, Zalo, email). |
+| Customer accounts | ✅ | Register → verification email → login (with *remember me*), session kept across reloads, forgot / reset password, resend verification, account page. |
+| Admin area (`/admin`) | ✅ products | Product list (search, status filter, pagination, delete); create / edit form with vi / en / zh content, localized specs, price, stock, status, featured flag and sources; image manager (multi-upload, primary image, reorder, alt text, delete). Only `ADMIN` accounts get in. |
+| REST API (`be/`) | ✅ | Auth, profile, catalog and search, quote requests and contact form, wishlist, admin (products, images, categories, inquiries, users, audit log), catalog importer. 45 requirements verified by tests (§20). |
+| Production hosting | ✅ | Docker Compose stack with hard resource limits, Caddy, Cloudflare Tunnel (no open ports), daily backups with restore script, one-shot setup script (§12.6). |
+| CI/CD | ✅ | Path-filtered CI (lint, typecheck, tests, build, secret and dependency scans); CD builds only the changed images to GHCR; the server pulls them every 5 minutes with health-checked rollback (§13). |
+| Not built yet | 🟡 | FE quote-request modal, *My inquiries* and wishlist pages; admin pages for categories, inquiries, users and audit log (the API exists); locale routing (`next-intl`); S3 / R2 storage driver; Next.js revalidation endpoint; Content-Security-Policy; load test. See §17.1 and §20. |
+
+### 0.2 Highlights
+
+**Security by design**
+
+- **Refresh-token rotation with theft detection.** Every refresh issues a new refresh token; replaying one that was already rotated revokes the whole token family, so a stolen token stops working for both parties (§6.3, D-12). Only SHA-256 hashes of tokens are stored.
+- **Nothing to steal in the browser.** The access token (15 min) lives only in memory; the refresh token is an `HttpOnly; SameSite=Strict` cookie scoped to `/api/v1/auth`, and cookie endpoints also require a custom `X-Requested-With` header (CSRF). CORS sends credentials only for `/api/v1/auth/**`.
+- **Hardened accounts.** Argon2id hashing; passwords of 8-72 characters with a letter and a digit, never one of the 10,000 most common passwords; 5 failed logins in 15 minutes lock the account for 15 minutes; forgot-password and resend-verification answer identically for unknown emails (no account enumeration).
+- **Rate limits everywhere it matters** (Bucket4j): 300 requests/min per IP overall, 20 logins / 15 min per IP, 5 registrations / hour per IP, 3 reset or verification emails / hour per address, 5 quote requests / hour per IP plus Cloudflare Turnstile for guests.
+- **Admin is guarded twice and audited.** URL rule and `@PreAuthorize` on every admin controller; every admin write lands in an audit log with before / after state. The `/admin` pages are role-guarded and `noindex`.
+- **Uploads cannot smuggle files.** Images are recognized by their magic bytes (JPEG / PNG / WebP only, 5 MB) and re-encoded into WebP variants (320 / 800 / 1600 px), so the uploaded bytes are never served as-is.
+- **No public ports.** TLS ends at Cloudflare and the tunnel connector dials out; the server publishes nothing (D-14).
+
+**Catalog and content**
+
+- **Trilingual content** (Vietnamese default, English, Chinese) for names, descriptions, highlights and every spec row, with fallback to Vietnamese.
+- **Search without a search engine.** PostgreSQL full-text (`tsvector`) plus `pg_trgm` matches word prefixes, spec values and typos, so a partial or misspelled model name still finds the product.
+- **The `product/` folder is the seed.** A curated folder (JSON + Markdown descriptions + photos + image credits) is imported idempotently into PostgreSQL; the same folder powers the FE's offline mock API.
+- **"Liên hệ" pricing.** A product without a published price shows *Contact us* and sorts last.
+
+**Delivery and operations**
+
+- **Pull-based CD.** GitHub never needs SSH access: CD publishes images to GHCR and the server pulls them itself every 5 minutes, restarts, waits for the API health check and **rolls back automatically** if it fails (D-16).
+- **Only what changed is rebuilt.** CI runs the frontend or backend job only for the area that changed; CD compares with the last successful deploy and rebuilds only the `api` or `web` image whose sources changed. Trivy's vulnerability DB is cached per 6-hour publish window.
+- **Fits on a shared machine.** Hard limits of about 1.6 GB RAM and 3.25 CPUs for the whole stack; about 520 MB at idle (§12.6).
+- **Operable by one person.** A re-runnable `setup-server.sh` (secrets, first deploy, catalog import, crons), `backup.sh` (database + uploads, 14 daily / 8 weekly, optional GPG and off-site copy) and `restore.sh`.
+
+**Developer experience and quality**
+
+- **The FE runs without the backend.** With `NEXT_PUBLIC_USE_MOCK` (the default) the app serves an in-process mock API that reads `product/` and returns the same DTOs as the real API; set it to `false` to use the API.
+- **Modular monolith.** One deployable API with feature packages (`auth`, `user`, `catalog`, `inquiry`, `admin`, `storage`, `mail`), which is the right size for this team and traffic (AD-2).
+- **Tested end to end.** Backend: 79 tests (unit, Testcontainers PostgreSQL 16, GreenMail), 91.4 % line coverage with a 70 % gate. Frontend: 27 unit tests (API client refresh / retry, auth store, product form model, password policy). The customer flow (register → email link → verify → login → forgot → reset) and the admin flow (guard → login → create → upload → reorder → reload → public page → delete) were run in Chrome against the real API and Mailpit.
+
+### 0.3 Work Log
+
+| # | Milestone | Commits |
+|---|---|---|
+| 1 | Imported the FE prototype, wrote this specification | `02a69e7` … `6143ec1` |
+| 2 | Rebranded the FE to Bee Store and fed it the real hardware catalog through an in-app mock API | `168fa65`, `393039e` |
+| 3 | Backend phase 0-1: Spring Boot foundation, Flyway, authentication (register, verify, login, rotation, lockout, reset) | `e9a0148` |
+| 4 | Backend phase 2: public catalog API, full-text search, storage, `product/` importer | `f15fcec` |
+| 5 | Backend phase 3: quote requests, contact form, *my inquiries*, wishlist, notification emails | `7fd9839` |
+| 6 | Backend phase 4: admin API, WebP image pipeline, audit log, traceability matrix (§20) | `28850f8` |
+| 7 | Production stack on one Debian server behind Cloudflare Tunnel; setup, backup and restore scripts | `dda3a38` … `65a17f0` |
+| 8 | GitHub Actions CI and pull-based CD through GHCR | `dc49c90`, `15bd1dd` |
+| 9 | FE starts logged out; real hotline, Zalo and sales email | `12b8834`, `19addc4` |
+| 10 | CD rebuilds only changed images; Trivy DB cache (PR #1) | `5870fda` |
+| 11 | FE wired to the real auth API; `/admin` product management with images (PR #2) | `289fd12` |
+| 12 | API-served images shown through `next/image`; verify-email, forgot and reset password pages | `795644b`, `5cceabe` |
+
+### 0.4 Where to Start
+
+| I want to… | Go to |
+|---|---|
+| Run everything locally | §12.5 |
+| Work on the FE only (no backend) | `cd fe && npm ci --legacy-peer-deps && npm run dev` (mock mode is the default) |
+| Deploy or update the server | §12.6, §13.4 |
+| Create the first admin account | §12.6 *First admin* |
+| See which requirement is done | §20 (API), §17.1 (FE) |
 
 ---
 
@@ -61,7 +141,8 @@ See [Glossary](#18-glossary).
 
 - Product source data: [`product/`](product/) (one folder per category → one folder per product, with `info/product.json`, `description.{en,vi,zh}.md`, `images/`, `CREDITS.txt`).
 - Frontend code: [`fe/`](fe/) (Next.js 16, React 19, TanStack Query, Zustand, React Hook Form + Zod, Tailwind v4).
-- Backend code: [`be/`](be/) (to be implemented).
+- Backend code: [`be/`](be/) (Spring Boot 3.5, Java 21; status in §20).
+- Delivery: [`.github/workflows/`](.github/workflows/) (CI / CD), [`infra/`](infra/) (Caddy, server scripts).
 
 ---
 
@@ -803,7 +884,7 @@ App/
 │       └── cd.yml             # Build, push, deploy
 ├── infra/
 │   ├── caddy/Caddyfile
-│   └── scripts/               # backup.sh, restore.sh, deploy.sh
+│   └── scripts/               # setup-server.sh, update.sh (CD pull), deploy.sh, backup.sh, restore.sh
 ├── product/                   # Seed catalog data (categories, products, images)
 ├── be/                        # Spring Boot API
 │   ├── Dockerfile
@@ -825,14 +906,17 @@ App/
 │       └── test/java/...      # unit + Testcontainers integration tests
 └── fe/                        # Next.js app
     ├── Dockerfile
-    └── src/
-        ├── app/[locale]/      # (public) pages, auth/, account/, admin/
-        ├── components/
-        ├── features/          # auth, catalog, inquiry, admin
-        ├── lib/api/           # apiClient with refresh interceptor
-        ├── messages/          # vi.json, en.json, zh.json
-        └── types/
+    ├── src/
+    │   ├── app/               # public pages, auth/ (login, register, verify-email, forgot / reset password),
+    │   │                      # account/, admin/ (products), mock-api/v1 (offline API), storage/ (mock images)
+    │   ├── components/        # layout (header, nav, footer), providers, ui
+    │   ├── features/          # auth (store, password policy), catalog, admin (form model, list, form, images)
+    │   ├── lib/api/           # apiClient (in-memory token, refresh + retry), auth, catalog and admin endpoints
+    │   └── types/             # DTOs shared with the API (D-1)
+    └── test/                  # Vitest unit tests (tests/e2e: Playwright)
 ```
+
+Locale routing (`app/[locale]`, `next-intl` messages) is not in place yet; product content is already trilingual in the API.
 
 ---
 
@@ -943,6 +1027,15 @@ docker compose run --rm api java -jar app.jar --import.catalog.path=/data/produc
 
 Running without Docker for faster iteration: `docker compose up -d db mailpit`, then `./mvnw spring-boot:run` in `be/` and `npm run dev` in `fe/`.
 
+**FE modes.** `NEXT_PUBLIC_USE_MOCK` (default: mock) decides where the FE gets data:
+
+| Value | Data | Login | `/admin` |
+|---|---|---|---|
+| unset / `true` | In-app mock API reading `product/` (`fe/src/app/mock-api/v1`) | Simulated customer login, no email | Shows "needs the backend" |
+| `false` | `NEXT_PUBLIC_API_URL` (e.g. `http://localhost:8080/api/v1`) | Real API, refresh cookie, verification emails (Mailpit locally) | Product management for `ADMIN` accounts |
+
+`NEXT_PUBLIC_*` values are inlined at build time: restart `npm run dev` or rebuild the image after changing them.
+
 ### 12.6 Production on one Debian server (Cloudflare Tunnel)
 
 The production target is a single shared Debian server (8 cores, 15 GB RAM, other services already running). `docker-compose.prod.yml` runs `db`, `api`, `web` and an internal Caddy `proxy` with hard limits (D-15); TLS ends at Cloudflare and the server opens **no public ports** (D-14).
@@ -971,12 +1064,31 @@ api ─► db (PostgreSQL 16, Docker network only)      api ─► uploads volum
 
 **Deploy and seed**
 
+The easiest path is `bash infra/scripts/setup-server.sh`: it is re-runnable, creates `.env` with generated secrets (asks for the domain, the first admin and the tunnel token), deploys, imports the catalog once, checks the site and offers the backup and auto-update cron jobs. By hand:
+
 ```bash
 cd /opt/beestore
 infra/scripts/deploy.sh                       # git pull, build, up -d, wait for API health, prune images
 docker compose -f docker-compose.prod.yml --env-file .env run --rm api \
   java -jar app.jar --import.catalog.path=/data/product        # first time only, idempotent
 ```
+
+**Automatic updates (CD, §13.4)**
+
+```bash
+infra/scripts/update.sh                       # once by hand: pull :main images from GHCR, restart, health check, rollback
+( crontab -l 2>/dev/null; echo "*/5 * * * * /opt/beestore/infra/scripts/update.sh >> /opt/beestore/backups/update.log 2>&1" ) | crontab -
+```
+
+A server set up before CD existed has no `infra/scripts/update.sh` and still runs images built on the server: run `git pull --ff-only` in `/opt/beestore` first, then the two commands above. Check the running version with `docker inspect -f '{{index .Config.Labels "org.opencontainers.image.revision"}}' $(docker compose -f docker-compose.prod.yml --env-file .env ps -q web)`.
+
+**First admin**
+
+Set `ADMIN_BOOTSTRAP_EMAIL` and `ADMIN_BOOTSTRAP_PASSWORD` in `.env` (a long random password: the bootstrap password skips the policy check) and recreate the API with `docker compose -f docker-compose.prod.yml --env-file .env up -d api` (`restart` does not reload `.env`). On start the API creates an active, email-verified `ADMIN` only when no admin exists yet; the log says `Bootstrap admin account created`. Sign in at `/auth/login`, which leads to `/admin/products`, then remove the password from `.env`. If the email already belongs to a customer the bootstrap is skipped; promote that account with `UPDATE users SET role='ADMIN' WHERE email='…'` in `psql`.
+
+**Email**
+
+Customers cannot sign in before opening the verification link, so production needs a real SMTP provider in `.env` (`MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_FROM`). The links point at `NEXT_PUBLIC_SITE_URL` (`/auth/verify-email`, `/auth/reset-password`).
 
 **Backups**
 
@@ -998,36 +1110,34 @@ docker compose -f docker-compose.prod.yml --env-file .env run --rm api \
 
 - `main` is always deployable and protected (PR + 1 review + green CI required).
 - Feature branches: `feat/*`, `fix/*`, `chore/*`. Conventional Commits.
-- Releases are tagged `vX.Y.Z` (SemVer); a tag triggers the production deploy.
+- Every merge to `main` that passes CI is deployed (§13.4); release tags `vX.Y.Z` are optional and do not trigger anything yet.
 
 ### 13.2 Pipeline Overview
 
 ```mermaid
 flowchart LR
-    PR[Pull Request] --> CI{CI}
-    CI --> FE1[FE: install → lint → typecheck → vitest → build]
-    CI --> BE1[BE: spotless → unit tests → integration tests<br/>Testcontainers PostgreSQL]
-    CI --> SEC[Security: Trivy fs, npm audit,<br/>OWASP dep-check, gitleaks]
-    FE1 & BE1 & SEC --> MERGE[Merge to main]
-    MERGE --> IMG[Build & push images to GHCR<br/>tags: sha, main]
-    IMG --> STG[Deploy to Staging<br/>SSH + docker compose pull/up]
-    STG --> E2E[Playwright smoke tests on staging]
-    E2E --> TAG[Tag vX.Y.Z]
-    TAG --> APPROVE{Manual approval<br/>GitHub Environment 'production'}
-    APPROVE --> PROD[Deploy to Production]
-    PROD --> HC[Health check → auto rollback on failure]
+    PR[Pull request / push to main] --> CH[Detect changed areas<br/>fe/ · be/]
+    CH --> FE1[FE: npm ci → lint → typegen → tsc → vitest → build]
+    CH --> BE1[BE: mvnw verify<br/>Spotless · JUnit · Testcontainers · JaCoCo ≥ 70%]
+    PR --> SEC[Security: gitleaks · Trivy HIGH/CRITICAL<br/>DB cached per 6 h]
+    FE1 & BE1 & SEC --> CDQ{CI green on main?}
+    CDQ --> DIFF[CD: diff against last successful deploy]
+    DIFF --> IMG[Build & push only changed images to GHCR<br/>:main, :sha-commit]
+    IMG -.->|every 5 min| SRV[Server update.sh: pull → up -d →<br/>health check → rollback on failure]
 ```
+
+This is the pipeline as built. The original plan (staging, Playwright on staging, tagged releases with manual approval) was replaced by D-16 because there is a single server.
 
 ### 13.3 `ci.yml` (on `pull_request`, `push` to `main`)
 
 | Job | Steps |
 |---|---|
-| `frontend` | `actions/setup-node@v4` (Node 24, npm cache) → `npm ci` → `npm run lint` → `npx tsc --noEmit` → `npm test` → `npm run build` |
-| `backend` | `actions/setup-java@v4` (Temurin 21, Maven cache) → `./mvnw -B verify` (Spotless check, JUnit, Testcontainers with PostgreSQL 16, JaCoCo report; fails if coverage < 70%) |
-| `security` | gitleaks (secret scan) → Trivy filesystem scan (HIGH/CRITICAL fail) → `npm audit --audit-level=high` |
-| `docker-build` | Builds both images (no push) to make sure the Dockerfiles work |
+| `changes` | `dorny/paths-filter`: `frontend` when `fe/**`, `product/**` or a workflow changed; `backend` when `be/**`, `product/**` or a workflow changed |
+| `frontend` | Node 24 (npm cache) → `npm ci --legacy-peer-deps` → `npm run lint` → `npx next typegen` → `npx tsc --noEmit` → `npm test` → `npm run build` |
+| `backend` | Temurin 21 (Maven cache) → `./mvnw -B verify` (Spotless check, JUnit, Testcontainers with PostgreSQL 16, JaCoCo; fails below 70 %) → test and coverage reports uploaded as an artifact (7 days) |
+| `security` | Always runs: gitleaks (pinned image, full history) → Trivy filesystem scan (HIGH / CRITICAL with a fix available fail the build; vulnerability DB cached per 6-hour window) |
 
-Path filters (`paths: [fe/**]`, `[be/**]`) skip unaffected jobs.
+Concurrency `ci-<ref>` cancels an outdated run when a branch is pushed again. The Dockerfiles are exercised by CD rather than by a separate CI job.
 
 ### 13.4 `cd.yml` and pull-based deployment (D-16)
 
@@ -1035,10 +1145,12 @@ There is one production server and no staging (§12.6), and GitHub does not need
 
 | Where | Trigger | Steps |
 |---|---|---|
-| GitHub Actions `cd.yml` | CI succeeded on a push to `main` (or manual *Run workflow*) | Build `be` and `fe` on GitHub's runners (layer cache) → push `ghcr.io/vhhoang2003/beestore-api` and `beestore-web` as `:main` and `:sha-<commit>` |
+| GitHub Actions `cd.yml` | CI succeeded on a push to `main` (or manual *Run workflow*) | `changes` job: `git diff` between the commit of the last successful CD run and this one → build only `api` (`be/` changed) and / or `web` (`fe/` changed) on GitHub's runners (layer cache) → push `ghcr.io/vhhoang2003/beestore-api` / `beestore-web` as `:main` and `:sha-<commit>`. Both are built on a manual run, when `cd.yml` changed, or when there is no earlier successful run |
 | Server `infra/scripts/update.sh` | cron every 5 minutes | `git pull --ff-only` (compose file, Caddyfile, `product/`) → `docker compose pull api web` → if the repo or an image changed: `up -d`, wait for the API health check, **roll back to the previous images** if it fails → prune old images. Silent when nothing changed |
 
-The repository is public, so the GHCR packages are public and the server pulls without credentials. `infra/scripts/deploy.sh` remains as a fallback that builds the images on the server itself.
+The repository is public, so the GHCR packages are public and the server pulls without credentials. A skipped image keeps its previous `:main`, which is still current because the server only pulls `:main`. `infra/scripts/deploy.sh` remains as a fallback that builds the images on the server itself.
+
+End to end, a merge reaches production in about 5-10 minutes: CI 1-2 min, CD 1-3 min, then up to 5 min until the server's next `update.sh` run. GitHub-hosted runners can occasionally queue for several minutes.
 
 Flyway migrations run automatically on API startup; migrations must be **backward-compatible** (expand → migrate → contract) so a rollback of the API image does not break against the newer schema.
 
@@ -1047,8 +1159,10 @@ Flyway migrations run automatically on API startup; migrations must be **backwar
 | Setting | Where | Value |
 |---|---|---|
 | Repository variable `SITE_URL` | Settings → Secrets and variables → Actions → Variables | `https://<domain>`; baked into the web image (`NEXT_PUBLIC_SITE_URL`) |
-| Repository variable `NEXT_PUBLIC_USE_MOCK` | same | `true` until the FE is wired to the API, then `false` |
+| Repository variable `NEXT_PUBLIC_USE_MOCK` | same | `false` (the FE is wired to the API); when unset, CD builds the mock-data web image |
 | GHCR package visibility | Profile → Packages → `beestore-api` / `beestore-web` → Package settings | **Public** (check after the first CD run) |
+
+Use the **Variables** tab at **repository** level: `cd.yml` reads `vars.*` and declares no GitHub Environment. `NEXT_PUBLIC_*` values are inlined at build time, so after changing a variable run **Actions → CD → Run workflow** (a manual run rebuilds both images).
 
 `GITHUB_TOKEN` (with `packages: write`) pushes the images; no other GitHub secrets are needed. Runtime secrets (`DB_PASSWORD`, `JWT_SECRET`, `MAIL_*`, `TUNNEL_TOKEN`, `TURNSTILE_SECRET`) live only in `/opt/beestore/.env` on the server.
 
@@ -1059,8 +1173,8 @@ Flyway migrations run automatically on API startup; migrations must be **backwar
 | Env | URL | DB | Email | Deploy |
 |---|---|---|---|---|
 | **local** | `localhost:3000` | Docker Postgres | Mailpit | manual |
-| **staging** | `staging.beestore.vn` | separate Postgres (anonymized copy) | real provider, sandbox / allow-list | auto on `main` |
-| **production** | `beestore.vn` | Postgres with daily backups | real provider | tag + approval |
+| **staging** | not used (single server, D-16) | — | — | — |
+| **production** | `beestore.vn` | Postgres with daily backups | real provider | auto on `main` (§13.4) |
 
 ### 14.1 Environment Variables (`.env.example`)
 
@@ -1127,6 +1241,8 @@ ADMIN_BOOTSTRAP_PASSWORD=change-me
 | Security | OWASP ZAP baseline scan | Staging | Before release |
 | Accessibility | `@axe-core/playwright`, Lighthouse CI | Key pages | CI (warn) |
 
+**Current state:** BE 79 tests in CI (§20). FE: 27 Vitest tests in CI covering the API client (Bearer header, 401 → refresh → retry, session end, field errors, multipart, 204), the auth store and its error messages, the admin product form model (slug, round trip, validation) and the password policy. The customer flow (register → Mailpit link → verify → login → forgot → reset → reused link refused) and the admin flow (guard → login → create → upload → reorder → reload → public page → delete → logout) were run in Chrome against the real API; they are not yet part of CI.
+
 **Critical auth test cases (must pass):** duplicate email; weak password; unverified login blocked; expired verification link; lockout after 5 failures; refresh rotation; refresh-token reuse revokes the family; reset password revokes sessions; customer cannot call `/admin/**` (403); access token in an expired state returns 401 `TOKEN_EXPIRED`.
 
 ---
@@ -1145,28 +1261,30 @@ ADMIN_BOOTSTRAP_PASSWORD=change-me
 
 ## 17. Roadmap
 
-| Phase | Scope | Est. |
-|---|---|---|
-| **0 — Foundation** | Repo structure, Docker Compose, Spring Boot skeleton, Flyway V1, CI pipeline, `.env.example` | 1 week |
-| **1 — Auth** | Register, verify email, login, refresh rotation, logout, forgot/reset password, profile; FE auth pages wired to API (replace mock `useAuthStore`) | 2 weeks |
-| **2 — Catalog** | Categories/products API, search, catalog importer from `product/`, FE pages wired (remove mock data, cart, checkout), i18n vi/en/zh, SEO | 2 weeks |
-| **3 — Engagement** | Inquiry + contact forms, emails/webhooks, My inquiries, wishlist, floating contact button | 1 week |
-| **4 — Admin** | Product/category/image CRUD, inquiry management, user management, audit log | 2 weeks |
-| **5 — Hardening & Launch** | CD to staging/prod, backups, monitoring, security headers, load and ZAP tests, legal pages (Privacy, Terms) | 1 week |
-| **Future** | Google sign-in, product compare, compatibility hints, reviews, online payment (VNPay/MoMo), cart/orders | — |
+| Phase | Scope | Est. | Status |
+|---|---|---|---|
+| **0 — Foundation** | Repo structure, Docker Compose, Spring Boot skeleton, Flyway V1, CI pipeline, `.env.example` | 1 week | ✅ |
+| **1 — Auth** | Register, verify email, login, refresh rotation, logout, forgot/reset password, profile; FE auth pages wired to API (replace mock `useAuthStore`) | 2 weeks | ✅ (FE profile editing and change password still use the read-only account page) |
+| **2 — Catalog** | Categories/products API, search, catalog importer from `product/`, FE pages wired (remove mock data, cart, checkout), i18n vi/en/zh, SEO | 2 weeks | ✅ API and FE; 🟡 locale routing |
+| **3 — Engagement** | Inquiry + contact forms, emails/webhooks, My inquiries, wishlist, floating contact button | 1 week | ✅ API; 🟡 FE forms and pages |
+| **4 — Admin** | Product/category/image CRUD, inquiry management, user management, audit log | 2 weeks | ✅ API; ✅ FE products and images; 🟡 FE categories, inquiries, users, audit log |
+| **5 — Hardening & Launch** | CD to staging/prod, backups, monitoring, security headers, load and ZAP tests, legal pages (Privacy, Terms) | 1 week | ✅ CD, backups, headers (CSP pending); 🟡 monitoring, load / ZAP tests, legal pages |
+| **Future** | Google sign-in, product compare, compatibility hints, reviews, online payment (VNPay/MoMo), cart/orders | — | — |
 
 ### 17.1 Frontend Gap Analysis (current `fe/` vs. this spec)
 
-| Current state | Required change |
-|---|---|
-| `useAuthStore` uses mock login with a hard-coded demo user | Call the real API; start logged-out; access token in memory only |
-| `apiClient` reads the token from `sessionStorage` | In-memory token + `credentials: 'include'` for `/auth/*` + 401 → refresh → retry interceptor |
-| `cart/`, `checkout/`, `OrderApi`, `CartDrawer` | Remove (or hide behind a feature flag) since there is no payment in v1 |
-| Mock catalog (smartphones, essentials, India addresses) | Replace with hardware catalog API; remove `SmartphoneDeals`, `DailyEssentials`; VND formatting |
-| `Product` type has `rating`, `discountPercentage`, etc. | Align with the API DTO (§7.2): `stockStatus`, `subCategory`, localized `specs`, `images[]` with credits |
-| No i18n | Add `next-intl` with `[locale]` segment |
-| No forgot/reset/verify pages | Add `/auth/forgot-password`, `/auth/reset-password`, `/auth/verify-email` |
-| No inquiry/contact UI | Add inquiry modal, `/contact`, `/account/inquiries` |
+| Original state | Required change | Status |
+|---|---|---|
+| `useAuthStore` uses mock login with a hard-coded demo user | Call the real API; start logged-out; access token in memory only | ✅ (mock login kept only for `NEXT_PUBLIC_USE_MOCK`) |
+| `apiClient` reads the token from `sessionStorage` | In-memory token + `credentials: 'include'` for `/auth/*` + 401 → refresh → retry interceptor | ✅ |
+| `cart/`, `checkout/`, `OrderApi`, `CartDrawer` | Remove (or hide behind a feature flag) since there is no payment in v1 | ✅ removed |
+| Mock catalog (smartphones, essentials, India addresses) | Replace with hardware catalog API; remove `SmartphoneDeals`, `DailyEssentials`; VND formatting | ✅ |
+| `Product` type has `rating`, `discountPercentage`, etc. | Align with the API DTO (§7.2): `stockStatus`, `subCategory`, localized `specs`, `images[]` with credits | ✅ |
+| No i18n | Add `next-intl` with `[locale]` segment | ❌ (UI is Vietnamese; API content is trilingual) |
+| No forgot/reset/verify pages | Add `/auth/forgot-password`, `/auth/reset-password`, `/auth/verify-email` | ✅ plus *resend verification* on the login page |
+| No inquiry/contact UI | Add inquiry modal, `/contact`, `/account/inquiries` | ❌ (contact buttons only) |
+| No admin UI | `/admin` with role guard; products, categories, inquiries, users, audit log | ✅ products and images; ❌ the rest |
+| `next/image` cannot load API images | Allow `/uploads/**` on the site and API hosts | ✅ (loopback hosts render unoptimized, D-20) |
 
 ---
 
@@ -1208,6 +1326,11 @@ Decisions taken during the backend gap analysis (2026-10-19) to resolve conflict
 | D-14 | Production runs on one shared Debian server, domain on Cloudflare, no free ports 80/443 guaranteed | Cloudflare Tunnel terminates TLS, with `cloudflared` as a Compose service pointing at `proxy:80`; Caddy is an internal router (also bound to `127.0.0.1:8088` for local checks); real client IP from `CF-Connecting-IP`; mail is excluded from the health check so an SMTP outage cannot take the API down | §4.1, §12.6 |
 | D-15 | The server is shared and should be used sparingly | Hard limits per container (~1.6 GB / 3.25 CPU total), Serial GC, 5 DB connections, small PostgreSQL buffers, log rotation; images stay on the local volume (single instance, so the in-memory rate limiter and schedulers remain correct) | §12.6 |
 | D-16 | One production server, no staging, SSH from GitHub not guaranteed | CD publishes images to GHCR; the server pulls them every 5 minutes (`update.sh`) with health-checked rollback, instead of GitHub SSH-ing in (§13.4). CI runs FE, BE (`mvnw verify`), gitleaks and Trivy; pgjdbc pinned to 42.7.12 for CVE-2026-54291 | §13 |
+| D-17 | CD rebuilt both images on every merge | CD diffs against the commit of the last successful CD run and builds only the image whose folder changed; `cd.yml` changes, manual runs and a missing baseline rebuild both. CI caches Trivy's DB per 6-hour window | §13.3, §13.4 |
+| D-18 | Where the FE keeps the session | Access token in a module-level variable (memory), never in storage; the refresh cookie restores the session on every page load; concurrent refreshes share one request because a rotated token must not be replayed (D-12) | §0.2, §17.1 |
+| D-19 | Guarding `/admin` in Next.js | Client-side guard in the admin layout: the refresh cookie is scoped to `/api/v1/auth`, so the Next.js server cannot see the session; the API enforces `ADMIN` on every call anyway. The layout is `noindex` | §0.1 |
+| D-20 | API images and `next/image` | `images.remotePatterns` allows `/uploads/**` on the hosts of `NEXT_PUBLIC_SITE_URL` (production serves uploads on the site's domain) and `NEXT_PUBLIC_API_URL`; loopback URLs are rendered `unoptimized` because Next 16 refuses to optimize images from local IPs. No new variable needed | §17.1 |
+| D-21 | Order of the remaining FE work | Admin product management and the complete account flow first (they unblock running on the real API); admin categories / inquiries / users, inquiry forms and locale routing next | §17 |
 
 ---
 
@@ -1272,7 +1395,7 @@ Legend: ✅ implemented and verified by the listed evidence · 🟡 partial (see
 
 | ID | Status | Evidence / note |
 |---|---|---|
-| ADM-01 | ✅ | `AuthFlowIT.anonymousAndCustomerCannotReachAdminEndpoints` (URL rule + `@PreAuthorize`); the FE `/admin` UI is not built |
+| ADM-01 | ✅ | `AuthFlowIT.anonymousAndCustomerCannotReachAdminEndpoints` (URL rule + `@PreAuthorize`); the FE `/admin` area exists for products and images (D-19) |
 | ADM-02 | ✅ | `AdminIT.productLifecycleDraftPublishEditDelete`, `productValidation`, `adminListSearchesAllStatuses` |
 | ADM-03 | ✅ | `AdminIT.imageUploadCreatesWebpVariantsAndCanBeReorderedAndDeleted`, `uploadRejectsFilesThatAreNotImages`, `ImageProcessorTest`; Docker smoke run (D-11) |
 | ADM-04 | ✅ | `AdminIT.categoryAndSubCategoryCrud` |
@@ -1306,7 +1429,7 @@ Legend: ✅ implemented and verified by the listed evidence · 🟡 partial (see
 
 1. `STORAGE_DRIVER=s3` (R2 / MinIO) is not implemented; the API refuses to start with it. Only the local volume driver exists.
 2. The Next.js on-demand revalidation endpoint (`POST /api/revalidate`) does not exist in `fe/` yet; the BE calls it only when `REVALIDATE_URL` and `REVALIDATE_SECRET` are set.
-3. The FE still uses its mock API and mock auth. Switching to the BE needs `NEXT_PUBLIC_USE_MOCK=false`, the refresh-token client from §6.3, and `next.config` allowing images from `PUBLIC_ASSET_BASE_URL`.
-4. The FE has no `/auth/verify-email` and `/auth/reset-password` pages yet, although the emails link to them.
-5. The OpenAPI snapshot test ("BE contract" in §15) and the CI workflows (§13) are not set up.
+3. ~~The FE still uses its mock API and mock auth.~~ Done: with `NEXT_PUBLIC_USE_MOCK=false` the FE uses the API, the refresh-token client and API-served images (D-18, D-20).
+4. ~~The FE has no `/auth/verify-email` and `/auth/reset-password` pages.~~ Done, with `/auth/forgot-password` and resend verification.
+5. The OpenAPI snapshot test ("BE contract" in §15) is not set up. ~~CI workflows~~ are in place (§13).
 6. In production `TURNSTILE_SECRET` is mandatory: guest inquiries fail closed without it.
