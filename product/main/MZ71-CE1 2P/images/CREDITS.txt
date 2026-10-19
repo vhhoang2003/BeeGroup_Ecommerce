@@ -1,0 +1,4 @@
+Photos: GIGABYTE Technology (official datasheet image). Copyright GIGABYTE; used to illustrate the genuine product.
+NOTE: Image taken from the MZ71-CE1 rev 3.x datasheet; rev 1.x has the same layout.
+
+01-board.png: https://download.gigabyte.com/FileList/DataSheet/MZ71-CE1_rev30_datasheet_v1.0.pdf

@@ -1,4 +1,4 @@
-# Multi-stage Dockerfile for MegaMart Next.js Production Build
+# Multi-stage Dockerfile for Bee Store Next.js Production Build
 FROM node:24-alpine AS base
 
 # Step 1: Install dependencies

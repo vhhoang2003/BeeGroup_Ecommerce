@@ -36,7 +36,7 @@ export default function LoginPage() {
           </div>
           <h1 className="text-2xl font-extrabold text-[#222222]">Welcome Back</h1>
           <p className="text-xs text-gray-500 mt-1">
-            Sign in to access your orders, wishlist and saved addresses
+            Sign in to track your quote requests and wishlist
           </p>
         </div>
 

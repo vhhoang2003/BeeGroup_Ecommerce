@@ -1,53 +1,40 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
 import ProductCard from '@/features/catalog/components/ProductCard';
-import { useCartStore } from '@/features/cart/store/useCartStore';
-import { Product } from '@/types/product';
+import type { ProductSummary } from '@/types/product';
 
-const sampleProduct: Product = {
-  id: 'test-phone',
-  name: 'Galaxy Test 5G',
-  slug: 'galaxy-test-5g',
-  brand: 'Samsung',
-  category: 'Smartphones',
-  categorySlug: 'smartphones',
-  price: 25000,
-  originalPrice: 50000,
-  discountPercentage: 50,
-  savings: 25000,
-  rating: 4.8,
-  reviewCount: 100,
-  inStock: true,
-  stockCount: 10,
-  image: '/images/products/galaxy_m13.png',
-  description: 'Test description',
-  isFeatured: true,
+const sampleProduct: ProductSummary = {
+  id: '3',
+  slug: 'amd-epyc-7402',
+  name: 'AMD EPYC 7402',
+  brand: 'AMD',
+  category: { slug: 'cpu', name: 'CPU' },
+  subCategory: { slug: 'zen-2', name: 'Zen 2' },
+  price: 3380000,
+  stockStatus: 'IN_STOCK',
+  featured: false,
+  shortDescription: 'CPU máy chủ 24 nhân / 48 luồng, kiến trúc Zen 2.',
+  image: { url: '/storage/CPU/Epyc%207402/images/01-top.jpg', alt: 'AMD EPYC 7402' },
 };
 
 describe('ProductCard Component', () => {
-  beforeEach(() => {
-    useCartStore.getState().clearCart();
-  });
-
-  it('renders product details and discount badge accurately', () => {
+  it('renders name, brand, sub-category, VND price and stock status', () => {
     render(<ProductCard product={sampleProduct} />);
 
-    expect(screen.getByText('Galaxy Test 5G')).toBeInTheDocument();
-    expect(screen.getByText('₹25,000')).toBeInTheDocument();
-    expect(screen.getByText('₹50,000')).toBeInTheDocument();
-    expect(screen.getByText(/Save - ₹25,000/i)).toBeInTheDocument();
-    expect(screen.getByText(/50%/i)).toBeInTheDocument();
+    expect(screen.getByText('AMD EPYC 7402')).toBeInTheDocument();
+    expect(screen.getByText('AMD')).toBeInTheDocument();
+    expect(screen.getByText('Zen 2')).toBeInTheDocument();
+    expect(screen.getByText('3.380.000 ₫')).toBeInTheDocument();
+    expect(screen.getByText('Còn hàng')).toBeInTheDocument();
+    expect(screen.getByRole('link')).toHaveAttribute('href', '/products/amd-epyc-7402');
   });
 
-  it('adds item to cart on clicking the cart button', () => {
-    render(<ProductCard product={sampleProduct} />);
+  it('shows "Liên hệ" and a placeholder when price and photo are missing', () => {
+    render(<ProductCard product={{ ...sampleProduct, price: null, image: null }} />);
 
-    const addBtn = screen.getByTitle('Add to cart');
-    fireEvent.click(addBtn);
-
-    const items = useCartStore.getState().items;
-    expect(items.length).toBe(1);
-    expect(items[0].product.name).toBe('Galaxy Test 5G');
+    expect(screen.getByText('Liên hệ')).toBeInTheDocument();
+    expect(screen.getByText('Ảnh đang cập nhật')).toBeInTheDocument();
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
 });

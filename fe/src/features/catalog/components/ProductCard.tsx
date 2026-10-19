@@ -1,100 +1,56 @@
-'use client';
-
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { ShoppingCart, Check } from 'lucide-react';
-import { Product } from '@/types/product';
+import type { ProductSummary } from '@/types/product';
 import { formatPrice } from '@/lib/utils';
-import { useCartStore } from '@/features/cart/store/useCartStore';
+import ProductThumb from './ProductThumb';
+import StockBadge from './StockBadge';
 
 interface ProductCardProps {
-  product: Product;
+  product: ProductSummary;
   highlightBorder?: boolean;
 }
 
 export default function ProductCard({ product, highlightBorder }: ProductCardProps) {
-  const addItem = useCartStore((state) => state.addItem);
-  const [added, setAdded] = React.useState(false);
-
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    addItem(product, 1);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
-  };
-
   return (
-    <div
-      className={`group bg-white rounded-[16px] p-3 sm:p-3.5 flex flex-col justify-between relative transition-all duration-200 hover:shadow-md ${
-        highlightBorder || product.isFeatured
+    <Link
+      href={`/products/${product.slug}`}
+      className={`group bg-white rounded-[16px] p-3 sm:p-3.5 flex flex-col relative transition-all duration-200 hover:shadow-md ${
+        highlightBorder
           ? 'border-2 border-[#008ECC]'
           : 'border border-[#EDEDED] hover:border-[#008ECC]/50'
       }`}
     >
-      {/* Discount Badge at Top Right */}
-      {product.discountPercentage > 0 && (
+      {product.subCategory && (
         <div className="absolute top-0 right-0 bg-[#008ECC] text-white text-[11px] font-bold px-2.5 py-1 rounded-tr-[14px] rounded-bl-[10px] z-10 leading-tight">
-          {product.discountPercentage}%<br />OFF
+          {product.subCategory.name}
         </div>
       )}
 
-      <Link href={`/products/${product.slug}`} className="flex flex-col flex-1">
-        {/* Product Image Container */}
-        <div className="w-full bg-[#F5F5F5] rounded-[12px] h-[150px] sm:h-[170px] flex items-center justify-center p-2 mb-3 relative overflow-hidden group-hover:bg-[#EEF7FB] transition-colors">
-          <div className="relative w-full h-full">
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              sizes="(max-width: 640px) 150px, (max-width: 1024px) 200px, 220px"
-              className="object-contain transition-transform duration-300 group-hover:scale-105"
-            />
-          </div>
-        </div>
+      {/* Product Image Container */}
+      <div className="w-full bg-[#F5F5F5] rounded-[12px] h-[150px] sm:h-[170px] mb-3 relative overflow-hidden">
+        <ProductThumb
+          image={product.image}
+          categorySlug={product.category.slug}
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 240px"
+          className="transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
 
-        {/* Product Title */}
-        <h3 className="text-[13px] sm:text-[14px] font-medium text-[#222222] line-clamp-1 mb-1.5 group-hover:text-[#008ECC] transition-colors">
-          {product.name}
-        </h3>
+      <span className="text-[11px] font-semibold uppercase tracking-wider text-[#008ECC] mb-0.5">
+        {product.brand}
+      </span>
 
-        {/* Pricing Row */}
-        <div className="flex items-baseline gap-2 mb-2">
-          <span className="text-[15px] sm:text-[16px] font-bold text-[#222222]">
-            {formatPrice(product.price)}
-          </span>
-          {product.originalPrice > product.price && (
-            <span className="text-[12px] text-[#888888] line-through">
-              {formatPrice(product.originalPrice)}
-            </span>
-          )}
-        </div>
+      {/* Product Title */}
+      <h3 className="text-[13px] sm:text-[14px] font-semibold text-[#222222] line-clamp-1 mb-1 group-hover:text-[#008ECC] transition-colors">
+        {product.name}
+      </h3>
 
-        {/* Dividing Border */}
-        <div className="border-t border-[#EDEDED] my-1.5" />
+      <p className="text-[12px] text-[#666666] line-clamp-2 mb-2 min-h-[2lh]">{product.shortDescription}</p>
 
-        {/* Savings Text & Add Button */}
-        <div className="flex items-center justify-between pt-1">
-          <span className="text-[12px] sm:text-[13px] font-semibold text-[#249B3E]">
-            Save - {formatPrice(product.savings || product.originalPrice - product.price)}
-          </span>
-
-          <button
-            type="button"
-            onClick={handleAddToCart}
-            aria-label={`Add ${product.name} to cart`}
-            className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors cursor-pointer ${
-              added
-                ? 'bg-[#249B3E] text-white'
-                : 'bg-[#F3F9FB] text-[#008ECC] hover:bg-[#008ECC] hover:text-white'
-            }`}
-            title="Add to cart"
-          >
-            {added ? <Check className="w-3.5 h-3.5" /> : <ShoppingCart className="w-3.5 h-3.5" />}
-          </button>
-        </div>
-      </Link>
-    </div>
+      <div className="mt-auto border-t border-[#EDEDED] pt-2 flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+        <span className="text-[15px] sm:text-[16px] font-bold text-[#222222]">{formatPrice(product.price)}</span>
+        <StockBadge status={product.stockStatus} />
+      </div>
+    </Link>
   );
 }

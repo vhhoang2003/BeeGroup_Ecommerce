@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Be_Vietnam_Pro, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import QueryProvider from '@/components/providers/QueryProvider';
 import MainLayout from '@/components/layout/MainLayout';
+import { siteConfig } from '@/config/site';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const beVietnamPro = Be_Vietnam_Pro({
+  variable: '--font-be-vietnam-pro',
+  subsets: ['latin', 'vietnamese'],
+  weight: ['400', '500', '600', '700', '800', '900'],
 });
 
 const geistMono = Geist_Mono({
@@ -15,10 +17,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'MegaMart — Online Shopping for Groceries, Mobiles, Electronics & Essentials',
-  description:
-    'MegaMart is your one-stop online e-commerce destination with top deals on smartphones, electronics, daily essentials, and fashion.',
-  keywords: ['MegaMart', 'Online Shopping', 'Smartphones', 'Electronics', 'Groceries', 'Daily Essentials'],
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name}: CPU AMD EPYC, mainboard SP3, GPU & tản nhiệt server`,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: [siteConfig.name, 'AMD EPYC', 'CPU server', 'mainboard SP3', 'NVIDIA Tesla', 'tản nhiệt', 'home lab'],
 };
 
 export default function RootLayout({
@@ -28,8 +33,8 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="vi"
+      className={`${beVietnamPro.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <QueryProvider>

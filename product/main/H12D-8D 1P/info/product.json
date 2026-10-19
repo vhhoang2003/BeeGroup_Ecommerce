@@ -26,6 +26,13 @@
     "Remote management (BMC)": "Not included (optional AST2500 module can be added)",
     "Warranty": "12 months"
   },
+  "image": "images/01-angle.png",
+  "images": [
+    "images/01-angle.png",
+    "images/02-angle-2.png",
+    "images/03-box.png",
+    "images/04-rear-io.png"
+  ],
   "description": "HUANANZHI H12D-8D đưa EPYC vào vỏ case ATX thông thường. RAM DDR4 8 kênh (tối đa 2 TB), 4 khe PCIe 4.0 x16 cho card đồ hoạ hoặc card NVMe, 3 khe M.2 NVMe và 3 cổng SFF-8643 mở rộng thêm tới 12 ổ SATA hoặc SSD U.2 – nền tảng lý tưởng cho home lab, máy render và workstation AI.",
   "features": [
     "SP3, EPYC 7002/7003",

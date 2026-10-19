@@ -1,16 +1,26 @@
 /**
- * Spring Boot REST API Client
- * Configured with environment-based base URL, bearer token authentication header,
- * and automatic fallback to Mock Service when backend is unavailable or USE_MOCK is set.
+ * Spring Boot REST API client.
+ * Unwraps the `{ success, data }` envelope (README §8.1). When NEXT_PUBLIC_USE_MOCK is not 'false',
+ * requests go to the in-app mock API (`app/mock-api/v1`), which reads the local `product/` folder.
  */
+import type { ApiResponse } from '@/types/api';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api/v1';
-const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK !== 'false'; // Default to mock for standalone UI
+const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK !== 'false';
+const API_BASE_URL = USE_MOCK
+  ? '/mock-api/v1'
+  : process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api/v1';
 
-export async function apiClient<T>(
-  endpoint: string,
-  options: RequestInit = {}
-): Promise<T> {
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    public status: number,
+    public code?: string
+  ) {
+    super(message);
+  }
+}
+
+export async function apiClient<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const headers = new Headers(options.headers);
   headers.set('Content-Type', 'application/json');
 
@@ -27,12 +37,16 @@ export async function apiClient<T>(
     headers,
   });
 
+  const body = await response.json().catch(() => null);
   if (!response.ok) {
-    const errorBody = await response.json().catch(() => ({}));
-    throw new Error(errorBody.message || `API Error: ${response.status} ${response.statusText}`);
+    throw new ApiError(
+      body?.message || `API Error: ${response.status} ${response.statusText}`,
+      response.status,
+      body?.error?.code
+    );
   }
 
-  return response.json();
+  return (body as ApiResponse<T>).data;
 }
 
 export { USE_MOCK };

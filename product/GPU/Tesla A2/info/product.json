@@ -30,6 +30,10 @@
     "Launch": "Q4 2021",
     "Warranty": "12 months"
   },
+  "image": "images/01-product.jpg",
+  "images": [
+    "images/01-product.jpg"
+  ],
   "description": "NVIDIA A2 có 16 GB GDDR6, nhân Tensor thế hệ 3 và nhân RT trong thân card 1 slot low-profile, chỉ tiêu thụ 40–60 W lấy trực tiếp từ khe PCIe – không cần dây nguồn phụ. Phù hợp suy luận AI cơ bản, phân tích video thông minh, chuyển mã Plex/Jellyfin (có giải mã AV1) và máy ảo desktop trong server nhỏ gọn.",
   "features": [
     "16 GB GDDR6, 200 GB/s",

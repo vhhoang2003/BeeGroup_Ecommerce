@@ -26,6 +26,12 @@
     "Remote management (BMC)": "ASPEED AST2500 module included – IPMI 2.0, dedicated management port (Realtek RTL8201F), VGA output",
     "Warranty": "12 months"
   },
+  "image": "images/01-top-bmc.png",
+  "images": [
+    "images/01-top-bmc.png",
+    "images/02-box.png",
+    "images/03-rear-io.png"
+  ],
   "description": "Cùng nền tảng với H12D-8D – EPYC 7002/7003, RAM DDR4 8 kênh tối đa 2 TB, 4 khe PCIe 4.0 x16, 3 khe M.2 NVMe, 2 cổng LAN 2.5 GbE – và có thêm chip BMC ASPEED AST2500. Có cổng quản lý riêng chuẩn IPMI 2.0 (bật/tắt máy, xem màn hình, giám sát từ xa), VGA onboard hoạt động và quạt hệ thống được điều khiển qua BMC. Phù hợp server chạy không màn hình và đặt trong rack.",
   "features": [
     "BMC ASPEED AST2500, IPMI 2.0",

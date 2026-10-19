@@ -1,34 +1,63 @@
-export interface Product {
-  id: string;
-  name: string;
+export type Locale = 'vi' | 'en' | 'zh';
+
+export type StockStatus = 'IN_STOCK' | 'LOW_STOCK' | 'OUT_OF_STOCK' | 'PRE_ORDER';
+
+export interface NamedRef {
   slug: string;
-  brand: string;
-  category: string;
-  categorySlug: string;
-  price: number;
-  originalPrice: number;
-  discountPercentage: number;
-  savings: number;
-  rating: number;
-  reviewCount: number;
-  inStock: boolean;
-  stockCount: number;
-  image: string;
-  images?: string[];
-  specs?: { [key: string]: string };
-  description: string;
-  features?: string[];
-  isFeatured?: boolean;
-  isDailyEssential?: boolean;
+  name: string;
 }
+
+export interface ProductImage {
+  url: string;
+  alt: string;
+}
+
+export interface SpecRow {
+  key: string;
+  label: string;
+  value: string;
+}
+
+/** List item DTO returned by `GET /products`. */
+export interface ProductSummary {
+  id: string;
+  slug: string;
+  name: string;
+  brand: string;
+  category: NamedRef;
+  subCategory: NamedRef | null;
+  /** VND; null means "contact for price". */
+  price: number | null;
+  stockStatus: StockStatus;
+  featured: boolean;
+  shortDescription: string;
+  image: ProductImage | null;
+}
+
+/** Detail DTO returned by `GET /products/{slug}`. */
+export interface ProductDetail extends ProductSummary {
+  description: string;
+  highlights: string[];
+  useCases: string[];
+  notes: string[];
+  specs: SpecRow[];
+  images: ProductImage[];
+  sources: string[];
+  /** Attribution / license text for third-party photos (from `CREDITS.txt`). */
+  imageCredits: string | null;
+}
+
+export type ProductSort = 'featured' | 'price-asc' | 'price-desc' | 'newest';
 
 export interface ProductFilterParams {
   category?: string;
+  sub?: string;
   brand?: string;
   minPrice?: number;
   maxPrice?: number;
-  search?: string;
-  sortBy?: 'featured' | 'price-asc' | 'price-desc' | 'discount' | 'rating';
+  stock?: StockStatus;
+  q?: string;
+  sort?: ProductSort;
   page?: number;
-  limit?: number;
+  size?: number;
 }

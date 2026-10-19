@@ -1,72 +1,48 @@
-import React from 'react';
+'use client';
+
+import React, { Suspense, use } from 'react';
 import Link from 'next/link';
+import { useQuery } from '@tanstack/react-query';
 import { CatalogApi } from '@/lib/api/endpoints';
-import ProductCard from '@/features/catalog/components/ProductCard';
-import SectionTitle from '@/components/ui/SectionTitle';
+import CatalogBrowser from '@/features/catalog/components/CatalogBrowser';
 
-interface CategoryPageProps {
-  params: Promise<{ slug: string }>;
-}
-
-export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { slug } = await params;
-  const decodedSlug = decodeURIComponent(slug);
-
-  const response = await CatalogApi.getProducts({
-    category: decodedSlug,
+export default function CategoryPage({ params }: PageProps<'/category/[slug]'>) {
+  const { slug } = use(params);
+  const { data: category, isLoading } = useQuery({
+    queryKey: ['category', slug],
+    queryFn: () => CatalogApi.getCategory(slug),
   });
 
-  const products = response.content;
-
-  // Format title
-  const categoryTitle = decodedSlug
-    .split('-')
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
+  if (!isLoading && !category) {
+    return (
+      <div className="max-w-[1240px] mx-auto px-4 py-20 text-center">
+        <h2 className="text-2xl font-bold text-[#222222] mb-3">Không tìm thấy danh mục</h2>
+        <p className="text-gray-500 mb-6">Danh mục bạn tìm không tồn tại hoặc đã được đổi tên.</p>
+        <Link href="/products" className="bg-[#008ECC] text-white px-6 py-2.5 rounded-full font-semibold">
+          Xem tất cả sản phẩm
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-6 sm:py-8">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-xs text-gray-500 mb-6">
         <Link href="/" className="hover:text-[#008ECC]">
-          Home
+          Trang chủ
         </Link>
         <span>/</span>
         <Link href="/products" className="hover:text-[#008ECC]">
-          Categories
+          Sản phẩm
         </Link>
         <span>/</span>
-        <span className="font-semibold text-[#222222]">{categoryTitle}</span>
+        <span className="font-semibold text-[#222222]">{category?.name ?? '…'}</span>
       </nav>
 
-      <SectionTitle
-        prefix="Explore"
-        highlight={categoryTitle}
-        viewAllHref="/products"
-      />
-
-      {products.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-gray-300 p-8">
-          <h3 className="text-lg font-bold text-[#222222] mb-2">
-            No products found in {categoryTitle}
-          </h3>
-          <p className="text-sm text-gray-500 mb-6">
-            Check out our other available categories or browse our full catalogue.
-          </p>
-          <Link
-            href="/products"
-            className="inline-block bg-[#008ECC] hover:bg-[#0077b0] text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-colors"
-          >
-            Browse All Products
-          </Link>
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5 sm:gap-4">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      )}
+      <Suspense fallback={<div className="py-12 text-center text-gray-500">Đang tải sản phẩm…</div>}>
+        <CatalogBrowser category={slug} title={category?.name ?? '…'} />
+      </Suspense>
     </div>
   );
 }

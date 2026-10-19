@@ -1,92 +1,53 @@
-import { USE_MOCK, apiClient } from './client';
-import { MockCatalogService } from '../mocks/mockService';
-import { Product, ProductFilterParams } from '@/types/product';
-import { Category, BrandBanner } from '@/types/category';
-import { PaginatedResponse } from '@/types/api';
-import { DailyEssentialItem } from '../mocks/data';
-import { Order, CheckoutFormData } from '@/types/order';
+import { ApiError, apiClient } from './client';
+import type { ProductDetail, ProductFilterParams, ProductSummary } from '@/types/product';
+import type { Category } from '@/types/category';
+import type { PaginatedResponse } from '@/types/api';
+
+function toQuery(params: Record<string, string | number | undefined>): string {
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== undefined && value !== '') query.set(key, String(value));
+  }
+  const s = query.toString();
+  return s ? `?${s}` : '';
+}
+
+/** Returns null instead of throwing when the resource does not exist. */
+async function orNull<T>(request: Promise<T>): Promise<T | null> {
+  try {
+    return await request;
+  } catch (err) {
+    if (err instanceof ApiError && err.status === 404) return null;
+    throw err;
+  }
+}
 
 export const CatalogApi = {
-  async getSmartphoneDeals(): Promise<Product[]> {
-    if (USE_MOCK) return MockCatalogService.getSmartphoneDeals();
-    return apiClient<Product[]>('/products/deals/smartphones');
-  },
-
-  async getCategories(): Promise<Category[]> {
-    if (USE_MOCK) return MockCatalogService.getCategories();
+  getCategories(): Promise<Category[]> {
     return apiClient<Category[]>('/categories');
   },
 
-  async getBrandBanners(): Promise<BrandBanner[]> {
-    if (USE_MOCK) return MockCatalogService.getBrandBanners();
-    return apiClient<BrandBanner[]>('/promotions/brands');
+  getCategory(slug: string): Promise<Category | null> {
+    return orNull(apiClient<Category>(`/categories/${encodeURIComponent(slug)}`));
   },
 
-  async getDailyEssentials(): Promise<DailyEssentialItem[]> {
-    if (USE_MOCK) return MockCatalogService.getDailyEssentials();
-    return apiClient<DailyEssentialItem[]>('/products/deals/essentials');
+  getProducts(params: ProductFilterParams = {}): Promise<PaginatedResponse<ProductSummary>> {
+    return apiClient<PaginatedResponse<ProductSummary>>(`/products${toQuery({ ...params })}`);
   },
 
-  async getProducts(params?: ProductFilterParams): Promise<PaginatedResponse<Product>> {
-    if (USE_MOCK) return MockCatalogService.getProducts(params);
-    const query = new URLSearchParams();
-    if (params?.category) query.set('category', params.category);
-    if (params?.brand) query.set('brand', params.brand);
-    if (params?.search) query.set('q', params.search);
-    if (params?.sortBy) query.set('sort', params.sortBy);
-    if (params?.page) query.set('page', params.page.toString());
-    if (params?.limit) query.set('size', params.limit.toString());
-    return apiClient<PaginatedResponse<Product>>(`/products?${query.toString()}`);
+  getFeaturedProducts(): Promise<ProductSummary[]> {
+    return apiClient<ProductSummary[]>('/products/featured');
   },
 
-  async getProduct(idOrSlug: string): Promise<Product | null> {
-    if (USE_MOCK) return MockCatalogService.getProductBySlugOrId(idOrSlug);
-    return apiClient<Product>(`/products/${idOrSlug}`);
+  getProduct(slug: string): Promise<ProductDetail | null> {
+    return orNull(apiClient<ProductDetail>(`/products/${encodeURIComponent(slug)}`));
   },
 
-  async searchSuggestions(q: string): Promise<Product[]> {
-    if (USE_MOCK) return MockCatalogService.searchSuggestions(q);
-    return apiClient<Product[]>(`/products/suggestions?q=${encodeURIComponent(q)}`);
+  getRelatedProducts(slug: string): Promise<ProductSummary[]> {
+    return apiClient<ProductSummary[]>(`/products/${encodeURIComponent(slug)}/related?limit=4`);
   },
-};
 
-export const OrderApi = {
-  async createOrder(checkoutData: CheckoutFormData, items: unknown[]): Promise<Order> {
-    if (USE_MOCK) {
-      // Mock successful order creation
-      const orderId = `ORD-${Date.now().toString().slice(-6)}`;
-      const newOrder: Order = {
-        id: orderId,
-        orderNumber: orderId,
-        userId: 'guest-user',
-        items: items as never,
-        shippingAddress: {
-          fullName: checkoutData.fullName,
-          phone: checkoutData.phone,
-          street: checkoutData.street,
-          city: checkoutData.city,
-          state: checkoutData.state,
-          postalCode: checkoutData.postalCode,
-          country: 'India',
-        },
-        paymentMethod: checkoutData.paymentMethod,
-        subtotal: 32999,
-        discount: 4500,
-        shippingFee: 0,
-        total: 28499,
-        status: 'CONFIRMED',
-        createdAt: new Date().toISOString(),
-        estimatedDelivery: new Date(Date.now() + 4 * 86400000).toLocaleDateString('en-IN', {
-          weekday: 'short',
-          month: 'short',
-          day: 'numeric',
-        }),
-      };
-      return newOrder;
-    }
-    return apiClient<Order>('/orders', {
-      method: 'POST',
-      body: JSON.stringify({ ...checkoutData, items }),
-    });
+  searchSuggestions(q: string): Promise<ProductSummary[]> {
+    return apiClient<ProductSummary[]>(`/products/suggestions${toQuery({ q })}`);
   },
 };

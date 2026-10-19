@@ -2,22 +2,22 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Search, SlidersHorizontal, X } from 'lucide-react';
 import { CatalogApi } from '@/lib/api/endpoints';
-import { Product } from '@/types/product';
+import type { ProductSummary } from '@/types/product';
 import { formatPrice } from '@/lib/utils';
+import ProductThumb from './ProductThumb';
 
 export default function SearchSuggestions() {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<Product[]>([]);
+  const [results, setResults] = useState<ProductSummary[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  // Debounced search logic (280ms)
+  // Debounced autocomplete (250 ms, CAT-04)
   useEffect(() => {
     if (!query.trim()) {
       return;
@@ -34,7 +34,7 @@ export default function SearchSuggestions() {
       } finally {
         setLoading(false);
       }
-    }, 280);
+    }, 250);
 
     return () => clearTimeout(timer);
   }, [query]);
@@ -63,7 +63,7 @@ export default function SearchSuggestions() {
     e.preventDefault();
     if (query.trim()) {
       setIsOpen(false);
-      router.push(`/products?search=${encodeURIComponent(query.trim())}`);
+      router.push(`/products?q=${encodeURIComponent(query.trim())}`);
     }
   };
 
@@ -82,7 +82,8 @@ export default function SearchSuggestions() {
           onFocus={() => {
             if (results.length > 0) setIsOpen(true);
           }}
-          placeholder="Search essentials, groceries and more..."
+          placeholder="Tìm CPU, mainboard, tản nhiệt… (vd: 7B13, SP3, 64 nhân)"
+          aria-label="Tìm sản phẩm"
           className="w-full bg-transparent text-[13px] sm:text-[14px] text-[#222222] placeholder:text-[#888888] outline-none"
         />
 
@@ -94,6 +95,7 @@ export default function SearchSuggestions() {
               setResults([]);
               setIsOpen(false);
             }}
+            aria-label="Xoá từ khoá"
             className="p-1 text-gray-400 hover:text-gray-600 mr-1"
           >
             <X className="w-3.5 h-3.5" />
@@ -104,7 +106,7 @@ export default function SearchSuggestions() {
           type="button"
           onClick={() => router.push('/products')}
           className="text-[#008ECC] hover:text-[#0077b0] transition-colors p-1"
-          title="Filter and Catalog"
+          title="Lọc sản phẩm"
         >
           <SlidersHorizontal className="w-[18px] h-[18px]" />
         </button>
@@ -114,8 +116,8 @@ export default function SearchSuggestions() {
       {isOpen && (
         <div className="absolute top-[48px] left-0 w-full bg-white rounded-xl shadow-xl border border-gray-100 z-50 overflow-hidden animate-in fade-in slide-in-from-top-1 duration-150">
           <div className="p-2 border-b border-gray-50 flex items-center justify-between text-xs text-gray-500 font-medium">
-            <span>{loading ? 'Searching...' : `Matching results (${results.length})`}</span>
-            <span className="text-[11px] text-gray-400">Press Enter to search all</span>
+            <span>{loading ? 'Đang tìm…' : `Kết quả gợi ý (${results.length})`}</span>
+            <span className="text-[11px] text-gray-400">Nhấn Enter để xem tất cả</span>
           </div>
 
           {results.length > 0 ? (
@@ -127,38 +129,26 @@ export default function SearchSuggestions() {
                   onClick={() => setIsOpen(false)}
                   className="flex items-center gap-3 p-3 hover:bg-[#F3F9FB] transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded bg-[#F5F5F5] shrink-0 relative overflow-hidden flex items-center justify-center p-1">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={40}
-                      height={40}
-                      className="object-contain"
-                    />
+                  <div className="w-10 h-10 rounded bg-[#F5F5F5] shrink-0 relative overflow-hidden">
+                    <ProductThumb image={product.image} categorySlug={product.category.slug} sizes="40px" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-[#222222] group-hover:text-[#008ECC] truncate">
                       {product.name}
                     </p>
-                    <p className="text-xs text-gray-500">{product.category}</p>
-                  </div>
-                  <div className="text-right shrink-0">
-                    <p className="text-sm font-semibold text-[#222222]">
-                      {formatPrice(product.price)}
+                    <p className="text-xs text-gray-500">
+                      {product.category.name}
+                      {product.subCategory ? ` · ${product.subCategory.name}` : ''}
                     </p>
-                    {product.discountPercentage > 0 && (
-                      <p className="text-[11px] text-[#249B3E] font-medium">
-                        {product.discountPercentage}% OFF
-                      </p>
-                    )}
                   </div>
+                  <p className="text-sm font-semibold text-[#222222] shrink-0">{formatPrice(product.price)}</p>
                 </Link>
               ))}
             </div>
           ) : (
             !loading && (
               <div className="p-4 text-center text-sm text-gray-500">
-                No products found matching &ldquo;{query}&rdquo;
+                Không tìm thấy sản phẩm cho &ldquo;{query}&rdquo;
               </div>
             )
           )}

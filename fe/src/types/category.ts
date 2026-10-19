@@ -1,22 +1,14 @@
-export interface Category {
-  id: string;
-  name: string;
+export interface SubCategory {
   slug: string;
-  image: string;
-  itemCount?: number;
-  featured?: boolean;
+  name: string;
+  itemCount: number;
 }
 
-export interface BrandBanner {
+export interface Category {
   id: string;
+  slug: string;
   name: string;
-  tag: string;
-  headline: string;
-  discount: string;
-  bgClass: string;
-  bgColor: string;
-  textColor: string;
-  logo: string;
-  productImage: string;
-  link: string;
+  image: string | null;
+  itemCount: number;
+  subCategories: SubCategory[];
 }

@@ -24,6 +24,10 @@
     "Connector": "4-pin PWM",
     "Warranty": "12 months"
   },
+  "image": "images/01-product.jpg",
+  "images": [
+    "images/01-product.jpg"
+  ],
   "description": "M97 dùng 5 ống đồng và quạt PWM vòng bi đôi bền bỉ, tản được tới 380 W mà chỉ ồn 36 dBA. Lựa chọn cân bằng cho các CPU EPYC 180–240 W như 7402, 7532, 7642 hay 7B13, lắp trong server 4U hoặc case tháp.",
   "features": [
     "5 ống đồng",

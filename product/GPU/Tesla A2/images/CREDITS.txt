@@ -1,0 +1,4 @@
+Photos: NVIDIA Corporation (official product image). Copyright NVIDIA; used to illustrate the genuine product.
+
+01-product.jpg: https://www.nvidia.com/content/dam/en-zz/Solutions/gtcf21/a2/nvidia-a2-og-social-share-image-og-100.jpg
+Source page: https://www.nvidia.com/en-us/data-center/products/a2/

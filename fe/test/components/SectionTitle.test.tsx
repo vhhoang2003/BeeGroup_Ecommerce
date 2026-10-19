@@ -15,7 +15,7 @@ describe('SectionTitle Component', () => {
 
     expect(screen.getByText('Grab the best deal on')).toBeInTheDocument();
     expect(screen.getByText('Smartphones')).toBeInTheDocument();
-    expect(screen.getByText('View All')).toBeInTheDocument();
+    expect(screen.getByText('Xem tất cả')).toBeInTheDocument();
   });
 
   it('renders link when viewAllHref is provided', () => {
@@ -27,7 +27,7 @@ describe('SectionTitle Component', () => {
       />
     );
 
-    const link = screen.getByRole('link', { name: /view all/i });
+    const link = screen.getByRole('link', { name: /xem tất cả/i });
     expect(link).toHaveAttribute('href', '/categories');
   });
 });

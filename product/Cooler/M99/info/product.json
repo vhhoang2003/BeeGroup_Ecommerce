@@ -23,6 +23,10 @@
     "Connector": "4-pin PWM",
     "Warranty": "12 months"
   },
+  "image": "images/01-product.jpg",
+  "images": [
+    "images/01-product.jpg"
+  ],
   "description": "M99 là mẫu tản khí mạnh nhất trong dòng: 6 ống đồng, quạt PWM 120 mm 1000–2200 vòng/phút và công suất 450 W, dư sức cho các CPU EPYC 64 nhân như 7V13 hay 7V73X mà vẫn chỉ ồn 36 dBA. Lắp được trong case 4U và case workstation dạng tháp.",
   "features": [
     "6 ống đồng",

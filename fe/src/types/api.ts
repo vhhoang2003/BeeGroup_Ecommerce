@@ -1,7 +1,18 @@
 export interface ApiResponse<T> {
   success: boolean;
-  message?: string;
+  message?: string | null;
   data: T;
+  timestamp: string;
+}
+
+export interface ApiErrorResponse {
+  success: false;
+  message: string;
+  error: {
+    code: string;
+    fields?: { field: string; message: string }[];
+    traceId?: string;
+  };
   timestamp: string;
 }
 

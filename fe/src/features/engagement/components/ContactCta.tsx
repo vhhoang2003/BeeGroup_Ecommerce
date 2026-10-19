@@ -1,0 +1,55 @@
+import React from 'react';
+import { Mail, MessageCircle, Phone } from 'lucide-react';
+import { siteConfig } from '@/config/site';
+
+/** "Contact us" call to action (CAT-01 / ENG-04). */
+export default function ContactCta() {
+  return (
+    <section className="w-full max-w-[1240px] mx-auto px-4 mb-14 sm:mb-16">
+      <div className="rounded-[20px] bg-[#F3F9FB] border border-[#E0F0F8] p-6 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="max-w-[560px]">
+          <h2 className="text-[20px] sm:text-[24px] font-bold text-[#222222] mb-2">
+            Cần tư vấn cấu hình hoặc báo giá?
+          </h2>
+          <p className="text-[14px] text-[#666666] leading-relaxed">
+            Đội ngũ {siteConfig.name} giúp bạn chọn CPU, mainboard và tản nhiệt phù hợp cho home lab, ảo hoá hay
+            render. Liên hệ để nhận báo giá tốt nhất.
+          </p>
+        </div>
+        <ContactButtons />
+      </div>
+    </section>
+  );
+}
+
+export function ContactButtons({ subject }: { subject?: string }) {
+  const { contact } = siteConfig;
+  const mailto = `mailto:${contact.email}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;
+  return (
+    <div className="flex flex-wrap gap-3">
+      <a
+        href={contact.hotlineHref}
+        className="inline-flex items-center gap-2 bg-[#008ECC] hover:bg-[#0077b0] text-white text-[14px] font-semibold px-5 py-2.5 rounded-full transition-colors"
+      >
+        <Phone className="w-4 h-4" />
+        {contact.hotline}
+      </a>
+      <a
+        href={contact.zaloHref}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-2 bg-white border border-[#008ECC] text-[#008ECC] hover:bg-[#008ECC] hover:text-white text-[14px] font-semibold px-5 py-2.5 rounded-full transition-colors"
+      >
+        <MessageCircle className="w-4 h-4" />
+        Chat Zalo
+      </a>
+      <a
+        href={mailto}
+        className="inline-flex items-center gap-2 bg-white border border-[#EDEDED] text-[#222222] hover:border-[#008ECC] hover:text-[#008ECC] text-[14px] font-semibold px-5 py-2.5 rounded-full transition-colors"
+      >
+        <Mail className="w-4 h-4" />
+        Gửi email
+      </a>
+    </div>
+  );
+}

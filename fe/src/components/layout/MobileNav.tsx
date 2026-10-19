@@ -2,10 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { X, MapPin, Truck, Tag, User, ChevronRight } from 'lucide-react';
-import { mockNavPills } from '@/lib/mocks/data';
+import { X, Phone, MessageCircle, User, ChevronRight, LayoutGrid } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
+import { CatalogApi } from '@/lib/api/endpoints';
+import CategoryIcon from '@/features/catalog/components/CategoryIcon';
+import Logo from '@/components/ui/Logo';
+import { siteConfig } from '@/config/site';
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -14,6 +17,10 @@ interface MobileNavProps {
 
 export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const { user, isAuthenticated } = useAuthStore();
+  const { data: categories = [] } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () => CatalogApi.getCategories(),
+  });
 
   if (!isOpen) return null;
 
@@ -30,18 +37,12 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
         <div>
           {/* Header */}
           <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-[#F3F9FB]">
-            <Image
-              src="/images/megamart_logo.png"
-              alt="MegaMart Logo"
-              width={130}
-              height={26}
-              className="h-6 w-auto object-contain"
-            />
+            <Logo />
             <button
               type="button"
               onClick={onClose}
               className="p-1 text-gray-500 hover:text-gray-800"
-              aria-label="Close menu"
+              aria-label="Đóng menu"
             >
               <X className="w-5 h-5" />
             </button>
@@ -61,18 +62,18 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                     onClick={onClose}
                     className="text-xs text-[#008ECC] font-medium hover:underline"
                   >
-                    View Account
+                    Tài khoản của tôi
                   </Link>
                 </>
               ) : (
                 <>
-                  <p className="text-sm font-semibold text-[#222222]">Welcome Guest</p>
+                  <p className="text-sm font-semibold text-[#222222]">Xin chào</p>
                   <Link
                     href="/auth/login"
                     onClick={onClose}
                     className="text-xs text-[#008ECC] font-medium hover:underline"
                   >
-                    Sign In or Register
+                    Đăng nhập hoặc đăng ký
                   </Link>
                 </>
               )}
@@ -81,47 +82,52 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
           {/* Category List */}
           <div className="p-4">
-            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-              Departments
-            </h4>
+            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Danh mục</h4>
             <div className="space-y-1">
-              {mockNavPills.map((pill) => (
+              {categories.map((c) => (
                 <Link
-                  key={pill.slug}
-                  href={`/category/${pill.slug}`}
+                  key={c.slug}
+                  href={`/category/${c.slug}`}
                   onClick={onClose}
                   className="flex items-center justify-between py-2 text-sm text-[#222222] hover:text-[#008ECC] font-medium transition-colors"
                 >
-                  <span>{pill.name}</span>
+                  <span className="flex items-center gap-2.5">
+                    <CategoryIcon slug={c.slug} className="w-4 h-4 text-[#008ECC]" />
+                    {c.name}
+                  </span>
                   <ChevronRight className="w-4 h-4 text-gray-400" />
                 </Link>
               ))}
+              <Link
+                href="/products"
+                onClick={onClose}
+                className="flex items-center justify-between py-2 text-sm text-[#222222] hover:text-[#008ECC] font-medium transition-colors"
+              >
+                <span className="flex items-center gap-2.5">
+                  <LayoutGrid className="w-4 h-4 text-[#008ECC]" />
+                  Tất cả sản phẩm
+                </span>
+                <ChevronRight className="w-4 h-4 text-gray-400" />
+              </Link>
             </div>
           </div>
         </div>
 
         {/* Footer shortcuts */}
         <div className="p-4 border-t border-gray-100 bg-gray-50 space-y-2.5 text-xs text-gray-600">
-          <div className="flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-[#008ECC]" />
-            <span>Deliver to 423651</span>
-          </div>
-          <Link
-            href="/account?tab=orders"
-            onClick={onClose}
+          <a href={siteConfig.contact.hotlineHref} className="flex items-center gap-2 hover:text-[#008ECC]">
+            <Phone className="w-4 h-4 text-[#008ECC]" />
+            <span>Hotline {siteConfig.contact.hotline}</span>
+          </a>
+          <a
+            href={siteConfig.contact.zaloHref}
+            target="_blank"
+            rel="noreferrer"
             className="flex items-center gap-2 hover:text-[#008ECC]"
           >
-            <Truck className="w-4 h-4 text-[#008ECC]" />
-            <span>Track your order</span>
-          </Link>
-          <Link
-            href="/products?discount=true"
-            onClick={onClose}
-            className="flex items-center gap-2 hover:text-[#008ECC]"
-          >
-            <Tag className="w-4 h-4 text-[#008ECC]" />
-            <span>All Offers</span>
-          </Link>
+            <MessageCircle className="w-4 h-4 text-[#008ECC]" />
+            <span>Chat Zalo</span>
+          </a>
         </div>
       </div>
     </div>

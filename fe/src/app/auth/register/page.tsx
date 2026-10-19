@@ -40,7 +40,7 @@ export default function RegisterPage() {
           </div>
           <h1 className="text-2xl font-extrabold text-[#222222]">Create Account</h1>
           <p className="text-xs text-gray-500 mt-1">
-            Join MegaMart to experience faster checkouts and exclusive deals
+            Join Bee Store to request quotes and track your inquiries
           </p>
         </div>
 

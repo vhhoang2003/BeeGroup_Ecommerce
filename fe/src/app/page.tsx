@@ -1,27 +1,18 @@
 import React from 'react';
 import HeroBanner from '@/features/catalog/components/HeroBanner';
-import SmartphoneDeals from '@/features/catalog/components/SmartphoneDeals';
-import CategoryCircles from '@/features/catalog/components/CategoryCircles';
-import BrandBanners from '@/features/catalog/components/BrandBanners';
-import DailyEssentials from '@/features/catalog/components/DailyEssentials';
+import CategoryTiles from '@/features/catalog/components/CategoryTiles';
+import ProductSection from '@/features/catalog/components/ProductSection';
+import ContactCta from '@/features/engagement/components/ContactCta';
 
 export default function HomePage() {
   return (
     <div className="w-full flex flex-col items-center">
-      {/* 1. Hero Carousel */}
       <HeroBanner />
-
-      {/* 2. Grab the best deal on Smartphones */}
-      <SmartphoneDeals />
-
-      {/* 3. Shop From Top Categories */}
-      <CategoryCircles />
-
-      {/* 4. Top Electronics Brands */}
-      <BrandBanners />
-
-      {/* 5. Daily Essentials */}
-      <DailyEssentials />
+      <CategoryTiles />
+      <ProductSection prefix="Sản phẩm" highlight="nổi bật" viewAllHref="/products" />
+      <ProductSection prefix="Mainboard" highlight="SP3" viewAllHref="/category/mainboard" category="mainboard" />
+      <ProductSection prefix="Tản nhiệt" highlight="cho EPYC" viewAllHref="/category/cooler" category="cooler" />
+      <ContactCta />
     </div>
   );
 }

@@ -5,7 +5,6 @@ import TopUtilityBar from './TopUtilityBar';
 import Header from './Header';
 import CategoryNav from './CategoryNav';
 import Footer from './Footer';
-import CartDrawer from '@/features/cart/components/CartDrawer';
 import MobileNav from './MobileNav';
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
@@ -23,18 +22,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       <CategoryNav />
 
       {/* Mobile Drawer */}
-      <MobileNav
-        isOpen={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
-      />
-
-      {/* Cart Drawer Modal */}
-      <CartDrawer />
+      <MobileNav isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
 
       {/* Main Page Content */}
-      <main className="flex-1 w-full pb-10">
-        {children}
-      </main>
+      <main className="flex-1 w-full pb-10">{children}</main>
 
       {/* 4. Footer */}
       <Footer />

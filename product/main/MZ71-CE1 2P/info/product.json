@@ -28,6 +28,10 @@
     "Operating temperature": "10 °C – 40 °C",
     "Warranty": "12 months"
   },
+  "image": "images/01-board.png",
+  "images": [
+    "images/01-board.png"
+  ],
   "description": "GIGABYTE MZ71-CE1 chạy được 2 CPU AMD EPYC, tối đa 128 nhân trên một bo mạch. 16 khe DDR4 (8 kênh mỗi CPU), tối đa 5 khe PCIe x16, 5 cổng SlimSAS cho ổ SATA hoặc NVMe và chip BMC ASPEED AST2500 với cổng quản lý riêng – nền tảng đã được kiểm chứng cho render farm, cụm ảo hoá và server lưu trữ.",
   "features": [
     "2 socket SP3 – tối đa 2 × 64 nhân",

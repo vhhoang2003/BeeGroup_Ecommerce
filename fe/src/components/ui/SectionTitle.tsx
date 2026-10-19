@@ -31,7 +31,7 @@ export default function SectionTitle({
           href={viewAllHref}
           className="group flex items-center gap-1 text-[13px] sm:text-[14px] font-medium text-[#222222] hover:text-[#008ECC] transition-colors"
         >
-          <span>View All</span>
+          <span>Xem tất cả</span>
           <ChevronRight className="w-4 h-4 text-[#008ECC] transition-transform group-hover:translate-x-0.5" />
         </Link>
       )}

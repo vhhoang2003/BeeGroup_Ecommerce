@@ -24,6 +24,10 @@
     "Connector": "4-pin PWM",
     "Warranty": "12 months"
   },
+  "image": "images/01-product.jpg",
+  "images": [
+    "images/01-product.jpg"
+  ],
   "description": "M95 Pro là mẫu nhỏ gọn nhất trong dòng, chỉ cao 124.5 mm, nhưng 6 ống đồng và quạt 5000 vòng/phút thổi 128 CFM vẫn tản được tới 380 W. Lý tưởng cho server rack 4U có luồng gió trước–sau mạnh.",
   "features": [
     "6 ống đồng",
