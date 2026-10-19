@@ -1,10 +1,11 @@
 # Production stack for one Debian server behind Cloudflare Tunnel (README §12.6, Decision Log D-14 / D-15).
 #
-#   cloudflared (host service) -> 127.0.0.1:${PROXY_PORT} -> proxy (Caddy) -> /api, /uploads -> api
-#                                                                        -> everything else -> web
+#   Cloudflare -> tunnel (cloudflared) -> proxy:80 (Caddy) -> /api, /uploads -> api
+#                                                         -> everything else -> web
 #
-# Nothing is published on public interfaces: TLS terminates at Cloudflare and the database is internal only.
-# Resource limits keep the whole stack around 1.6 GB RAM and 3.25 CPU on a shared machine.
+# Nothing is published on public interfaces: TLS terminates at Cloudflare, the database is internal only, and the
+# proxy is additionally bound to 127.0.0.1:${PROXY_PORT} for health checks from the server itself.
+# Resource limits keep the whole stack around 1.7 GB RAM and 3.5 CPU on a shared machine.
 #
 # Usage (from /opt/beestore):  docker compose -f docker-compose.prod.yml --env-file .env up -d --build
 name: beestore
@@ -119,6 +120,21 @@ services:
     deploy:
       resources:
         limits: { cpus: "0.25", memory: 64M }
+    logging: *logging
+
+  # Cloudflare Tunnel connector. In the Cloudflare dashboard the public hostname must point to
+  # HTTP  proxy:80  (the Caddy service on this Compose network), not to localhost.
+  tunnel:
+    image: cloudflare/cloudflared:2026.10.1
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN:?set TUNNEL_TOKEN in .env}
+    depends_on:
+      - proxy
+    deploy:
+      resources:
+        limits: { cpus: "0.25", memory: 128M }
     logging: *logging
 
 volumes:

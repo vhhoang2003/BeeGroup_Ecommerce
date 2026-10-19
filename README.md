@@ -948,7 +948,7 @@ Running without Docker for faster iteration: `docker compose up -d db mailpit`, 
 The production target is a single shared Debian server (8 cores, 15 GB RAM, other services already running). `docker-compose.prod.yml` runs `db`, `api`, `web` and an internal Caddy `proxy` with hard limits (D-15); TLS ends at Cloudflare and the server opens **no public ports** (D-14).
 
 ```
-Visitor ─HTTPS─► Cloudflare ─► cloudflared (host service) ─► 127.0.0.1:8088 ─► proxy (Caddy)
+Visitor ─HTTPS─► Cloudflare ─► tunnel (cloudflared container) ─► proxy:80 (Caddy)
                                                                  ├─ /api/*, /uploads/* → api:8080
                                                                  └─ everything else    → web:3000
 api ─► db (PostgreSQL 16, Docker network only)      api ─► uploads volume (product images)
@@ -960,12 +960,13 @@ api ─► db (PostgreSQL 16, Docker network only)      api ─► uploads volum
 | api | 768 MB | 1.0 | ~360 MB |
 | web | 384 MB | 1.0 | ~56 MB |
 | proxy | 64 MB | 0.25 | ~12 MB |
+| tunnel (cloudflared) | 128 MB | 0.25 | ~25 MB |
 
 **One-time server setup**
 
 1. Docker Engine + Compose plugin installed; the deploy user is in the `docker` group (`sudo usermod -aG docker $USER`, then log in again).
 2. Docker log rotation (`/etc/docker/daemon.json`: `json-file`, `max-size 10m`, `max-file 3`). On a shared server, agree with the owner first: it restarts every container.
-3. Cloudflare Zero Trust → Networks → Tunnels → create tunnel `beestore`, run the shown `sudo cloudflared service install <token>`, then add the public hostname `beestore.vn` → `http://localhost:8088`.
+3. Cloudflare Zero Trust → Networks → Tunnels → create tunnel `beestore` (type *Cloudflared*), copy its **token** into `TUNNEL_TOKEN` in `.env` (the `tunnel` service runs the connector; nothing is installed on the host), then add the public hostname for the domain with service **HTTP `proxy:80`**.
 4. Code in `/opt/beestore`: `git clone <repo> /opt/beestore`, `cp .env.prod.example .env`, `chmod 600 .env`, fill in every secret (`openssl rand -base64 48`).
 
 **Deploy and seed**
@@ -1202,7 +1203,7 @@ Decisions taken during the backend gap analysis (2026-10-19) to resolve conflict
 | D-11 | §12.3 runtime image was Alpine, but the WebP encoder binaries need glibc | Runtime image `eclipse-temurin:21-jre` (Ubuntu); build stage unchanged | §12.3 |
 | D-12 | §6.3 treats every revoked refresh token as "reuse" | Only a token that was already **rotated** (`replaced_by` set) triggers `REFRESH_TOKEN_REUSED` + family revocation; tokens revoked by logout / password reset / lock return `REFRESH_TOKEN_INVALID` | §6.3 |
 | D-13 | §6.5 "deduplicated per session" for product views | The BE also counts a product view at most once per IP every 30 minutes | §6.5 |
-| D-14 | Production runs on one shared Debian server, domain on Cloudflare, no free ports 80/443 guaranteed | Cloudflare Tunnel terminates TLS; Caddy is an internal router on `127.0.0.1:8088` only; real client IP from `CF-Connecting-IP`; mail is excluded from the health check so an SMTP outage cannot take the API down | §4.1, §12.6 |
+| D-14 | Production runs on one shared Debian server, domain on Cloudflare, no free ports 80/443 guaranteed | Cloudflare Tunnel terminates TLS, with `cloudflared` as a Compose service pointing at `proxy:80`; Caddy is an internal router (also bound to `127.0.0.1:8088` for local checks); real client IP from `CF-Connecting-IP`; mail is excluded from the health check so an SMTP outage cannot take the API down | §4.1, §12.6 |
 | D-15 | The server is shared and should be used sparingly | Hard limits per container (~1.6 GB / 3.25 CPU total), Serial GC, 5 DB connections, small PostgreSQL buffers, log rotation; images stay on the local volume (single instance, so the in-memory rate limiter and schedulers remain correct) | §12.6 |
 
 ---
