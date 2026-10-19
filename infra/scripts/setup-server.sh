@@ -156,13 +156,16 @@ fi
 # --- 7. Backups ----------------------------------------------------------------------------------------------------
 step "7/7 Daily backup"
 cron_line="0 2 * * * $ROOT/infra/scripts/backup.sh >> $ROOT/backups/backup.log 2>&1"
-if crontab -l 2>/dev/null | grep -qF "infra/scripts/backup.sh"; then
+if ! command -v crontab >/dev/null; then
+  yellow "cron is not installed. Install it with: sudo apt-get install -y cron   (then run this script again)"
+elif { crontab -l 2>/dev/null || true; } | grep -qF "infra/scripts/backup.sh"; then
   green "Backup cron job already installed"
 else
   read -r -p "Install the daily 02:00 backup cron job? [Y/n] " answer
   if [[ ! "$answer" =~ ^[Nn] ]]; then
     mkdir -p "$ROOT/backups"
-    (crontab -l 2>/dev/null; echo "$cron_line") | crontab -
+    # "crontab -l" fails when the user has no crontab yet; that must not abort the script.
+    { crontab -l 2>/dev/null || true; echo "$cron_line"; } | crontab -
     green "Backup cron job installed"
   fi
 fi
