@@ -15,15 +15,11 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  user: {
-    id: 'user-demo-1',
-    name: 'Hoang Nguyen',
-    email: 'hoang@framelab.dev',
-    role: 'CUSTOMER',
-  },
-  isAuthenticated: true,
+  // Visitors start logged out; a session only exists after login / register (README §17.1).
+  user: null,
+  isAuthenticated: false,
   isLoading: false,
-  token: 'mock-jwt-token-12345',
+  token: null,
 
   login: async (email, password) => {
     set({ isLoading: true });
