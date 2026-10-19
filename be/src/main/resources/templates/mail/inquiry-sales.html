@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body style="font-family: Arial, sans-serif; color: #222;">
+<h2 th:text="${code}">INQ</h2>
+<table cellpadding="4">
+  <tr><td>Type</td><td th:text="${type}">PRODUCT</td></tr>
+  <tr th:if="${productName}"><td>Product</td><td th:text="${productName} + ' x ' + ${quantity}">Product</td></tr>
+  <tr><td>Name</td><td th:text="${fullName}">Name</td></tr>
+  <tr><td>Email</td><td th:text="${email}">Email</td></tr>
+  <tr><td>Phone</td><td th:text="${phone}">Phone</td></tr>
+  <tr><td>Preferred contact</td><td th:text="${preferredContact}">ZALO</td></tr>
+  <tr th:if="${subject}"><td>Subject</td><td th:text="${subject}">Subject</td></tr>
+  <tr><td>Message</td><td th:text="${message}" style="white-space: pre-line;">Message</td></tr>
+</table>
+</body>
+</html>

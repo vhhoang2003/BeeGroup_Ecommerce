@@ -1,2 +1,5 @@
 # Local-only photos, not catalog data
 product/ổ cắm/
+
+# Local secrets
+.env

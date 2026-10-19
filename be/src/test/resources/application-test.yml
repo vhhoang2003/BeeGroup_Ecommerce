@@ -1,0 +1,13 @@
+beestore:
+  security:
+    jwt-secret: test-secret-test-secret-test-secret-test-secret-test-secret-1234
+  storage:
+    local-path: ${java.io.tmpdir}/beestore-test-uploads
+  rate-limit:
+    enabled: false
+  import-endpoint-enabled: true
+
+spring:
+  mail:
+    host: localhost
+    port: 3025

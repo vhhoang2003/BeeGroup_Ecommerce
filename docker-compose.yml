@@ -1,0 +1,51 @@
+# README §12: local development stack (db, api, web, mailpit; minio optional).
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: beestore
+      POSTGRES_USER: beestore
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-beestore}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U beestore -d beestore"]
+      interval: 5s
+      retries: 10
+
+  api:
+    build: ./be
+    env_file: .env
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/beestore
+      MAIL_HOST: mailpit
+      MAIL_PORT: 1025
+      STORAGE_LOCAL_PATH: /data/uploads
+    volumes: ["./product:/data/product:ro", "uploads:/data/uploads"]
+    depends_on:
+      db: { condition: service_healthy }
+    ports: ["8080:8080"]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      retries: 12
+
+  web:
+    build:
+      context: ./fe
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8080/api/v1
+    environment:
+      INTERNAL_API_URL: http://api:8080/api/v1   # used for server-side fetches
+    depends_on:
+      api: { condition: service_healthy }
+    ports: ["3000:3000"]
+
+  mailpit:
+    image: axllent/mailpit
+    ports: ["8025:8025", "1025:1025"]
+
+volumes:
+  pgdata:
+  uploads:

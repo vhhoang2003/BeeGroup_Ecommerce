@@ -1,0 +1,10 @@
+# Production / staging: API docs are disabled (README §8) and cookies must be Secure.
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+beestore:
+  security:
+    cookie-secure: ${COOKIE_SECURE:true}

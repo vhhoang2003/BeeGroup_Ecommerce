@@ -25,6 +25,7 @@
 16. [Observability & Operations](#16-observability--operations)
 17. [Roadmap](#17-roadmap)
 18. [Glossary](#18-glossary)
+19. [Decision Log](#19-decision-log)
 
 ---
 
@@ -130,7 +131,7 @@ For a small Java + Next.js project like this, **PostgreSQL** is the recommended 
 | FE forms / validation | React Hook Form + Zod | — |
 | FE styling | Tailwind CSS | v4 |
 | FE i18n | `next-intl` (locale routing `/vi`, `/en`, `/zh`) | — |
-| Backend | Java, Spring Boot (Web, Security, Data JPA, Validation, Mail, Actuator) | Java 21 LTS, Spring Boot 3.5.x |
+| Backend | Java, Spring Boot (Web, Security, Data JPA, Validation, Mail, Actuator) | Java 21 LTS (compiled with `--release 21`, so newer JDKs can build it), Spring Boot 3.5.x |
 | Auth | Spring Security + JWT (`jjwt` or Spring OAuth2 Resource Server) | — |
 | Password hashing | Argon2id (Spring Security `Argon2PasswordEncoder`) or BCrypt cost 12 | — |
 | DB migrations | Flyway | — |
@@ -139,6 +140,7 @@ For a small Java + Next.js project like this, **PostgreSQL** is the recommended 
 | Rate limiting | Bucket4j | — |
 | Database | PostgreSQL | 16 |
 | Object storage | Local volume (dev) → S3-compatible (Cloudflare R2 / MinIO) (prod) | — |
+| Image processing | `scrimage-webp` (bundled `cwebp`) for the WebP variants of ADM-03 | — |
 | Email | SMTP: Mailpit (dev), Resend / Brevo / AWS SES (prod) | — |
 | Reverse proxy / TLS | Caddy (automatic HTTPS) or Nginx + Certbot | — |
 | Containers | Docker, Docker Compose v2 | — |
@@ -198,7 +200,7 @@ Priority: **M** = Must (v1), **S** = Should (v1 if time allows), **C** = Could (
 |---|---|---|
 | AUTH-01 | A guest can **register** with full name, email, password, password confirmation, optional phone, and acceptance of the Terms/Privacy Policy. | M |
 | AUTH-02 | Email must be unique (case-insensitive, stored lowercase and trimmed). | M |
-| AUTH-03 | Password policy: 8–72 characters, at least 1 letter and 1 digit; must not equal the email; checked against a common-password list (top 10k). | M |
+| AUTH-03 | Password policy: 8–72 characters, at least 1 letter and 1 digit; must not equal the email; checked against a common-password list (top 10k: SecLists `10k-most-common.txt`, MIT license, bundled as a classpath resource). | M |
 | AUTH-04 | After registration, the system sends a **verification email** with a single-use link valid for **24 hours**. Unverified accounts cannot log in (the API returns `EMAIL_NOT_VERIFIED` and the UI offers "Resend email"). | M |
 | AUTH-05 | User can **resend** the verification email (max 3 per hour per email). | M |
 | AUTH-06 | User can **log in** with email + password. On success they receive an access token (JWT, 15 minutes) in the response body and a refresh token (opaque, 7 days, or 30 days with "Remember me") in an HttpOnly cookie. | M |
@@ -314,14 +316,14 @@ sequenceDiagram
     BE->>BE: Rate limit check (IP + email)
     BE->>DB: Load user by lower(email)
     alt not found / wrong password
-        BE->>DB: failed_login_count++ (lock if ≥ 5 in 15 min)
+        BE->>DB: failed_login_count++ within failed_login_window_start + 15 min (lock if ≥ 5)
         BE-->>FE: 401 INVALID_CREDENTIALS
     else locked
         BE-->>FE: 423 ACCOUNT_LOCKED (retryAfter)
     else not verified
         BE-->>FE: 403 EMAIL_NOT_VERIFIED
     else OK
-        BE->>DB: reset failed_login_count, last_login_at=now()
+        BE->>DB: reset failed_login_count and failed_login_window_start, last_login_at=now()
         BE->>DB: INSERT refresh_tokens (hash, family_id, expires, user_agent, ip)
         BE-->>FE: 200 {accessToken, expiresIn, user}<br/>Set-Cookie: refresh_token=...; HttpOnly; Secure; SameSite=Strict; Path=/api/v1/auth
         FE->>FE: Keep accessToken in memory (Zustand, NOT localStorage)
@@ -429,8 +431,9 @@ Emails are sent **after commit** (`@TransactionalEventListener(phase = AFTER_COM
 
 1. Run `docker compose run --rm api java -jar app.jar --import.catalog.path=/data/product` (or `POST /api/v1/admin/import` in dev).
 2. For each `category.json`, upsert the category and its sub-categories (by slug, preserving order).
-3. For each `info/product.json`, upsert the product by `slug`, map `i18n.{en,vi,zh}` to `product_translations` and `specsDetailed` to `product_specs` (JSONB), and copy images to storage with credits from `CREDITS.txt`.
+3. For each `info/product.json`, upsert the product by `slug`, map `i18n.{en,vi,zh}` to `product_translations` and `specsDetailed` to the `products.specs` column (JSONB, §7.2), and copy images to storage with credits from `CREDITS.txt`.
 4. The import is **idempotent**; it reports created / updated / skipped / errors.
+5. **Defaults** for fields that `product.json` / `category.json` do not carry: `status = PUBLISHED`, `stock_status = IN_STOCK`, `is_featured = false` (each is read from the JSON when present: `status`, `stockStatus`, `featured`). `category.json` has a single `name`, which is used for all three locales (`vi`, `en`, `zh`) until an admin edits it.
 
 ---
 
@@ -474,6 +477,7 @@ All tables have `created_at timestamptz NOT NULL DEFAULT now()` and `updated_at 
 | preferred_contact | varchar(20) | `PHONE` \| `ZALO` \| `EMAIL` \| `MESSENGER` |
 | email_verified_at | timestamptz | NULL |
 | failed_login_count | int | DEFAULT 0 |
+| failed_login_window_start | timestamptz | NULL; start of the current 15-minute failure window (AUTH-08) |
 | locked_until | timestamptz | NULL |
 | last_login_at | timestamptz | NULL |
 | terms_accepted_at | timestamptz | NOT NULL |
@@ -490,6 +494,7 @@ All tables have `created_at timestamptz NOT NULL DEFAULT now()` and `updated_at 
 | expires_at | timestamptz | NOT NULL |
 | revoked_at | timestamptz | NULL |
 | replaced_by | uuid | NULL, FK → refresh_tokens |
+| remember_me | boolean | NOT NULL DEFAULT false; keeps the 30-day TTL across rotations (AUTH-06) |
 | user_agent | varchar(255) | |
 | ip_address | inet | |
 
@@ -568,7 +573,7 @@ All tables have `created_at timestamptz NOT NULL DEFAULT now()` and `updated_at 
 | Column | Type | Notes |
 |---|---|---|
 | id | uuid | PK |
-| code | varchar(20) | UNIQUE, `INQ-YYYY-NNNNNN` (sequence) |
+| code | varchar(20) | UNIQUE, `INQ-YYYY-NNNNNN`; `NNNNNN` comes from the PostgreSQL sequence `inquiry_code_seq` |
 | user_id | uuid | FK, NULL for guests |
 | product_id | uuid | FK, NULL for general contact |
 | type | varchar(20) | `PRODUCT` \| `GENERAL` |
@@ -725,6 +730,22 @@ Paginated `data`:
 | GET / PATCH | `/admin/users`, `/admin/users/{id}` (lock, unlock, role) |
 | POST | `/admin/import` (dev/staging) |
 | GET | `/admin/audit-logs` |
+
+### 8.4 Catalog DTO Contract
+
+The `data` payloads of the public catalog endpoints follow the TypeScript types in [`fe/src/types/`](fe/src/types/), which the FE already consumes through its in-app mock API (`fe/src/app/mock-api/v1`). The BE must return exactly these shapes so the FE can switch with `NEXT_PUBLIC_USE_MOCK=false` and no code change:
+
+| Endpoint | `data` type |
+|---|---|
+| `GET /categories` | `Category[]` (`id, slug, name, image, itemCount, subCategories[{slug, name, itemCount}]`) |
+| `GET /categories/{slug}` | `Category` |
+| `GET /products` | `PaginatedResponse<ProductSummary>` |
+| `GET /products/featured`, `/products/suggestions`, `/products/{slug}/related` | `ProductSummary[]` |
+| `GET /products/{slug}` | `ProductDetail` |
+
+`ProductSummary`: `id, slug, name, brand, category{slug, name}, subCategory{slug, name} | null, price (VND) | null, stockStatus, featured, shortDescription, image{url, alt} | null`.
+`ProductDetail` adds: `description, highlights[], useCases[], notes[], specs[{key, label, value}]` (localized), `images[{url, alt}], sources[], imageCredits | null`.
+Image `url`s are absolute (`PUBLIC_ASSET_BASE_URL` + storage key). Any change to these shapes is an API contract change and needs approval.
 
 ---
 
@@ -1045,7 +1066,7 @@ ADMIN_BOOTSTRAP_PASSWORD=change-me
 | Level | Tool | Scope | Gate |
 |---|---|---|---|
 | BE unit | JUnit 5, Mockito, AssertJ | Services, validators, token logic, password policy | CI |
-| BE integration | `@SpringBootTest` + Testcontainers (PostgreSQL 16) + MockMvc | Controllers, security rules, Flyway migrations, repositories, full auth flows | CI |
+| BE integration | `@SpringBootTest` + Testcontainers (PostgreSQL 16) + MockMvc | Controllers, security rules, Flyway migrations, repositories, full auth flows. Requires a running Docker daemon (Docker Desktop locally). | CI |
 | BE contract | springdoc OpenAPI spec snapshot | Detect breaking API changes | CI |
 | FE unit/component | Vitest + Testing Library | Forms (Zod schemas), hooks, auth store, refresh interceptor | CI |
 | E2E | Playwright | Register → verify (via Mailpit API) → login → browse → inquiry → logout; admin edit product | Staging |
@@ -1109,3 +1130,21 @@ ADMIN_BOOTSTRAP_PASSWORD=change-me
 | **1P / 2P** | Single-socket / dual-socket server platform. |
 | **AIO** | All-in-one liquid cooler. |
 | **GHCR** | GitHub Container Registry. |
+
+---
+
+## 19. Decision Log
+
+Decisions taken during the backend gap analysis (2026-10-19) to resolve conflicts or gaps in this specification. The sections above already reflect them.
+
+| # | Topic | Decision | Updated sections |
+|---|---|---|---|
+| D-1 | Catalog DTO shapes were not specified | The FE types in `fe/src/types/` are the API contract for the public catalog | §8.4 |
+| D-2 | §6.8 referred to a `product_specs` table that §7.2 does not define | Specs live in the `products.specs` JSONB column | §6.8 |
+| D-3 | Data model could not express AUTH-08 / AUTH-06 / inquiry codes | Added `users.failed_login_window_start`, `refresh_tokens.remember_me`, sequence `inquiry_code_seq` | §6.2, §7.2 |
+| D-4 | Seed data lacks status, stock, featured and localized category names | Importer defaults `PUBLISHED`, `IN_STOCK`, `featured = false`; category name copied to all locales | §6.8 |
+| D-5 | WebP variants (ADM-03) need an encoder Java does not have | Use `scrimage-webp` | §3.2 |
+| D-6 | Source of the top-10k password list (AUTH-03) | SecLists `10k-most-common.txt` (MIT), bundled as a resource | §5.1 |
+| D-7 | Branch for backend work | `feat/be-foundation` (from `fe`, which carries the updated `product/` data), per §13.1 | — |
+| D-8 | Integration tests need Docker | Testcontainers requires a running Docker daemon locally and in CI | §15 |
+| D-9 | Local JDK is newer than the target | Build with `--release 21`; runtime image stays Temurin 21 | §3.2 |

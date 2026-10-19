@@ -1,0 +1,86 @@
+spring:
+  application:
+    name: beestore-api
+  profiles:
+    default: dev
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:beestore}}
+    username: ${DB_USER:beestore}
+    password: ${DB_PASSWORD:beestore}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+  mail:
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+  messages:
+    basename: messages
+    encoding: UTF-8
+    # Vietnamese is the default bundle; never fall back to the server's OS locale.
+    fallback-to-system-locale: false
+  threads:
+    virtual:
+      enabled: true
+
+server:
+  port: 8080
+  forward-headers-strategy: framework
+  error:
+    whitelabel:
+      enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+springdoc:
+  api-docs:
+    path: /api/v1/docs/openapi.json
+  swagger-ui:
+    path: /api/v1/docs
+
+beestore:
+  security:
+    jwt-secret: ${JWT_SECRET:change-me-to-a-64-char-random-string-change-me-to-a-64-char-random}
+    access-ttl: ${JWT_ACCESS_TTL:PT15M}
+    refresh-ttl: ${JWT_REFRESH_TTL:P7D}
+    refresh-ttl-remember: ${JWT_REFRESH_TTL_REMEMBER:P30D}
+    cookie-secure: ${COOKIE_SECURE:false}
+    cors-allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000}
+    turnstile-secret: ${TURNSTILE_SECRET:}
+  mail:
+    from: ${MAIL_FROM:Bee Store <no-reply@beestore.vn>}
+    sales-notify-email: ${SALES_NOTIFY_EMAIL:sales@beestore.vn}
+    sales-notify-webhook: ${SALES_NOTIFY_WEBHOOK:}
+  site-url: ${NEXT_PUBLIC_SITE_URL:http://localhost:3000}
+  storage:
+    driver: ${STORAGE_DRIVER:local}
+    local-path: ${STORAGE_LOCAL_PATH:./data/uploads}
+    public-base-url: ${PUBLIC_ASSET_BASE_URL:http://localhost:8080/uploads}
+  revalidate:
+    url: ${REVALIDATE_URL:}
+    secret: ${REVALIDATE_SECRET:}
+  bootstrap-admin:
+    email: ${ADMIN_BOOTSTRAP_EMAIL:}
+    password: ${ADMIN_BOOTSTRAP_PASSWORD:}
+  rate-limit:
+    enabled: true
