@@ -107,6 +107,12 @@ public class GlobalExceptionHandler {
         return error(ErrorCode.UNAUTHORIZED, "Authentication required");
     }
 
+    /** The client went away mid-response (e.g. a cancelled image download); nothing can be sent back. */
+    @ExceptionHandler(org.apache.catalina.connector.ClientAbortException.class)
+    void handleClientAbort(org.apache.catalina.connector.ClientAbortException ex) {
+        log.debug("Client aborted the request: {}", ex.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     ResponseEntity<ErrorResponse> handleUnexpected(Exception ex) {
         log.error("Unhandled exception", ex);

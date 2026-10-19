@@ -7,9 +7,11 @@ RUN chmod +x mvnw && ./mvnw -q dependency:go-offline
 COPY src src
 RUN ./mvnw -q package -DskipTests -Djacoco.skip=true -Dspotless.check.skip=true
 
-FROM eclipse-temurin:21-jre-alpine
-# libwebp tools are not needed: scrimage-webp ships its own cwebp binaries; libstdc++/libgcc let them run on Alpine.
-RUN apk add --no-cache libstdc++ libgcc && addgroup -S app && adduser -S app -G app
+# glibc-based runtime (not Alpine): the cwebp/dwebp binaries bundled with scrimage-webp, used for the WebP image
+# variants of ADM-03, are built against glibc and do not run on musl (Decision Log D-11).
+FROM eclipse-temurin:21-jre
+RUN groupadd --system app && useradd --system --gid app --home-dir /app app \
+    && mkdir -p /data/uploads && chown app:app /data/uploads
 WORKDIR /app
 COPY --from=build /src/target/*.jar app.jar
 USER app

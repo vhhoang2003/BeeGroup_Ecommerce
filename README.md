@@ -26,6 +26,7 @@
 17. [Roadmap](#17-roadmap)
 18. [Glossary](#18-glossary)
 19. [Decision Log](#19-decision-log)
+20. [Backend Traceability Matrix](#20-backend-traceability-matrix)
 
 ---
 
@@ -348,11 +349,11 @@ sequenceDiagram
         BE->>DB: Insert new token (same family_id)
         BE-->>FE: 200 {accessToken} + Set-Cookie new refresh token
         FE->>BE: Retry original request
-    else token already revoked (reuse!)
+    else token already rotated, replaced_by set (reuse!)
         BE->>DB: Revoke ALL tokens in family_id
         BE-->>FE: 401 REFRESH_TOKEN_REUSED
         FE-->>FE: Clear auth state → redirect to /auth/login
-    else expired / missing
+    else expired / missing / revoked by logout, reset or lock (D-12)
         BE-->>FE: 401 REFRESH_TOKEN_INVALID
         FE-->>FE: Clear auth state → redirect to /auth/login
     end
@@ -394,7 +395,7 @@ sequenceDiagram
 1. User opens `/vi/category/cpu`. Next.js server component fetches `GET /api/v1/categories/cpu` and `GET /api/v1/products?category=cpu&page=0&size=12` (ISR, revalidate 300s).
 2. User selects the sub-category "Zen 3", so the URL becomes `?sub=zen-3` and TanStack Query refetches client-side; the URL stays shareable.
 3. User types "7B1" in the search box. After a 250 ms debounce the FE calls `GET /api/v1/products/suggestions?q=7B1&locale=vi`, and the dropdown shows EPYC 7B12 and 7B13.
-4. User opens a product, which loads `/vi/products/amd-epyc-7b13` (SSR, `generateMetadata` for SEO). A view event is recorded asynchronously (`POST /api/v1/products/{id}/views`, fire-and-forget, deduplicated per session).
+4. User opens a product, which loads `/vi/products/amd-epyc-7b13` (SSR, `generateMetadata` for SEO). A view event is recorded asynchronously (`POST /api/v1/products/{id}/views`, fire-and-forget, deduplicated per session by the FE and at most once per IP every 30 minutes by the BE, D-13).
 
 ### 6.6 Product Inquiry (Connect with us)
 
@@ -581,6 +582,7 @@ All tables have `created_at timestamptz NOT NULL DEFAULT now()` and `updated_at 
 | quantity | int | ≥ 1 |
 | full_name / email / phone | varchar | contact info (copied even for users) |
 | preferred_contact | varchar(20) | |
+| subject | varchar(200) | `GENERAL` inquiries from `/contact` (ENG-04, D-10) |
 | message | text | ≤ 2000 chars |
 | status | varchar(20) | `NEW` \| `CONTACTED` \| `QUOTED` \| `CLOSED_WON` \| `CLOSED_LOST` \| `SPAM` |
 | assignee_id | uuid | FK → users (admin), NULL |
@@ -912,8 +914,10 @@ RUN ./mvnw -q dependency:go-offline
 COPY src src
 RUN ./mvnw -q package -DskipTests
 
-FROM eclipse-temurin:21-jre-alpine
-RUN addgroup -S app && adduser -S app -G app
+# glibc-based runtime: the cwebp binaries bundled with scrimage-webp do not run on Alpine/musl (D-11)
+FROM eclipse-temurin:21-jre
+RUN groupadd --system app && useradd --system --gid app --home-dir /app app \
+    && mkdir -p /data/uploads && chown app:app /data/uploads
 WORKDIR /app
 COPY --from=build /src/target/*.jar app.jar
 USER app
@@ -1148,3 +1152,109 @@ Decisions taken during the backend gap analysis (2026-10-19) to resolve conflict
 | D-7 | Branch for backend work | `feat/be-foundation` (from `fe`, which carries the updated `product/` data), per §13.1 | — |
 | D-8 | Integration tests need Docker | Testcontainers requires a running Docker daemon locally and in CI | §15 |
 | D-9 | Local JDK is newer than the target | Build with `--release 21`; runtime image stays Temurin 21 | §3.2 |
+| D-10 | ENG-04 contact form has a subject that §7.2 had no column for | Added `inquiries.subject` (varchar 200) | §7.2 |
+| D-11 | §12.3 runtime image was Alpine, but the WebP encoder binaries need glibc | Runtime image `eclipse-temurin:21-jre` (Ubuntu); build stage unchanged | §12.3 |
+| D-12 | §6.3 treats every revoked refresh token as "reuse" | Only a token that was already **rotated** (`replaced_by` set) triggers `REFRESH_TOKEN_REUSED` + family revocation; tokens revoked by logout / password reset / lock return `REFRESH_TOKEN_INVALID` | §6.3 |
+| D-13 | §6.5 "deduplicated per session" for product views | The BE also counts a product view at most once per IP every 30 minutes | §6.5 |
+
+---
+
+## 20. Backend Traceability Matrix
+
+Status of the Spring Boot API in `be/` (branch `feat/be-foundation`, 2026-10-19). Verified by `./mvnw verify`: 79 tests (unit + Testcontainers PostgreSQL 16 + GreenMail), Spotless clean, JaCoCo service-package line coverage 86-97% (gate 70%), total 91.4%. A Docker Compose smoke run (image build, CLI import of `product/`, catalog API, admin WebP upload, email via Mailpit) also passed.
+
+Legend: ✅ implemented and verified by the listed evidence · 🟡 partial (see note) · ❌ not implemented · ➖ not a backend item.
+
+**AUTH**
+
+| ID | Status | Evidence / note |
+|---|---|---|
+| AUTH-01 | ✅ | `AuthFlowIT.duplicateEmailIsRejectedCaseInsensitively`, `registrationRequiresTermsAcceptance` |
+| AUTH-02 | ✅ | `AuthFlowIT.duplicateEmailIsRejectedCaseInsensitively` (trim + lowercase) |
+| AUTH-03 | ✅ | `PasswordPolicyTest`, `AuthFlowIT.weakPasswordsAreRejected` |
+| AUTH-04 | ✅ | `AuthFlowIT.unverifiedLoginIsBlockedAndVerificationEmailIsDelivered`, `expiredVerificationLinkIsRejected` |
+| AUTH-05 | ✅ | `AuthFlowIT.verificationLinkIsSingleUseAndResendInvalidatesTheOldOne`; 3/hour limit in `RateLimiterTest` |
+| AUTH-06 | ✅ | `AuthFlowIT.loginSetsSecureRefreshCookieAndAccessTokenWorks`, `rememberMeKeepsThirtyDayTtlAcrossRotation` |
+| AUTH-07 | ✅ | `AuthFlowIT.genericErrorForUnknownEmailAndWrongPassword` |
+| AUTH-08 | ✅ | `AuthFlowIT.accountLocksAfterFiveFailuresWithinFifteenMinutes`, `failuresOutsideTheWindowDoNotAccumulate`; IP limit in `RateLimiterTest` |
+| AUTH-09 | ✅ | `AuthFlowIT.refreshRotatesTheTokenAndReuseRevokesTheFamily` (D-12) |
+| AUTH-10 | ✅ | `AuthFlowIT.logoutRevokesTheSessionAndClearsTheCookie`, `logoutAllRevokesEverySession` |
+| AUTH-11 | ✅ | `AuthFlowIT.forgotPasswordAnswersTheSameForUnknownEmails` |
+| AUTH-12 | ✅ | `AuthFlowIT.resetPasswordRevokesSessionsAndIsSingleUse` |
+| AUTH-13 | ✅ | `AuthFlowIT.changePasswordKeepsCurrentSessionAndRevokesOthers` |
+| AUTH-14 | ✅ | `ProfileIT.updateProfileFields`, `emailChangeTakesEffectOnlyAfterConfirmation`, `emailChangeToAnExistingAccountIsRejected` |
+| AUTH-15 | ✅ | `ProfileIT.deleteAccountSoftDeletesThenAnonymizesAfterThirtyDays` (daily job at 03:00 ICT) |
+| AUTH-16 | ❌ | Could; out of scope |
+| AUTH-17 | ✅ | `AdminBootstrapIT`; Docker smoke log "Bootstrap admin account created" |
+
+**CAT**
+
+| ID | Status | Evidence / note |
+|---|---|---|
+| CAT-01 | ➖ | FE page; the BE supplies `/categories` and `/products/featured` (`CatalogIT.featuredFallsBackToProductsWithPhotos`) |
+| CAT-02 | ✅ | `CatalogIT.categoriesComeInMenuOrderWithCounts`, `filtersBySubCategoryBrandAndPrice` |
+| CAT-03 | ✅ | `CatalogIT.listingPagesTwelveByDefault`, `filtersBySubCategoryBrandAndPrice` |
+| CAT-04 | ✅ | `CatalogIT.searchMatchesPrefixesSpecsAndTypos`, `ProductSearchRepositoryTest` (the 250 ms debounce is FE) |
+| CAT-05 | ✅ | `CatalogIT.detailIsLocalizedWithImagesAndCredits` |
+| CAT-06 | ✅ | `CatalogIT.detailIsLocalizedWithImagesAndCredits` (`en`, and `fr` falling back to `vi`) |
+| CAT-07 | ✅ | `price` is nullable and sorts last (`CatalogService.priceOrder`); the seed data has no null prices, so null ordering is covered by code review only |
+| CAT-08 | ✅ | `stockStatus` in the DTOs and `?stock=` filter (`CatalogIT.filtersBySubCategoryBrandAndPrice`) |
+| CAT-09 | ✅ | `CatalogIT.relatedPrefersTheSameSubCategory` |
+| CAT-10, CAT-11 | ❌ | Could; out of scope |
+| CAT-12 | ➖ | FE (SSR, metadata, sitemap) |
+
+**ENG**
+
+| ID | Status | Evidence / note |
+|---|---|---|
+| ENG-01 | ✅ | `EngagementIT.loggedInInquiryUsesProfileAndShowsInMyInquiries` (the FE modal is still to build) |
+| ENG-02 | ✅ | `EngagementIT.guestsMustGiveNameEmailAndPhone`, `CaptchaVerifierTest`; 5/hour/IP in `RateLimiterTest` |
+| ENG-03 | 🟡 | Emails verified (`EngagementIT.guestQuoteRequestStoresSnapshotAndNotifiesBothSides`, delivered to GreenMail). The Telegram / Discord webhook is implemented but has no automated test |
+| ENG-04 | ✅ | `EngagementIT.contactFormCreatesAGeneralInquiry` (D-10) |
+| ENG-05 | ✅ | `EngagementIT.loggedInInquiryUsesProfileAndShowsInMyInquiries`, `AdminIT.inquiryWorkflowWithAssignmentAndPrivateNotes` (internal notes hidden from customers) |
+| ENG-06 | ✅ | `EngagementIT.wishlistAddListRemove` |
+| ENG-07 | ➖ | FE |
+| ENG-08 | ❌ | Could; out of scope |
+
+**ADM**
+
+| ID | Status | Evidence / note |
+|---|---|---|
+| ADM-01 | ✅ | `AuthFlowIT.anonymousAndCustomerCannotReachAdminEndpoints` (URL rule + `@PreAuthorize`); the FE `/admin` UI is not built |
+| ADM-02 | ✅ | `AdminIT.productLifecycleDraftPublishEditDelete`, `productValidation`, `adminListSearchesAllStatuses` |
+| ADM-03 | ✅ | `AdminIT.imageUploadCreatesWebpVariantsAndCanBeReorderedAndDeleted`, `uploadRejectsFilesThatAreNotImages`, `ImageProcessorTest`; Docker smoke run (D-11) |
+| ADM-04 | ✅ | `AdminIT.categoryAndSubCategoryCrud` |
+| ADM-05 | ✅ | `AdminIT.inquiryWorkflowWithAssignmentAndPrivateNotes` |
+| ADM-06 | ✅ | `AdminIT.lockUnlockAndRoleChange`, `resendVerificationForPendingUsers` |
+| ADM-07 | ✅ | `CatalogIT.importIsIdempotent`, `importEndpointIsAdminOnly`; CLI import in the Docker smoke run |
+| ADM-08 | ✅ | `AdminIT.auditLogIsListedNewestFirst`, audit assertions in `productLifecycleDraftPublishEditDelete` |
+| ADM-09 | ❌ | Could; out of scope |
+
+**SEC / NFR**
+
+| ID | Status | Evidence / note |
+|---|---|---|
+| SEC-02 | ✅ | `Argon2PasswordEncoder` (`SecurityConfig`) |
+| SEC-03 | ✅ | `AuthFlowIT.expiredAccessTokenReturnsTokenExpired`; HS256, 15 min, `sub/roles/iat/exp/jti` (`JwtService`) |
+| SEC-04, SEC-05 | ✅ | Only SHA-256 hashes stored (`SecureTokens`); rotation, reuse and single-use tests above |
+| SEC-06 | ✅ | `AuthFlowIT.refreshRequiresTheCustomHeaderAndACookie` |
+| SEC-07 | 🟡 | CORS configured as specified (credentials only for `/api/v1/auth/**`) but not covered by a test |
+| SEC-08 | ✅ | `RateLimiterTest` (limits and policies); limits are switched off in integration tests |
+| SEC-09 | ✅ | Bean Validation on every request DTO; JPA / named parameters only |
+| SEC-11 | ✅ | `ImageProcessorTest`, `AdminIT.uploadRejectsFilesThatAreNotImages`, `LocalStorageServiceTest` |
+| SEC-12 | ✅ | All secrets from environment variables; `.env` git-ignored |
+| SEC-14 | 🟡 | Consent timestamp, anonymization and log hygiene done; **personal-data export on request is not implemented** |
+| SEC-15 | ✅ | `@PreAuthorize("hasRole('ADMIN')")` on every admin controller; every admin write is audit-logged |
+| SEC-01, SEC-10, SEC-13 | ➖ | Reverse proxy / CI items (Phase 5) |
+| Logging / traceId | ✅ | `ErrorEnvelopeIT.incomingTraceIdIsPropagated`; JSON logs outside dev |
+| Coverage ≥ 70% | ✅ | JaCoCo `check` in `mvnw verify` |
+| Performance p95 < 300 ms | ❌ | Not measured yet (k6 is planned before release, §15) |
+
+**Open items found during implementation**
+
+1. `STORAGE_DRIVER=s3` (R2 / MinIO) is not implemented; the API refuses to start with it. Only the local volume driver exists.
+2. The Next.js on-demand revalidation endpoint (`POST /api/revalidate`) does not exist in `fe/` yet; the BE calls it only when `REVALIDATE_URL` and `REVALIDATE_SECRET` are set.
+3. The FE still uses its mock API and mock auth. Switching to the BE needs `NEXT_PUBLIC_USE_MOCK=false`, the refresh-token client from §6.3, and `next.config` allowing images from `PUBLIC_ASSET_BASE_URL`.
+4. The FE has no `/auth/verify-email` and `/auth/reset-password` pages yet, although the emails link to them.
+5. The OpenAPI snapshot test ("BE contract" in §15) and the CI workflows (§13) are not set up.
+6. In production `TURNSTILE_SECRET` is mandatory: guest inquiries fail closed without it.

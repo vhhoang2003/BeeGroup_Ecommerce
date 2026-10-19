@@ -244,7 +244,7 @@ public class CatalogImporter {
             applyTranslations(product, file);
         }
         applyImages(product, file, productDir, categorySlug);
-        products.saveAndFlush(product);
+        products.flush();
 
         String after = fingerprint(product);
         search.reindex(product.getId());

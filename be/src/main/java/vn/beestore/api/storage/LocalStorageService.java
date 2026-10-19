@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
@@ -45,8 +46,16 @@ public class LocalStorageService implements StorageService {
             Path tmp = Files.createTempFile(target.getParent(), ".upload-", ".tmp");
             Files.write(tmp, content);
             Files.move(tmp, target, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+            makeWorldReadable(target);
         } catch (IOException e) {
             throw new UncheckedIOException("Cannot store " + key, e);
+        }
+    }
+
+    /** Temp files are created 0600; stored objects must be readable by a proxy / CDN serving the volume. */
+    private static void makeWorldReadable(Path file) throws IOException {
+        if (file.getFileSystem().supportedFileAttributeViews().contains("posix")) {
+            Files.setPosixFilePermissions(file, PosixFilePermissions.fromString("rw-r--r--"));
         }
     }
 
