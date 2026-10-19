@@ -1,0 +1,379 @@
+{
+  "id": "14",
+  "name": "HUANANZHI H12D-8D 1P BMC",
+  "slug": "huananzhi-h12d-8d-1p-bmc",
+  "brand": "HUANANZHI",
+  "category": "Mainboard",
+  "categorySlug": "mainboard",
+  "subCategory": "Huananzhi",
+  "price": 12750400,
+  "specs": {
+    "Socket": "SP3 (LGA 4094)",
+    "Brand": "HUANANZHI",
+    "Form factor": "ATX",
+    "Dimensions": "305 × 245 mm",
+    "CPU sockets": "1 × SP3",
+    "CPU support": "AMD EPYC 7002 (Rome) / 7003 (Milan)",
+    "Memory slots": "8 × DDR4 (8-channel), 3200/2933/2666/2400/2133 MHz, up to 2 TB",
+    "Expansion slots": "4 × PCIe 4.0 x16",
+    "M.2": "3 × M.2 2280 NVMe (PCIe 4.0 x4)",
+    "SATA / SAS connectors": "4 × SATA 3.0 + 3 × SFF-8643 (each = 4 × SATA or 1 × U.2 PCIe 4.0 x4)",
+    "LAN": "2 × Intel 2.5 GbE",
+    "USB": "Rear: 4 × USB 3.2 Gen1, 2 × USB 2.0; front headers: 1 × USB 3.2 Gen1, 1 × USB 2.0",
+    "Audio": "CJC6811A",
+    "Power connectors": "24-pin ATX + 2 × 8-pin EPS",
+    "Fan headers": "6 fan headers",
+    "Remote management (BMC)": "ASPEED AST2500 module included – IPMI 2.0, dedicated management port (Realtek RTL8201F), VGA output",
+    "Warranty": "12 months"
+  },
+  "description": "Cùng nền tảng với H12D-8D – EPYC 7002/7003, RAM DDR4 8 kênh tối đa 2 TB, 4 khe PCIe 4.0 x16, 3 khe M.2 NVMe, 2 cổng LAN 2.5 GbE – và có thêm chip BMC ASPEED AST2500. Có cổng quản lý riêng chuẩn IPMI 2.0 (bật/tắt máy, xem màn hình, giám sát từ xa), VGA onboard hoạt động và quạt hệ thống được điều khiển qua BMC. Phù hợp server chạy không màn hình và đặt trong rack.",
+  "features": [
+    "BMC ASPEED AST2500, IPMI 2.0",
+    "Có xuất hình VGA onboard",
+    "DDR4 8 kênh, tối đa 2 TB",
+    "4 khe PCIe 4.0 x16, 3 khe M.2 NVMe",
+    "2 cổng Intel 2.5 GbE"
+  ],
+  "specsDetailed": [
+    {
+      "key": "socket",
+      "label": {
+        "en": "Socket",
+        "vi": "Socket",
+        "zh": "插槽"
+      },
+      "value": {
+        "en": "SP3 (LGA 4094)",
+        "vi": "SP3 (LGA 4094)",
+        "zh": "SP3 (LGA 4094)"
+      }
+    },
+    {
+      "key": "brand",
+      "label": {
+        "en": "Brand",
+        "vi": "Thương hiệu",
+        "zh": "品牌"
+      },
+      "value": {
+        "en": "HUANANZHI",
+        "vi": "HUANANZHI",
+        "zh": "HUANANZHI"
+      }
+    },
+    {
+      "key": "formfactor",
+      "label": {
+        "en": "Form factor",
+        "vi": "Kích thước chuẩn",
+        "zh": "板型"
+      },
+      "value": {
+        "en": "ATX",
+        "vi": "ATX",
+        "zh": "ATX"
+      }
+    },
+    {
+      "key": "dims",
+      "label": {
+        "en": "Dimensions",
+        "vi": "Kích thước",
+        "zh": "尺寸"
+      },
+      "value": {
+        "en": "305 × 245 mm",
+        "vi": "305 × 245 mm",
+        "zh": "305 × 245 mm"
+      }
+    },
+    {
+      "key": "cpucount",
+      "label": {
+        "en": "CPU sockets",
+        "vi": "Số socket CPU",
+        "zh": "CPU 插槽数量"
+      },
+      "value": {
+        "en": "1 × SP3",
+        "vi": "1 × SP3 (1 CPU)",
+        "zh": "1 × SP3 (单路)"
+      }
+    },
+    {
+      "key": "cpusupport",
+      "label": {
+        "en": "CPU support",
+        "vi": "CPU hỗ trợ",
+        "zh": "支持处理器"
+      },
+      "value": {
+        "en": "AMD EPYC 7002 (Rome) / 7003 (Milan)",
+        "vi": "AMD EPYC 7002 (Rome) / 7003 (Milan)",
+        "zh": "AMD EPYC 7002 (Rome) / 7003 (Milan)"
+      }
+    },
+    {
+      "key": "dimm",
+      "label": {
+        "en": "Memory slots",
+        "vi": "Khe RAM",
+        "zh": "内存插槽"
+      },
+      "value": {
+        "en": "8 × DDR4 (8-channel), 3200/2933/2666/2400/2133 MHz, up to 2 TB",
+        "vi": "8 khe DDR4 (8 kênh), 3200/2933/2666/2400/2133 MHz, tối đa 2 TB",
+        "zh": "8 条 DDR4 插槽 (八通道)，3200/2933/2666/2400/2133 MHz，最大 2 TB"
+      }
+    },
+    {
+      "key": "slots",
+      "label": {
+        "en": "Expansion slots",
+        "vi": "Khe mở rộng",
+        "zh": "扩展插槽"
+      },
+      "value": {
+        "en": "4 × PCIe 4.0 x16",
+        "vi": "4 × PCIe 4.0 x16",
+        "zh": "4 × PCIe 4.0 x16"
+      }
+    },
+    {
+      "key": "m2",
+      "label": {
+        "en": "M.2",
+        "vi": "M.2",
+        "zh": "M.2"
+      },
+      "value": {
+        "en": "3 × M.2 2280 NVMe (PCIe 4.0 x4)",
+        "vi": "3 × M.2 2280 NVMe (PCIe 4.0 x4)",
+        "zh": "3 × M.2 2280 NVMe (PCIe 4.0 x4)"
+      }
+    },
+    {
+      "key": "sata",
+      "label": {
+        "en": "SATA / SAS connectors",
+        "vi": "Cổng SATA / SAS",
+        "zh": "SATA / SAS 接口"
+      },
+      "value": {
+        "en": "4 × SATA 3.0 + 3 × SFF-8643 (each = 4 × SATA or 1 × U.2 PCIe 4.0 x4)",
+        "vi": "4 × SATA 3.0 + 3 × SFF-8643 (mỗi cổng = 4 × SATA hoặc 1 × U.2 PCIe 4.0 x4)",
+        "zh": "4 × SATA 3.0 + 3 × SFF-8643 (每个可扩展 4 × SATA 或 1 × U.2 PCIe 4.0 x4)"
+      }
+    },
+    {
+      "key": "lan",
+      "label": {
+        "en": "LAN",
+        "vi": "Mạng LAN",
+        "zh": "网卡"
+      },
+      "value": {
+        "en": "2 × Intel 2.5 GbE",
+        "vi": "2 × Intel 2.5 GbE",
+        "zh": "2 × Intel 2.5G 网口"
+      }
+    },
+    {
+      "key": "usb",
+      "label": {
+        "en": "USB",
+        "vi": "USB",
+        "zh": "USB"
+      },
+      "value": {
+        "en": "Rear: 4 × USB 3.2 Gen1, 2 × USB 2.0; front headers: 1 × USB 3.2 Gen1, 1 × USB 2.0",
+        "vi": "Sau: 4 × USB 3.2 Gen1, 2 × USB 2.0; header trước: 1 × USB 3.2 Gen1, 1 × USB 2.0",
+        "zh": "后置：4 × USB 3.2 Gen1、2 × USB 2.0；前置插针：1 × USB 3.2 Gen1、1 × USB 2.0"
+      }
+    },
+    {
+      "key": "audio",
+      "label": {
+        "en": "Audio",
+        "vi": "Âm thanh",
+        "zh": "音频"
+      },
+      "value": {
+        "en": "CJC6811A",
+        "vi": "CJC6811A",
+        "zh": "CJC6811A"
+      }
+    },
+    {
+      "key": "power",
+      "label": {
+        "en": "Power connectors",
+        "vi": "Đầu cấp nguồn",
+        "zh": "供电接口"
+      },
+      "value": {
+        "en": "24-pin ATX + 2 × 8-pin EPS",
+        "vi": "24-pin ATX + 2 × 8-pin EPS",
+        "zh": "24-pin ATX + 2 × 8-pin EPS"
+      }
+    },
+    {
+      "key": "fans",
+      "label": {
+        "en": "Fan headers",
+        "vi": "Chân cắm quạt",
+        "zh": "风扇接口"
+      },
+      "value": {
+        "en": "6 fan headers",
+        "vi": "6 chân cắm quạt",
+        "zh": "6 个风扇接口"
+      }
+    },
+    {
+      "key": "bmc",
+      "label": {
+        "en": "Remote management (BMC)",
+        "vi": "Quản lý từ xa (BMC)",
+        "zh": "远程管理 (BMC)"
+      },
+      "value": {
+        "en": "ASPEED AST2500 module included – IPMI 2.0, dedicated management port (Realtek RTL8201F), VGA output",
+        "vi": "Kèm module ASPEED AST2500 – IPMI 2.0, cổng quản lý riêng (Realtek RTL8201F), xuất hình VGA",
+        "zh": "附带 ASPEED AST2500 模块 – IPMI 2.0、独立管理网口 (Realtek RTL8201F)、VGA 输出"
+      }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "12 months",
+        "vi": "12 tháng",
+        "zh": "12 个月"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "shortDescription": "H12D-8D with the BMC module installed: IPMI 2.0 remote management, onboard VGA and full fan control.",
+      "description": "Same platform as the H12D-8D – EPYC 7002/7003, 8-channel DDR4 up to 2 TB, 4 × PCIe 4.0 x16, 3 × M.2 NVMe and dual 2.5 GbE – plus the ASPEED AST2500 BMC. You get a dedicated management port for IPMI 2.0 (remote power, console and monitoring), working onboard VGA, and BMC-controlled system fans. The right choice for headless servers and racks.",
+      "highlights": [
+        "ASPEED AST2500 BMC, IPMI 2.0",
+        "Onboard VGA output",
+        "8-channel DDR4, up to 2 TB",
+        "4 × PCIe 4.0 x16, 3 × M.2 NVMe",
+        "Dual Intel 2.5 GbE"
+      ],
+      "useCases": [
+        "Render farms",
+        "Virtualization hosts",
+        "Home lab / NAS",
+        "AI / GPU workstations"
+      ],
+      "name": "HUANANZHI H12D-8D 1P BMC",
+      "specs": {
+        "Socket": "SP3 (LGA 4094)",
+        "Brand": "HUANANZHI",
+        "Form factor": "ATX",
+        "Dimensions": "305 × 245 mm",
+        "CPU sockets": "1 × SP3",
+        "CPU support": "AMD EPYC 7002 (Rome) / 7003 (Milan)",
+        "Memory slots": "8 × DDR4 (8-channel), 3200/2933/2666/2400/2133 MHz, up to 2 TB",
+        "Expansion slots": "4 × PCIe 4.0 x16",
+        "M.2": "3 × M.2 2280 NVMe (PCIe 4.0 x4)",
+        "SATA / SAS connectors": "4 × SATA 3.0 + 3 × SFF-8643 (each = 4 × SATA or 1 × U.2 PCIe 4.0 x4)",
+        "LAN": "2 × Intel 2.5 GbE",
+        "USB": "Rear: 4 × USB 3.2 Gen1, 2 × USB 2.0; front headers: 1 × USB 3.2 Gen1, 1 × USB 2.0",
+        "Audio": "CJC6811A",
+        "Power connectors": "24-pin ATX + 2 × 8-pin EPS",
+        "Fan headers": "6 fan headers",
+        "Remote management (BMC)": "ASPEED AST2500 module included – IPMI 2.0, dedicated management port (Realtek RTL8201F), VGA output",
+        "Warranty": "12 months"
+      },
+      "notes": []
+    },
+    "vi": {
+      "shortDescription": "H12D-8D bản có module BMC: quản lý từ xa IPMI 2.0, có VGA onboard và điều khiển quạt đầy đủ.",
+      "description": "Cùng nền tảng với H12D-8D – EPYC 7002/7003, RAM DDR4 8 kênh tối đa 2 TB, 4 khe PCIe 4.0 x16, 3 khe M.2 NVMe, 2 cổng LAN 2.5 GbE – và có thêm chip BMC ASPEED AST2500. Có cổng quản lý riêng chuẩn IPMI 2.0 (bật/tắt máy, xem màn hình, giám sát từ xa), VGA onboard hoạt động và quạt hệ thống được điều khiển qua BMC. Phù hợp server chạy không màn hình và đặt trong rack.",
+      "highlights": [
+        "BMC ASPEED AST2500, IPMI 2.0",
+        "Có xuất hình VGA onboard",
+        "DDR4 8 kênh, tối đa 2 TB",
+        "4 khe PCIe 4.0 x16, 3 khe M.2 NVMe",
+        "2 cổng Intel 2.5 GbE"
+      ],
+      "useCases": [
+        "Render farm",
+        "Máy chủ ảo hoá",
+        "Home lab / NAS",
+        "Workstation AI / GPU"
+      ],
+      "name": "HUANANZHI H12D-8D 1P BMC",
+      "specs": {
+        "Socket": "SP3 (LGA 4094)",
+        "Thương hiệu": "HUANANZHI",
+        "Kích thước chuẩn": "ATX",
+        "Kích thước": "305 × 245 mm",
+        "Số socket CPU": "1 × SP3 (1 CPU)",
+        "CPU hỗ trợ": "AMD EPYC 7002 (Rome) / 7003 (Milan)",
+        "Khe RAM": "8 khe DDR4 (8 kênh), 3200/2933/2666/2400/2133 MHz, tối đa 2 TB",
+        "Khe mở rộng": "4 × PCIe 4.0 x16",
+        "M.2": "3 × M.2 2280 NVMe (PCIe 4.0 x4)",
+        "Cổng SATA / SAS": "4 × SATA 3.0 + 3 × SFF-8643 (mỗi cổng = 4 × SATA hoặc 1 × U.2 PCIe 4.0 x4)",
+        "Mạng LAN": "2 × Intel 2.5 GbE",
+        "USB": "Sau: 4 × USB 3.2 Gen1, 2 × USB 2.0; header trước: 1 × USB 3.2 Gen1, 1 × USB 2.0",
+        "Âm thanh": "CJC6811A",
+        "Đầu cấp nguồn": "24-pin ATX + 2 × 8-pin EPS",
+        "Chân cắm quạt": "6 chân cắm quạt",
+        "Quản lý từ xa (BMC)": "Kèm module ASPEED AST2500 – IPMI 2.0, cổng quản lý riêng (Realtek RTL8201F), xuất hình VGA",
+        "Bảo hành": "12 tháng"
+      },
+      "notes": []
+    },
+    "zh": {
+      "shortDescription": "带 BMC 模块的 H12D-8D：支持 IPMI 2.0 远程管理、板载 VGA 和完整风扇控制。",
+      "description": "与 H12D-8D 相同的平台 – EPYC 7002/7003、八通道 DDR4 最大 2 TB、4 × PCIe 4.0 x16、3 × M.2 NVMe、双 2.5G 网口 – 并加装 ASPEED AST2500 BMC。提供独立 IPMI 2.0 管理网口 (远程开关机、控制台与监控)、可用的板载 VGA 以及 BMC 风扇调速，适合无显示器服务器和机架部署。",
+      "highlights": [
+        "ASPEED AST2500 BMC，IPMI 2.0",
+        "板载 VGA 输出",
+        "八通道 DDR4，最大 2 TB",
+        "4 × PCIe 4.0 x16，3 × M.2 NVMe",
+        "双 Intel 2.5G 网口"
+      ],
+      "useCases": [
+        "渲染农场",
+        "虚拟化主机",
+        "家庭实验室 / NAS",
+        "AI / GPU 工作站"
+      ],
+      "name": "HUANANZHI H12D-8D 1P BMC",
+      "specs": {
+        "插槽": "SP3 (LGA 4094)",
+        "品牌": "HUANANZHI",
+        "板型": "ATX",
+        "尺寸": "305 × 245 mm",
+        "CPU 插槽数量": "1 × SP3 (单路)",
+        "支持处理器": "AMD EPYC 7002 (Rome) / 7003 (Milan)",
+        "内存插槽": "8 条 DDR4 插槽 (八通道)，3200/2933/2666/2400/2133 MHz，最大 2 TB",
+        "扩展插槽": "4 × PCIe 4.0 x16",
+        "M.2": "3 × M.2 2280 NVMe (PCIe 4.0 x4)",
+        "SATA / SAS 接口": "4 × SATA 3.0 + 3 × SFF-8643 (每个可扩展 4 × SATA 或 1 × U.2 PCIe 4.0 x4)",
+        "网卡": "2 × Intel 2.5G 网口",
+        "USB": "后置：4 × USB 3.2 Gen1、2 × USB 2.0；前置插针：1 × USB 3.2 Gen1、1 × USB 2.0",
+        "音频": "CJC6811A",
+        "供电接口": "24-pin ATX + 2 × 8-pin EPS",
+        "风扇接口": "6 个风扇接口",
+        "远程管理 (BMC)": "附带 ASPEED AST2500 模块 – IPMI 2.0、独立管理网口 (Realtek RTL8201F)、VGA 输出",
+        "保修": "12 个月"
+      },
+      "notes": []
+    }
+  },
+  "sources": [
+    "https://huananzhi.com/en/list_6/177.html"
+  ]
+}

@@ -1,0 +1,430 @@
+{
+  "id": "11",
+  "name": "AMD EPYC 7V73X",
+  "slug": "amd-epyc-7v73x",
+  "brand": "AMD",
+  "category": "CPU",
+  "categorySlug": "cpu",
+  "subCategory": "Zen 3",
+  "price": 39000000,
+  "specs": {
+    "Brand": "AMD",
+    "Product family": "AMD EPYC 7003 Series with 3D V-Cache",
+    "Codename": "Milan-X",
+    "Architecture": "Zen 3",
+    "Cores / Threads": "64 / 128",
+    "Base clock": "2.2 GHz",
+    "Max boost clock": "3.5 GHz",
+    "L2 cache": "32 MB",
+    "L3 cache": "768 MB (3D V-Cache)",
+    "TDP": "280 W",
+    "Socket": "SP3 (LGA 4094)",
+    "Process": "7 nm (CCD) + 14 nm (I/O die)",
+    "Memory support": "8-channel DDR4-3200 RDIMM/LRDIMM",
+    "Max memory per socket": "4 TB",
+    "PCIe lanes": "128 × PCIe 4.0",
+    "Multi-socket": "1P / 2P",
+    "Launch": "2022",
+    "Variant": "OEM / cloud SKU made for Microsoft Azure (HBv3 Milan-X) (not in AMD's public lineup)",
+    "Warranty": "12 months"
+  },
+  "image": "images/01-top.jpg",
+  "images": [
+    "images/01-top.jpg",
+    "images/02-bottom.jpg",
+    "images/03-in-socket.jpg",
+    "images/04-carrier.jpg"
+  ],
+  "description": "AMD EPYC 7V73X thuộc dòng AMD EPYC 7003 Series with 3D V-Cache (tên mã Milan-X), kiến trúc Zen 3. Milan-X với 768 MB 3D V-Cache xếp chồng – gấp 3 lần L3 của EPYC thường, cực mạnh cho CFD, mô phỏng và EDA. Hỗ trợ RAM DDR4-3200 8 kênh và 128 lane PCIe 4.0, chạy được trên mainboard SP3 1 CPU hoặc 2 CPU.",
+  "features": [
+    "64 nhân / 128 luồng (Zen 3)",
+    "Xung cơ bản 2.2 GHz, boost tới 3.5 GHz",
+    "Bộ nhớ đệm L3 768 MB (3D V-Cache)",
+    "RAM DDR4-3200 8 kênh, 128 lane PCIe 4.0",
+    "Socket SP3, chạy 1 hoặc 2 CPU"
+  ],
+  "specsDetailed": [
+    {
+      "key": "brand",
+      "label": {
+        "en": "Brand",
+        "vi": "Thương hiệu",
+        "zh": "品牌"
+      },
+      "value": {
+        "en": "AMD",
+        "vi": "AMD",
+        "zh": "AMD"
+      }
+    },
+    {
+      "key": "family",
+      "label": {
+        "en": "Product family",
+        "vi": "Dòng sản phẩm",
+        "zh": "产品系列"
+      },
+      "value": {
+        "en": "AMD EPYC 7003 Series with 3D V-Cache",
+        "vi": "AMD EPYC 7003 Series with 3D V-Cache",
+        "zh": "AMD EPYC 7003 Series with 3D V-Cache"
+      }
+    },
+    {
+      "key": "codename",
+      "label": {
+        "en": "Codename",
+        "vi": "Tên mã",
+        "zh": "代号"
+      },
+      "value": {
+        "en": "Milan-X",
+        "vi": "Milan-X",
+        "zh": "Milan-X"
+      }
+    },
+    {
+      "key": "arch",
+      "label": {
+        "en": "Architecture",
+        "vi": "Kiến trúc",
+        "zh": "架构"
+      },
+      "value": {
+        "en": "Zen 3",
+        "vi": "Zen 3",
+        "zh": "Zen 3"
+      }
+    },
+    {
+      "key": "cores",
+      "label": {
+        "en": "Cores / Threads",
+        "vi": "Số nhân / luồng",
+        "zh": "核心 / 线程"
+      },
+      "value": {
+        "en": "64 / 128",
+        "vi": "64 / 128",
+        "zh": "64 / 128"
+      }
+    },
+    {
+      "key": "base",
+      "label": {
+        "en": "Base clock",
+        "vi": "Xung cơ bản",
+        "zh": "基础频率"
+      },
+      "value": {
+        "en": "2.2 GHz",
+        "vi": "2.2 GHz",
+        "zh": "2.2 GHz"
+      }
+    },
+    {
+      "key": "boost",
+      "label": {
+        "en": "Max boost clock",
+        "vi": "Xung boost tối đa",
+        "zh": "最大加速频率"
+      },
+      "value": {
+        "en": "3.5 GHz",
+        "vi": "3.5 GHz",
+        "zh": "3.5 GHz"
+      }
+    },
+    {
+      "key": "l2",
+      "label": {
+        "en": "L2 cache",
+        "vi": "Bộ nhớ đệm L2",
+        "zh": "二级缓存"
+      },
+      "value": {
+        "en": "32 MB",
+        "vi": "32 MB",
+        "zh": "32 MB"
+      }
+    },
+    {
+      "key": "l3",
+      "label": {
+        "en": "L3 cache",
+        "vi": "Bộ nhớ đệm L3",
+        "zh": "三级缓存"
+      },
+      "value": {
+        "en": "768 MB (3D V-Cache)",
+        "vi": "768 MB (3D V-Cache)",
+        "zh": "768 MB (3D V-Cache 堆叠缓存)"
+      }
+    },
+    {
+      "key": "tdp",
+      "label": {
+        "en": "TDP",
+        "vi": "TDP (công suất nhiệt)",
+        "zh": "热设计功耗 (TDP)"
+      },
+      "value": {
+        "en": "280 W",
+        "vi": "280 W",
+        "zh": "280 W"
+      },
+      "verified": false
+    },
+    {
+      "key": "socket",
+      "label": {
+        "en": "Socket",
+        "vi": "Socket",
+        "zh": "插槽"
+      },
+      "value": {
+        "en": "SP3 (LGA 4094)",
+        "vi": "SP3 (LGA 4094)",
+        "zh": "SP3 (LGA 4094)"
+      }
+    },
+    {
+      "key": "process",
+      "label": {
+        "en": "Process",
+        "vi": "Tiến trình sản xuất",
+        "zh": "制程工艺"
+      },
+      "value": {
+        "en": "7 nm (CCD) + 14 nm (I/O die)",
+        "vi": "7 nm (CCD) + 14 nm (I/O die)",
+        "zh": "7 纳米 (CCD) + 14 纳米 (I/O 芯片)"
+      }
+    },
+    {
+      "key": "memory",
+      "label": {
+        "en": "Memory support",
+        "vi": "Hỗ trợ RAM",
+        "zh": "内存支持"
+      },
+      "value": {
+        "en": "8-channel DDR4-3200 RDIMM/LRDIMM",
+        "vi": "DDR4-3200 8 kênh, RDIMM/LRDIMM",
+        "zh": "八通道 DDR4-3200 RDIMM/LRDIMM"
+      }
+    },
+    {
+      "key": "maxmem",
+      "label": {
+        "en": "Max memory per socket",
+        "vi": "RAM tối đa mỗi CPU",
+        "zh": "单路最大内存"
+      },
+      "value": {
+        "en": "4 TB",
+        "vi": "4 TB",
+        "zh": "4 TB"
+      }
+    },
+    {
+      "key": "pcie",
+      "label": {
+        "en": "PCIe lanes",
+        "vi": "Số lane PCIe",
+        "zh": "PCIe 通道"
+      },
+      "value": {
+        "en": "128 × PCIe 4.0",
+        "vi": "128 lane PCIe 4.0",
+        "zh": "128 条 PCIe 4.0"
+      }
+    },
+    {
+      "key": "scal",
+      "label": {
+        "en": "Multi-socket",
+        "vi": "Hỗ trợ đa CPU",
+        "zh": "多路支持"
+      },
+      "value": {
+        "en": "1P / 2P",
+        "vi": "1 CPU hoặc 2 CPU",
+        "zh": "单路 / 双路"
+      }
+    },
+    {
+      "key": "launch",
+      "label": {
+        "en": "Launch",
+        "vi": "Ra mắt",
+        "zh": "发布时间"
+      },
+      "value": {
+        "en": "2022",
+        "vi": "2022",
+        "zh": "2022"
+      }
+    },
+    {
+      "key": "variant",
+      "label": {
+        "en": "Variant",
+        "vi": "Phiên bản",
+        "zh": "版本类型"
+      },
+      "value": {
+        "en": "OEM / cloud SKU made for Microsoft Azure (HBv3 Milan-X) (not in AMD's public lineup)",
+        "vi": "Bản OEM / cloud sản xuất riêng cho Microsoft Azure (HBv3 Milan-X) (không có trong danh mục công khai của AMD)",
+        "zh": "为 微软 Azure (HBv3 Milan-X) 定制的 OEM / 云端型号 (未列入 AMD 公开产品线)"
+      }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "12 months",
+        "vi": "12 tháng",
+        "zh": "12 个月"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "name": "AMD EPYC 7V73X",
+      "shortDescription": "64-core / 128-thread Zen 3 server CPU, up to 3.5 GHz, 768 MB (3D V-Cache) L3, socket SP3.",
+      "description": "The AMD EPYC 7V73X is a AMD EPYC 7003 Series with 3D V-Cache (Milan-X) processor built on the Zen 3 architecture. Milan-X with 768 MB of stacked 3D V-Cache – 3× the L3 of a normal EPYC, a monster for CFD, simulation and EDA. It supports 8-channel DDR4-3200 and 128 PCIe 4.0 lanes, and runs in single- or dual-socket SP3 platforms.",
+      "highlights": [
+        "64 cores / 128 threads (Zen 3)",
+        "Base 2.2 GHz, boost up to 3.5 GHz",
+        "768 MB (3D V-Cache) L3 cache",
+        "8-channel DDR4-3200, 128 PCIe 4.0 lanes",
+        "Socket SP3, 1P/2P"
+      ],
+      "useCases": [
+        "HPC / scientific computing",
+        "CFD, FEA & EDA simulation",
+        "Databases"
+      ],
+      "specs": {
+        "Brand": "AMD",
+        "Product family": "AMD EPYC 7003 Series with 3D V-Cache",
+        "Codename": "Milan-X",
+        "Architecture": "Zen 3",
+        "Cores / Threads": "64 / 128",
+        "Base clock": "2.2 GHz",
+        "Max boost clock": "3.5 GHz",
+        "L2 cache": "32 MB",
+        "L3 cache": "768 MB (3D V-Cache)",
+        "TDP": "280 W",
+        "Socket": "SP3 (LGA 4094)",
+        "Process": "7 nm (CCD) + 14 nm (I/O die)",
+        "Memory support": "8-channel DDR4-3200 RDIMM/LRDIMM",
+        "Max memory per socket": "4 TB",
+        "PCIe lanes": "128 × PCIe 4.0",
+        "Multi-socket": "1P / 2P",
+        "Launch": "2022",
+        "Variant": "OEM / cloud SKU made for Microsoft Azure (HBv3 Milan-X) (not in AMD's public lineup)",
+        "Warranty": "12 months"
+      },
+      "notes": [
+        "OEM/cloud chips may be vendor-locked (AMD Platform Secure Boot). Make sure the unit is sold as unlocked, otherwise it only boots on the original vendor's boards.",
+        "Zen 3 (EPYC 7003) requires a board/BIOS with Milan support – e.g. Huananzhi H12D-8D, or Gigabyte MZ71-CE1 rev 3.x and later.",
+        "Milan-X needs a BIOS that explicitly supports EPYC 7003X – check with the board vendor before pairing."
+      ]
+    },
+    "vi": {
+      "name": "AMD EPYC 7V73X",
+      "shortDescription": "CPU máy chủ 64 nhân / 128 luồng, kiến trúc Zen 3, boost tới 3.5 GHz, L3 768 MB (3D V-Cache), socket SP3.",
+      "description": "AMD EPYC 7V73X thuộc dòng AMD EPYC 7003 Series with 3D V-Cache (tên mã Milan-X), kiến trúc Zen 3. Milan-X với 768 MB 3D V-Cache xếp chồng – gấp 3 lần L3 của EPYC thường, cực mạnh cho CFD, mô phỏng và EDA. Hỗ trợ RAM DDR4-3200 8 kênh và 128 lane PCIe 4.0, chạy được trên mainboard SP3 1 CPU hoặc 2 CPU.",
+      "highlights": [
+        "64 nhân / 128 luồng (Zen 3)",
+        "Xung cơ bản 2.2 GHz, boost tới 3.5 GHz",
+        "Bộ nhớ đệm L3 768 MB (3D V-Cache)",
+        "RAM DDR4-3200 8 kênh, 128 lane PCIe 4.0",
+        "Socket SP3, chạy 1 hoặc 2 CPU"
+      ],
+      "useCases": [
+        "HPC / tính toán khoa học",
+        "Mô phỏng CFD, FEA & EDA",
+        "Cơ sở dữ liệu"
+      ],
+      "specs": {
+        "Thương hiệu": "AMD",
+        "Dòng sản phẩm": "AMD EPYC 7003 Series with 3D V-Cache",
+        "Tên mã": "Milan-X",
+        "Kiến trúc": "Zen 3",
+        "Số nhân / luồng": "64 / 128",
+        "Xung cơ bản": "2.2 GHz",
+        "Xung boost tối đa": "3.5 GHz",
+        "Bộ nhớ đệm L2": "32 MB",
+        "Bộ nhớ đệm L3": "768 MB (3D V-Cache)",
+        "TDP (công suất nhiệt)": "280 W",
+        "Socket": "SP3 (LGA 4094)",
+        "Tiến trình sản xuất": "7 nm (CCD) + 14 nm (I/O die)",
+        "Hỗ trợ RAM": "DDR4-3200 8 kênh, RDIMM/LRDIMM",
+        "RAM tối đa mỗi CPU": "4 TB",
+        "Số lane PCIe": "128 lane PCIe 4.0",
+        "Hỗ trợ đa CPU": "1 CPU hoặc 2 CPU",
+        "Ra mắt": "2022",
+        "Phiên bản": "Bản OEM / cloud sản xuất riêng cho Microsoft Azure (HBv3 Milan-X) (không có trong danh mục công khai của AMD)",
+        "Bảo hành": "12 tháng"
+      },
+      "notes": [
+        "Chip OEM/cloud có thể bị khoá nhà cung cấp (AMD Platform Secure Boot). Cần đảm bảo bản bán ra là bản đã mở khoá (unlocked), nếu không CPU chỉ chạy trên mainboard của hãng gốc.",
+        "Zen 3 (EPYC 7003) cần mainboard/BIOS hỗ trợ Milan – ví dụ Huananzhi H12D-8D, hoặc Gigabyte MZ71-CE1 từ rev 3.x trở lên.",
+        "Milan-X cần BIOS hỗ trợ riêng EPYC 7003X – hãy kiểm tra với hãng mainboard trước khi ghép cấu hình."
+      ]
+    },
+    "zh": {
+      "name": "AMD EPYC 7V73X",
+      "shortDescription": "64 核 128 线程 Zen 3 服务器处理器，最高加速 3.5 GHz，768 MB (3D V-Cache) 三级缓存，SP3 插槽。",
+      "description": "AMD EPYC 7V73X 属于 AMD EPYC 7003 Series with 3D V-Cache (代号 Milan-X)，采用 Zen 3 架构。Milan-X，配备 768 MB 3D V-Cache 堆叠缓存，是普通 EPYC 的 3 倍，CFD、仿真和 EDA 的性能怪兽。 支持八通道 DDR4-3200 内存和 128 条 PCIe 4.0 通道，可用于单路或双路 SP3 平台。",
+      "highlights": [
+        "64 核心 / 128 线程 (Zen 3)",
+        "基础频率 2.2 GHz，最高加速 3.5 GHz",
+        "768 MB (3D V-Cache) 三级缓存",
+        "八通道 DDR4-3200，128 条 PCIe 4.0",
+        "SP3 插槽，支持单路/双路"
+      ],
+      "useCases": [
+        "高性能计算 / 科学计算",
+        "CFD、有限元与 EDA 仿真",
+        "数据库"
+      ],
+      "specs": {
+        "品牌": "AMD",
+        "产品系列": "AMD EPYC 7003 Series with 3D V-Cache",
+        "代号": "Milan-X",
+        "架构": "Zen 3",
+        "核心 / 线程": "64 / 128",
+        "基础频率": "2.2 GHz",
+        "最大加速频率": "3.5 GHz",
+        "二级缓存": "32 MB",
+        "三级缓存": "768 MB (3D V-Cache 堆叠缓存)",
+        "热设计功耗 (TDP)": "280 W",
+        "插槽": "SP3 (LGA 4094)",
+        "制程工艺": "7 纳米 (CCD) + 14 纳米 (I/O 芯片)",
+        "内存支持": "八通道 DDR4-3200 RDIMM/LRDIMM",
+        "单路最大内存": "4 TB",
+        "PCIe 通道": "128 条 PCIe 4.0",
+        "多路支持": "单路 / 双路",
+        "发布时间": "2022",
+        "版本类型": "为 微软 Azure (HBv3 Milan-X) 定制的 OEM / 云端型号 (未列入 AMD 公开产品线)",
+        "保修": "12 个月"
+      },
+      "notes": [
+        "OEM/云端芯片可能存在厂商锁 (AMD Platform Secure Boot)。请确认为无锁版本，否则只能在原厂主板上点亮。",
+        "Zen 3 (EPYC 7003) 需要支持 Milan 的主板/BIOS，例如华南金牌 H12D-8D，或技嘉 MZ71-CE1 rev 3.x 及以上版本。",
+        "Milan-X 需要明确支持 EPYC 7003X 的 BIOS，搭配前请向主板厂商确认。"
+      ]
+    }
+  },
+  "sources": [
+    "https://www.cpubenchmark.net/compare/5217vs4207/AMD-EPYC-7V73X-vs-AMD-EPYC-7763"
+  ]
+}

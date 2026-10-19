@@ -1,0 +1,8 @@
+Photos: Rainer Knäpper (User:Smial), Wikimedia Commons
+License: Free Art License 1.3 (FAL) - https://artlibre.org/licence/lal/en/
+NOTE: The photographed chip is an AMD EPYC 7302P (same SP3 package as this SKU), not this exact model.
+
+01-top.jpg: https://commons.wikimedia.org/wiki/File:Amd_epyc_7302_top_side_IMGP3332_smial_wp.jpg
+02-bottom.jpg: https://commons.wikimedia.org/wiki/File:Amd_epyc_7302_bottom_side_IMGP3344_smial_wp.jpg
+03-in-socket.jpg: https://commons.wikimedia.org/wiki/File:Amd_epyc_7302_socket_sp3_IMGP3493_smial_wp.jpg
+04-carrier.jpg: https://commons.wikimedia.org/wiki/File:Amd_epyc_7302_bottom_side_with_carrier_IMGP3326_smial_wp.jpg

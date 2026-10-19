@@ -1,0 +1,24 @@
+{
+  "name": "Cooler",
+  "slug": "cooler",
+  "itemCount": 5,
+  "subCategories": [
+    {
+      "name": "AIO",
+      "slug": "aio",
+      "products": [
+        "AIO 360 1P",
+        "AIO 360 2P"
+      ]
+    },
+    {
+      "name": "Air",
+      "slug": "air",
+      "products": [
+        "M99",
+        "M95 Pro",
+        "M97"
+      ]
+    }
+  ]
+}

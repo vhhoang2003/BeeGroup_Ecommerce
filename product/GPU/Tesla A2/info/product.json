@@ -1,0 +1,456 @@
+{
+  "id": "15",
+  "name": "NVIDIA A2 16GB (Tesla A2)",
+  "slug": "nvidia-tesla-a2",
+  "brand": "NVIDIA",
+  "category": "GPU",
+  "categorySlug": "gpu",
+  "subCategory": "NVIDIA",
+  "price": 11440000,
+  "specs": {
+    "Brand": "NVIDIA",
+    "Product family": "NVIDIA A2 Tensor Core GPU (data center)",
+    "GPU architecture": "Ampere (GA107)",
+    "CUDA cores": "1280",
+    "Tensor cores": "40 (3rd gen)",
+    "RT cores": "10",
+    "Memory": "16 GB GDDR6",
+    "Memory bandwidth": "200 GB/s",
+    "FP32 performance": "4.5 TFLOPS",
+    "TF32 Tensor": "9 TF | 18 TF*",
+    "FP16 / BF16 Tensor": "18 TF | 36 TF*",
+    "INT8 Tensor": "36 TOPS | 72 TOPS*",
+    "INT4 Tensor": "72 TOPS | 144 TOPS*",
+    "Media engines": "1 × NVENC, 2 × NVDEC (incl. AV1 decode)",
+    "Interface": "PCIe 4.0 x8",
+    "Form factor": "Single-slot, low-profile",
+    "TDP": "40–60 W (configurable)",
+    "Cooling": "Passive – requires chassis airflow",
+    "vGPU software": "NVIDIA vPC, vApps, RTX vWS, AI Enterprise, vCS",
+    "Launch": "Q4 2021",
+    "Warranty": "12 months"
+  },
+  "description": "NVIDIA A2 có 16 GB GDDR6, nhân Tensor thế hệ 3 và nhân RT trong thân card 1 slot low-profile, chỉ tiêu thụ 40–60 W lấy trực tiếp từ khe PCIe – không cần dây nguồn phụ. Phù hợp suy luận AI cơ bản, phân tích video thông minh, chuyển mã Plex/Jellyfin (có giải mã AV1) và máy ảo desktop trong server nhỏ gọn.",
+  "features": [
+    "16 GB GDDR6, 200 GB/s",
+    "Ampere: 1280 CUDA, 40 Tensor, 10 nhân RT",
+    "Chỉ 40–60 W, không cần nguồn phụ",
+    "1 slot low-profile, PCIe 4.0 x8",
+    "Giải mã AV1, hỗ trợ NVIDIA vGPU"
+  ],
+  "specsDetailed": [
+    {
+      "key": "brand",
+      "label": {
+        "en": "Brand",
+        "vi": "Thương hiệu",
+        "zh": "品牌"
+      },
+      "value": {
+        "en": "NVIDIA",
+        "vi": "NVIDIA",
+        "zh": "NVIDIA"
+      }
+    },
+    {
+      "key": "family",
+      "label": {
+        "en": "Product family",
+        "vi": "Dòng sản phẩm",
+        "zh": "产品系列"
+      },
+      "value": {
+        "en": "NVIDIA A2 Tensor Core GPU (data center)",
+        "vi": "NVIDIA A2 Tensor Core GPU (dòng data center)",
+        "zh": "NVIDIA A2 Tensor Core GPU (数据中心)"
+      }
+    },
+    {
+      "key": "gpuarch",
+      "label": {
+        "en": "GPU architecture",
+        "vi": "Kiến trúc GPU",
+        "zh": "GPU 架构"
+      },
+      "value": {
+        "en": "Ampere (GA107)",
+        "vi": "Ampere (GA107)",
+        "zh": "Ampere (GA107)"
+      }
+    },
+    {
+      "key": "cuda",
+      "label": {
+        "en": "CUDA cores",
+        "vi": "Nhân CUDA",
+        "zh": "CUDA 核心"
+      },
+      "value": {
+        "en": "1280",
+        "vi": "1280",
+        "zh": "1280"
+      }
+    },
+    {
+      "key": "tensor",
+      "label": {
+        "en": "Tensor cores",
+        "vi": "Nhân Tensor",
+        "zh": "Tensor 核心"
+      },
+      "value": {
+        "en": "40 (3rd gen)",
+        "vi": "40 (thế hệ 3)",
+        "zh": "40 (第三代)"
+      }
+    },
+    {
+      "key": "rt",
+      "label": {
+        "en": "RT cores",
+        "vi": "Nhân RT",
+        "zh": "RT 核心"
+      },
+      "value": {
+        "en": "10",
+        "vi": "10",
+        "zh": "10"
+      }
+    },
+    {
+      "key": "vram",
+      "label": {
+        "en": "Memory",
+        "vi": "Bộ nhớ",
+        "zh": "显存"
+      },
+      "value": {
+        "en": "16 GB GDDR6",
+        "vi": "16 GB GDDR6",
+        "zh": "16 GB GDDR6"
+      }
+    },
+    {
+      "key": "bw",
+      "label": {
+        "en": "Memory bandwidth",
+        "vi": "Băng thông bộ nhớ",
+        "zh": "显存带宽"
+      },
+      "value": {
+        "en": "200 GB/s",
+        "vi": "200 GB/s",
+        "zh": "200 GB/s"
+      }
+    },
+    {
+      "key": "fp32",
+      "label": {
+        "en": "FP32 performance",
+        "vi": "Hiệu năng FP32",
+        "zh": "FP32 性能"
+      },
+      "value": {
+        "en": "4.5 TFLOPS",
+        "vi": "4.5 TFLOPS",
+        "zh": "4.5 TFLOPS"
+      }
+    },
+    {
+      "key": "tf32",
+      "label": {
+        "en": "TF32 Tensor",
+        "vi": "TF32 Tensor",
+        "zh": "TF32 Tensor"
+      },
+      "value": {
+        "en": "9 TF | 18 TF*",
+        "vi": "9 TF | 18 TF*",
+        "zh": "9 TF | 18 TF*"
+      }
+    },
+    {
+      "key": "fp16",
+      "label": {
+        "en": "FP16 / BF16 Tensor",
+        "vi": "FP16 / BF16 Tensor",
+        "zh": "FP16 / BF16 Tensor"
+      },
+      "value": {
+        "en": "18 TF | 36 TF*",
+        "vi": "18 TF | 36 TF*",
+        "zh": "18 TF | 36 TF*"
+      }
+    },
+    {
+      "key": "int8",
+      "label": {
+        "en": "INT8 Tensor",
+        "vi": "INT8 Tensor",
+        "zh": "INT8 Tensor"
+      },
+      "value": {
+        "en": "36 TOPS | 72 TOPS*",
+        "vi": "36 TOPS | 72 TOPS*",
+        "zh": "36 TOPS | 72 TOPS*"
+      }
+    },
+    {
+      "key": "int4",
+      "label": {
+        "en": "INT4 Tensor",
+        "vi": "INT4 Tensor",
+        "zh": "INT4 Tensor"
+      },
+      "value": {
+        "en": "72 TOPS | 144 TOPS*",
+        "vi": "72 TOPS | 144 TOPS*",
+        "zh": "72 TOPS | 144 TOPS*"
+      }
+    },
+    {
+      "key": "media",
+      "label": {
+        "en": "Media engines",
+        "vi": "Bộ mã hoá / giải mã video",
+        "zh": "媒体引擎"
+      },
+      "value": {
+        "en": "1 × NVENC, 2 × NVDEC (incl. AV1 decode)",
+        "vi": "1 × NVENC, 2 × NVDEC (có giải mã AV1)",
+        "zh": "1 × NVENC，2 × NVDEC (支持 AV1 解码)"
+      }
+    },
+    {
+      "key": "iface",
+      "label": {
+        "en": "Interface",
+        "vi": "Giao tiếp",
+        "zh": "接口"
+      },
+      "value": {
+        "en": "PCIe 4.0 x8",
+        "vi": "PCIe 4.0 x8",
+        "zh": "PCIe 4.0 x8"
+      }
+    },
+    {
+      "key": "formfactor",
+      "label": {
+        "en": "Form factor",
+        "vi": "Kích thước chuẩn",
+        "zh": "板型"
+      },
+      "value": {
+        "en": "Single-slot, low-profile",
+        "vi": "1 slot, low-profile",
+        "zh": "单槽半高"
+      }
+    },
+    {
+      "key": "tdp",
+      "label": {
+        "en": "TDP",
+        "vi": "TDP (công suất nhiệt)",
+        "zh": "热设计功耗 (TDP)"
+      },
+      "value": {
+        "en": "40–60 W (configurable)",
+        "vi": "40–60 W (tuỳ chỉnh)",
+        "zh": "40–60 W (可配置)"
+      }
+    },
+    {
+      "key": "cooling",
+      "label": {
+        "en": "Cooling",
+        "vi": "Tản nhiệt",
+        "zh": "散热方式"
+      },
+      "value": {
+        "en": "Passive – requires chassis airflow",
+        "vi": "Thụ động (không quạt) – cần luồng gió từ case",
+        "zh": "被动散热 – 需要机箱风道"
+      }
+    },
+    {
+      "key": "vgpu",
+      "label": {
+        "en": "vGPU software",
+        "vi": "Phần mềm vGPU",
+        "zh": "vGPU 软件"
+      },
+      "value": {
+        "en": "NVIDIA vPC, vApps, RTX vWS, AI Enterprise, vCS",
+        "vi": "NVIDIA vPC, vApps, RTX vWS, AI Enterprise, vCS",
+        "zh": "NVIDIA vPC, vApps, RTX vWS, AI Enterprise, vCS"
+      }
+    },
+    {
+      "key": "launch",
+      "label": {
+        "en": "Launch",
+        "vi": "Ra mắt",
+        "zh": "发布时间"
+      },
+      "value": {
+        "en": "Q4 2021",
+        "vi": "Q4 2021",
+        "zh": "Q4 2021"
+      }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "12 months",
+        "vi": "12 tháng",
+        "zh": "12 个月"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "shortDescription": "Low-profile 60 W Ampere data-center GPU with 16 GB GDDR6 for AI inference, video transcoding and vGPU.",
+      "description": "The NVIDIA A2 packs 16 GB of GDDR6, 3rd-gen Tensor cores and RT cores into a single-slot, low-profile card that draws only 40–60 W from the PCIe slot – no extra power cable needed. It is built for entry-level AI inference, intelligent video analytics, Plex/Jellyfin transcoding (with AV1 decode) and virtual desktops in compact servers.",
+      "highlights": [
+        "16 GB GDDR6, 200 GB/s",
+        "Ampere: 1280 CUDA, 40 Tensor, 10 RT cores",
+        "Only 40–60 W, no external power",
+        "Single-slot low-profile, PCIe 4.0 x8",
+        "AV1 decode, NVIDIA vGPU support"
+      ],
+      "useCases": [
+        "AI inference",
+        "Video transcoding (Plex, Jellyfin)",
+        "Virtual desktops (vGPU)",
+        "Video analytics"
+      ],
+      "name": "NVIDIA A2 16GB (Tesla A2)",
+      "specs": {
+        "Brand": "NVIDIA",
+        "Product family": "NVIDIA A2 Tensor Core GPU (data center)",
+        "GPU architecture": "Ampere (GA107)",
+        "CUDA cores": "1280",
+        "Tensor cores": "40 (3rd gen)",
+        "RT cores": "10",
+        "Memory": "16 GB GDDR6",
+        "Memory bandwidth": "200 GB/s",
+        "FP32 performance": "4.5 TFLOPS",
+        "TF32 Tensor": "9 TF | 18 TF*",
+        "FP16 / BF16 Tensor": "18 TF | 36 TF*",
+        "INT8 Tensor": "36 TOPS | 72 TOPS*",
+        "INT4 Tensor": "72 TOPS | 144 TOPS*",
+        "Media engines": "1 × NVENC, 2 × NVDEC (incl. AV1 decode)",
+        "Interface": "PCIe 4.0 x8",
+        "Form factor": "Single-slot, low-profile",
+        "TDP": "40–60 W (configurable)",
+        "Cooling": "Passive – requires chassis airflow",
+        "vGPU software": "NVIDIA vPC, vApps, RTX vWS, AI Enterprise, vCS",
+        "Launch": "Q4 2021",
+        "Warranty": "12 months"
+      },
+      "notes": [
+        "Passively cooled: in a desktop case add a fan blowing directly through the card, or it will overheat and throttle.",
+        "* Tensor values with structural sparsity. 'Tesla' is the legacy brand name – NVIDIA's official name is NVIDIA A2."
+      ]
+    },
+    "vi": {
+      "shortDescription": "GPU data center Ampere low-profile 60 W, 16 GB GDDR6 cho suy luận AI, chuyển mã video và vGPU.",
+      "description": "NVIDIA A2 có 16 GB GDDR6, nhân Tensor thế hệ 3 và nhân RT trong thân card 1 slot low-profile, chỉ tiêu thụ 40–60 W lấy trực tiếp từ khe PCIe – không cần dây nguồn phụ. Phù hợp suy luận AI cơ bản, phân tích video thông minh, chuyển mã Plex/Jellyfin (có giải mã AV1) và máy ảo desktop trong server nhỏ gọn.",
+      "highlights": [
+        "16 GB GDDR6, 200 GB/s",
+        "Ampere: 1280 CUDA, 40 Tensor, 10 nhân RT",
+        "Chỉ 40–60 W, không cần nguồn phụ",
+        "1 slot low-profile, PCIe 4.0 x8",
+        "Giải mã AV1, hỗ trợ NVIDIA vGPU"
+      ],
+      "useCases": [
+        "Suy luận AI",
+        "Chuyển mã video (Plex, Jellyfin)",
+        "Máy ảo desktop (vGPU)",
+        "Phân tích video"
+      ],
+      "name": "NVIDIA A2 16GB (Tesla A2)",
+      "specs": {
+        "Thương hiệu": "NVIDIA",
+        "Dòng sản phẩm": "NVIDIA A2 Tensor Core GPU (dòng data center)",
+        "Kiến trúc GPU": "Ampere (GA107)",
+        "Nhân CUDA": "1280",
+        "Nhân Tensor": "40 (thế hệ 3)",
+        "Nhân RT": "10",
+        "Bộ nhớ": "16 GB GDDR6",
+        "Băng thông bộ nhớ": "200 GB/s",
+        "Hiệu năng FP32": "4.5 TFLOPS",
+        "TF32 Tensor": "9 TF | 18 TF*",
+        "FP16 / BF16 Tensor": "18 TF | 36 TF*",
+        "INT8 Tensor": "36 TOPS | 72 TOPS*",
+        "INT4 Tensor": "72 TOPS | 144 TOPS*",
+        "Bộ mã hoá / giải mã video": "1 × NVENC, 2 × NVDEC (có giải mã AV1)",
+        "Giao tiếp": "PCIe 4.0 x8",
+        "Kích thước chuẩn": "1 slot, low-profile",
+        "TDP (công suất nhiệt)": "40–60 W (tuỳ chỉnh)",
+        "Tản nhiệt": "Thụ động (không quạt) – cần luồng gió từ case",
+        "Phần mềm vGPU": "NVIDIA vPC, vApps, RTX vWS, AI Enterprise, vCS",
+        "Ra mắt": "Q4 2021",
+        "Bảo hành": "12 tháng"
+      },
+      "notes": [
+        "Card tản nhiệt thụ động: nếu lắp vào case PC thường cần gắn thêm quạt thổi trực tiếp qua card, nếu không card sẽ quá nhiệt và giảm xung.",
+        "* Số liệu Tensor có dấu * là khi bật sparsity. 'Tesla' là tên gọi cũ – tên chính thức của NVIDIA là NVIDIA A2."
+      ]
+    },
+    "zh": {
+      "shortDescription": "半高 60 W Ampere 数据中心 GPU，16 GB GDDR6，适用于 AI 推理、视频转码和 vGPU。",
+      "description": "NVIDIA A2 在单槽半高卡中集成 16 GB GDDR6、第三代 Tensor 核心和 RT 核心，功耗仅 40–60 W，由 PCIe 插槽直接供电，无需外接电源线。适用于入门级 AI 推理、智能视频分析、Plex/Jellyfin 转码 (支持 AV1 解码) 以及紧凑型服务器中的虚拟桌面。",
+      "highlights": [
+        "16 GB GDDR6，200 GB/s",
+        "Ampere：1280 CUDA、40 Tensor、10 RT 核心",
+        "仅 40–60 W，无需外接供电",
+        "单槽半高，PCIe 4.0 x8",
+        "AV1 解码，支持 NVIDIA vGPU"
+      ],
+      "useCases": [
+        "AI 推理",
+        "视频转码 (Plex、Jellyfin)",
+        "虚拟桌面 (vGPU)",
+        "视频分析"
+      ],
+      "name": "NVIDIA A2 16GB (Tesla A2)",
+      "specs": {
+        "品牌": "NVIDIA",
+        "产品系列": "NVIDIA A2 Tensor Core GPU (数据中心)",
+        "GPU 架构": "Ampere (GA107)",
+        "CUDA 核心": "1280",
+        "Tensor 核心": "40 (第三代)",
+        "RT 核心": "10",
+        "显存": "16 GB GDDR6",
+        "显存带宽": "200 GB/s",
+        "FP32 性能": "4.5 TFLOPS",
+        "TF32 Tensor": "9 TF | 18 TF*",
+        "FP16 / BF16 Tensor": "18 TF | 36 TF*",
+        "INT8 Tensor": "36 TOPS | 72 TOPS*",
+        "INT4 Tensor": "72 TOPS | 144 TOPS*",
+        "媒体引擎": "1 × NVENC，2 × NVDEC (支持 AV1 解码)",
+        "接口": "PCIe 4.0 x8",
+        "板型": "单槽半高",
+        "热设计功耗 (TDP)": "40–60 W (可配置)",
+        "散热方式": "被动散热 – 需要机箱风道",
+        "vGPU 软件": "NVIDIA vPC, vApps, RTX vWS, AI Enterprise, vCS",
+        "发布时间": "Q4 2021",
+        "保修": "12 个月"
+      },
+      "notes": [
+        "被动散热：装入普通台式机机箱时需额外加装风扇直吹显卡，否则会过热降频。",
+        "* 带星号的 Tensor 数值为启用稀疏化时的性能。“Tesla” 为旧品牌名，NVIDIA 官方名称为 NVIDIA A2。"
+      ]
+    }
+  },
+  "sources": [
+    "https://www.nvidia.com/en-us/data-center/products/a2/"
+  ]
+}
