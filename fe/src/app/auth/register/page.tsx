@@ -5,17 +5,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { UserPlus, User, Mail, Lock, ArrowRight, MailCheck } from 'lucide-react';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
+import { passwordProblem } from '@/features/auth/passwordPolicy';
 
 const inputClass =
   'w-full bg-[#F9FBFD] border border-gray-200 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#222222] outline-none focus:border-[#008ECC]';
-
-/** Mirrors the API's password policy (AUTH-03) so most mistakes are caught before the request. */
-function passwordProblem(password: string, email: string): string | null {
-  if (password.length < 8 || password.length > 72) return 'Mật khẩu cần 8-72 ký tự.';
-  if (!/[A-Za-z]/.test(password) || !/\d/.test(password)) return 'Mật khẩu cần có cả chữ và số.';
-  if (password.toLowerCase() === email.trim().toLowerCase()) return 'Mật khẩu không được trùng email.';
-  return null;
-}
 
 export default function RegisterPage() {
   const router = useRouter();

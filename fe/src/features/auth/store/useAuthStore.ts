@@ -7,7 +7,7 @@ import { AuthApi, toUser } from '@/lib/api/auth';
 
 export type AuthResult =
   | { ok: true; user: User | null; pendingVerification?: boolean }
-  | { ok: false; error: string };
+  | { ok: false; error: string; code?: string };
 
 interface AuthState {
   user: User | null;
@@ -27,6 +27,7 @@ const ERROR_MESSAGES: Record<string, string> = {
   EMAIL_NOT_VERIFIED: 'Email chưa được xác thực. Vui lòng mở liên kết trong email chúng tôi đã gửi.',
   ACCOUNT_LOCKED: 'Tài khoản đang bị khoá tạm thời. Vui lòng thử lại sau.',
   RATE_LIMITED: 'Bạn thao tác quá nhanh. Vui lòng thử lại sau ít phút.',
+  TOKEN_INVALID_OR_EXPIRED: 'Liên kết không hợp lệ hoặc đã hết hạn.',
   EMAIL_ALREADY_EXISTS: 'Email này đã được đăng ký.',
 };
 
@@ -67,7 +68,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         setAccessToken(res.accessToken);
         result = { ok: true, user: toUser(res.user) };
       } catch (error) {
-        result = { ok: false, error: authErrorMessage(error) };
+        result = { ok: false, error: authErrorMessage(error), code: error instanceof ApiError ? error.code : undefined };
       }
     }
     set(

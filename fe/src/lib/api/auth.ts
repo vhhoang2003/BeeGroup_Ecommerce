@@ -28,6 +28,27 @@ export const AuthApi = {
     });
   },
 
+  verifyEmail(token: string) {
+    return apiClient<void>('/auth/verify-email', { method: 'POST', body: JSON.stringify({ token }) });
+  },
+
+  /** Always 202, whether or not the email has a pending account (no account enumeration). */
+  resendVerification(email: string) {
+    return apiClient<void>('/auth/resend-verification', { method: 'POST', body: JSON.stringify({ email }) });
+  },
+
+  /** Always 202, whether or not the email has an account. */
+  forgotPassword(email: string) {
+    return apiClient<void>('/auth/forgot-password', { method: 'POST', body: JSON.stringify({ email }) });
+  },
+
+  resetPassword(token: string, newPassword: string) {
+    return apiClient<void>('/auth/reset-password', {
+      method: 'POST',
+      body: JSON.stringify({ token, newPassword }),
+    });
+  },
+
   logout() {
     return apiClient<void>('/auth/logout', { method: 'POST' });
   },

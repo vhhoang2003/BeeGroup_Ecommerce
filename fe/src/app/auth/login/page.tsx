@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { LogIn, Lock, Mail, ArrowRight } from 'lucide-react';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
+import ResendVerification from '@/features/auth/components/ResendVerification';
 
 /** `?next=` from a guarded page (same-site paths only), else the home of the user's role. */
 function redirectTarget(role: string | undefined): string {
@@ -20,11 +21,13 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
+  const [unverified, setUnverified] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setUnverified(false);
     setLoading(true);
     const result = await login(email, password, rememberMe);
     setLoading(false);
@@ -32,6 +35,7 @@ export default function LoginPage() {
       router.push(redirectTarget(result.user?.role));
     } else {
       setError(result.error);
+      setUnverified(result.code === 'EMAIL_NOT_VERIFIED');
     }
   };
 
@@ -51,6 +55,11 @@ export default function LoginPage() {
         {error && (
           <div className="bg-red-50 text-red-600 text-xs p-3 rounded-xl mb-4 border border-red-100">
             {error}
+          </div>
+        )}
+        {unverified && (
+          <div className="mb-5">
+            <ResendVerification initialEmail={email} />
           </div>
         )}
 
@@ -77,9 +86,9 @@ export default function LoginPage() {
               <label className="block text-xs font-semibold text-gray-700">
                 Password
               </label>
-              <a href="#" className="text-xs text-[#008ECC] hover:underline">
+              <Link href="/auth/forgot-password" className="text-xs text-[#008ECC] hover:underline">
                 Forgot Password?
-              </a>
+              </Link>
             </div>
             <div className="relative">
               <Lock className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
