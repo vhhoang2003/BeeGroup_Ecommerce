@@ -30,6 +30,8 @@
     <spotless.version>2.46.1</spotless.version>
     <jacoco.version>0.8.15</jacoco.version>
     <jacoco.service.minimum>0.70</jacoco.service.minimum>
+    <!-- CVE-2026-54291 (SCRAM downgrade) is fixed in 42.7.12; overrides the Spring Boot managed version. -->
+    <postgresql.version>42.7.12</postgresql.version>
   </properties>
 
   <dependencies>

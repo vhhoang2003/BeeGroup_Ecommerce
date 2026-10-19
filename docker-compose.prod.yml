@@ -7,7 +7,9 @@
 # proxy is additionally bound to 127.0.0.1:${PROXY_PORT} for health checks from the server itself.
 # Resource limits keep the whole stack around 1.7 GB RAM and 3.5 CPU on a shared machine.
 #
-# Usage (from /opt/beestore):  docker compose -f docker-compose.prod.yml --env-file .env up -d --build
+# Usage (from /opt/beestore):
+#   infra/scripts/update.sh   pull the images CD published to GHCR and restart (also run by cron every 5 minutes)
+#   infra/scripts/deploy.sh   build the images on this server instead (fallback)
 name: beestore
 
 x-logging: &logging
@@ -49,8 +51,9 @@ services:
     logging: *logging
 
   api:
+    # Published by .github/workflows/cd.yml and pulled by infra/scripts/update.sh; `build` stays for manual builds.
+    image: ${API_IMAGE:-ghcr.io/vhhoang2003/beestore-api}:${IMAGE_TAG:-main}
     build: ./be
-    image: beestore-api:${IMAGE_TAG:-local}
     restart: unless-stopped
     env_file: .env
     environment:
@@ -89,7 +92,7 @@ services:
         NEXT_PUBLIC_USE_MOCK: ${NEXT_PUBLIC_USE_MOCK:-true}
         NEXT_PUBLIC_API_URL: /api/v1
         NEXT_PUBLIC_SITE_URL: https://${DOMAIN}
-    image: beestore-web:${IMAGE_TAG:-local}
+    image: ${WEB_IMAGE:-ghcr.io/vhhoang2003/beestore-web}:${IMAGE_TAG:-main}
     restart: unless-stopped
     environment:
       CATALOG_SOURCE_DIR: /data/product

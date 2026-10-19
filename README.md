@@ -1029,26 +1029,28 @@ flowchart LR
 
 Path filters (`paths: [fe/**]`, `[be/**]`) skip unaffected jobs.
 
-### 13.4 `cd.yml`
+### 13.4 `cd.yml` and pull-based deployment (D-16)
 
-| Trigger | Job | Steps |
+There is one production server and no staging (§12.6), and GitHub does not need SSH access to it:
+
+| Where | Trigger | Steps |
 |---|---|---|
-| push to `main` | `publish` | `docker/login-action` (GHCR) → `docker/build-push-action` with layer cache → push `ghcr.io/<org>/beestore-api:{sha,main}` and `beestore-web:{sha,main}` → Trivy image scan |
-| after `publish` | `deploy-staging` | SSH (`appleboy/ssh-action`) → `cd /opt/beestore && IMAGE_TAG=<sha> docker compose -f docker-compose.yml -f docker-compose.prod.yml pull && up -d` → wait for `/actuator/health` = UP → Playwright smoke (login, browse, inquiry) against staging |
-| tag `v*` | `deploy-production` | Environment `production` (manual approval) → same deploy with `IMAGE_TAG=vX.Y.Z` → pre-deploy `pg_dump` → health check → on failure, redeploy the previous tag (rollback) → Slack/Discord notification |
+| GitHub Actions `cd.yml` | CI succeeded on a push to `main` (or manual *Run workflow*) | Build `be` and `fe` on GitHub's runners (layer cache) → push `ghcr.io/vhhoang2003/beestore-api` and `beestore-web` as `:main` and `:sha-<commit>` |
+| Server `infra/scripts/update.sh` | cron every 5 minutes | `git pull --ff-only` (compose file, Caddyfile, `product/`) → `docker compose pull api web` → if the repo or an image changed: `up -d`, wait for the API health check, **roll back to the previous images** if it fails → prune old images. Silent when nothing changed |
+
+The repository is public, so the GHCR packages are public and the server pulls without credentials. `infra/scripts/deploy.sh` remains as a fallback that builds the images on the server itself.
 
 Flyway migrations run automatically on API startup; migrations must be **backward-compatible** (expand → migrate → contract) so a rollback of the API image does not break against the newer schema.
 
-### 13.5 Required GitHub Secrets
+### 13.5 GitHub Settings
 
-| Secret | Used by |
-|---|---|
-| `GHCR_TOKEN` (or `GITHUB_TOKEN` with `packages: write`) | Push images |
-| `STAGING_SSH_HOST`, `STAGING_SSH_USER`, `STAGING_SSH_KEY` | Staging deploy |
-| `PROD_SSH_HOST`, `PROD_SSH_USER`, `PROD_SSH_KEY` | Production deploy |
-| `NOTIFY_WEBHOOK_URL` | Deploy notifications |
+| Setting | Where | Value |
+|---|---|---|
+| Repository variable `SITE_URL` | Settings → Secrets and variables → Actions → Variables | `https://<domain>`; baked into the web image (`NEXT_PUBLIC_SITE_URL`) |
+| Repository variable `NEXT_PUBLIC_USE_MOCK` | same | `true` until the FE is wired to the API, then `false` |
+| GHCR package visibility | Profile → Packages → `beestore-api` / `beestore-web` → Package settings | **Public** (check after the first CD run) |
 
-Runtime secrets (`DB_PASSWORD`, `JWT_SECRET`, `SMTP_*`, `S3_*`, `TURNSTILE_SECRET`) live in `/opt/beestore/.env` on each server, not in the repository.
+`GITHUB_TOKEN` (with `packages: write`) pushes the images; no other GitHub secrets are needed. Runtime secrets (`DB_PASSWORD`, `JWT_SECRET`, `MAIL_*`, `TUNNEL_TOKEN`, `TURNSTILE_SECRET`) live only in `/opt/beestore/.env` on the server.
 
 ---
 
@@ -1205,6 +1207,7 @@ Decisions taken during the backend gap analysis (2026-10-19) to resolve conflict
 | D-13 | §6.5 "deduplicated per session" for product views | The BE also counts a product view at most once per IP every 30 minutes | §6.5 |
 | D-14 | Production runs on one shared Debian server, domain on Cloudflare, no free ports 80/443 guaranteed | Cloudflare Tunnel terminates TLS, with `cloudflared` as a Compose service pointing at `proxy:80`; Caddy is an internal router (also bound to `127.0.0.1:8088` for local checks); real client IP from `CF-Connecting-IP`; mail is excluded from the health check so an SMTP outage cannot take the API down | §4.1, §12.6 |
 | D-15 | The server is shared and should be used sparingly | Hard limits per container (~1.6 GB / 3.25 CPU total), Serial GC, 5 DB connections, small PostgreSQL buffers, log rotation; images stay on the local volume (single instance, so the in-memory rate limiter and schedulers remain correct) | §12.6 |
+| D-16 | One production server, no staging, SSH from GitHub not guaranteed | CD publishes images to GHCR; the server pulls them every 5 minutes (`update.sh`) with health-checked rollback, instead of GitHub SSH-ing in (§13.4). CI runs FE, BE (`mvnw verify`), gitleaks and Trivy; pgjdbc pinned to 42.7.12 for CVE-2026-54291 | §13 |
 
 ---
 

@@ -10,7 +10,7 @@
 #   4. builds and starts the stack (infra/scripts/deploy.sh)
 #   5. imports the product catalog once
 #   6. checks the site locally and the Cloudflare Tunnel connection
-#   7. optionally installs the daily backup cron job
+#   7. optionally installs the daily backup and the 5-minute auto-update cron jobs
 # It never touches other containers, networks or volumes on this shared server.
 set -euo pipefail
 
@@ -154,7 +154,7 @@ else
 fi
 
 # --- 7. Backups ----------------------------------------------------------------------------------------------------
-step "7/7 Daily backup"
+step "7/7 Daily backup and automatic updates"
 cron_line="0 2 * * * $ROOT/infra/scripts/backup.sh >> $ROOT/backups/backup.log 2>&1"
 if ! command -v crontab >/dev/null; then
   yellow "cron is not installed. Install it with: sudo apt-get install -y cron   (then run this script again)"
@@ -167,6 +167,20 @@ else
     # "crontab -l" fails when the user has no crontab yet; that must not abort the script.
     { crontab -l 2>/dev/null || true; echo "$cron_line"; } | crontab -
     green "Backup cron job installed"
+  fi
+fi
+
+update_line="*/5 * * * * $ROOT/infra/scripts/update.sh >> $ROOT/backups/update.log 2>&1"
+if command -v crontab >/dev/null; then
+  if { crontab -l 2>/dev/null || true; } | grep -qF "infra/scripts/update.sh"; then
+    green "Automatic updates already enabled"
+  else
+    read -r -p "Enable automatic updates from GitHub (checks every 5 minutes)? [Y/n] " answer
+    if [[ ! "$answer" =~ ^[Nn] ]]; then
+      mkdir -p "$ROOT/backups"
+      { crontab -l 2>/dev/null || true; echo "$update_line"; } | crontab -
+      green "Automatic updates enabled (log: $ROOT/backups/update.log)"
+    fi
   fi
 fi
 
