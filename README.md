@@ -943,6 +943,15 @@ docker compose run --rm api java -jar app.jar --import.catalog.path=/data/produc
 
 Running without Docker for faster iteration: `docker compose up -d db mailpit`, then `./mvnw spring-boot:run` in `be/` and `npm run dev` in `fe/`.
 
+Frontend against the real API (`fe/.env.local`): `NEXT_PUBLIC_USE_MOCK=false`, `NEXT_PUBLIC_API_URL=http://localhost:8080/api/v1`, and the same `REVALIDATE_SECRET` as the API (whose `REVALIDATE_URL` is then `http://host.docker.internal:3000/api/revalidate`). With `NEXT_PUBLIC_USE_MOCK=true` the FE reads `product/` through its in-app mock API instead; that covers the public catalog only, not sign-in, inquiries or the admin area. In dev the catalog can also be imported from **Admin → Import** (`POST /api/v1/admin/import`).
+
+```bash
+cd fe
+npm test                                   # Vitest: components, auth store + refresh interceptor, messages, proxy matcher
+npx playwright test                        # E2E catalog pages (mock or real API)
+E2E_API=1 E2E_ADMIN_EMAIL=admin@beestore.vn E2E_ADMIN_PASSWORD=... npx playwright test   # + register/verify/inquiry/admin flow (§15), needs the API and Mailpit
+```
+
 ### 12.6 Production on one Debian server (Cloudflare Tunnel)
 
 The production target is a single shared Debian server (8 cores, 15 GB RAM, other services already running). `docker-compose.prod.yml` runs `db`, `api`, `web` and an internal Caddy `proxy` with hard limits (D-15); TLS ends at Cloudflare and the server opens **no public ports** (D-14).
@@ -1047,7 +1056,7 @@ Flyway migrations run automatically on API startup; migrations must be **backwar
 | Setting | Where | Value |
 |---|---|---|
 | Repository variable `SITE_URL` | Settings → Secrets and variables → Actions → Variables | `https://<domain>`; baked into the web image (`NEXT_PUBLIC_SITE_URL`) |
-| Repository variable `NEXT_PUBLIC_USE_MOCK` | same | `true` until the FE is wired to the API, then `false` |
+| Repository variable `TURNSTILE_SITE_KEY` | same | Cloudflare Turnstile site key, baked into the web image; empty hides the captcha (guest inquiries then fail in production, where `TURNSTILE_SECRET` is required) |
 | GHCR package visibility | Profile → Packages → `beestore-api` / `beestore-web` → Package settings | **Public** (check after the first CD run) |
 
 `GITHUB_TOKEN` (with `packages: write`) pushes the images; no other GitHub secrets are needed. Runtime secrets (`DB_PASSWORD`, `JWT_SECRET`, `MAIL_*`, `TUNNEL_TOKEN`, `TURNSTILE_SECRET`) live only in `/opt/beestore/.env` on the server.
@@ -1133,7 +1142,7 @@ ADMIN_BOOTSTRAP_PASSWORD=change-me
 
 ## 16. Observability & Operations
 
-- **Health:** Spring Boot Actuator `/actuator/health` (liveness/readiness), exposed only internally; the Next.js `/api/health` route is used by the proxy.
+- **Health:** Spring Boot Actuator `/actuator/health` (liveness/readiness), exposed only internally; the Next.js `/api/health` route is used by the `web` container health check (Caddy sends `/api/*` to the API, so it is not reachable from outside).
 - **Logging:** JSON (Logback + `logstash-logback-encoder`), with an MDC `traceId` propagated to responses (`X-Trace-Id`).
 - **Metrics (S):** Actuator + Micrometer Prometheus endpoint; optional Grafana stack, or a lightweight hosted option (Grafana Cloud free tier / Better Stack).
 - **Uptime monitoring:** UptimeRobot / Better Stack on `/` and `/api/v1/actuator/health`.
@@ -1145,28 +1154,35 @@ ADMIN_BOOTSTRAP_PASSWORD=change-me
 
 ## 17. Roadmap
 
-| Phase | Scope | Est. |
-|---|---|---|
-| **0 — Foundation** | Repo structure, Docker Compose, Spring Boot skeleton, Flyway V1, CI pipeline, `.env.example` | 1 week |
-| **1 — Auth** | Register, verify email, login, refresh rotation, logout, forgot/reset password, profile; FE auth pages wired to API (replace mock `useAuthStore`) | 2 weeks |
-| **2 — Catalog** | Categories/products API, search, catalog importer from `product/`, FE pages wired (remove mock data, cart, checkout), i18n vi/en/zh, SEO | 2 weeks |
-| **3 — Engagement** | Inquiry + contact forms, emails/webhooks, My inquiries, wishlist, floating contact button | 1 week |
-| **4 — Admin** | Product/category/image CRUD, inquiry management, user management, audit log | 2 weeks |
-| **5 — Hardening & Launch** | CD to staging/prod, backups, monitoring, security headers, load and ZAP tests, legal pages (Privacy, Terms) | 1 week |
-| **Future** | Google sign-in, product compare, compatibility hints, reviews, online payment (VNPay/MoMo), cart/orders | — |
+| Phase | Scope | Est. | Status (2026-10-20) |
+|---|---|---|---|
+| **0 — Foundation** | Repo structure, Docker Compose, Spring Boot skeleton, Flyway V1, CI pipeline, `.env.example` | 1 week | ✅ |
+| **1 — Auth** | Register, verify email, login, refresh rotation, logout, forgot/reset password, profile; FE auth pages wired to API (replace mock `useAuthStore`) | 2 weeks | ✅ BE + FE |
+| **2 — Catalog** | Categories/products API, search, catalog importer from `product/`, FE pages wired (remove mock data, cart, checkout), i18n vi/en/zh, SEO | 2 weeks | ✅ BE + FE |
+| **3 — Engagement** | Inquiry + contact forms, emails/webhooks, My inquiries, wishlist, floating contact button | 1 week | ✅ BE + FE |
+| **4 — Admin** | Product/category/image CRUD, inquiry management, user management, audit log | 2 weeks | ✅ BE + FE |
+| **5 — Hardening & Launch** | CD to staging/prod, backups, monitoring, security headers, load and ZAP tests, legal pages (Privacy, Terms) | 1 week | 🟡 see below |
+| **Future** | Google sign-in, product compare, compatibility hints, reviews, online payment (VNPay/MoMo), cart/orders | — | — |
+
+Phase 5 status: CD, backups, security headers (Caddy + Next.js CSP), `/api/health`, legal pages in three languages, the k6 load test (`infra/loadtest/catalog.js`, p95 59 ms locally) and a ZAP baseline run (0 FAIL, warnings in §19 D-19) are done; `.github/workflows/release-checks.yml` repeats both against the live site. Still open: uptime monitoring and error tracking need accounts (UptimeRobot / Better Stack, Sentry) and are not wired; the legal texts are drafts that need a legal review before launch.
 
 ### 17.1 Frontend Gap Analysis (current `fe/` vs. this spec)
 
-| Current state | Required change |
+All gaps found in the original analysis are closed (2026-10-20):
+
+| Original state | Change made |
 |---|---|
-| `useAuthStore` uses mock login with a hard-coded demo user | Call the real API; start logged-out; access token in memory only |
-| `apiClient` reads the token from `sessionStorage` | In-memory token + `credentials: 'include'` for `/auth/*` + 401 → refresh → retry interceptor |
-| `cart/`, `checkout/`, `OrderApi`, `CartDrawer` | Remove (or hide behind a feature flag) since there is no payment in v1 |
-| Mock catalog (smartphones, essentials, India addresses) | Replace with hardware catalog API; remove `SmartphoneDeals`, `DailyEssentials`; VND formatting |
-| `Product` type has `rating`, `discountPercentage`, etc. | Align with the API DTO (§7.2): `stockStatus`, `subCategory`, localized `specs`, `images[]` with credits |
-| No i18n | Add `next-intl` with `[locale]` segment |
-| No forgot/reset/verify pages | Add `/auth/forgot-password`, `/auth/reset-password`, `/auth/verify-email` |
-| No inquiry/contact UI | Add inquiry modal, `/contact`, `/account/inquiries` |
+| `useAuthStore` used mock login with a hard-coded demo user | Real `/auth/*` calls; starts logged out; session restored once on load from the refresh cookie (`AuthBootstrap`) |
+| `apiClient` read the token from `sessionStorage` | Token in memory only (`session` in `lib/api/client.ts`), `credentials: 'include'` + `X-Requested-With` for `/auth/*`, one shared refresh for concurrent 401s, then a single retry |
+| `cart/`, `checkout/`, `OrderApi`, `CartDrawer` | Removed |
+| Mock catalog (smartphones, essentials, India addresses) | Hardware catalog from the API (or the `product/` mock), VND formatting |
+| `Product` type had `rating`, `discountPercentage`, etc. | Aligned with the API DTOs (§8.4) |
+| No i18n | `next-intl` with `app/[locale]`, `src/messages/{vi,en,zh}.json`, language switcher, `hreflang`, locale passed to every catalog call |
+| No forgot/reset/verify pages | `/auth/forgot-password`, `/auth/reset-password`, `/auth/verify-email` (also confirms email changes) |
+| No inquiry/contact UI | Quote modal with Turnstile for guests, `/contact`, `/account/inquiries`, wishlist, floating contact button |
+| No account management | `/account` (profile, language, contact channel), `/account/security` (password, email, sign out everywhere, delete account) |
+| No admin UI | `/admin`: dashboard, products (vi/en/zh tabs, spec editor, image upload / reorder / primary / alt / credit), categories, inquiries (status, assignee, notes), users, audit log, import |
+| Client-rendered pages only | Product and category pages are SSR with ISR (300 s) and refreshed on demand via `POST /api/revalidate`; `generateMetadata`, JSON-LD, `sitemap.xml`, `robots.txt` |
 
 ---
 
@@ -1208,10 +1224,18 @@ Decisions taken during the backend gap analysis (2026-10-19) to resolve conflict
 | D-14 | Production runs on one shared Debian server, domain on Cloudflare, no free ports 80/443 guaranteed | Cloudflare Tunnel terminates TLS, with `cloudflared` as a Compose service pointing at `proxy:80`; Caddy is an internal router (also bound to `127.0.0.1:8088` for local checks); real client IP from `CF-Connecting-IP`; mail is excluded from the health check so an SMTP outage cannot take the API down | §4.1, §12.6 |
 | D-15 | The server is shared and should be used sparingly | Hard limits per container (~1.6 GB / 3.25 CPU total), Serial GC, 5 DB connections, small PostgreSQL buffers, log rotation; images stay on the local volume (single instance, so the in-memory rate limiter and schedulers remain correct) | §12.6 |
 | D-16 | One production server, no staging, SSH from GitHub not guaranteed | CD publishes images to GHCR; the server pulls them every 5 minutes (`update.sh`) with health-checked rollback, instead of GitHub SSH-ing in (§13.4). CI runs FE, BE (`mvnw verify`), gitleaks and Trivy; pgjdbc pinned to 42.7.12 for CVE-2026-54291 | §13 |
+| D-17 | `createNextIntlPlugin()` loads `@swc/core` for its message extractor, whose native binding refuses to load on Windows hosts where `C:\` grants write rights to Authenticated Users | `next.config.ts` sets the one thing the plugin adds, the `turbopack.resolveAlias` for `next-intl/config` | §3.2 |
+| D-18 | Next 16.4 drops the backslash in proxy matchers, so `.*\..*` became "any path longer than one character" and only `/` got the locale redirect | Matcher uses `[.]`; `test/i18n/proxy.test.ts` compiles it with Next's own matcher compiler | §6.3 |
+| D-19 | A nonce-based CSP would make every page dynamic and lose ISR | CSP without nonces (`script-src 'self' 'unsafe-inline'` + Turnstile), set in `next.config.ts`. Remaining ZAP baseline warnings accepted: `unsafe-inline`, tokens in emailed links (§6.1), the `NEXT_LOCALE` cookie without HttpOnly (next-intl writes it from the browser; it only holds the language), COEP | SEC-10 |
+| D-20 | The JDK HTTP client asks for an h2c upgrade on plain `http://`, and Node.js drops such requests, so revalidation from the API never reached Next.js | `RevalidationNotifier` forces HTTP/1.1 (`RevalidationNotifierTest`) | §6.7 |
+| D-21 | §6.3 asks for a `middleware.ts` guard that checks the refresh cookie, but that cookie is scoped to `/api/v1/auth` (SEC-04) and never reaches page requests | `/account/**` and `/admin/**` are guarded client-side (`RequireAuth`) after the session restore; the API stays the enforcement point | §6.3 |
+| D-22 | The sitemap was prerendered during `docker build`, when the API is unreachable, and cached without products | `app/sitemap.ts` renders per request; the API data behind it is still cached by `fetch` for 5 minutes | CAT-12 |
 
 ---
 
 ## 20. Backend Traceability Matrix
+
+Frontend update (2026-10-20): FE items below are verified by Vitest (46 tests) and Playwright (18 E2E tests on desktop and mobile Chrome, run against the production web image with the real API and Mailpit). BE re-verified the same day: 81 tests, including `RevalidationNotifierTest`.
 
 Status of the Spring Boot API in `be/` (branch `feat/be-foundation`, 2026-10-19). Verified by `./mvnw verify`: 79 tests (unit + Testcontainers PostgreSQL 16 + GreenMail), Spotless clean, JaCoCo service-package line coverage 86-97% (gate 70%), total 91.4%. A Docker Compose smoke run (image build, CLI import of `product/`, catalog API, admin WebP upload, email via Mailpit) also passed.
 
@@ -1243,7 +1267,7 @@ Legend: ✅ implemented and verified by the listed evidence · 🟡 partial (see
 
 | ID | Status | Evidence / note |
 |---|---|---|
-| CAT-01 | ➖ | FE page; the BE supplies `/categories` and `/products/featured` (`CatalogIT.featuredFallsBackToProductsWithPhotos`) |
+| CAT-01 | ✅ | BE: `CatalogIT.featuredFallsBackToProductsWithPhotos`. FE home page (hero, category tiles, featured rows, contact CTA); E2E `beestore.spec.ts` |
 | CAT-02 | ✅ | `CatalogIT.categoriesComeInMenuOrderWithCounts`, `filtersBySubCategoryBrandAndPrice` |
 | CAT-03 | ✅ | `CatalogIT.listingPagesTwelveByDefault`, `filtersBySubCategoryBrandAndPrice` |
 | CAT-04 | ✅ | `CatalogIT.searchMatchesPrefixesSpecsAndTypos`, `ProductSearchRepositoryTest` (the 250 ms debounce is FE) |
@@ -1253,26 +1277,26 @@ Legend: ✅ implemented and verified by the listed evidence · 🟡 partial (see
 | CAT-08 | ✅ | `stockStatus` in the DTOs and `?stock=` filter (`CatalogIT.filtersBySubCategoryBrandAndPrice`) |
 | CAT-09 | ✅ | `CatalogIT.relatedPrefersTheSameSubCategory` |
 | CAT-10, CAT-11 | ❌ | Could; out of scope |
-| CAT-12 | ➖ | FE (SSR, metadata, sitemap) |
+| CAT-12 | ✅ | FE: SSR + ISR product / category pages, `generateMetadata` with canonical + `hreflang`, Open Graph image, JSON-LD `Product` (no checkout URL), `sitemap.xml`, `robots.txt`; E2E checks `hreflang` and JSON-LD (D-22) |
 
 **ENG**
 
 | ID | Status | Evidence / note |
 |---|---|---|
-| ENG-01 | ✅ | `EngagementIT.loggedInInquiryUsesProfileAndShowsInMyInquiries` (the FE modal is still to build) |
+| ENG-01 | ✅ | `EngagementIT.loggedInInquiryUsesProfileAndShowsInMyInquiries`; FE quote modal (`InquiryDialog`), E2E `account-flow.spec.ts` |
 | ENG-02 | ✅ | `EngagementIT.guestsMustGiveNameEmailAndPhone`, `CaptchaVerifierTest`; 5/hour/IP in `RateLimiterTest` |
 | ENG-03 | 🟡 | Emails verified (`EngagementIT.guestQuoteRequestStoresSnapshotAndNotifiesBothSides`, delivered to GreenMail). The Telegram / Discord webhook is implemented but has no automated test |
 | ENG-04 | ✅ | `EngagementIT.contactFormCreatesAGeneralInquiry` (D-10) |
 | ENG-05 | ✅ | `EngagementIT.loggedInInquiryUsesProfileAndShowsInMyInquiries`, `AdminIT.inquiryWorkflowWithAssignmentAndPrivateNotes` (internal notes hidden from customers) |
 | ENG-06 | ✅ | `EngagementIT.wishlistAddListRemove` |
-| ENG-07 | ➖ | FE |
+| ENG-07 | ✅ | FE `FloatingContact` on every public page |
 | ENG-08 | ❌ | Could; out of scope |
 
 **ADM**
 
 | ID | Status | Evidence / note |
 |---|---|---|
-| ADM-01 | ✅ | `AuthFlowIT.anonymousAndCustomerCannotReachAdminEndpoints` (URL rule + `@PreAuthorize`); the FE `/admin` UI is not built |
+| ADM-01 | ✅ | `AuthFlowIT.anonymousAndCustomerCannotReachAdminEndpoints` (URL rule + `@PreAuthorize`); FE `/admin` behind `RequireAuth role=ADMIN` (D-21), E2E "customers cannot open the admin area" and the admin edit flow |
 | ADM-02 | ✅ | `AdminIT.productLifecycleDraftPublishEditDelete`, `productValidation`, `adminListSearchesAllStatuses` |
 | ADM-03 | ✅ | `AdminIT.imageUploadCreatesWebpVariantsAndCanBeReorderedAndDeleted`, `uploadRejectsFilesThatAreNotImages`, `ImageProcessorTest`; Docker smoke run (D-11) |
 | ADM-04 | ✅ | `AdminIT.categoryAndSubCategoryCrud` |
@@ -1295,18 +1319,19 @@ Legend: ✅ implemented and verified by the listed evidence · 🟡 partial (see
 | SEC-09 | ✅ | Bean Validation on every request DTO; JPA / named parameters only |
 | SEC-11 | ✅ | `ImageProcessorTest`, `AdminIT.uploadRejectsFilesThatAreNotImages`, `LocalStorageServiceTest` |
 | SEC-12 | ✅ | All secrets from environment variables; `.env` git-ignored |
-| SEC-14 | 🟡 | Consent timestamp, anonymization and log hygiene done; **personal-data export on request is not implemented** |
+| SEC-14 | 🟡 | Consent timestamp, anonymization, log hygiene and the privacy policy page (`/privacy`, vi / en / zh) done; **personal-data export on request is not implemented** (the policy asks users to email for a copy) |
 | SEC-15 | ✅ | `@PreAuthorize("hasRole('ADMIN')")` on every admin controller; every admin write is audit-logged |
-| SEC-01, SEC-10, SEC-13 | ➖ | Reverse proxy / CI items (Phase 5) |
+| SEC-01, SEC-10 | ✅ | HSTS and headers at Caddy; CSP, `nosniff`, `frame-ancestors 'none'`, `Referrer-Policy`, `Permissions-Policy` from Next.js; ZAP baseline 2026-10-20: 0 FAIL (D-19) |
+| SEC-13 | ✅ | CI: gitleaks + Trivy (§13) |
 | Logging / traceId | ✅ | `ErrorEnvelopeIT.incomingTraceIdIsPropagated`; JSON logs outside dev |
 | Coverage ≥ 70% | ✅ | JaCoCo `check` in `mvnw verify` |
-| Performance p95 < 300 ms | ❌ | Not measured yet (k6 is planned before release, §15) |
+| Performance p95 < 300 ms | ✅ | k6 `infra/loadtest/catalog.js`, 50 VUs, local Docker run 2026-10-20: p95 59 ms, 0 % errors (rate limit disabled for the run); repeat against production with `release-checks.yml` |
 
 **Open items found during implementation**
 
 1. `STORAGE_DRIVER=s3` (R2 / MinIO) is not implemented; the API refuses to start with it. Only the local volume driver exists.
-2. The Next.js on-demand revalidation endpoint (`POST /api/revalidate`) does not exist in `fe/` yet; the BE calls it only when `REVALIDATE_URL` and `REVALIDATE_SECRET` are set.
-3. The FE still uses its mock API and mock auth. Switching to the BE needs `NEXT_PUBLIC_USE_MOCK=false`, the refresh-token client from §6.3, and `next.config` allowing images from `PUBLIC_ASSET_BASE_URL`.
-4. The FE has no `/auth/verify-email` and `/auth/reset-password` pages yet, although the emails link to them.
+2. ~~The Next.js on-demand revalidation endpoint does not exist~~: `fe/src/app/api/revalidate/route.ts` (2026-10-20); production sets `REVALIDATE_URL=http://web:3000/api/revalidate` (D-20).
+3. ~~The FE still uses its mock API and mock auth~~: wired to the API with the §6.3 refresh client; images from `PUBLIC_ASSET_BASE_URL` are served as-is (already WebP variants) instead of through `next/image` optimization.
+4. ~~No `/auth/verify-email` and `/auth/reset-password` pages~~: added; the unprefixed links in emails are redirected to the visitor's locale (D-18).
 5. The OpenAPI snapshot test ("BE contract" in §15) and the CI workflows (§13) are not set up.
 6. In production `TURNSTILE_SECRET` is mandatory: guest inquiries fail closed without it.
