@@ -150,7 +150,18 @@ class AdminIT extends IntegrationTest {
 
     @Test
     void imageUploadCreatesWebpVariantsAndCanBeReorderedAndDeleted() throws Exception {
-        String id = jdbc.queryForObject("select id::text from products where slug = 'cooler-aio-360-1p'", String.class);
+        // A product of its own: every seeded product has photos, and the catalog tests share this database.
+        String slug = "image-test-" + System.nanoTime();
+        String id = JsonPath.read(
+                mvc.perform(post("/api/v1/admin/products")
+                                .header("Authorization", admin.bearer())
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(productJson(slug, "PUBLISHED", 1_000_000L)))
+                        .andExpect(status().isCreated())
+                        .andReturn()
+                        .getResponse()
+                        .getContentAsString(),
+                "$.data.id");
 
         MockMultipartFile png = new MockMultipartFile("file", "photo.png", "image/png", png(2000, 1000));
         String body = mvc.perform(multipart("/api/v1/admin/products/" + id + "/images")
@@ -171,7 +182,7 @@ class AdminIT extends IntegrationTest {
         mvc.perform(get(path.replace("-1600.webp", "-800.webp"))).andExpect(status().isOk());
 
         // Public catalog now shows the photo with its alt text.
-        mvc.perform(get("/api/v1/products/cooler-aio-360-1p"))
+        mvc.perform(get("/api/v1/products/" + slug))
                 .andExpect(jsonPath("$.data.images", hasSize(1)))
                 .andExpect(jsonPath("$.data.images[0].alt").value("Tản nhiệt AIO 360"))
                 .andExpect(jsonPath("$.data.imageCredits").value("Ảnh: Bee Store"));
@@ -199,6 +210,8 @@ class AdminIT extends IntegrationTest {
         mvc.perform(get(path)).andExpect(status().isNotFound());
         mvc.perform(delete("/api/v1/admin/products/" + id + "/images/" + second)
                         .header("Authorization", admin.bearer()))
+                .andExpect(status().isNoContent());
+        mvc.perform(delete("/api/v1/admin/products/" + id).header("Authorization", admin.bearer()))
                 .andExpect(status().isNoContent());
     }
 
