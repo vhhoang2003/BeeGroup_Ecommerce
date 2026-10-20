@@ -11,6 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   contents: read
   packages: write
 
@@ -19,17 +20,52 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Only rebuild the images whose sources changed since the last successful CD run. The server pulls :main, so an
+  # image that is skipped keeps serving the previous :main, which is still current. workflow_run has no `paths:`
+  # filter, hence the manual diff; a manual dispatch (or no earlier successful run) rebuilds both.
+  changes:
+    name: Detect changed images
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.diff.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 0
+
+      - id: diff
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+        run: |
+          base=""
+          if [ "$GITHUB_EVENT_NAME" = workflow_run ]; then
+            base=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow cd.yml --branch main --status success               --limit 1 --json headSha --jq '.[0].headSha // empty')
+          fi
+          api=true web=true
+          if [ -n "$base" ] && git cat-file -e "$base^{commit}" 2>/dev/null; then
+            files=$(git diff --name-only "$base" "$HEAD_SHA")
+            echo "Changed since $base:"; echo "$files"
+            # Build args and image settings live in this workflow, so a change to it rebuilds both.
+            if ! grep -q '^\.github/workflows/cd\.yml$' <<<"$files"; then
+              grep -q '^be/' <<<"$files" || api=false
+              grep -q '^fe/' <<<"$files" || web=false
+            fi
+          fi
+          matrix=$(jq -cn --argjson api "$api" --argjson web "$web"             '[if $api then {name: "api", context: "be"} else empty end, if $web then {name: "web", context: "fe"} else empty end]')
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          echo "Images to build: $matrix"
+
   publish:
     name: Build and push images
-    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    needs: changes
+    if: needs.changes.outputs.matrix != '[]'
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        include:
-          - name: api
-            context: be
-          - name: web
-            context: fe
+        include: ${{ fromJSON(needs.changes.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v7
         with:

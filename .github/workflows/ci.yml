@@ -97,7 +97,19 @@ jobs:
       # Pinned scanner images instead of third-party actions (an action tag used here was withdrawn upstream).
       - name: Secret scan (gitleaks)
         run: docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:v8.21.2 git /repo --no-banner --redact
+      # Trivy's vulnerability DB is republished every ~6 hours; keying the cache on that window avoids downloading it
+      # on every run while keeping it fresh.
+      - name: Trivy DB cache window
+        id: trivy-window
+        run: echo "key=$(date -u +%Y%m%d)-$(( $(date -u +%-H) / 6 ))" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/trivy
+          key: trivy-db-${{ steps.trivy-window.outputs.key }}
+          restore-keys: trivy-db-
       - name: Dependency scan (Trivy, HIGH/CRITICAL with a fix available)
         run: >
-          docker run --rm -v "$PWD:/repo" aquasec/trivy:0.57.1
+          mkdir -p ~/.cache/trivy &&
+          docker run --rm --user "$(id -u):$(id -g)" -v "$PWD:/repo" -v "$HOME/.cache/trivy:/cache"
+          aquasec/trivy:0.57.1 --cache-dir /cache
           fs /repo --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 --quiet
