@@ -128,7 +128,8 @@
         "Warranty": "12 months"
       },
       "notes": [
-        "Brand, pump and fan specifications are not identified – fill in from the supplier's spec sheet before publishing."
+        "Brand, pump and fan specifications are not identified – fill in from the supplier's spec sheet before publishing.",
+        "Illustration only; the actual product may differ in colour and design."
       ]
     },
     "vi": {
@@ -155,7 +156,8 @@
         "Bảo hành": "12 tháng"
       },
       "notes": [
-        "Chưa xác định được thương hiệu, thông số bơm và quạt – cần bổ sung từ tài liệu của nhà cung cấp trước khi đăng bán."
+        "Chưa xác định được thương hiệu, thông số bơm và quạt – cần bổ sung từ tài liệu của nhà cung cấp trước khi đăng bán.",
+        "Ảnh minh hoạ; sản phẩm thực tế có thể khác về màu sắc và kiểu dáng."
       ]
     },
     "zh": {
@@ -182,9 +184,14 @@
         "保修": "12 个月"
       },
       "notes": [
-        "品牌、水泵和风扇参数尚未确认，发布前请根据供应商规格书补充。"
+        "品牌、水泵和风扇参数尚未确认，发布前请根据供应商规格书补充。",
+        "图片仅供参考，实物颜色与外观可能有所不同。"
       ]
     }
   },
-  "sources": []
+  "sources": [],
+  "image": "images/01-illustration.jpg",
+  "images": [
+    "images/01-illustration.jpg"
+  ]
 }
