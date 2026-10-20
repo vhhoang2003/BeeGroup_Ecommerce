@@ -1,10 +1,13 @@
 package vn.beestore.api.admin.service;
 
+import java.net.http.HttpClient;
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
@@ -30,7 +33,13 @@ public class RevalidationNotifier {
     private final String secret;
 
     public RevalidationNotifier(RestClient.Builder builder, AppProperties props) {
-        this.http = builder.build();
+        // HTTP/1.1 only: the JDK client's default h2c upgrade on plain http makes the Node.js server drop the request.
+        HttpClient client = HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_1_1)
+                .connectTimeout(Duration.ofSeconds(5))
+                .build();
+        this.http =
+                builder.requestFactory(new JdkClientHttpRequestFactory(client)).build();
         this.url = props.revalidate() == null ? null : props.revalidate().url();
         this.secret = props.revalidate() == null ? null : props.revalidate().secret();
     }
