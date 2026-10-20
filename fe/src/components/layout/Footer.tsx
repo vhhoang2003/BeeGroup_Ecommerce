@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { useTranslations } from 'next-intl';
-import { Phone, MessageCircle, Mail, MapPin } from 'lucide-react';
+import { Phone, MessageCircle, Mail, MapPin, Truck } from 'lucide-react';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import { Link } from '@/i18n/navigation';
 import { useCategories } from '@/features/catalog/hooks';
 import { siteConfig } from '@/config/site';
@@ -53,6 +54,14 @@ export default function Footer() {
               </div>
 
               <div className="flex items-center gap-2.5 text-white/90">
+                <WhatsAppIcon className="w-4 h-4 text-white shrink-0" />
+                <span>WhatsApp:</span>
+                <a href={contact.whatsappHref} target="_blank" rel="noreferrer" className="font-medium hover:underline text-white">
+                  {contact.hotline}
+                </a>
+              </div>
+
+              <div className="flex items-center gap-2.5 text-white/90">
                 <Mail className="w-4 h-4 text-white shrink-0" />
                 <span>Email:</span>
                 <a href={`mailto:${contact.email}`} className="font-medium hover:underline text-white">
@@ -63,6 +72,11 @@ export default function Footer() {
               <div className="flex items-center gap-2.5 text-white/90">
                 <MapPin className="w-4 h-4 text-white shrink-0" />
                 <span>{tSite('address')}</span>
+              </div>
+
+              <div className="flex items-start gap-2.5 text-white">
+                <Truck className="w-4 h-4 text-white shrink-0 mt-0.5" />
+                <span className="font-medium">{tSite('delivery')}</span>
               </div>
             </div>
           </div>

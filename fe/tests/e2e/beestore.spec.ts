@@ -8,7 +8,7 @@ test.describe('Bee Store catalog', () => {
     await page.goto('/');
     await expect(page).toHaveURL(/\/vi$/);
 
-    await expect(page.getByText('Chào mừng đến Bee Store')).toBeVisible();
+    await expect(page.getByText('Giao hàng tới khắp châu Á – Thái Bình Dương trong 15–20 ngày').first()).toBeVisible();
     await expect(page.getByText('CPU SERVER EPYC.')).toBeVisible();
     await expect(page.getByText('nổi bật').first()).toBeVisible();
     await expect(page.getByText('AMD EPYC 7402').first()).toBeVisible();
@@ -19,7 +19,7 @@ test.describe('Bee Store catalog', () => {
     const page = await context.newPage();
     await page.goto('/');
     await expect(page).toHaveURL(/\/zh$/);
-    await expect(page.getByText('欢迎来到 Bee Store')).toBeVisible();
+    await expect(page.getByText('亚太全区配送 · 15–20 天送达').first()).toBeVisible();
     await context.close();
   });
 

@@ -2,8 +2,9 @@
   "site": {
     "title": "CPU AMD EPYC, mainboard SP3, GPU & tản nhiệt server",
     "tagline": "Linh kiện server & workstation: CPU AMD EPYC, GPU, mainboard, tản nhiệt",
-    "description": "Bee Store cung cấp CPU AMD EPYC, GPU NVIDIA Tesla, mainboard SP3 và tản nhiệt cho home lab, máy chủ ảo hoá và workstation. Báo giá nhanh qua hotline, Zalo hoặc email.",
-    "welcome": "Chào mừng đến {name}: linh kiện server & workstation",
+    "description": "Bee Store chuyên CPU AMD EPYC, GPU NVIDIA Tesla, mainboard SP3 và tản nhiệt cho home lab, máy chủ ảo hoá và workstation. Giao hàng tới khắp châu Á – Thái Bình Dương, báo giá nhanh qua hotline, Zalo, WhatsApp hoặc email.",
+    "delivery": "Giao hàng tới khắp các khu vực châu Á – Thái Bình Dương, chỉ 15–20 ngày kể từ khi nhận đơn",
+    "deliveryShort": "Giao hàng tới khắp châu Á – Thái Bình Dương trong 15–20 ngày",
     "address": "TP. Hồ Chí Minh, Việt Nam"
   },
   "nav": {
@@ -81,19 +82,19 @@
     "zen2": {
       "subtitle": "AMD EPYC 7002 · Rome · Zen 2",
       "title": "CPU SERVER EPYC.",
-      "description": "Từ 8 tới 64 nhân, 128 lane PCIe 4.0, RAM DDR4 8 kênh. Hợp cho home lab, NAS và ảo hoá.",
+      "description": "Từ 8 đến 64 nhân, 128 lane PCIe 4.0 và RAM DDR4 8 kênh – lựa chọn lý tưởng cho home lab, NAS và hệ thống ảo hoá.",
       "cta": "Xem dòng Zen 2"
     },
     "zen3": {
       "subtitle": "AMD EPYC 7003 · Milan · Zen 3",
       "title": "HIỆU NĂNG ZEN 3.",
-      "description": "EPYC 7663, 7B13, 7V13, 7V73X: nhiều nhân, cache lớn, chạy trên mainboard SP3.",
+      "description": "EPYC 7663, 7B13, 7V13 và 7V73X: nhiều nhân, bộ nhớ đệm lớn, tương thích mainboard SP3.",
       "cta": "Xem dòng Zen 3"
     },
     "platform": {
       "subtitle": "Mainboard · GPU · Tản nhiệt",
       "title": "TRỌN BỘ NỀN TẢNG.",
-      "description": "Mainboard SP3 1P/2P, GPU NVIDIA Tesla A2 và tản nhiệt AIO / khí cho EPYC.",
+      "description": "Mainboard SP3 1P/2P, GPU NVIDIA Tesla A2 cùng tản nhiệt AIO và tản khí dành riêng cho EPYC.",
       "cta": "Xem tất cả sản phẩm"
     },
     "goTo": "Slide {n}",
@@ -151,7 +152,7 @@
     "trustCheckedSub": "Trước khi giao",
     "trustAdvice": "Tư vấn",
     "trustAdviceSub": "Chọn cấu hình",
-    "priceNote": "Giá tham khảo. Liên hệ để nhận báo giá theo số lượng và tình trạng hàng.",
+    "priceNote": "Giá tham khảo. Liên hệ để nhận báo giá chính xác theo số lượng và tình trạng hàng.",
     "requestQuote": "Yêu cầu báo giá",
     "save": "Lưu sản phẩm",
     "saved": "Đã lưu",
@@ -186,7 +187,7 @@
     "summary": "Tóm tắt đơn hàng",
     "items": "Tạm tính ({count} sản phẩm)",
     "shipping": "Phí vận chuyển",
-    "shippingLater": "Tính sau",
+    "shippingLater": "Báo khi xác nhận đơn",
     "subtotal": "Tổng cộng",
     "unpricedNote": "Một số sản phẩm chưa có giá niêm yết và chưa được cộng vào tổng; chúng tôi sẽ báo giá riêng.",
     "unpricedShort": "chưa gồm sản phẩm liên hệ giá",
@@ -200,7 +201,7 @@
     "phone": "Số điện thoại",
     "email": "Email",
     "address": "Địa chỉ",
-    "city": "Tỉnh / Thành phố",
+    "city": "Tỉnh / Thành phố, Quốc gia",
     "note": "Ghi chú",
     "noteOptional": "Ghi chú (không bắt buộc)",
     "notePlaceholder": "Thời gian nhận hàng, yêu cầu xuất hoá đơn…",
@@ -226,7 +227,7 @@
   },
   "contactCta": {
     "title": "Cần tư vấn cấu hình hoặc báo giá?",
-    "body": "Đội ngũ {name} giúp bạn chọn CPU, mainboard và tản nhiệt phù hợp cho home lab, ảo hoá hay render. Liên hệ để nhận báo giá tốt nhất.",
+    "body": "Đội ngũ {name} sẵn sàng tư vấn CPU, mainboard và tản nhiệt phù hợp cho home lab, ảo hoá hay render. Liên hệ ngay để nhận báo giá tốt nhất.",
     "zalo": "Chat Zalo",
     "email": "Gửi email",
     "sendMessage": "Gửi tin nhắn"
@@ -241,7 +242,7 @@
     "email": "Email",
     "quantity": "Số lượng",
     "phone": "Số điện thoại",
-    "phoneHint": "VD: 0901 234 567",
+    "phoneHint": "VD: 0901 234 567 hoặc +65 9123 4567",
     "preferredContact": "Kênh liên hệ ưu tiên",
     "message": "Lời nhắn",
     "messagePlaceholder": "Cấu hình dự kiến, thời gian cần hàng, yêu cầu xuất hoá đơn…",
@@ -254,10 +255,10 @@
   },
   "contact": {
     "title": "Liên hệ",
-    "subtitle": "Gửi câu hỏi về sản phẩm, cấu hình hay đơn hàng số lượng lớn. Chúng tôi phản hồi trong 24 giờ làm việc.",
+    "subtitle": "Gửi câu hỏi về sản phẩm, cấu hình hay đơn hàng số lượng lớn – chúng tôi phản hồi trong vòng 24 giờ làm việc.",
     "hotline": "Hotline",
     "address": "Địa chỉ",
-    "hours": "Giờ làm việc: 8:30 – 18:00, thứ Hai đến thứ Bảy.",
+    "hours": "Giờ làm việc: 8:30 – 18:00, thứ Hai đến thứ Bảy (giờ Việt Nam, GMT+7).",
     "phoneOptional": "Số điện thoại (không bắt buộc)",
     "subject": "Tiêu đề",
     "message": "Nội dung",
@@ -285,7 +286,7 @@
     "registerTitle": "Tạo tài khoản",
     "registerSubtitle": "Tham gia Bee Store để gửi yêu cầu báo giá và theo dõi trạng thái",
     "phoneOptional": "Số điện thoại (không bắt buộc)",
-    "phoneHint": "VD: 0901 234 567",
+    "phoneHint": "VD: 0901 234 567 hoặc +65 9123 4567",
     "passwordHint": "8–72 ký tự, có ít nhất 1 chữ cái và 1 chữ số.",
     "passwordConfirmation": "Nhập lại mật khẩu",
     "acceptTerms": "Tôi đồng ý với <terms>Điều khoản sử dụng</terms> và <privacy>Chính sách bảo mật</privacy>.",
@@ -333,7 +334,7 @@
     "email": "Email",
     "emailHint": "Đổi email trong mục Bảo mật.",
     "phone": "Số điện thoại",
-    "phoneHint": "VD: 0901 234 567. Để trống để xoá.",
+    "phoneHint": "VD: 0901 234 567 hoặc +65 9123 4567. Để trống nếu muốn xoá.",
     "preferredLocale": "Ngôn ngữ",
     "preferredContact": "Kênh liên hệ ưu tiên",
     "noPreference": "Không chọn",
@@ -455,7 +456,7 @@
         {
           "title": "Liên hệ",
           "paragraphs": [
-            "Mọi câu hỏi về chính sách này, vui lòng gửi về sales@beegroupnas.com hoặc hotline 036 6789 371."
+            "Mọi câu hỏi về chính sách này, vui lòng gửi về sales@beegroupnas.com hoặc hotline / WhatsApp +84 36 6789 371."
           ]
         }
       ]

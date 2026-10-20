@@ -40,6 +40,7 @@ export default function CheckoutView() {
   const t = useTranslations('checkout');
   const tCart = useTranslations('cart');
   const tCommon = useTranslations('common');
+  const tSite = useTranslations('site');
   const tInq = useTranslations('inquiry');
   const tv = useTranslations('validation');
   const errorMessage = useErrorMessage();
@@ -246,6 +247,10 @@ export default function CheckoutView() {
             <span className="text-2xl font-black text-[#222222]">{formatPrice(totals.subtotal)}</span>
           </div>
           {totals.hasUnpriced && <p className="text-xs text-amber-700">{tCart('unpricedNote')}</p>}
+          <p className="flex items-start gap-1.5 text-xs text-[#008ECC] font-medium">
+            <Truck className="w-4 h-4 shrink-0" />
+            {tSite('delivery')}
+          </p>
 
           {/* Pay stays disabled until online payment is integrated. */}
           <div>

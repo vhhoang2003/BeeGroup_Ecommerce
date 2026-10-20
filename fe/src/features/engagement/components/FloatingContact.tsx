@@ -5,8 +5,9 @@ import { useTranslations } from 'next-intl';
 import { Headset, MessageCircle, MessagesSquare, Phone, X } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { usePathname } from '@/i18n/navigation';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 
-/** Floating Zalo / Messenger / phone shortcuts on every public page (ENG-07). */
+/** Floating WhatsApp / Zalo / Messenger / phone shortcuts on every public page (ENG-07). */
 export default function FloatingContact() {
   const t = useTranslations('floating');
   const pathname = usePathname();
@@ -16,6 +17,7 @@ export default function FloatingContact() {
   if (pathname.startsWith('/admin')) return null;
 
   const items = [
+    { href: contact.whatsappHref, label: 'WhatsApp', icon: WhatsAppIcon, external: true, color: 'bg-[#25D366]' },
     { href: contact.zaloHref, label: 'Zalo', icon: MessageCircle, external: true, color: 'bg-[#0068FF]' },
     { href: contact.messengerHref, label: 'Messenger', icon: MessagesSquare, external: true, color: 'bg-[#0084FF]' },
     { href: contact.hotlineHref, label: contact.hotline, icon: Phone, external: false, color: 'bg-emerald-600' },

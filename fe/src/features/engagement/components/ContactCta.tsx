@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 import { Mail, MessageCircle, Phone } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import { Link } from '@/i18n/navigation';
 
 /** "Contact us" call to action (CAT-01 / ENG-04). */
@@ -41,6 +42,15 @@ export function ContactButtons({ subject }: { subject?: string }) {
       >
         <MessageCircle className="w-4 h-4" />
         {t('zalo')}
+      </a>
+      <a
+        href={contact.whatsappHref}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-2 bg-white border border-[#25D366] text-[#128C7E] hover:bg-[#25D366] hover:text-white text-[14px] font-semibold px-5 py-2.5 rounded-full transition-colors"
+      >
+        <WhatsAppIcon className="w-4 h-4" />
+        WhatsApp
       </a>
       {subject ? (
         <a

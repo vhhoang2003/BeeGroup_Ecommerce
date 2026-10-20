@@ -1,7 +1,8 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Mail, MapPin, MessageCircle, MessagesSquare, Phone } from 'lucide-react';
+import { Mail, MapPin, MessageCircle, MessagesSquare, Phone, Truck } from 'lucide-react';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import ContactForm from '@/features/engagement/components/ContactForm';
 import { siteConfig } from '@/config/site';
 import { alternates } from '@/lib/seo';
@@ -23,6 +24,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
 
   const channels = [
     { icon: Phone, label: t('hotline'), value: contact.hotline, href: contact.hotlineHref },
+    { icon: WhatsAppIcon, label: 'WhatsApp', value: contact.hotline, href: contact.whatsappHref, external: true },
     { icon: MessageCircle, label: 'Zalo', value: contact.hotline, href: contact.zaloHref, external: true },
     { icon: MessagesSquare, label: 'Messenger', value: 'm.me/beestore', href: contact.messengerHref, external: true },
     { icon: Mail, label: 'Email', value: contact.email, href: `mailto:${contact.email}` },
@@ -57,6 +59,10 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
               </span>
             </a>
           ))}
+          <p className="flex items-start gap-2 text-sm font-medium text-[#222222] px-1">
+            <Truck className="w-4 h-4 text-[#008ECC] shrink-0 mt-0.5" />
+            {tSite('delivery')}
+          </p>
           <p className="text-xs text-gray-500 px-1">{t('hours')}</p>
         </aside>
       </div>

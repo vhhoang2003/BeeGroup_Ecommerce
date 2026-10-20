@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { BadgeCheck, ExternalLink, Headset, ShieldCheck } from 'lucide-react';
+import { BadgeCheck, ExternalLink, Headset, ShieldCheck, Truck } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { fetchProduct, fetchRelated } from '@/lib/api/server';
 import { alternates, localizedPath, OG_LOCALES } from '@/lib/seo';
@@ -76,11 +76,12 @@ export default async function ProductDetailPage({ params }: Props) {
   const product = await fetchProduct(slug, locale as Locale);
   if (!product) notFound();
 
-  const [related, t, tNav, tCommon] = await Promise.all([
+  const [related, t, tNav, tCommon, tSite] = await Promise.all([
     fetchRelated(product.slug, locale as Locale).catch(() => []),
     getTranslations('product'),
     getTranslations('nav'),
     getTranslations('common'),
+    getTranslations('site'),
   ]);
 
   const trust = [
@@ -158,6 +159,10 @@ export default async function ProductDetailPage({ params }: Props) {
               {formatPrice(product.price) ?? tCommon('contactForPrice')}
             </span>
             <p className="text-xs text-gray-500 mt-1">{t('priceNote')}</p>
+            <p className="flex items-center gap-1.5 text-xs font-semibold text-[#008ECC] mt-2">
+              <Truck className="w-4 h-4 shrink-0" />
+              {tSite('delivery')}
+            </p>
           </div>
 
           {/* Quote request, wishlist and direct channels (ENG-01, ENG-06) */}

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useTranslations } from 'next-intl';
-import { ArrowRight, ShoppingCart, Trash2 } from 'lucide-react';
+import { ArrowRight, ShoppingCart, Trash2, Truck } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { Spinner } from '@/components/ui/form';
 import { formatPrice } from '@/lib/utils';
@@ -14,6 +14,7 @@ import CartLineThumb from './CartLineThumb';
 export default function CartView() {
   const t = useTranslations('cart');
   const tCommon = useTranslations('common');
+  const tSite = useTranslations('site');
   const { items, setQuantity, remove, clear } = useCartStore();
   const hydrated = useHydrated();
   const totals = cartTotals(items);
@@ -105,6 +106,10 @@ export default function CartView() {
             <span className="text-2xl font-black text-[#222222]">{formatPrice(totals.subtotal)}</span>
           </div>
           {totals.hasUnpriced && <p className="text-xs text-amber-700">{t('unpricedNote')}</p>}
+          <p className="flex items-start gap-1.5 text-xs text-[#008ECC] font-medium">
+            <Truck className="w-4 h-4 shrink-0" />
+            {tSite('delivery')}
+          </p>
           <Link
             href="/checkout"
             className="w-full inline-flex items-center justify-center gap-2 bg-[#008ECC] hover:bg-[#0077b0] text-white py-3 rounded-xl font-bold text-sm"

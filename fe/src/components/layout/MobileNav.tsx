@@ -9,6 +9,7 @@ import CategoryIcon from '@/features/catalog/components/CategoryIcon';
 import Logo from '@/components/ui/Logo';
 import { Link } from '@/i18n/navigation';
 import { siteConfig } from '@/config/site';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import LanguageSwitcher from './LanguageSwitcher';
 
 interface MobileNavProps {
@@ -140,6 +141,15 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
           >
             <MessageCircle className="w-4 h-4 text-[#008ECC]" />
             <span>{t('chatZalo')}</span>
+          </a>
+          <a
+            href={siteConfig.contact.whatsappHref}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 hover:text-[#008ECC]"
+          >
+            <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+            <span>WhatsApp</span>
           </a>
         </div>
       </div>

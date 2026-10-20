@@ -2,8 +2,9 @@
   "site": {
     "title": "AMD EPYC CPUs, SP3 mainboards, GPUs & server cooling",
     "tagline": "Server & workstation parts: AMD EPYC CPUs, GPUs, mainboards, cooling",
-    "description": "Bee Store supplies AMD EPYC CPUs, NVIDIA Tesla GPUs, SP3 mainboards and cooling for home labs, virtualization servers and workstations. Fast quotes by hotline, Zalo or email.",
-    "welcome": "Welcome to {name}: server & workstation parts",
+    "description": "Bee Store specialises in AMD EPYC CPUs, NVIDIA Tesla GPUs, SP3 mainboards and cooling for home labs, virtualization servers and workstations. Delivery across Asia-Pacific, with fast quotes by phone, Zalo, WhatsApp or email.",
+    "delivery": "Delivered anywhere in the Asia-Pacific region within 15–20 days of receiving your order",
+    "deliveryShort": "Delivery across Asia-Pacific in 15–20 days",
     "address": "Ho Chi Minh City, Vietnam"
   },
   "nav": {
@@ -81,19 +82,19 @@
     "zen2": {
       "subtitle": "AMD EPYC 7002 · Rome · Zen 2",
       "title": "EPYC SERVER CPUS.",
-      "description": "8 to 64 cores, 128 PCIe 4.0 lanes, 8-channel DDR4. Great for home labs, NAS and virtualization.",
+      "description": "8 to 64 cores, 128 PCIe 4.0 lanes and 8-channel DDR4 – a great fit for home labs, NAS and virtualization.",
       "cta": "Browse Zen 2"
     },
     "zen3": {
       "subtitle": "AMD EPYC 7003 · Milan · Zen 3",
       "title": "ZEN 3 PERFORMANCE.",
-      "description": "EPYC 7663, 7B13, 7V13, 7V73X: many cores and large caches on SP3 mainboards.",
+      "description": "EPYC 7663, 7B13, 7V13 and 7V73X: high core counts and large caches, all on SP3 mainboards.",
       "cta": "Browse Zen 3"
     },
     "platform": {
       "subtitle": "Mainboards · GPUs · Cooling",
       "title": "THE WHOLE PLATFORM.",
-      "description": "1P/2P SP3 mainboards, NVIDIA Tesla A2 GPUs and AIO / air coolers for EPYC.",
+      "description": "1P/2P SP3 mainboards, NVIDIA Tesla A2 GPUs, plus AIO and air coolers built for EPYC.",
       "cta": "Browse all products"
     },
     "goTo": "Slide {n}",
@@ -151,7 +152,7 @@
     "trustCheckedSub": "Before delivery",
     "trustAdvice": "Advice",
     "trustAdviceSub": "On your build",
-    "priceNote": "Reference price. Contact us for a quote based on quantity and availability.",
+    "priceNote": "Reference price. Contact us for an exact quote based on quantity and availability.",
     "requestQuote": "Request a quote",
     "save": "Save product",
     "saved": "Saved",
@@ -186,7 +187,7 @@
     "summary": "Order summary",
     "items": "Subtotal ({count, plural, one {# item} other {# items}})",
     "shipping": "Shipping",
-    "shippingLater": "Calculated later",
+    "shippingLater": "Confirmed with your order",
     "subtotal": "Total",
     "unpricedNote": "Some products have no listed price and are not in the total; we will quote them separately.",
     "unpricedShort": "excluding products priced on request",
@@ -200,7 +201,7 @@
     "phone": "Phone number",
     "email": "Email",
     "address": "Address",
-    "city": "Province / City",
+    "city": "City / Province, Country",
     "note": "Note",
     "noteOptional": "Note (optional)",
     "notePlaceholder": "Delivery time, invoice details…",
@@ -226,7 +227,7 @@
   },
   "contactCta": {
     "title": "Need advice on a build or a quote?",
-    "body": "The {name} team helps you pick the right CPU, mainboard and cooling for home labs, virtualization or rendering. Get in touch for the best price.",
+    "body": "The {name} team will help you choose the right CPU, mainboard and cooling for home labs, virtualization or rendering. Get in touch for the best price.",
     "zalo": "Chat on Zalo",
     "email": "Send email",
     "sendMessage": "Send a message"
@@ -241,7 +242,7 @@
     "email": "Email",
     "quantity": "Quantity",
     "phone": "Phone number",
-    "phoneHint": "e.g. 0901 234 567 or +84 901 234 567",
+    "phoneHint": "e.g. +65 9123 4567 or 0901 234 567",
     "preferredContact": "Preferred contact channel",
     "message": "Message",
     "messagePlaceholder": "Planned build, when you need it, invoice requirements…",
@@ -254,10 +255,10 @@
   },
   "contact": {
     "title": "Contact us",
-    "subtitle": "Ask about products, builds or volume orders. We reply within 24 working hours.",
+    "subtitle": "Ask about products, builds or volume orders – we reply within 24 working hours.",
     "hotline": "Hotline",
     "address": "Address",
-    "hours": "Opening hours: 8:30 – 18:00, Monday to Saturday (ICT).",
+    "hours": "Opening hours: 8:30 – 18:00, Monday to Saturday (Vietnam time, GMT+7).",
     "phoneOptional": "Phone number (optional)",
     "subject": "Subject",
     "message": "Message",
@@ -285,7 +286,7 @@
     "registerTitle": "Create account",
     "registerSubtitle": "Join Bee Store to request quotes and follow their status",
     "phoneOptional": "Phone number (optional)",
-    "phoneHint": "e.g. 0901 234 567 or +84 901 234 567",
+    "phoneHint": "e.g. +65 9123 4567 or 0901 234 567",
     "passwordHint": "8–72 characters with at least one letter and one digit.",
     "passwordConfirmation": "Confirm password",
     "acceptTerms": "I agree to the <terms>Terms of use</terms> and the <privacy>Privacy policy</privacy>.",
@@ -333,7 +334,7 @@
     "email": "Email",
     "emailHint": "Change your email under Security.",
     "phone": "Phone number",
-    "phoneHint": "e.g. 0901 234 567. Leave empty to remove it.",
+    "phoneHint": "e.g. +65 9123 4567 or 0901 234 567. Leave empty to remove it.",
     "preferredLocale": "Language",
     "preferredContact": "Preferred contact channel",
     "noPreference": "No preference",
@@ -455,7 +456,7 @@
         {
           "title": "Contact",
           "paragraphs": [
-            "Questions about this policy: sales@beegroupnas.com or hotline +84 366 789 371."
+            "Questions about this policy: sales@beegroupnas.com or hotline / WhatsApp +84 36 6789 371."
           ]
         }
       ]

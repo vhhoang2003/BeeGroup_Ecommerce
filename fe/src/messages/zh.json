@@ -2,8 +2,9 @@
   "site": {
     "title": "AMD EPYC 处理器、SP3 主板、GPU 与服务器散热",
     "tagline": "服务器与工作站配件：AMD EPYC 处理器、GPU、主板、散热器",
-    "description": "Bee Store 提供 AMD EPYC 处理器、NVIDIA Tesla GPU、SP3 主板及散热器，适用于家庭实验室、虚拟化服务器和工作站。可通过热线、Zalo 或邮件快速询价。",
-    "welcome": "欢迎来到 {name}：服务器与工作站配件",
+    "description": "Bee Store 专营 AMD EPYC 处理器、NVIDIA Tesla GPU、SP3 主板及散热器，适用于家庭实验室、虚拟化服务器和工作站。配送覆盖亚太全区，可通过热线、Zalo、WhatsApp 或邮件快速询价。",
+    "delivery": "配送覆盖亚太全区，收到订单后 15–20 天送达",
+    "deliveryShort": "亚太全区配送 · 15–20 天送达",
     "address": "越南胡志明市"
   },
   "nav": {
@@ -81,19 +82,19 @@
     "zen2": {
       "subtitle": "AMD EPYC 7002 · Rome · Zen 2",
       "title": "EPYC 服务器处理器。",
-      "description": "8 至 64 核，128 条 PCIe 4.0 通道，8 通道 DDR4 内存。适合家庭实验室、NAS 和虚拟化。",
+      "description": "8 至 64 核、128 条 PCIe 4.0 通道及 8 通道 DDR4 内存，是家庭实验室、NAS 和虚拟化的理想之选。",
       "cta": "查看 Zen 2"
     },
     "zen3": {
       "subtitle": "AMD EPYC 7003 · Milan · Zen 3",
       "title": "ZEN 3 性能。",
-      "description": "EPYC 7663、7B13、7V13、7V73X：多核心、大缓存，适配 SP3 主板。",
+      "description": "EPYC 7663、7B13、7V13 与 7V73X：核心多、缓存大，兼容 SP3 主板。",
       "cta": "查看 Zen 3"
     },
     "platform": {
       "subtitle": "主板 · GPU · 散热",
       "title": "完整平台方案。",
-      "description": "SP3 单路 / 双路主板、NVIDIA Tesla A2 GPU，以及 EPYC 水冷 / 风冷散热器。",
+      "description": "SP3 单路 / 双路主板、NVIDIA Tesla A2 GPU，以及专为 EPYC 打造的水冷与风冷散热器。",
       "cta": "查看全部商品"
     },
     "goTo": "第 {n} 张",
@@ -151,7 +152,7 @@
     "trustCheckedSub": "发货前",
     "trustAdvice": "专业咨询",
     "trustAdviceSub": "配置建议",
-    "priceNote": "参考价格。请联系我们，根据数量和库存获取报价。",
+    "priceNote": "参考价格。请联系我们，根据数量和库存获取准确报价。",
     "requestQuote": "提交询价",
     "save": "收藏商品",
     "saved": "已收藏",
@@ -186,7 +187,7 @@
     "summary": "订单摘要",
     "items": "小计（{count} 件）",
     "shipping": "运费",
-    "shippingLater": "稍后计算",
+    "shippingLater": "确认订单时告知",
     "subtotal": "合计",
     "unpricedNote": "部分商品暂无标价，未计入合计，我们会单独报价。",
     "unpricedShort": "不含需询价的商品",
@@ -200,7 +201,7 @@
     "phone": "电话号码",
     "email": "邮箱",
     "address": "地址",
-    "city": "省 / 城市",
+    "city": "省 / 城市、国家",
     "note": "备注",
     "noteOptional": "备注（选填）",
     "notePlaceholder": "收货时间、开票要求…",
@@ -226,7 +227,7 @@
   },
   "contactCta": {
     "title": "需要配置建议或报价？",
-    "body": "{name} 团队帮您为家庭实验室、虚拟化或渲染选择合适的处理器、主板和散热器。欢迎联系我们获取优惠报价。",
+    "body": "{name} 团队为您的家庭实验室、虚拟化或渲染需求推荐合适的处理器、主板和散热器。立即联系，获取优惠报价。",
     "zalo": "Zalo 聊天",
     "email": "发送邮件",
     "sendMessage": "发送留言"
@@ -241,7 +242,7 @@
     "email": "邮箱",
     "quantity": "数量",
     "phone": "电话号码",
-    "phoneHint": "如：+84 901 234 567 或 +86 138 0013 8000",
+    "phoneHint": "如：+65 9123 4567 或 +86 138 0013 8000",
     "preferredContact": "首选联系方式",
     "message": "留言",
     "messagePlaceholder": "计划配置、需要时间、开票要求…",
@@ -254,10 +255,10 @@
   },
   "contact": {
     "title": "联系我们",
-    "subtitle": "咨询商品、配置或批量订单。我们会在 24 个工作小时内回复。",
+    "subtitle": "欢迎咨询商品、配置或批量订单，我们会在 24 个工作小时内回复。",
     "hotline": "热线",
     "address": "地址",
-    "hours": "营业时间：周一至周六 8:30 – 18:00（越南时间）。",
+    "hours": "营业时间：周一至周六 8:30 – 18:00（越南时间，GMT+7）。",
     "phoneOptional": "电话号码（选填）",
     "subject": "主题",
     "message": "内容",
@@ -285,7 +286,7 @@
     "registerTitle": "创建账号",
     "registerSubtitle": "加入 Bee Store，提交询价并跟踪处理状态",
     "phoneOptional": "电话号码（选填）",
-    "phoneHint": "如：+84 901 234 567 或 +86 138 0013 8000",
+    "phoneHint": "如：+65 9123 4567 或 +86 138 0013 8000",
     "passwordHint": "8–72 个字符，至少包含 1 个字母和 1 个数字。",
     "passwordConfirmation": "确认密码",
     "acceptTerms": "我同意<terms>使用条款</terms>和<privacy>隐私政策</privacy>。",
@@ -333,7 +334,7 @@
     "email": "邮箱",
     "emailHint": "可在“安全设置”中修改邮箱。",
     "phone": "电话号码",
-    "phoneHint": "如：+84 901 234 567。留空即删除。",
+    "phoneHint": "如：+65 9123 4567。留空即删除。",
     "preferredLocale": "语言",
     "preferredContact": "首选联系方式",
     "noPreference": "不指定",
@@ -455,7 +456,7 @@
         {
           "title": "联系我们",
           "paragraphs": [
-            "如对本政策有疑问，请联系 sales@beegroupnas.com 或热线 +84 366 789 371。"
+            "如对本政策有疑问，请联系 sales@beegroupnas.com 或热线 / WhatsApp +84 36 6789 371。"
           ]
         }
       ]
