@@ -1,47 +1,62 @@
-'use client';
-
-import React, { Suspense, use } from 'react';
-import Link from 'next/link';
-import { useQuery } from '@tanstack/react-query';
-import { CatalogApi } from '@/lib/api/endpoints';
+import React, { Suspense } from 'react';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { Link } from '@/i18n/navigation';
 import CatalogBrowser from '@/features/catalog/components/CatalogBrowser';
+import { fetchCategory } from '@/lib/api/server';
+import { alternates } from '@/lib/seo';
+import type { Locale } from '@/types/product';
 
-export default function CategoryPage({ params }: PageProps<'/category/[slug]'>) {
-  const { slug } = use(params);
-  const { data: category, isLoading } = useQuery({
-    queryKey: ['category', slug],
-    queryFn: () => CatalogApi.getCategory(slug),
+// ISR window; must be a literal for Next.js to read it (same value as REVALIDATE_SECONDS).
+export const revalidate = 300;
+
+type Props = PageProps<'/[locale]/category/[slug]'>;
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const category = await fetchCategory(slug, locale as Locale);
+  if (!category) return {};
+  const t = await getTranslations({ locale, namespace: 'catalog' });
+  const description = t('categoryDescription', {
+    name: category.name,
+    subs: category.subCategories.map((s) => s.name).join(', '),
   });
+  return {
+    title: category.name,
+    description,
+    alternates: alternates(locale as Locale, `/category/${slug}`),
+    openGraph: { title: category.name, description, images: category.image ? [category.image] : undefined },
+  };
+}
 
-  if (!isLoading && !category) {
-    return (
-      <div className="max-w-[1240px] mx-auto px-4 py-20 text-center">
-        <h2 className="text-2xl font-bold text-[#222222] mb-3">Không tìm thấy danh mục</h2>
-        <p className="text-gray-500 mb-6">Danh mục bạn tìm không tồn tại hoặc đã được đổi tên.</p>
-        <Link href="/products" className="bg-[#008ECC] text-white px-6 py-2.5 rounded-full font-semibold">
-          Xem tất cả sản phẩm
-        </Link>
-      </div>
-    );
-  }
+export default async function CategoryPage({ params }: Props) {
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
+  const [category, t, tNav] = await Promise.all([
+    fetchCategory(slug, locale as Locale),
+    getTranslations('catalog'),
+    getTranslations('nav'),
+  ]);
+  if (!category) notFound();
 
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-6 sm:py-8">
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-xs text-gray-500 mb-6">
+      <nav aria-label={t('breadcrumb')} className="flex items-center gap-2 text-xs text-gray-500 mb-6">
         <Link href="/" className="hover:text-[#008ECC]">
-          Trang chủ
+          {tNav('home')}
         </Link>
         <span>/</span>
         <Link href="/products" className="hover:text-[#008ECC]">
-          Sản phẩm
+          {t('products')}
         </Link>
         <span>/</span>
-        <span className="font-semibold text-[#222222]">{category?.name ?? '…'}</span>
+        <span className="font-semibold text-[#222222]">{category.name}</span>
       </nav>
 
-      <Suspense fallback={<div className="py-12 text-center text-gray-500">Đang tải sản phẩm…</div>}>
-        <CatalogBrowser category={slug} title={category?.name ?? '…'} />
+      <Suspense fallback={<div className="py-12 text-center text-gray-500">{t('loadingProducts')}</div>}>
+        <CatalogBrowser category={slug} title={category.name} />
       </Suspense>
     </div>
   );

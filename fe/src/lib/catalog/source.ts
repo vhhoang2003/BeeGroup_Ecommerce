@@ -20,7 +20,8 @@ import type {
 } from '@/types/product';
 import type { PaginatedResponse } from '@/types/api';
 
-export const CATALOG_DIR = path.resolve(process.cwd(), process.env.CATALOG_SOURCE_DIR || '../product');
+// Read at runtime from a mounted folder, so the bundler must not trace it into the build output.
+export const CATALOG_DIR = path.resolve(/*turbopackIgnore: true*/ process.cwd(), process.env.CATALOG_SOURCE_DIR || '../product');
 export const STORAGE_BASE_URL = '/storage';
 
 const DEFAULT_LOCALE: Locale = 'vi';

@@ -1,77 +1,84 @@
 'use client';
 
 import { create } from 'zustand';
-import { User } from '@/types/user';
+import type { User } from '@/types/user';
+import { refreshAccessToken, session } from '@/lib/api/client';
+import { AuthApi, MeApi } from '@/lib/api/endpoints';
+
+/**
+ * `unknown` until the one-time session restore on app load has finished (README §6.3), so guarded pages do not
+ * bounce a logged-in user to the login page while the refresh is still running.
+ */
+export type AuthStatus = 'unknown' | 'authenticated' | 'anonymous';
 
 interface AuthState {
   user: User | null;
+  status: AuthStatus;
   isAuthenticated: boolean;
-  isLoading: boolean;
-  token: string | null;
-  login: (email: string, password: string) => Promise<boolean>;
-  register: (name: string, email: string, password: string) => Promise<boolean>;
-  logout: () => void;
-  updateUser: (data: Partial<User>) => void;
+  /** Restores the session from the refresh cookie once per page load. */
+  init: () => Promise<void>;
+  /** Throws `ApiError` (INVALID_CREDENTIALS, EMAIL_NOT_VERIFIED, ACCOUNT_LOCKED, RATE_LIMITED). */
+  login: (email: string, password: string, rememberMe: boolean) => Promise<User>;
+  logout: () => Promise<void>;
+  /** Drops the local session without calling the API (session lost, account deleted). */
+  clear: () => void;
+  setUser: (user: User) => void;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
-  // Visitors start logged out; a session only exists after login / register (README §17.1).
+let initPromise: Promise<void> | null = null;
+
+export const useAuthStore = create<AuthState>((set, get) => ({
+  // Visitors start logged out; the access token itself is kept in `session`, in memory only (SEC-03).
   user: null,
+  status: 'unknown',
   isAuthenticated: false,
-  isLoading: false,
-  token: null,
 
-  login: async (email, password) => {
-    set({ isLoading: true });
-    // Simulate login network call
-    await new Promise((res) => setTimeout(res, 400));
-    if (password.length < 4) {
-      set({ isLoading: false });
-      return false;
+  init: () => {
+    if (!initPromise) {
+      initPromise = (async () => {
+        const token = await refreshAccessToken();
+        if (!token) {
+          set({ user: null, status: 'anonymous', isAuthenticated: false });
+          return;
+        }
+        try {
+          get().setUser(await MeApi.get());
+        } catch {
+          get().clear();
+        }
+      })();
     }
-    const user: User = {
-      id: `usr-${Date.now()}`,
-      name: email.split('@')[0],
-      email,
-      role: 'CUSTOMER',
-    };
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('auth_token', 'mock-session-jwt');
-    }
-    set({ user, isAuthenticated: true, isLoading: false, token: 'mock-session-jwt' });
-    return true;
+    return initPromise;
   },
 
-  register: async (name, email, password) => {
-    set({ isLoading: true });
-    await new Promise((res) => setTimeout(res, 500));
-    if (password.length < 4) {
-      set({ isLoading: false });
-      return false;
-    }
-    const user: User = {
-      id: `usr-${Date.now()}`,
-      name,
-      email,
-      role: 'CUSTOMER',
-    };
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('auth_token', 'mock-session-jwt');
-    }
-    set({ user, isAuthenticated: true, isLoading: false, token: 'mock-session-jwt' });
-    return true;
+  login: async (email, password, rememberMe) => {
+    const result = await AuthApi.login(email, password, rememberMe);
+    session.setToken(result.accessToken);
+    get().setUser(result.user);
+    return result.user;
   },
 
-  logout: () => {
-    if (typeof window !== 'undefined') {
-      sessionStorage.removeItem('auth_token');
+  logout: async () => {
+    try {
+      await AuthApi.logout();
+    } finally {
+      get().clear();
     }
-    set({ user: null, isAuthenticated: false, token: null });
   },
 
-  updateUser: (data) => {
-    set((state) => ({
-      user: state.user ? { ...state.user, ...data } : null,
-    }));
+  clear: () => {
+    session.setToken(null);
+    set({ user: null, status: 'anonymous', isAuthenticated: false });
   },
+
+  setUser: (user) => set({ user, status: 'authenticated', isAuthenticated: true }),
 }));
+
+/** Test helper: lets `init()` run again. */
+export function resetAuthInit() {
+  initPromise = null;
+}
+
+if (typeof window !== 'undefined') {
+  session.onLost(() => useAuthStore.getState().clear());
+}

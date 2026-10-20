@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { Menu, Phone, User as UserIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { Heart, Menu, Phone, ShieldCheck, User as UserIcon } from 'lucide-react';
 import SearchSuggestions from '@/features/catalog/components/SearchSuggestions';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
 import Logo from '@/components/ui/Logo';
+import { Link } from '@/i18n/navigation';
 import { siteConfig } from '@/config/site';
 
 interface HeaderProps {
@@ -13,6 +14,7 @@ interface HeaderProps {
 }
 
 export default function Header({ onToggleMobileMenu }: HeaderProps) {
+  const t = useTranslations('nav');
   const { user, isAuthenticated } = useAuthStore();
 
   return (
@@ -23,13 +25,13 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
           <button
             type="button"
             onClick={onToggleMobileMenu}
-            aria-label="Mở menu"
+            aria-label={t('openMenu')}
             className="w-10 h-10 rounded-[8px] bg-[#F3F9FB] flex items-center justify-center text-[#008ECC] hover:bg-[#E2F2F9] transition-colors cursor-pointer md:hidden"
           >
             <Menu className="w-5 h-5 text-[#008ECC]" />
           </button>
 
-          <Link href="/" className="flex items-center group" aria-label={`${siteConfig.name}, trang chủ`}>
+          <Link href="/" className="flex items-center group" aria-label={t('homeOf', { name: siteConfig.name })}>
             <Logo className="transition-transform group-hover:scale-[1.02]" />
           </Link>
         </div>
@@ -39,8 +41,24 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
           <SearchSuggestions />
         </div>
 
-        {/* Right: Auth + Hotline */}
-        <div className="flex items-center gap-3 sm:gap-6 shrink-0">
+        {/* Right: Admin + Wishlist + Auth + Hotline */}
+        <div className="flex items-center gap-3 sm:gap-5 shrink-0">
+          {user?.role === 'ADMIN' && (
+            <Link
+              href="/admin"
+              className="hidden sm:flex items-center gap-1.5 text-[13px] font-semibold text-[#008ECC] hover:underline"
+            >
+              <ShieldCheck className="w-4 h-4" />
+              <span>{t('admin')}</span>
+            </Link>
+          )}
+
+          {isAuthenticated && (
+            <Link href="/account/wishlist" aria-label={t('wishlist')} className="hover:opacity-80 transition-opacity">
+              <Heart className="w-[18px] h-[18px] text-[#008ECC]" />
+            </Link>
+          )}
+
           {isAuthenticated && user ? (
             <Link
               href="/account"
@@ -49,7 +67,7 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
               <div className="w-7 h-7 rounded-full bg-[#EBF6FA] flex items-center justify-center text-[#008ECC]">
                 <UserIcon className="w-4 h-4" />
               </div>
-              <span className="hidden sm:inline truncate max-w-[110px]">{user.name.split(' ')[0]}</span>
+              <span className="hidden sm:inline truncate max-w-[110px]">{user.fullName}</span>
             </Link>
           ) : (
             <Link
@@ -57,7 +75,7 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
               className="flex items-center gap-1.5 text-[13px] sm:text-[14px] font-medium text-[#222222] hover:text-[#008ECC] transition-colors"
             >
               <UserIcon className="w-[18px] h-[18px] text-[#008ECC]" />
-              <span className="hidden sm:inline">Đăng nhập</span>
+              <span className="hidden sm:inline">{t('login')}</span>
             </Link>
           )}
 
@@ -68,7 +86,7 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
             className="flex items-center gap-2 text-[13px] sm:text-[14px] font-semibold text-white bg-[#008ECC] hover:bg-[#0077b0] px-3 sm:px-4 py-2 rounded-full transition-colors"
           >
             <Phone className="w-4 h-4" />
-            <span className="hidden sm:inline">Gọi tư vấn</span>
+            <span className="hidden sm:inline">{t('callUs')}</span>
           </a>
         </div>
       </div>

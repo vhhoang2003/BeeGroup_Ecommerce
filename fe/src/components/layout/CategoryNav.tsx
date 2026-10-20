@@ -1,28 +1,29 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useQuery } from '@tanstack/react-query';
-import { CatalogApi } from '@/lib/api/endpoints';
+import { useTranslations } from 'next-intl';
+import { Link, usePathname } from '@/i18n/navigation';
+import { useCategories } from '@/features/catalog/hooks';
 import CategoryIcon from '@/features/catalog/components/CategoryIcon';
 
 export default function CategoryNav() {
+  const t = useTranslations('nav');
   const pathname = usePathname();
-  const { data: categories = [] } = useQuery({
-    queryKey: ['categories'],
-    queryFn: () => CatalogApi.getCategories(),
-  });
+  const { data: categories = [] } = useCategories();
+
+  // The admin area has its own navigation.
+  if (pathname.startsWith('/admin')) return null;
 
   const pills = [
-    { name: 'Trang chủ', href: '/', slug: '', active: pathname === '/' },
+    { name: t('home'), href: '/', slug: '', active: pathname === '/' },
     ...categories.map((c) => ({
       name: c.name,
       href: `/category/${c.slug}`,
       slug: c.slug,
       active: pathname === `/category/${c.slug}`,
     })),
-    { name: 'Tất cả sản phẩm', href: '/products', slug: '', active: pathname === '/products' },
+    { name: t('allProducts'), href: '/products', slug: '', active: pathname === '/products' },
+    { name: t('contact'), href: '/contact', slug: '', active: pathname === '/contact' },
   ];
 
   return (

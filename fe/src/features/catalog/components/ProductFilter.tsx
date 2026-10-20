@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import type { Category } from '@/types/category';
 import type { ProductSort, StockStatus } from '@/types/product';
-import { stockStatusLabel } from '@/lib/utils';
+import { STOCK_STATUSES } from '@/lib/utils';
 
 export interface CatalogFilters {
   category: string;
@@ -21,18 +22,14 @@ interface ProductFilterProps {
   onReset: () => void;
 }
 
-const sortOptions: { value: ProductSort; label: string }[] = [
-  { value: 'featured', label: 'Nổi bật' },
-  { value: 'price-asc', label: 'Giá: thấp đến cao' },
-  { value: 'price-desc', label: 'Giá: cao đến thấp' },
-  { value: 'newest', label: 'Mới nhất' },
-];
+const SORTS: ProductSort[] = ['featured', 'price-asc', 'price-desc', 'newest'];
 
 function OptionButton({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
     <button
       type="button"
       onClick={onClick}
+      aria-pressed={active}
       className={`w-full text-left text-sm px-2.5 py-1.5 rounded-lg transition-colors flex items-center justify-between ${
         active ? 'bg-[#EBF6FA] text-[#008ECC] font-semibold' : 'text-gray-600 hover:bg-gray-50'
       }`}
@@ -43,19 +40,21 @@ function OptionButton({ active, onClick, children }: { active: boolean; onClick:
 }
 
 export default function ProductFilter({ categories, filters, lockCategory, onChange, onReset }: ProductFilterProps) {
+  const t = useTranslations('catalog');
+  const tStock = useTranslations('stock');
   return (
     <aside className="w-full lg:w-64 shrink-0 bg-white p-5 rounded-2xl border border-gray-200/80 shadow-xs space-y-6">
       <div className="flex items-center justify-between pb-3 border-b border-gray-100">
-        <h3 className="font-bold text-[#222222] text-base">Bộ lọc</h3>
+        <h3 className="font-bold text-[#222222] text-base">{t('filters')}</h3>
         <button type="button" onClick={onReset} className="text-xs font-semibold text-[#008ECC] hover:underline">
-          Xoá lọc
+          {t('clearFilters')}
         </button>
       </div>
 
       {/* Sort By */}
       <div>
         <label htmlFor="sort" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">
-          Sắp xếp
+          {t('sort')}
         </label>
         <select
           id="sort"
@@ -63,9 +62,9 @@ export default function ProductFilter({ categories, filters, lockCategory, onCha
           onChange={(e) => onChange({ sort: e.target.value as ProductSort })}
           className="w-full bg-[#F5F5F5] border border-gray-200 text-sm rounded-xl px-3 py-2 text-[#222222] outline-none focus:border-[#008ECC]"
         >
-          {sortOptions.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
+          {SORTS.map((value) => (
+            <option key={value} value={value}>
+              {t(`sorts.${value}`)}
             </option>
           ))}
         </select>
@@ -74,10 +73,10 @@ export default function ProductFilter({ categories, filters, lockCategory, onCha
       {/* Category Filter */}
       {!lockCategory && (
         <div>
-          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">Danh mục</p>
+          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">{t('category')}</p>
           <div className="space-y-1.5">
             <OptionButton active={filters.category === ''} onClick={() => onChange({ category: '', sub: '' })}>
-              <span>Tất cả danh mục</span>
+              <span>{t('allCategories')}</span>
             </OptionButton>
             {categories.map((c) => (
               <OptionButton
@@ -93,17 +92,16 @@ export default function ProductFilter({ categories, filters, lockCategory, onCha
         </div>
       )}
 
-
       {/* Stock Filter */}
       <div>
-        <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">Tình trạng</p>
+        <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">{t('stock')}</p>
         <div className="space-y-1">
           <OptionButton active={filters.stock === ''} onClick={() => onChange({ stock: '' })}>
-            <span>Tất cả</span>
+            <span>{t('all')}</span>
           </OptionButton>
-          {(Object.keys(stockStatusLabel) as StockStatus[]).map((status) => (
+          {STOCK_STATUSES.map((status) => (
             <OptionButton key={status} active={filters.stock === status} onClick={() => onChange({ stock: status })}>
-              <span>{stockStatusLabel[status]}</span>
+              <span>{tStock(status)}</span>
             </OptionButton>
           ))}
         </div>

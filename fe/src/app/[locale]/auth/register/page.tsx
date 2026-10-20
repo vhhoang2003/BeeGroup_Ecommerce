@@ -1,124 +1,200 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { UserPlus, User, Mail, Lock, ArrowRight } from 'lucide-react';
-import { useAuthStore } from '@/features/auth/store/useAuthStore';
+import React, { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useTranslations } from 'next-intl';
+import { MailCheck, UserPlus } from 'lucide-react';
+import { Link } from '@/i18n/navigation';
+import AuthCard from '@/features/auth/components/AuthCard';
+import PasswordInput from '@/features/auth/components/PasswordInput';
+import { emailField, optionalPhoneField, withPasswordRules } from '@/features/auth/schemas';
+import { useAppLocale } from '@/features/catalog/hooks';
+import { Alert, Button, Field, inputClass } from '@/components/ui/form';
+import { ApiError } from '@/lib/api/client';
+import { AuthApi } from '@/lib/api/endpoints';
+import { applyFieldErrors, useErrorMessage } from '@/lib/api/errors';
+import { toE164 } from '@/lib/utils';
 
 export default function RegisterPage() {
-  const router = useRouter();
-  const register = useAuthStore((state) => state.register);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const t = useTranslations('auth');
+  const tv = useTranslations('validation');
+  const errorMessage = useErrorMessage();
+  const locale = useAppLocale();
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState<string | null>(null);
+  const [resent, setResent] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password.length < 4) {
-      setError('Password must be at least 4 characters');
-      return;
+  const schema = useMemo(
+    () =>
+      withPasswordRules(
+        tv,
+        {
+          fullName: z.string().trim().min(1, tv('required')).max(100, tv('max', { max: 100 })),
+          email: emailField(tv),
+          phone: optionalPhoneField(tv),
+          acceptTerms: z.boolean().refine((v) => v, tv('acceptTerms')),
+        },
+        { password: 'password', confirmation: 'passwordConfirmation' },
+        (values) => String(values.email ?? '')
+      ),
+    [tv]
+  );
+  type FormValues = {
+    fullName: string;
+    email: string;
+    phone: string;
+    acceptTerms: boolean;
+    password: string;
+    passwordConfirmation: string;
+  };
+
+  const {
+    register,
+    handleSubmit,
+    setError: setFieldError,
+    formState: { errors, isSubmitting },
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema) as never,
+    defaultValues: { fullName: '', email: '', phone: '', acceptTerms: false, password: '', passwordConfirmation: '' },
+  });
+
+  const onSubmit = handleSubmit(async (values) => {
+    setError('');
+    try {
+      await AuthApi.register({
+        fullName: values.fullName.trim(),
+        email: values.email.trim(),
+        password: values.password,
+        passwordConfirmation: values.passwordConfirmation,
+        phone: toE164(values.phone) || undefined,
+        acceptTerms: values.acceptTerms,
+        locale,
+      });
+      setRegisteredEmail(values.email.trim());
+    } catch (err) {
+      if (err instanceof ApiError && err.code === 'EMAIL_ALREADY_EXISTS') {
+        setFieldError('email', { type: 'server', message: errorMessage(err) });
+        return;
+      }
+      const fields = ['fullName', 'email', 'phone', 'password', 'passwordConfirmation', 'acceptTerms'] as const;
+      const applied = applyFieldErrors(err, setFieldError, fields, (field) =>
+        field === 'password' ? tv('passwordWeak') : tv('invalid')
+      );
+      if (!applied) setError(errorMessage(err));
     }
-    setLoading(true);
-    const success = await register(name, email, password);
-    setLoading(false);
-    if (success) {
-      router.push('/account');
-    } else {
-      setError('Failed to create account. Please try again.');
+  });
+
+  const resend = async () => {
+    if (!registeredEmail) return;
+    try {
+      await AuthApi.resendVerification(registeredEmail);
+      setResent(true);
+    } catch (err) {
+      setError(errorMessage(err));
     }
   };
 
-  return (
-    <div className="max-w-[480px] mx-auto px-4 py-12 sm:py-16">
-      <div className="bg-white rounded-3xl border border-gray-200/80 p-6 sm:p-8 shadow-xs">
-        <div className="text-center mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-[#EBF6FA] text-[#008ECC] flex items-center justify-center mx-auto mb-3">
-            <UserPlus className="w-6 h-6" />
-          </div>
-          <h1 className="text-2xl font-extrabold text-[#222222]">Create Account</h1>
-          <p className="text-xs text-gray-500 mt-1">
-            Join Bee Store to request quotes and track your inquiries
+  if (registeredEmail) {
+    return (
+      <AuthCard icon={MailCheck} title={t('checkInboxTitle')} subtitle={t('checkInboxBody', { email: registeredEmail })}>
+        {error && <Alert className="mb-4">{error}</Alert>}
+        {resent ? (
+          <Alert tone="success">{t('verificationResent')}</Alert>
+        ) : (
+          <p className="text-xs text-gray-500 text-center">
+            {t('noEmail')}{' '}
+            <button type="button" onClick={resend} className="font-semibold text-[#008ECC] hover:underline cursor-pointer">
+              {t('resendVerification')}
+            </button>
           </p>
-        </div>
-
-        {error && (
-          <div className="bg-red-50 text-red-600 text-xs p-3 rounded-xl mb-4 border border-red-100">
-            {error}
-          </div>
         )}
+        <Link href="/auth/login" className="block text-center mt-6 text-sm font-semibold text-[#008ECC] hover:underline">
+          {t('goToLogin')}
+        </Link>
+      </AuthCard>
+    );
+  }
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">
-              Full Name
-            </label>
-            <div className="relative">
-              <User className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Hoang Nguyen"
-                className="w-full bg-[#F9FBFD] border border-gray-200 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#222222] outline-none focus:border-[#008ECC]"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">
-              Email Address
-            </label>
-            <div className="relative">
-              <Mail className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="name@example.com"
-                className="w-full bg-[#F9FBFD] border border-gray-200 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#222222] outline-none focus:border-[#008ECC]"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">
-              Create Password
-            </label>
-            <div className="relative">
-              <Lock className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="w-full bg-[#F9FBFD] border border-gray-200 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#222222] outline-none focus:border-[#008ECC]"
-              />
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-[#008ECC] hover:bg-[#0077b0] text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer disabled:opacity-50"
-          >
-            <span>{loading ? 'Registering...' : 'Create Account'}</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </form>
-
-        <div className="mt-6 pt-6 border-t border-gray-100 text-center text-xs text-gray-500">
-          Already have an account?{' '}
+  return (
+    <AuthCard
+      icon={UserPlus}
+      title={t('registerTitle')}
+      subtitle={t('registerSubtitle')}
+      footer={
+        <>
+          {t('haveAccount')}{' '}
           <Link href="/auth/login" className="font-semibold text-[#008ECC] hover:underline">
-            Sign In
+            {t('signIn')}
           </Link>
+        </>
+      }
+    >
+      {error && <Alert className="mb-4">{error}</Alert>}
+
+      <form onSubmit={onSubmit} noValidate className="space-y-4">
+        <Field id="reg-name" label={t('fullName')} error={errors.fullName?.message} required>
+          {(a) => <input {...a} {...register('fullName')} autoComplete="name" className={inputClass} />}
+        </Field>
+
+        <Field id="reg-email" label={t('email')} error={errors.email?.message} required>
+          {(a) => (
+            <input {...a} {...register('email')} type="email" autoComplete="email" placeholder="name@example.com" className={inputClass} />
+          )}
+        </Field>
+
+        <Field id="reg-phone" label={t('phoneOptional')} error={errors.phone?.message} hint={t('phoneHint')}>
+          {(a) => <input {...a} {...register('phone')} type="tel" autoComplete="tel" className={inputClass} />}
+        </Field>
+
+        <Field id="reg-password" label={t('password')} error={errors.password?.message} hint={t('passwordHint')} required>
+          {(a) => <PasswordInput {...a} {...register('password')} autoComplete="new-password" />}
+        </Field>
+
+        <Field
+          id="reg-password2"
+          label={t('passwordConfirmation')}
+          error={errors.passwordConfirmation?.message}
+          required
+        >
+          {(a) => <PasswordInput {...a} {...register('passwordConfirmation')} autoComplete="new-password" />}
+        </Field>
+
+        <div>
+          <label className="flex items-start gap-2 text-xs text-gray-700 cursor-pointer">
+            <input
+              type="checkbox"
+              {...register('acceptTerms')}
+              aria-invalid={!!errors.acceptTerms}
+              className="accent-[#008ECC] w-4 h-4 mt-0.5"
+            />
+            <span>
+              {t.rich('acceptTerms', {
+                terms: (chunks) => (
+                  <Link href="/terms" target="_blank" className="font-semibold text-[#008ECC] hover:underline">
+                    {chunks}
+                  </Link>
+                ),
+                privacy: (chunks) => (
+                  <Link href="/privacy" target="_blank" className="font-semibold text-[#008ECC] hover:underline">
+                    {chunks}
+                  </Link>
+                ),
+              })}
+            </span>
+          </label>
+          {errors.acceptTerms && (
+            <p className="text-[11px] text-red-600 mt-1" role="alert">
+              {errors.acceptTerms.message}
+            </p>
+          )}
         </div>
-      </div>
-    </div>
+
+        <Button type="submit" loading={isSubmitting} className="w-full py-3">
+          {isSubmitting ? t('registering') : t('createAccount')}
+        </Button>
+      </form>
+    </AuthCard>
   );
 }

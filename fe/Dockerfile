@@ -11,12 +11,14 @@ RUN npm ci --legacy-peer-deps
 # Step 2: Build. NEXT_PUBLIC_* values are inlined at build time, so they come in as build args.
 FROM base AS builder
 WORKDIR /app
-ARG NEXT_PUBLIC_USE_MOCK=true
+ARG NEXT_PUBLIC_USE_MOCK=false
 ARG NEXT_PUBLIC_API_URL=/api/v1
 ARG NEXT_PUBLIC_SITE_URL=http://localhost:3000
+ARG NEXT_PUBLIC_TURNSTILE_SITE_KEY=
 ENV NEXT_PUBLIC_USE_MOCK=$NEXT_PUBLIC_USE_MOCK \
     NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL \
     NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY=$NEXT_PUBLIC_TURNSTILE_SITE_KEY \
     NEXT_TELEMETRY_DISABLED=1
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .

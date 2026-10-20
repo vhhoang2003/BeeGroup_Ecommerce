@@ -1,26 +1,28 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { X, Phone, MessageCircle, User, ChevronRight, LayoutGrid } from 'lucide-react';
-import { useQuery } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
+import { X, Phone, MessageCircle, User, ChevronRight, LayoutGrid, Mail, ShieldCheck } from 'lucide-react';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
-import { CatalogApi } from '@/lib/api/endpoints';
+import { useCategories } from '@/features/catalog/hooks';
 import CategoryIcon from '@/features/catalog/components/CategoryIcon';
 import Logo from '@/components/ui/Logo';
+import { Link } from '@/i18n/navigation';
 import { siteConfig } from '@/config/site';
+import LanguageSwitcher from './LanguageSwitcher';
 
 interface MobileNavProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+const rowClass =
+  'flex items-center justify-between py-2 text-sm text-[#222222] hover:text-[#008ECC] font-medium transition-colors';
+
 export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
+  const t = useTranslations('nav');
   const { user, isAuthenticated } = useAuthStore();
-  const { data: categories = [] } = useQuery({
-    queryKey: ['categories'],
-    queryFn: () => CatalogApi.getCategories(),
-  });
+  const { data: categories = [] } = useCategories();
 
   if (!isOpen) return null;
 
@@ -33,7 +35,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
       />
 
       {/* Drawer */}
-      <div className="fixed inset-y-0 left-0 w-[290px] bg-white shadow-xl flex flex-col justify-between z-10 animate-in slide-in-from-left duration-200">
+      <div className="fixed inset-y-0 left-0 w-[290px] bg-white shadow-xl flex flex-col justify-between z-10 animate-in slide-in-from-left duration-200 overflow-y-auto">
         <div>
           {/* Header */}
           <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-[#F3F9FB]">
@@ -42,7 +44,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
               type="button"
               onClick={onClose}
               className="p-1 text-gray-500 hover:text-gray-800"
-              aria-label="Đóng menu"
+              aria-label={t('closeMenu')}
             >
               <X className="w-5 h-5" />
             </button>
@@ -56,24 +58,20 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             <div>
               {isAuthenticated && user ? (
                 <>
-                  <p className="text-sm font-semibold text-[#222222]">{user.name}</p>
-                  <Link
-                    href="/account"
-                    onClick={onClose}
-                    className="text-xs text-[#008ECC] font-medium hover:underline"
-                  >
-                    Tài khoản của tôi
+                  <p className="text-sm font-semibold text-[#222222]">{user.fullName}</p>
+                  <Link href="/account" onClick={onClose} className="text-xs text-[#008ECC] font-medium hover:underline">
+                    {t('myAccount')}
                   </Link>
                 </>
               ) : (
                 <>
-                  <p className="text-sm font-semibold text-[#222222]">Xin chào</p>
+                  <p className="text-sm font-semibold text-[#222222]">{t('hello')}</p>
                   <Link
                     href="/auth/login"
                     onClick={onClose}
                     className="text-xs text-[#008ECC] font-medium hover:underline"
                   >
-                    Đăng nhập hoặc đăng ký
+                    {t('loginOrRegister')}
                   </Link>
                 </>
               )}
@@ -82,15 +80,10 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
           {/* Category List */}
           <div className="p-4">
-            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Danh mục</h4>
+            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">{t('categories')}</h4>
             <div className="space-y-1">
               {categories.map((c) => (
-                <Link
-                  key={c.slug}
-                  href={`/category/${c.slug}`}
-                  onClick={onClose}
-                  className="flex items-center justify-between py-2 text-sm text-[#222222] hover:text-[#008ECC] font-medium transition-colors"
-                >
+                <Link key={c.slug} href={`/category/${c.slug}`} onClick={onClose} className={rowClass}>
                   <span className="flex items-center gap-2.5">
                     <CategoryIcon slug={c.slug} className="w-4 h-4 text-[#008ECC]" />
                     {c.name}
@@ -98,23 +91,36 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   <ChevronRight className="w-4 h-4 text-gray-400" />
                 </Link>
               ))}
-              <Link
-                href="/products"
-                onClick={onClose}
-                className="flex items-center justify-between py-2 text-sm text-[#222222] hover:text-[#008ECC] font-medium transition-colors"
-              >
+              <Link href="/products" onClick={onClose} className={rowClass}>
                 <span className="flex items-center gap-2.5">
                   <LayoutGrid className="w-4 h-4 text-[#008ECC]" />
-                  Tất cả sản phẩm
+                  {t('allProducts')}
                 </span>
                 <ChevronRight className="w-4 h-4 text-gray-400" />
               </Link>
+              <Link href="/contact" onClick={onClose} className={rowClass}>
+                <span className="flex items-center gap-2.5">
+                  <Mail className="w-4 h-4 text-[#008ECC]" />
+                  {t('contact')}
+                </span>
+                <ChevronRight className="w-4 h-4 text-gray-400" />
+              </Link>
+              {user?.role === 'ADMIN' && (
+                <Link href="/admin" onClick={onClose} className={rowClass}>
+                  <span className="flex items-center gap-2.5">
+                    <ShieldCheck className="w-4 h-4 text-[#008ECC]" />
+                    {t('admin')}
+                  </span>
+                  <ChevronRight className="w-4 h-4 text-gray-400" />
+                </Link>
+              )}
             </div>
           </div>
         </div>
 
         {/* Footer shortcuts */}
         <div className="p-4 border-t border-gray-100 bg-gray-50 space-y-2.5 text-xs text-gray-600">
+          <LanguageSwitcher className="w-fit" />
           <a href={siteConfig.contact.hotlineHref} className="flex items-center gap-2 hover:text-[#008ECC]">
             <Phone className="w-4 h-4 text-[#008ECC]" />
             <span>Hotline {siteConfig.contact.hotline}</span>
@@ -126,7 +132,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             className="flex items-center gap-2 hover:text-[#008ECC]"
           >
             <MessageCircle className="w-4 h-4 text-[#008ECC]" />
-            <span>Chat Zalo</span>
+            <span>{t('chatZalo')}</span>
           </a>
         </div>
       </div>

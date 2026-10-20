@@ -1,5 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import type { ProductSummary } from '@/types/product';
 import { formatPrice } from '@/lib/utils';
 import ProductThumb from './ProductThumb';
@@ -11,6 +12,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, highlightBorder }: ProductCardProps) {
+  const t = useTranslations('common');
   return (
     <Link
       href={`/products/${product.slug}`}
@@ -48,7 +50,9 @@ export default function ProductCard({ product, highlightBorder }: ProductCardPro
       <p className="text-[12px] text-[#666666] line-clamp-2 mb-2 min-h-[2lh]">{product.shortDescription}</p>
 
       <div className="mt-auto border-t border-[#EDEDED] pt-2 flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
-        <span className="text-[15px] sm:text-[16px] font-bold text-[#222222]">{formatPrice(product.price)}</span>
+        <span className="text-[15px] sm:text-[16px] font-bold text-[#222222]">
+          {formatPrice(product.price) ?? t('contactForPrice')}
+        </span>
         <StockBadge status={product.stockStatus} />
       </div>
     </Link>

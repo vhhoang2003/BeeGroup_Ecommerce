@@ -2,10 +2,12 @@
 
 import React from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import { CatalogApi } from '@/lib/api/endpoints';
 import type { ProductSort, StockStatus } from '@/types/product';
+import { useAppLocale, useCategories } from '../hooks';
 import ProductCard from './ProductCard';
 import ProductFilter, { type CatalogFilters } from './ProductFilter';
 
@@ -22,6 +24,9 @@ interface CatalogBrowserProps {
  * (`?category=&sub=&stock=&sort=&q=&page=`) so listings are shareable (CAT-02, CAT-03).
  */
 export default function CatalogBrowser({ category: fixedCategory, title }: CatalogBrowserProps) {
+  const t = useTranslations('catalog');
+  const locale = useAppLocale();
+  // Plain next/navigation here: the pathname keeps its locale prefix, so pushes only change the query.
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -35,10 +40,7 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
   const q = searchParams.get('q') ?? '';
   const page = Math.max(Number(searchParams.get('page')) || 1, 1);
 
-  const { data: categories = [] } = useQuery({
-    queryKey: ['categories'],
-    queryFn: () => CatalogApi.getCategories(),
-  });
+  const { data: categories = [] } = useCategories();
 
   const params = {
     category: filters.category || undefined,
@@ -50,8 +52,8 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
     size: PAGE_SIZE,
   };
   const { data: response, isLoading } = useQuery({
-    queryKey: ['products', params],
-    queryFn: () => CatalogApi.getProducts(params),
+    queryKey: ['products', locale, params],
+    queryFn: () => CatalogApi.getProducts(params, locale),
   });
   const products = response?.content ?? [];
 
@@ -78,7 +80,7 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-[#222222] tracking-tight">{title}</h1>
           <p className="text-sm text-gray-500 mt-1">
-            {response ? `${response.totalElements} sản phẩm` : 'Đang tải…'}
+            {response ? t('productCount', { count: response.totalElements }) : t('loading')}
           </p>
         </div>
 
@@ -88,7 +90,7 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
             onClick={() => navigate({ q: '', page: 1 })}
             className="text-xs bg-[#EBF6FA] text-[#008ECC] font-semibold px-3 py-1.5 rounded-full hover:bg-[#008ECC] hover:text-white transition-colors w-fit"
           >
-            Bỏ tìm kiếm &ldquo;{q}&rdquo; &times;
+            {t('clearSearch', { q })} &times;
           </button>
         )}
       </div>
@@ -96,12 +98,13 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
       {/* Sub-category chips (CAT-02) */}
       {activeCategory && activeCategory.subCategories.length > 1 && (
         <div className="flex flex-wrap gap-2 mb-6">
-          {[{ slug: '', name: 'Tất cả', itemCount: activeCategory.itemCount }, ...activeCategory.subCategories].map(
+          {[{ slug: '', name: t('all'), itemCount: activeCategory.itemCount }, ...activeCategory.subCategories].map(
             (s) => (
               <button
                 key={s.slug || 'all'}
                 type="button"
                 onClick={() => updateFilters({ sub: s.slug })}
+                aria-pressed={filters.sub === s.slug}
                 className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
                   filters.sub === s.slug
                     ? 'bg-[#008ECC] text-white'
@@ -136,16 +139,14 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
               <div className="w-16 h-16 rounded-full bg-[#F3F9FB] flex items-center justify-center text-[#008ECC] mx-auto mb-4">
                 <Search className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-bold text-[#222222] mb-2">Không có sản phẩm phù hợp</h3>
-              <p className="text-sm text-gray-500 max-w-md mx-auto mb-6">
-                Thử bỏ bớt bộ lọc hoặc tìm với từ khoá khác như &ldquo;7B13&rdquo;, &ldquo;SP3&rdquo;, &ldquo;64 nhân&rdquo;.
-              </p>
+              <h3 className="text-lg font-bold text-[#222222] mb-2">{t('emptyTitle')}</h3>
+              <p className="text-sm text-gray-500 max-w-md mx-auto mb-6">{t('emptyHint')}</p>
               <button
                 type="button"
                 onClick={handleReset}
                 className="bg-[#008ECC] hover:bg-[#0077b0] text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-colors"
               >
-                Xoá bộ lọc
+                {t('clearFilters')}
               </button>
             </div>
           ) : (
@@ -157,12 +158,12 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
               </div>
 
               {response && response.totalPages > 1 && (
-                <nav className="flex items-center justify-center gap-1.5 mt-8" aria-label="Phân trang">
+                <nav className="flex items-center justify-center gap-1.5 mt-8" aria-label={t('pagination')}>
                   <button
                     type="button"
                     disabled={page <= 1}
                     onClick={() => navigate({ page: page - 1 })}
-                    aria-label="Trang trước"
+                    aria-label={t('prevPage')}
                     className="w-9 h-9 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:border-[#008ECC] hover:text-[#008ECC] disabled:opacity-40 disabled:pointer-events-none"
                   >
                     <ChevronLeft className="w-4 h-4" />
@@ -184,7 +185,7 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
                     type="button"
                     disabled={response.last}
                     onClick={() => navigate({ page: page + 1 })}
-                    aria-label="Trang sau"
+                    aria-label={t('nextPage')}
                     className="w-9 h-9 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:border-[#008ECC] hover:text-[#008ECC] disabled:opacity-40 disabled:pointer-events-none"
                   >
                     <ChevronRight className="w-4 h-4" />

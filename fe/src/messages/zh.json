@@ -1,0 +1,658 @@
+{
+  "site": {
+    "title": "AMD EPYC 处理器、SP3 主板、GPU 与服务器散热",
+    "tagline": "服务器与工作站配件：AMD EPYC 处理器、GPU、主板、散热器",
+    "description": "Bee Store 提供 AMD EPYC 处理器、NVIDIA Tesla GPU、SP3 主板及散热器，适用于家庭实验室、虚拟化服务器和工作站。可通过热线、Zalo 或邮件快速询价。",
+    "welcome": "欢迎来到 {name}：服务器与工作站配件",
+    "address": "越南胡志明市"
+  },
+  "nav": {
+    "language": "语言",
+    "homeOf": "{name} 首页",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "admin": "管理后台",
+    "wishlist": "已收藏商品",
+    "login": "登录",
+    "register": "注册账号",
+    "callUs": "电话咨询",
+    "home": "首页",
+    "allProducts": "全部商品",
+    "contact": "联系我们",
+    "myAccount": "我的账号",
+    "hello": "您好",
+    "loginOrRegister": "登录或注册",
+    "categories": "分类",
+    "chatZalo": "Zalo 聊天"
+  },
+  "footer": {
+    "contact": "联系方式",
+    "categories": "商品分类",
+    "quickLinks": "快速链接",
+    "privacy": "隐私政策",
+    "terms": "使用条款",
+    "rights": "© {year} {name}。保留所有权利。"
+  },
+  "notFound": {
+    "title": "页面不存在",
+    "description": "您访问的页面不存在或已被移动。",
+    "home": "返回首页"
+  },
+  "common": {
+    "viewAll": "查看全部",
+    "contactForPrice": "询价",
+    "close": "关闭",
+    "loading": "加载中…",
+    "save": "保存",
+    "cancel": "取消"
+  },
+  "stock": {
+    "IN_STOCK": "有货",
+    "LOW_STOCK": "库存紧张",
+    "OUT_OF_STOCK": "缺货",
+    "PRE_ORDER": "预订"
+  },
+  "channel": {
+    "PHONE": "电话",
+    "ZALO": "Zalo",
+    "EMAIL": "邮件",
+    "MESSENGER": "Messenger"
+  },
+  "inquiryStatus": {
+    "NEW": "新询价",
+    "CONTACTED": "已联系",
+    "QUOTED": "已报价",
+    "CLOSED_WON": "已成交",
+    "CLOSED_LOST": "未成交",
+    "SPAM": "垃圾信息"
+  },
+  "home": {
+    "categoriesPrefix": "商品",
+    "categoriesHighlight": "分类",
+    "featuredPrefix": "精选",
+    "featuredHighlight": "商品",
+    "mainboardPrefix": "SP3",
+    "mainboardHighlight": "主板",
+    "coolerPrefix": "EPYC",
+    "coolerHighlight": "散热器"
+  },
+  "hero": {
+    "zen2": {
+      "subtitle": "AMD EPYC 7002 · Rome · Zen 2",
+      "title": "EPYC 服务器处理器。",
+      "description": "8 至 64 核，128 条 PCIe 4.0 通道，8 通道 DDR4 内存。适合家庭实验室、NAS 和虚拟化。",
+      "cta": "查看 Zen 2"
+    },
+    "zen3": {
+      "subtitle": "AMD EPYC 7003 · Milan · Zen 3",
+      "title": "ZEN 3 性能。",
+      "description": "EPYC 7663、7B13、7V13、7V73X：多核心、大缓存，适配 SP3 主板。",
+      "cta": "查看 Zen 3"
+    },
+    "platform": {
+      "subtitle": "主板 · GPU · 散热",
+      "title": "完整平台方案。",
+      "description": "SP3 单路 / 双路主板、NVIDIA Tesla A2 GPU，以及 EPYC 水冷 / 风冷散热器。",
+      "cta": "查看全部商品"
+    },
+    "goTo": "第 {n} 张",
+    "prev": "上一张",
+    "next": "下一张"
+  },
+  "search": {
+    "placeholder": "搜索处理器、主板、散热器…（如：7B13、SP3、64 核）",
+    "label": "搜索商品",
+    "clear": "清除关键词",
+    "filter": "筛选商品",
+    "searching": "搜索中…",
+    "suggestions": "搜索建议（{count}）",
+    "enterHint": "按回车查看全部",
+    "noResults": "未找到与“{q}”相关的商品"
+  },
+  "catalog": {
+    "filters": "筛选",
+    "clearFilters": "清除筛选",
+    "sort": "排序",
+    "sorts": {
+      "featured": "推荐",
+      "price-asc": "价格从低到高",
+      "price-desc": "价格从高到低",
+      "newest": "最新"
+    },
+    "category": "分类",
+    "allCategories": "全部分类",
+    "stock": "库存状态",
+    "all": "全部",
+    "productCount": "{count} 件商品",
+    "loading": "加载中…",
+    "loadingProducts": "正在加载商品…",
+    "clearSearch": "清除搜索“{q}”",
+    "emptyTitle": "没有符合条件的商品",
+    "emptyHint": "请减少筛选条件，或换个关键词，如“7B13”“SP3”“64 核”。",
+    "pagination": "分页",
+    "prevPage": "上一页",
+    "nextPage": "下一页",
+    "allProducts": "全部商品",
+    "allProductsDescription": "Bee Store 的 AMD EPYC 处理器、NVIDIA Tesla GPU、SP3 主板及服务器散热器，可按分类、库存和价格筛选。",
+    "searchResults": "“{q}”的搜索结果",
+    "categoryDescription": "Bee Store 的{name}：{subs}。查看规格、参考价格并提交询价。",
+    "breadcrumb": "导航路径",
+    "products": "商品"
+  },
+  "product": {
+    "photoPending": "图片更新中",
+    "viewImage": "查看第 {n} 张图片",
+    "imageCredits": "图片来源与授权",
+    "breadcrumb": "导航路径",
+    "trustWarranty": "保修",
+    "trustWarrantySub": "视商品而定",
+    "trustChecked": "严格检测",
+    "trustCheckedSub": "发货前",
+    "trustAdvice": "专业咨询",
+    "trustAdviceSub": "配置建议",
+    "priceNote": "参考价格。请联系我们，根据数量和库存获取报价。",
+    "requestQuote": "提交询价",
+    "save": "收藏商品",
+    "saved": "已收藏",
+    "quoteSubject": "{name} 询价",
+    "highlights": "产品亮点",
+    "useCases": "适用场景",
+    "description": "商品描述",
+    "specs": "技术规格",
+    "sources": "规格来源：",
+    "relatedPrefix": "相关",
+    "relatedHighlight": "商品"
+  },
+  "contactCta": {
+    "title": "需要配置建议或报价？",
+    "body": "{name} 团队帮您为家庭实验室、虚拟化或渲染选择合适的处理器、主板和散热器。欢迎联系我们获取优惠报价。",
+    "zalo": "Zalo 聊天",
+    "email": "发送邮件",
+    "sendMessage": "发送留言"
+  },
+  "floating": {
+    "open": "打开联系方式",
+    "close": "关闭联系方式"
+  },
+  "inquiry": {
+    "title": "提交询价",
+    "fullName": "姓名",
+    "email": "邮箱",
+    "quantity": "数量",
+    "phone": "电话号码",
+    "phoneHint": "如：+84 901 234 567 或 +86 138 0013 8000",
+    "preferredContact": "首选联系方式",
+    "message": "留言",
+    "messagePlaceholder": "计划配置、需要时间、开票要求…",
+    "submit": "提交询价",
+    "captchaRequired": "请完成防垃圾信息验证。",
+    "successTitle": "询价已提交",
+    "successCode": "询价编号：{code}",
+    "successBody": "我们会在 24 个工作小时内与您联系。",
+    "privacyNote": "您的信息仅用于回复询价，详见 Bee Store 隐私政策。"
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "咨询商品、配置或批量订单。我们会在 24 个工作小时内回复。",
+    "hotline": "热线",
+    "address": "地址",
+    "hours": "营业时间：周一至周六 8:30 – 18:00（越南时间）。",
+    "phoneOptional": "电话号码（选填）",
+    "subject": "主题",
+    "message": "内容",
+    "send": "发送留言",
+    "sentTitle": "留言已发送",
+    "sendAnother": "再发一条"
+  },
+  "auth": {
+    "metaTitle": "账号",
+    "email": "邮箱",
+    "password": "密码",
+    "fullName": "姓名",
+    "showPassword": "显示密码",
+    "hidePassword": "隐藏密码",
+    "loginTitle": "欢迎回来",
+    "loginSubtitle": "登录以跟踪询价和收藏的商品",
+    "forgotPassword": "忘记密码？",
+    "rememberMe": "保持登录（30 天）",
+    "signIn": "登录",
+    "signingIn": "登录中…",
+    "noAccount": "还没有账号？",
+    "registerNow": "立即注册",
+    "resendVerification": "重新发送验证邮件",
+    "verificationResent": "如果该邮箱存在且尚未验证，我们已重新发送验证链接。",
+    "registerTitle": "创建账号",
+    "registerSubtitle": "加入 Bee Store，提交询价并跟踪处理状态",
+    "phoneOptional": "电话号码（选填）",
+    "phoneHint": "如：+84 901 234 567 或 +86 138 0013 8000",
+    "passwordHint": "8–72 个字符，至少包含 1 个字母和 1 个数字。",
+    "passwordConfirmation": "确认密码",
+    "acceptTerms": "我同意<terms>使用条款</terms>和<privacy>隐私政策</privacy>。",
+    "createAccount": "创建账号",
+    "registering": "正在创建账号…",
+    "haveAccount": "已有账号？",
+    "checkInboxTitle": "请查收邮件",
+    "checkInboxBody": "我们已向 {email} 发送验证链接，24 小时内有效。",
+    "noEmail": "没有收到邮件？",
+    "goToLogin": "前往登录",
+    "goToAccount": "前往我的账号",
+    "verifyTitle": "验证邮箱",
+    "verifying": "正在验证…",
+    "verifiedTitle": "邮箱已验证",
+    "verifiedBody": "现在可以登录并使用您的账号。",
+    "verifyFailedTitle": "邮箱验证失败",
+    "missingToken": "链接无效或缺少验证码。",
+    "resendPrompt": "输入邮箱以获取新链接：",
+    "forgotTitle": "忘记密码",
+    "forgotSubtitle": "输入账号邮箱，我们将发送重置密码链接。",
+    "sendResetLink": "发送链接",
+    "forgotSent": "如果账号存在，我们已发送操作说明邮件。链接 30 分钟内有效。",
+    "backToLogin": "返回登录",
+    "resetTitle": "重置密码",
+    "resetSubtitle": "为您的账号设置新密码。",
+    "newPassword": "新密码",
+    "setNewPassword": "修改密码",
+    "requestNewLink": "重新获取链接",
+    "resetDoneTitle": "密码已修改",
+    "resetDoneBody": "所有旧的登录会话已退出，请使用新密码重新登录。",
+    "checkingSession": "正在检查登录状态…",
+    "forbiddenTitle": "无权访问",
+    "forbiddenBody": "此页面仅限管理员访问。",
+    "backHome": "返回首页"
+  },
+  "account": {
+    "metaTitle": "我的账号",
+    "navLabel": "账号菜单",
+    "profile": "个人信息",
+    "security": "安全设置",
+    "inquiries": "我的询价",
+    "wishlist": "已收藏商品",
+    "logout": "退出登录",
+    "fullName": "姓名",
+    "email": "邮箱",
+    "emailHint": "可在“安全设置”中修改邮箱。",
+    "phone": "电话号码",
+    "phoneHint": "如：+84 901 234 567。留空即删除。",
+    "preferredLocale": "语言",
+    "preferredContact": "首选联系方式",
+    "noPreference": "不指定",
+    "save": "保存修改",
+    "profileSaved": "信息已保存。",
+    "memberSince": "注册时间",
+    "emailVerifiedAt": "邮箱验证时间",
+    "lastLogin": "最近登录",
+    "changePassword": "修改密码",
+    "changePasswordHint": "其他设备将被退出登录，当前设备保持登录。",
+    "currentPassword": "当前密码",
+    "wrongPassword": "当前密码不正确。",
+    "passwordChanged": "密码已修改。",
+    "changeEmail": "修改邮箱",
+    "changeEmailHint": "新邮箱需点击我们发送到该地址的确认链接后才会生效。",
+    "newEmail": "新邮箱",
+    "sameEmail": "新邮箱与当前邮箱相同。",
+    "changeEmailSent": "确认链接已发送至 {email}。",
+    "logoutAll": "退出所有设备",
+    "logoutAllHint": "撤销所有登录会话，包括当前会话。",
+    "logoutAllConfirm": "确定退出所有设备？",
+    "deleteAccount": "删除账号",
+    "deleteAccountHint": "账号将立即停用，个人数据在 30 天后匿名化。此操作无法撤销。",
+    "deleteAccountConfirm": "我了解账号和个人数据将被删除。",
+    "noInquiries": "暂无询价",
+    "noInquiriesHint": "在商品页面点击“提交询价”即可发送询价。",
+    "browseProducts": "浏览商品 →",
+    "quantity": "数量",
+    "priceAtRequest": "询价时价格",
+    "statusHistory": "状态记录",
+    "emptyWishlist": "暂无收藏商品",
+    "emptyWishlistHint": "在商品页面点击“收藏商品”，以便稍后查看。",
+    "removeFromWishlist": "取消收藏 {name}"
+  },
+  "errors": {
+    "VALIDATION_ERROR": "信息有误，请检查后重试。",
+    "TOKEN_INVALID_OR_EXPIRED": "链接无效或已过期。",
+    "CAPTCHA_FAILED": "防垃圾信息验证失败，请重试。",
+    "INVALID_CREDENTIALS": "邮箱或密码不正确。",
+    "TOKEN_EXPIRED": "登录已过期，请重新登录。",
+    "REFRESH_TOKEN_INVALID": "登录已过期，请重新登录。",
+    "REFRESH_TOKEN_REUSED": "出于安全原因，您的登录已被撤销，请重新登录。",
+    "EMAIL_NOT_VERIFIED": "邮箱尚未验证，请打开我们发送的邮件中的链接。",
+    "ACCESS_DENIED": "您无权执行此操作。",
+    "RESOURCE_NOT_FOUND": "未找到数据。",
+    "EMAIL_ALREADY_EXISTS": "该邮箱已注册，请登录或重置密码。",
+    "SLUG_ALREADY_EXISTS": "该 slug 已被使用，请换一个。",
+    "FILE_TOO_LARGE": "文件过大（最大 5 MB）。",
+    "ACCOUNT_LOCKED": "登录失败次数过多，账号已被暂时锁定。",
+    "ACCOUNT_LOCKED_retry": "账号已被暂时锁定，请 {minutes} 分钟后重试。",
+    "RATE_LIMITED": "操作过于频繁，请稍后再试。",
+    "RATE_LIMITED_retry": "操作过于频繁，请 {minutes} 分钟后再试。",
+    "INTERNAL_ERROR": "系统出现问题，请稍后再试。",
+    "NETWORK": "无法连接服务器，请检查网络后重试。"
+  },
+  "validation": {
+    "required": "此项为必填项。",
+    "email": "邮箱格式不正确。",
+    "phone": "电话号码格式不正确。",
+    "quantity": "数量须在 1 到 100,000 之间。",
+    "max": "最多 {max} 个字符。",
+    "invalid": "数值无效。",
+    "password_length": "密码需为 8–72 个字符。",
+    "password_letterDigit": "密码至少需要 1 个字母和 1 个数字。",
+    "password_sameAsEmail": "密码不能与邮箱相同。",
+    "passwordWeak": "密码太容易被猜到，请换一个。",
+    "passwordMismatch": "两次输入的密码不一致。",
+    "acceptTerms": "需同意条款才能继续。"
+  },
+  "legal": {
+    "updated": "更新日期：{date}",
+    "privacy": {
+      "title": "隐私政策",
+      "updatedAt": "2026 年 10 月 20 日",
+      "intro": "本政策说明 Bee Store 在您使用本网站时如何收集、使用和保护您的个人数据，符合越南第 13/2023/ND-CP 号个人数据保护法令。",
+      "sections": [
+        {
+          "title": "我们收集的数据",
+          "paragraphs": [
+            "注册账号时：姓名、邮箱、电话号码（选填）、首选语言和联系方式，以及您同意条款的时间。",
+            "提交询价或留言时：姓名、邮箱、电话号码、留言内容及相关商品。",
+            "技术数据：IP 地址和浏览器信息，用于防垃圾信息、频率限制和账号安全。"
+          ]
+        },
+        {
+          "title": "使用目的",
+          "paragraphs": [
+            "创建和管理账号、验证邮箱、重置密码。",
+            "通过您选择的方式联系您、提供咨询和报价。",
+            "保护系统免受未经授权的访问和滥用。我们不会出售个人数据，也不会用于第三方广告。"
+          ]
+        },
+        {
+          "title": "存储与安全",
+          "paragraphs": [
+            "数据存储在 Bee Store 管理的服务器上。密码使用 Argon2id 哈希，验证码仅以哈希形式保存，所有连接均使用 HTTPS。",
+            "数据库备份经过加密，最长保留 8 周。"
+          ]
+        },
+        {
+          "title": "数据共享",
+          "paragraphs": [
+            "我们只与运营网站所必需的服务商共享数据（邮件发送、Cloudflare Turnstile 防垃圾信息、Cloudflare 网络基础设施），或在法律要求时提供。"
+          ]
+        },
+        {
+          "title": "您的权利",
+          "paragraphs": [
+            "您可以在“我的账号”中查看和修改个人信息、修改邮箱、退出所有设备并自行删除账号。删除后账号立即停用，个人数据在 30 天后匿名化。",
+            "如需获取数据副本或撤回同意，请发送邮件至 sales@beegroupnas.com。"
+          ]
+        },
+        {
+          "title": "Cookie",
+          "paragraphs": ["本网站仅使用必要的 Cookie：登录会话 Cookie（HttpOnly）和记住语言的 Cookie。我们不使用广告 Cookie。"]
+        },
+        {
+          "title": "联系我们",
+          "paragraphs": ["如对本政策有疑问，请联系 sales@beegroupnas.com 或热线 +84 366 789 371。"]
+        }
+      ]
+    },
+    "terms": {
+      "title": "使用条款",
+      "updatedAt": "2026 年 10 月 20 日",
+      "intro": "使用 Bee Store 网站即表示您同意以下条款。",
+      "sections": [
+        {
+          "title": "服务范围",
+          "paragraphs": ["本网站展示服务器与工作站配件，您可以查看规格、收藏商品并提交询价。网站不提供在线支付，交易在报价后直接协商。"]
+        },
+        {
+          "title": "价格与商品信息",
+          "paragraphs": [
+            "页面显示的价格为越南盾参考价，可能因数量、库存和时间而变化。最终价格以正式报价为准。",
+            "规格参数整理自厂商资料，我们力求准确，但不排除存在错误。"
+          ]
+        },
+        {
+          "title": "账号",
+          "paragraphs": ["您有责任保管好密码，并对账号下的活动负责。对于违反条款或存在滥用迹象的账号，我们可能予以锁定。"]
+        },
+        {
+          "title": "合理使用",
+          "paragraphs": ["禁止发送垃圾信息、禁止造成服务过载的自动抓取，禁止未经授权访问系统。"]
+        },
+        {
+          "title": "保修与退换",
+          "paragraphs": ["保修和退换条件以各商品的报价及销售单据为准。"]
+        },
+        {
+          "title": "图片",
+          "paragraphs": ["部分商品图片归第三方所有，依据各商品“图片来源与授权”中列出的许可使用。"]
+        },
+        {
+          "title": "条款变更",
+          "paragraphs": ["我们可能更新本条款，最近更新日期显示在页面顶部。"]
+        }
+      ]
+    }
+  },
+  "admin": {
+    "metaTitle": "管理后台",
+    "nav": {
+      "title": "管理后台",
+      "dashboard": "概览",
+      "products": "商品",
+      "categories": "分类",
+      "inquiries": "询价",
+      "users": "用户",
+      "auditLogs": "审计日志",
+      "import": "数据导入"
+    },
+    "dashboard": {
+      "title": "概览",
+      "newInquiries": "新询价",
+      "allInquiries": "全部询价",
+      "users": "用户",
+      "products": "商品",
+      "topViewed": "浏览最多",
+      "product": "商品",
+      "views": "浏览量",
+      "noData": "暂无数据。"
+    },
+    "productStatus": {
+      "DRAFT": "草稿",
+      "PUBLISHED": "已发布",
+      "ARCHIVED": "已归档"
+    },
+    "products": {
+      "title": "商品",
+      "new": "新增商品",
+      "newHint": "请先保存商品，再到编辑页上传图片。",
+      "create": "创建商品",
+      "save": "保存商品",
+      "delete": "删除",
+      "deleteConfirm": "确定永久删除“{name}”？",
+      "search": "按名称或 slug 搜索",
+      "status": "状态",
+      "allStatuses": "全部状态",
+      "category": "分类",
+      "allCategories": "全部分类",
+      "name": "名称",
+      "price": "价格",
+      "stock": "库存",
+      "views": "浏览量",
+      "updatedAt": "更新时间",
+      "empty": "暂无商品。",
+      "meta": "{views} 次浏览 · 更新于 {updated}",
+      "viewOnSite": "在网站查看"
+    },
+    "productForm": {
+      "saved": "已保存，公开页面将自动刷新。",
+      "basics": "基本信息",
+      "slug": "Slug",
+      "slugHint": "小写字母、数字和连字符，如：amd-epyc-7402。",
+      "slugInvalid": "只能使用小写字母、数字和连字符。",
+      "slugFromName": "根据名称生成 slug",
+      "sku": "SKU",
+      "brand": "品牌",
+      "price": "价格（越南盾）",
+      "priceHint": "留空则显示“询价”。",
+      "priceInvalid": "只能输入数字。",
+      "category": "分类",
+      "subCategory": "子分类",
+      "stock": "库存",
+      "status": "状态",
+      "featured": "精选商品（显示在首页）",
+      "content": "多语言内容",
+      "contentHint": "越南语为必填；未填写名称的语言将使用越南语内容。",
+      "name": "商品名称",
+      "shortDescription": "简短描述",
+      "description": "详细描述",
+      "highlights": "产品亮点",
+      "useCases": "适用场景",
+      "notes": "备注",
+      "onePerLine": "每行一项。",
+      "metaTitle": "SEO 标题",
+      "metaDescription": "SEO 描述",
+      "specs": "技术规格",
+      "specsHint": "每行包含一个键，以及各语言的标签和值。",
+      "addSpec": "添加规格",
+      "noSpecs": "暂无规格。",
+      "specKey": "键（如 cores）",
+      "specLabel": "标签",
+      "specValue": "值",
+      "moveUp": "上移",
+      "moveDown": "下移",
+      "removeSpec": "删除规格",
+      "sources": "规格来源（URL）"
+    },
+    "images": {
+      "title": "图片",
+      "hint": "JPEG、PNG 或 WebP，最大 5 MB。第一张为主图。",
+      "none": "暂无图片。",
+      "file": "图片文件",
+      "fileHint": "服务器会生成 320 / 800 / 1600 px 的 WebP 版本并去除 EXIF。",
+      "alt": "图片描述",
+      "credit": "来源 / 授权",
+      "upload": "上传图片",
+      "tooLarge": "图片超过 5 MB。",
+      "primary": "主图",
+      "moveUp": "前移",
+      "moveDown": "后移",
+      "setPrimary": "设为主图",
+      "saveMeta": "保存描述",
+      "delete": "删除图片",
+      "deleteConfirm": "确定删除这张图片？"
+    },
+    "categories": {
+      "title": "分类",
+      "add": "新增分类",
+      "addSub": "新增子分类",
+      "subCategories": "子分类",
+      "edit": "编辑",
+      "delete": "删除",
+      "deleteConfirm": "确定删除此分类？仍有商品的分类无法删除。",
+      "deleteSubConfirm": "确定删除此子分类？",
+      "order": "排序 {n}",
+      "productCount": "{count} 件商品",
+      "slug": "Slug",
+      "slugInvalid": "只能使用小写字母、数字和连字符。",
+      "sortOrder": "排序",
+      "name": "名称",
+      "nameRequired": "越南语名称为必填项。",
+      "imageUrl": "分类图片 URL（选填）"
+    },
+    "inquiries": {
+      "title": "询价",
+      "total": "{count} 条询价",
+      "search": "搜索编号、姓名、邮箱、电话",
+      "status": "状态",
+      "allStatuses": "全部状态",
+      "from": "从",
+      "to": "至",
+      "assignedToMe": "分配给我",
+      "code": "编号",
+      "subject": "内容",
+      "customer": "客户",
+      "assignee": "负责人",
+      "createdAt": "创建时间",
+      "empty": "暂无询价。",
+      "back": "询价列表",
+      "phone": "电话",
+      "preferredContact": "首选方式",
+      "locale": "语言",
+      "account": "账号",
+      "member": "会员",
+      "guest": "访客",
+      "quantity": "数量",
+      "history": "处理记录",
+      "noHistory": "暂无变更。",
+      "system": "系统",
+      "update": "更新",
+      "updated": "已更新。",
+      "unassigned": "未分配",
+      "assignToMe": "由我处理",
+      "note": "内部备注",
+      "noteHint": "客户看不到此备注。",
+      "save": "保存"
+    },
+    "users": {
+      "title": "用户",
+      "total": "{count} 位用户",
+      "search": "搜索姓名或邮箱",
+      "role": "角色",
+      "allRoles": "全部角色",
+      "roles": {
+        "CUSTOMER": "客户",
+        "ADMIN": "管理员"
+      },
+      "status": "状态",
+      "allStatuses": "全部状态",
+      "statuses": {
+        "PENDING_VERIFICATION": "待验证",
+        "ACTIVE": "正常",
+        "LOCKED": "已锁定",
+        "DELETED": "已删除"
+      },
+      "user": "用户",
+      "lastLogin": "最近登录",
+      "createdAt": "创建时间",
+      "actions": "操作",
+      "empty": "暂无用户。",
+      "lock": "锁定",
+      "unlock": "解锁",
+      "resend": "重发验证邮件",
+      "lockConfirm": "确定锁定 {email}？其所有登录会话将被撤销。",
+      "roleConfirm": "确定将 {email} 的角色改为{role}？",
+      "updated": "用户已更新。",
+      "verificationSent": "已向 {email} 重新发送验证邮件。"
+    },
+    "audit": {
+      "title": "审计日志",
+      "subtitle": "管理员的所有写操作，最新的在前。",
+      "entityType": "按类型筛选（product、category…）",
+      "time": "时间",
+      "action": "操作",
+      "entity": "对象",
+      "actor": "操作人",
+      "changes": "变更",
+      "show": "查看变更前 / 后",
+      "before": "变更前",
+      "after": "变更后",
+      "empty": "暂无日志。"
+    },
+    "import": {
+      "title": "数据导入",
+      "subtitle": "从服务器上的 product/ 目录同步商品目录。",
+      "body": "导入程序按 slug 新增或更新分类和商品，可重复运行。仅在 dev / staging 环境启用；生产环境使用命令行导入。",
+      "run": "运行导入",
+      "confirm": "确定从 product/ 目录导入数据？",
+      "done": "导入完成。",
+      "disabled": "当前环境未启用数据导入。",
+      "categoriesCreated": "新增分类",
+      "categoriesUpdated": "更新分类",
+      "productsCreated": "新增商品",
+      "productsUpdated": "更新商品",
+      "productsSkipped": "跳过商品",
+      "errors": "{count} 个错误"
+    }
+  }
+}

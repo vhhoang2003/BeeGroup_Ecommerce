@@ -2,21 +2,21 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useQuery } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
 import SectionTitle from '@/components/ui/SectionTitle';
-import { CatalogApi } from '@/lib/api/endpoints';
+import { Link } from '@/i18n/navigation';
+import { isRemoteImage } from '@/lib/utils';
+import { useCategories } from '../hooks';
 import CategoryIcon from './CategoryIcon';
 
 export default function CategoryTiles() {
-  const { data: categories, isLoading } = useQuery({
-    queryKey: ['categories'],
-    queryFn: () => CatalogApi.getCategories(),
-  });
+  const t = useTranslations('home');
+  const tCatalog = useTranslations('catalog');
+  const { data: categories, isLoading } = useCategories();
 
   return (
     <section className="w-full max-w-[1240px] mx-auto px-4 mb-10 sm:mb-12">
-      <SectionTitle prefix="Danh mục" highlight="sản phẩm" viewAllHref="/products" />
+      <SectionTitle prefix={t('categoriesPrefix')} highlight={t('categoriesHighlight')} viewAllHref="/products" />
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         {isLoading || !categories
@@ -34,6 +34,7 @@ export default function CategoryTiles() {
                       alt={cat.name}
                       fill
                       sizes="(max-width: 768px) 50vw, 300px"
+                      unoptimized={isRemoteImage(cat.image)}
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#212844]/85 via-[#212844]/20 to-transparent" />
@@ -51,7 +52,8 @@ export default function CategoryTiles() {
                     {cat.name}
                   </p>
                   <p className={`text-[12px] line-clamp-1 ${cat.image ? 'text-white/80' : 'text-[#666666]'}`}>
-                    {cat.itemCount} sản phẩm · {cat.subCategories.map((s) => s.name).join(', ')}
+                    {tCatalog('productCount', { count: cat.itemCount })} ·{' '}
+                    {cat.subCategories.map((s) => s.name).join(', ')}
                   </p>
                 </div>
               </Link>

@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import ProductCard from '@/features/catalog/components/ProductCard';
 import type { ProductSummary } from '@/types/product';
+import { renderWithIntl } from '../intl';
 
 const sampleProduct: ProductSummary = {
   id: '3',
@@ -20,21 +21,28 @@ const sampleProduct: ProductSummary = {
 
 describe('ProductCard Component', () => {
   it('renders name, brand, sub-category, VND price and stock status', () => {
-    render(<ProductCard product={sampleProduct} />);
+    renderWithIntl(<ProductCard product={sampleProduct} />);
 
     expect(screen.getByText('AMD EPYC 7402')).toBeInTheDocument();
     expect(screen.getByText('AMD')).toBeInTheDocument();
     expect(screen.getByText('Zen 2')).toBeInTheDocument();
     expect(screen.getByText('3.380.000 ₫')).toBeInTheDocument();
     expect(screen.getByText('Còn hàng')).toBeInTheDocument();
-    expect(screen.getByRole('link')).toHaveAttribute('href', '/products/amd-epyc-7402');
+    expect(screen.getByRole('link')).toHaveAttribute('href', '/vi/products/amd-epyc-7402');
   });
 
   it('shows "Liên hệ" and a placeholder when price and photo are missing', () => {
-    render(<ProductCard product={{ ...sampleProduct, price: null, image: null }} />);
+    renderWithIntl(<ProductCard product={{ ...sampleProduct, price: null, image: null }} />);
 
     expect(screen.getByText('Liên hệ')).toBeInTheDocument();
     expect(screen.getByText('Ảnh đang cập nhật')).toBeInTheDocument();
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
+  });
+
+  it('is translated: English labels and the same VND price', () => {
+    renderWithIntl(<ProductCard product={{ ...sampleProduct, stockStatus: 'PRE_ORDER' }} />, 'en');
+
+    expect(screen.getByText('Pre-order')).toBeInTheDocument();
+    expect(screen.getByText('3.380.000 ₫')).toBeInTheDocument();
   });
 });

@@ -1,0 +1,668 @@
+{
+  "site": {
+    "title": "CPU AMD EPYC, mainboard SP3, GPU & tản nhiệt server",
+    "tagline": "Linh kiện server & workstation: CPU AMD EPYC, GPU, mainboard, tản nhiệt",
+    "description": "Bee Store cung cấp CPU AMD EPYC, GPU NVIDIA Tesla, mainboard SP3 và tản nhiệt cho home lab, máy chủ ảo hoá và workstation. Báo giá nhanh qua hotline, Zalo hoặc email.",
+    "welcome": "Chào mừng đến {name}: linh kiện server & workstation",
+    "address": "TP. Hồ Chí Minh, Việt Nam"
+  },
+  "nav": {
+    "language": "Ngôn ngữ",
+    "homeOf": "{name}, trang chủ",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu",
+    "admin": "Quản trị",
+    "wishlist": "Sản phẩm đã lưu",
+    "login": "Đăng nhập",
+    "register": "Đăng ký tài khoản",
+    "callUs": "Gọi tư vấn",
+    "home": "Trang chủ",
+    "allProducts": "Tất cả sản phẩm",
+    "contact": "Liên hệ",
+    "myAccount": "Tài khoản của tôi",
+    "hello": "Xin chào",
+    "loginOrRegister": "Đăng nhập hoặc đăng ký",
+    "categories": "Danh mục",
+    "chatZalo": "Chat Zalo"
+  },
+  "footer": {
+    "contact": "Liên hệ",
+    "categories": "Danh mục sản phẩm",
+    "quickLinks": "Liên kết nhanh",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản sử dụng",
+    "rights": "© {year} {name}. Bảo lưu mọi quyền."
+  },
+  "notFound": {
+    "title": "Không tìm thấy trang",
+    "description": "Trang bạn tìm không tồn tại hoặc đã được chuyển đi.",
+    "home": "Về trang chủ"
+  },
+  "common": {
+    "viewAll": "Xem tất cả",
+    "contactForPrice": "Liên hệ",
+    "close": "Đóng",
+    "loading": "Đang tải…",
+    "save": "Lưu",
+    "cancel": "Huỷ"
+  },
+  "stock": {
+    "IN_STOCK": "Còn hàng",
+    "LOW_STOCK": "Sắp hết hàng",
+    "OUT_OF_STOCK": "Hết hàng",
+    "PRE_ORDER": "Đặt trước"
+  },
+  "channel": {
+    "PHONE": "Điện thoại",
+    "ZALO": "Zalo",
+    "EMAIL": "Email",
+    "MESSENGER": "Messenger"
+  },
+  "inquiryStatus": {
+    "NEW": "Mới",
+    "CONTACTED": "Đã liên hệ",
+    "QUOTED": "Đã báo giá",
+    "CLOSED_WON": "Thành công",
+    "CLOSED_LOST": "Không thành",
+    "SPAM": "Spam"
+  },
+  "home": {
+    "categoriesPrefix": "Danh mục",
+    "categoriesHighlight": "sản phẩm",
+    "featuredPrefix": "Sản phẩm",
+    "featuredHighlight": "nổi bật",
+    "mainboardPrefix": "Mainboard",
+    "mainboardHighlight": "SP3",
+    "coolerPrefix": "Tản nhiệt",
+    "coolerHighlight": "cho EPYC"
+  },
+  "hero": {
+    "zen2": {
+      "subtitle": "AMD EPYC 7002 · Rome · Zen 2",
+      "title": "CPU SERVER EPYC.",
+      "description": "Từ 8 tới 64 nhân, 128 lane PCIe 4.0, RAM DDR4 8 kênh. Hợp cho home lab, NAS và ảo hoá.",
+      "cta": "Xem dòng Zen 2"
+    },
+    "zen3": {
+      "subtitle": "AMD EPYC 7003 · Milan · Zen 3",
+      "title": "HIỆU NĂNG ZEN 3.",
+      "description": "EPYC 7663, 7B13, 7V13, 7V73X: nhiều nhân, cache lớn, chạy trên mainboard SP3.",
+      "cta": "Xem dòng Zen 3"
+    },
+    "platform": {
+      "subtitle": "Mainboard · GPU · Tản nhiệt",
+      "title": "TRỌN BỘ NỀN TẢNG.",
+      "description": "Mainboard SP3 1P/2P, GPU NVIDIA Tesla A2 và tản nhiệt AIO / khí cho EPYC.",
+      "cta": "Xem tất cả sản phẩm"
+    },
+    "goTo": "Slide {n}",
+    "prev": "Slide trước",
+    "next": "Slide tiếp"
+  },
+  "search": {
+    "placeholder": "Tìm CPU, mainboard, tản nhiệt… (vd: 7B13, SP3, 64 nhân)",
+    "label": "Tìm sản phẩm",
+    "clear": "Xoá từ khoá",
+    "filter": "Lọc sản phẩm",
+    "searching": "Đang tìm…",
+    "suggestions": "Kết quả gợi ý ({count})",
+    "enterHint": "Nhấn Enter để xem tất cả",
+    "noResults": "Không tìm thấy sản phẩm cho “{q}”"
+  },
+  "catalog": {
+    "filters": "Bộ lọc",
+    "clearFilters": "Xoá bộ lọc",
+    "sort": "Sắp xếp",
+    "sorts": {
+      "featured": "Nổi bật",
+      "price-asc": "Giá: thấp đến cao",
+      "price-desc": "Giá: cao đến thấp",
+      "newest": "Mới nhất"
+    },
+    "category": "Danh mục",
+    "allCategories": "Tất cả danh mục",
+    "stock": "Tình trạng",
+    "all": "Tất cả",
+    "productCount": "{count} sản phẩm",
+    "loading": "Đang tải…",
+    "loadingProducts": "Đang tải sản phẩm…",
+    "clearSearch": "Bỏ tìm kiếm “{q}”",
+    "emptyTitle": "Không có sản phẩm phù hợp",
+    "emptyHint": "Thử bỏ bớt bộ lọc hoặc tìm với từ khoá khác như “7B13”, “SP3”, “64 nhân”.",
+    "pagination": "Phân trang",
+    "prevPage": "Trang trước",
+    "nextPage": "Trang sau",
+    "allProducts": "Tất cả sản phẩm",
+    "allProductsDescription": "CPU AMD EPYC, GPU NVIDIA Tesla, mainboard SP3 và tản nhiệt server tại Bee Store, lọc theo danh mục, tình trạng và giá.",
+    "searchResults": "Kết quả tìm kiếm cho “{q}”",
+    "categoryDescription": "{name} tại Bee Store: {subs}. Xem thông số, giá tham khảo và yêu cầu báo giá.",
+    "breadcrumb": "Đường dẫn",
+    "products": "Sản phẩm"
+  },
+  "product": {
+    "photoPending": "Ảnh đang cập nhật",
+    "viewImage": "Xem ảnh {n}",
+    "imageCredits": "Nguồn ảnh & giấy phép",
+    "breadcrumb": "Đường dẫn",
+    "trustWarranty": "Bảo hành",
+    "trustWarrantySub": "Theo từng sản phẩm",
+    "trustChecked": "Kiểm tra kỹ",
+    "trustCheckedSub": "Trước khi giao",
+    "trustAdvice": "Tư vấn",
+    "trustAdviceSub": "Chọn cấu hình",
+    "priceNote": "Giá tham khảo. Liên hệ để nhận báo giá theo số lượng và tình trạng hàng.",
+    "requestQuote": "Yêu cầu báo giá",
+    "save": "Lưu sản phẩm",
+    "saved": "Đã lưu",
+    "quoteSubject": "Báo giá {name}",
+    "highlights": "Điểm nổi bật",
+    "useCases": "Phù hợp cho",
+    "description": "Mô tả",
+    "specs": "Thông số kỹ thuật",
+    "sources": "Nguồn thông số:",
+    "relatedPrefix": "Sản phẩm",
+    "relatedHighlight": "liên quan"
+  },
+  "contactCta": {
+    "title": "Cần tư vấn cấu hình hoặc báo giá?",
+    "body": "Đội ngũ {name} giúp bạn chọn CPU, mainboard và tản nhiệt phù hợp cho home lab, ảo hoá hay render. Liên hệ để nhận báo giá tốt nhất.",
+    "zalo": "Chat Zalo",
+    "email": "Gửi email",
+    "sendMessage": "Gửi tin nhắn"
+  },
+  "floating": {
+    "open": "Mở các kênh liên hệ",
+    "close": "Đóng các kênh liên hệ"
+  },
+  "inquiry": {
+    "title": "Yêu cầu báo giá",
+    "fullName": "Họ và tên",
+    "email": "Email",
+    "quantity": "Số lượng",
+    "phone": "Số điện thoại",
+    "phoneHint": "VD: 0901 234 567",
+    "preferredContact": "Kênh liên hệ ưu tiên",
+    "message": "Lời nhắn",
+    "messagePlaceholder": "Cấu hình dự kiến, thời gian cần hàng, yêu cầu xuất hoá đơn…",
+    "submit": "Gửi yêu cầu",
+    "captchaRequired": "Vui lòng hoàn tất xác minh chống spam.",
+    "successTitle": "Đã gửi yêu cầu",
+    "successCode": "Mã yêu cầu: {code}",
+    "successBody": "Chúng tôi sẽ liên hệ với bạn trong vòng 24 giờ làm việc.",
+    "privacyNote": "Thông tin chỉ dùng để liên hệ báo giá, theo Chính sách bảo mật của Bee Store."
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "subtitle": "Gửi câu hỏi về sản phẩm, cấu hình hay đơn hàng số lượng lớn. Chúng tôi phản hồi trong 24 giờ làm việc.",
+    "hotline": "Hotline",
+    "address": "Địa chỉ",
+    "hours": "Giờ làm việc: 8:30 – 18:00, thứ Hai đến thứ Bảy.",
+    "phoneOptional": "Số điện thoại (không bắt buộc)",
+    "subject": "Tiêu đề",
+    "message": "Nội dung",
+    "send": "Gửi tin nhắn",
+    "sentTitle": "Đã gửi tin nhắn",
+    "sendAnother": "Gửi tin nhắn khác"
+  },
+  "auth": {
+    "metaTitle": "Tài khoản",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "fullName": "Họ và tên",
+    "showPassword": "Hiện mật khẩu",
+    "hidePassword": "Ẩn mật khẩu",
+    "loginTitle": "Đăng nhập",
+    "loginSubtitle": "Theo dõi yêu cầu báo giá và sản phẩm đã lưu",
+    "forgotPassword": "Quên mật khẩu?",
+    "rememberMe": "Ghi nhớ đăng nhập (30 ngày)",
+    "signIn": "Đăng nhập",
+    "signingIn": "Đang đăng nhập…",
+    "noAccount": "Chưa có tài khoản?",
+    "registerNow": "Đăng ký ngay",
+    "resendVerification": "Gửi lại email xác minh",
+    "verificationResent": "Nếu email tồn tại và chưa xác minh, chúng tôi đã gửi lại liên kết xác minh.",
+    "registerTitle": "Tạo tài khoản",
+    "registerSubtitle": "Tham gia Bee Store để gửi yêu cầu báo giá và theo dõi trạng thái",
+    "phoneOptional": "Số điện thoại (không bắt buộc)",
+    "phoneHint": "VD: 0901 234 567",
+    "passwordHint": "8–72 ký tự, có ít nhất 1 chữ cái và 1 chữ số.",
+    "passwordConfirmation": "Nhập lại mật khẩu",
+    "acceptTerms": "Tôi đồng ý với <terms>Điều khoản sử dụng</terms> và <privacy>Chính sách bảo mật</privacy>.",
+    "createAccount": "Tạo tài khoản",
+    "registering": "Đang tạo tài khoản…",
+    "haveAccount": "Đã có tài khoản?",
+    "checkInboxTitle": "Kiểm tra hộp thư",
+    "checkInboxBody": "Chúng tôi đã gửi liên kết xác minh tới {email}. Liên kết có hiệu lực trong 24 giờ.",
+    "noEmail": "Không nhận được email?",
+    "goToLogin": "Đến trang đăng nhập",
+    "goToAccount": "Đến tài khoản của tôi",
+    "verifyTitle": "Xác minh email",
+    "verifying": "Đang xác minh…",
+    "verifiedTitle": "Email đã được xác minh",
+    "verifiedBody": "Bạn có thể đăng nhập và sử dụng đầy đủ tài khoản.",
+    "verifyFailedTitle": "Không xác minh được email",
+    "missingToken": "Liên kết không hợp lệ hoặc thiếu mã xác minh.",
+    "resendPrompt": "Nhập email để nhận liên kết mới:",
+    "forgotTitle": "Quên mật khẩu",
+    "forgotSubtitle": "Nhập email tài khoản, chúng tôi sẽ gửi liên kết đặt lại mật khẩu.",
+    "sendResetLink": "Gửi liên kết",
+    "forgotSent": "Nếu tài khoản tồn tại, chúng tôi đã gửi email hướng dẫn. Liên kết có hiệu lực trong 30 phút.",
+    "backToLogin": "Quay lại đăng nhập",
+    "resetTitle": "Đặt lại mật khẩu",
+    "resetSubtitle": "Chọn mật khẩu mới cho tài khoản của bạn.",
+    "newPassword": "Mật khẩu mới",
+    "setNewPassword": "Đổi mật khẩu",
+    "requestNewLink": "Yêu cầu liên kết mới",
+    "resetDoneTitle": "Đã đổi mật khẩu",
+    "resetDoneBody": "Mọi phiên đăng nhập cũ đã bị đăng xuất. Hãy đăng nhập lại bằng mật khẩu mới.",
+    "checkingSession": "Đang kiểm tra phiên đăng nhập…",
+    "forbiddenTitle": "Không có quyền truy cập",
+    "forbiddenBody": "Trang này chỉ dành cho quản trị viên.",
+    "backHome": "Về trang chủ"
+  },
+  "account": {
+    "metaTitle": "Tài khoản của tôi",
+    "navLabel": "Mục tài khoản",
+    "profile": "Thông tin cá nhân",
+    "security": "Bảo mật",
+    "inquiries": "Yêu cầu báo giá của tôi",
+    "wishlist": "Sản phẩm đã lưu",
+    "logout": "Đăng xuất",
+    "fullName": "Họ và tên",
+    "email": "Email",
+    "emailHint": "Đổi email trong mục Bảo mật.",
+    "phone": "Số điện thoại",
+    "phoneHint": "VD: 0901 234 567. Để trống để xoá.",
+    "preferredLocale": "Ngôn ngữ",
+    "preferredContact": "Kênh liên hệ ưu tiên",
+    "noPreference": "Không chọn",
+    "save": "Lưu thay đổi",
+    "profileSaved": "Đã lưu thông tin.",
+    "memberSince": "Thành viên từ",
+    "emailVerifiedAt": "Xác minh email",
+    "lastLogin": "Đăng nhập gần nhất",
+    "changePassword": "Đổi mật khẩu",
+    "changePasswordHint": "Các thiết bị khác sẽ bị đăng xuất, thiết bị này vẫn giữ đăng nhập.",
+    "currentPassword": "Mật khẩu hiện tại",
+    "wrongPassword": "Mật khẩu hiện tại không đúng.",
+    "passwordChanged": "Đã đổi mật khẩu.",
+    "changeEmail": "Đổi email",
+    "changeEmailHint": "Email mới chỉ có hiệu lực sau khi bạn bấm liên kết xác nhận gửi tới địa chỉ đó.",
+    "newEmail": "Email mới",
+    "sameEmail": "Email mới trùng với email hiện tại.",
+    "changeEmailSent": "Đã gửi liên kết xác nhận tới {email}.",
+    "logoutAll": "Đăng xuất khỏi mọi thiết bị",
+    "logoutAllHint": "Thu hồi tất cả phiên đăng nhập, kể cả phiên hiện tại.",
+    "logoutAllConfirm": "Đăng xuất khỏi mọi thiết bị?",
+    "deleteAccount": "Xoá tài khoản",
+    "deleteAccountHint": "Tài khoản bị vô hiệu hoá ngay, dữ liệu cá nhân được ẩn danh hoá sau 30 ngày. Hành động này không thể hoàn tác.",
+    "deleteAccountConfirm": "Tôi hiểu tài khoản và dữ liệu cá nhân sẽ bị xoá.",
+    "noInquiries": "Chưa có yêu cầu báo giá",
+    "noInquiriesHint": "Bấm “Yêu cầu báo giá” trên trang sản phẩm để gửi yêu cầu.",
+    "browseProducts": "Xem sản phẩm →",
+    "quantity": "Số lượng",
+    "priceAtRequest": "Giá lúc yêu cầu",
+    "statusHistory": "Lịch sử trạng thái",
+    "emptyWishlist": "Chưa lưu sản phẩm nào",
+    "emptyWishlistHint": "Bấm “Lưu sản phẩm” trên trang sản phẩm để xem lại sau.",
+    "removeFromWishlist": "Bỏ lưu {name}"
+  },
+  "errors": {
+    "VALIDATION_ERROR": "Thông tin chưa hợp lệ, vui lòng kiểm tra lại.",
+    "TOKEN_INVALID_OR_EXPIRED": "Liên kết không hợp lệ hoặc đã hết hạn.",
+    "CAPTCHA_FAILED": "Xác minh chống spam không thành công, vui lòng thử lại.",
+    "INVALID_CREDENTIALS": "Email hoặc mật khẩu không đúng.",
+    "TOKEN_EXPIRED": "Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại.",
+    "REFRESH_TOKEN_INVALID": "Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại.",
+    "REFRESH_TOKEN_REUSED": "Phiên đăng nhập bị thu hồi vì lý do bảo mật, vui lòng đăng nhập lại.",
+    "EMAIL_NOT_VERIFIED": "Email chưa được xác minh. Hãy mở liên kết trong email chúng tôi đã gửi.",
+    "ACCESS_DENIED": "Bạn không có quyền thực hiện thao tác này.",
+    "RESOURCE_NOT_FOUND": "Không tìm thấy dữ liệu.",
+    "EMAIL_ALREADY_EXISTS": "Email đã được đăng ký. Hãy đăng nhập hoặc đặt lại mật khẩu.",
+    "SLUG_ALREADY_EXISTS": "Slug đã được dùng, hãy chọn slug khác.",
+    "FILE_TOO_LARGE": "Tệp quá lớn (tối đa 5 MB).",
+    "ACCOUNT_LOCKED": "Tài khoản tạm thời bị khoá do đăng nhập sai nhiều lần.",
+    "ACCOUNT_LOCKED_retry": "Tài khoản tạm thời bị khoá, hãy thử lại sau {minutes} phút.",
+    "RATE_LIMITED": "Bạn thao tác quá nhanh, vui lòng thử lại sau.",
+    "RATE_LIMITED_retry": "Bạn thao tác quá nhanh, hãy thử lại sau {minutes} phút.",
+    "INTERNAL_ERROR": "Hệ thống đang gặp sự cố, vui lòng thử lại sau.",
+    "NETWORK": "Không kết nối được máy chủ. Kiểm tra mạng và thử lại."
+  },
+  "validation": {
+    "required": "Vui lòng nhập thông tin này.",
+    "email": "Email không hợp lệ.",
+    "phone": "Số điện thoại không hợp lệ.",
+    "quantity": "Số lượng từ 1 đến 100.000.",
+    "max": "Tối đa {max} ký tự.",
+    "invalid": "Giá trị không hợp lệ.",
+    "password_length": "Mật khẩu cần 8–72 ký tự.",
+    "password_letterDigit": "Mật khẩu cần ít nhất 1 chữ cái và 1 chữ số.",
+    "password_sameAsEmail": "Mật khẩu không được trùng email.",
+    "passwordWeak": "Mật khẩu quá dễ đoán, hãy chọn mật khẩu khác.",
+    "passwordMismatch": "Mật khẩu nhập lại không khớp.",
+    "acceptTerms": "Bạn cần đồng ý với điều khoản để tiếp tục."
+  },
+  "legal": {
+    "updated": "Cập nhật: {date}",
+    "privacy": {
+      "title": "Chính sách bảo mật",
+      "updatedAt": "20/10/2026",
+      "intro": "Chính sách này giải thích Bee Store thu thập, sử dụng và bảo vệ dữ liệu cá nhân của bạn như thế nào khi bạn dùng website, theo Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân.",
+      "sections": [
+        {
+          "title": "Dữ liệu chúng tôi thu thập",
+          "paragraphs": [
+            "Khi đăng ký tài khoản: họ tên, email, số điện thoại (không bắt buộc), ngôn ngữ và kênh liên hệ ưu tiên, cùng thời điểm bạn đồng ý với điều khoản.",
+            "Khi gửi yêu cầu báo giá hoặc tin nhắn liên hệ: họ tên, email, số điện thoại, nội dung yêu cầu và sản phẩm liên quan.",
+            "Dữ liệu kỹ thuật: địa chỉ IP và trình duyệt, dùng để chống spam, giới hạn tần suất và bảo vệ tài khoản."
+          ]
+        },
+        {
+          "title": "Mục đích sử dụng",
+          "paragraphs": [
+            "Tạo và quản lý tài khoản, xác minh email, đặt lại mật khẩu.",
+            "Liên hệ, tư vấn và báo giá theo yêu cầu của bạn qua kênh bạn chọn.",
+            "Bảo vệ hệ thống khỏi truy cập trái phép và lạm dụng. Chúng tôi không bán dữ liệu cá nhân và không dùng cho quảng cáo của bên thứ ba."
+          ]
+        },
+        {
+          "title": "Lưu trữ và bảo mật",
+          "paragraphs": [
+            "Dữ liệu được lưu trên máy chủ do Bee Store quản lý. Mật khẩu được băm bằng Argon2id, các mã xác minh chỉ lưu dạng băm; kết nối luôn dùng HTTPS.",
+            "Bản sao lưu cơ sở dữ liệu được mã hoá và giữ tối đa 8 tuần."
+          ]
+        },
+        {
+          "title": "Chia sẻ dữ liệu",
+          "paragraphs": [
+            "Chúng tôi chỉ chia sẻ dữ liệu với nhà cung cấp dịch vụ cần thiết để vận hành website: gửi email, chống spam (Cloudflare Turnstile) và hạ tầng mạng (Cloudflare), hoặc khi pháp luật yêu cầu."
+          ]
+        },
+        {
+          "title": "Quyền của bạn",
+          "paragraphs": [
+            "Bạn có thể xem và sửa thông tin cá nhân trong mục Tài khoản, đổi email, đăng xuất khỏi mọi thiết bị và tự xoá tài khoản. Khi xoá, tài khoản bị vô hiệu hoá ngay và dữ liệu cá nhân được ẩn danh hoá sau 30 ngày.",
+            "Để yêu cầu bản sao dữ liệu hoặc rút lại sự đồng ý, hãy liên hệ sales@beegroupnas.com."
+          ]
+        },
+        {
+          "title": "Cookie",
+          "paragraphs": [
+            "Website dùng cookie cần thiết: cookie phiên đăng nhập (HttpOnly) và cookie ghi nhớ ngôn ngữ. Chúng tôi không dùng cookie quảng cáo."
+          ]
+        },
+        {
+          "title": "Liên hệ",
+          "paragraphs": ["Mọi câu hỏi về chính sách này, vui lòng gửi về sales@beegroupnas.com hoặc hotline 036 6789 371."]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Điều khoản sử dụng",
+      "updatedAt": "20/10/2026",
+      "intro": "Bằng việc sử dụng website Bee Store, bạn đồng ý với các điều khoản dưới đây.",
+      "sections": [
+        {
+          "title": "Phạm vi dịch vụ",
+          "paragraphs": [
+            "Website giới thiệu linh kiện server và workstation, cho phép bạn xem thông số, lưu sản phẩm và gửi yêu cầu báo giá. Website không xử lý thanh toán trực tuyến; giao dịch được thoả thuận trực tiếp sau khi báo giá."
+          ]
+        },
+        {
+          "title": "Giá và thông tin sản phẩm",
+          "paragraphs": [
+            "Giá hiển thị là giá tham khảo bằng VND và có thể thay đổi theo số lượng, tình trạng hàng và thời điểm. Giá cuối cùng là giá trong báo giá chính thức.",
+            "Thông số được tổng hợp từ nguồn của nhà sản xuất; chúng tôi cố gắng đảm bảo chính xác nhưng không loại trừ sai sót."
+          ]
+        },
+        {
+          "title": "Tài khoản",
+          "paragraphs": [
+            "Bạn chịu trách nhiệm giữ bí mật mật khẩu và các hoạt động trên tài khoản của mình. Chúng tôi có thể khoá tài khoản vi phạm điều khoản hoặc có dấu hiệu lạm dụng."
+          ]
+        },
+        {
+          "title": "Sử dụng hợp lệ",
+          "paragraphs": [
+            "Không gửi spam, không thu thập dữ liệu tự động gây quá tải, không tìm cách truy cập trái phép vào hệ thống."
+          ]
+        },
+        {
+          "title": "Bảo hành và đổi trả",
+          "paragraphs": ["Điều kiện bảo hành, đổi trả được ghi rõ trong báo giá và chứng từ bán hàng của từng sản phẩm."]
+        },
+        {
+          "title": "Hình ảnh",
+          "paragraphs": [
+            "Một số ảnh sản phẩm thuộc bên thứ ba và được dùng theo giấy phép ghi trong mục “Nguồn ảnh & giấy phép” của từng sản phẩm."
+          ]
+        },
+        {
+          "title": "Thay đổi điều khoản",
+          "paragraphs": ["Chúng tôi có thể cập nhật điều khoản; ngày cập nhật được ghi ở đầu trang."]
+        }
+      ]
+    }
+  },
+  "admin": {
+    "metaTitle": "Quản trị",
+    "nav": {
+      "title": "Quản trị",
+      "dashboard": "Tổng quan",
+      "products": "Sản phẩm",
+      "categories": "Danh mục",
+      "inquiries": "Yêu cầu báo giá",
+      "users": "Người dùng",
+      "auditLogs": "Nhật ký",
+      "import": "Nhập dữ liệu"
+    },
+    "dashboard": {
+      "title": "Tổng quan",
+      "newInquiries": "Yêu cầu mới",
+      "allInquiries": "Tổng yêu cầu",
+      "users": "Người dùng",
+      "products": "Sản phẩm",
+      "topViewed": "Xem nhiều nhất",
+      "product": "Sản phẩm",
+      "views": "Lượt xem",
+      "noData": "Chưa có dữ liệu."
+    },
+    "productStatus": {
+      "DRAFT": "Nháp",
+      "PUBLISHED": "Đang bán",
+      "ARCHIVED": "Lưu trữ"
+    },
+    "products": {
+      "title": "Sản phẩm",
+      "new": "Thêm sản phẩm",
+      "newHint": "Lưu sản phẩm trước, sau đó tải ảnh lên ở trang chỉnh sửa.",
+      "create": "Tạo sản phẩm",
+      "save": "Lưu sản phẩm",
+      "delete": "Xoá",
+      "deleteConfirm": "Xoá vĩnh viễn “{name}”?",
+      "search": "Tìm theo tên hoặc slug",
+      "status": "Trạng thái",
+      "allStatuses": "Mọi trạng thái",
+      "category": "Danh mục",
+      "allCategories": "Mọi danh mục",
+      "name": "Tên",
+      "price": "Giá",
+      "stock": "Tồn kho",
+      "views": "Lượt xem",
+      "updatedAt": "Cập nhật",
+      "empty": "Không có sản phẩm.",
+      "meta": "{views} lượt xem · cập nhật {updated}",
+      "viewOnSite": "Xem trên web"
+    },
+    "productForm": {
+      "saved": "Đã lưu. Trang công khai sẽ được làm mới.",
+      "basics": "Thông tin cơ bản",
+      "slug": "Slug",
+      "slugHint": "Chữ thường, số và dấu gạch ngang, VD: amd-epyc-7402.",
+      "slugInvalid": "Slug chỉ gồm chữ thường, số và dấu gạch ngang.",
+      "slugFromName": "Tạo slug từ tên",
+      "sku": "SKU",
+      "brand": "Thương hiệu",
+      "price": "Giá (VND)",
+      "priceHint": "Để trống nếu “Liên hệ”.",
+      "priceInvalid": "Giá chỉ gồm chữ số.",
+      "category": "Danh mục",
+      "subCategory": "Danh mục con",
+      "stock": "Tồn kho",
+      "status": "Trạng thái",
+      "featured": "Sản phẩm nổi bật (hiện ở trang chủ)",
+      "content": "Nội dung theo ngôn ngữ",
+      "contentHint": "Tiếng Việt là bắt buộc; ngôn ngữ để trống tên sẽ dùng nội dung tiếng Việt.",
+      "name": "Tên sản phẩm",
+      "shortDescription": "Mô tả ngắn",
+      "description": "Mô tả chi tiết",
+      "highlights": "Điểm nổi bật",
+      "useCases": "Phù hợp cho",
+      "notes": "Ghi chú",
+      "onePerLine": "Mỗi dòng một mục.",
+      "metaTitle": "Tiêu đề SEO",
+      "metaDescription": "Mô tả SEO",
+      "specs": "Thông số kỹ thuật",
+      "specsHint": "Mỗi dòng có một khoá và nhãn / giá trị theo từng ngôn ngữ.",
+      "addSpec": "Thêm thông số",
+      "noSpecs": "Chưa có thông số.",
+      "specKey": "Khoá (vd: cores)",
+      "specLabel": "Nhãn",
+      "specValue": "Giá trị",
+      "moveUp": "Lên",
+      "moveDown": "Xuống",
+      "removeSpec": "Xoá thông số",
+      "sources": "Nguồn thông số (URL)"
+    },
+    "images": {
+      "title": "Hình ảnh",
+      "hint": "JPEG, PNG hoặc WebP, tối đa 5 MB. Ảnh đầu tiên là ảnh chính.",
+      "none": "Chưa có ảnh.",
+      "file": "Tệp ảnh",
+      "fileHint": "Máy chủ tự tạo bản WebP 320 / 800 / 1600 px và xoá EXIF.",
+      "alt": "Mô tả ảnh",
+      "credit": "Nguồn / giấy phép",
+      "upload": "Tải ảnh lên",
+      "tooLarge": "Ảnh vượt quá 5 MB.",
+      "primary": "Ảnh chính",
+      "moveUp": "Lên trước",
+      "moveDown": "Xuống sau",
+      "setPrimary": "Đặt làm ảnh chính",
+      "saveMeta": "Lưu mô tả",
+      "delete": "Xoá ảnh",
+      "deleteConfirm": "Xoá ảnh này?"
+    },
+    "categories": {
+      "title": "Danh mục",
+      "add": "Thêm danh mục",
+      "addSub": "Thêm danh mục con",
+      "subCategories": "Danh mục con",
+      "edit": "Sửa",
+      "delete": "Xoá",
+      "deleteConfirm": "Xoá danh mục này? Danh mục còn sản phẩm sẽ không xoá được.",
+      "deleteSubConfirm": "Xoá danh mục con này?",
+      "order": "thứ tự {n}",
+      "productCount": "{count} sản phẩm",
+      "slug": "Slug",
+      "slugInvalid": "Slug chỉ gồm chữ thường, số và dấu gạch ngang.",
+      "sortOrder": "Thứ tự",
+      "name": "Tên",
+      "nameRequired": "Cần có tên tiếng Việt.",
+      "imageUrl": "URL ảnh danh mục (không bắt buộc)"
+    },
+    "inquiries": {
+      "title": "Yêu cầu báo giá",
+      "total": "{count} yêu cầu",
+      "search": "Tìm mã, tên, email, SĐT",
+      "status": "Trạng thái",
+      "allStatuses": "Mọi trạng thái",
+      "from": "Từ",
+      "to": "Đến",
+      "assignedToMe": "Giao cho tôi",
+      "code": "Mã",
+      "subject": "Nội dung",
+      "customer": "Khách hàng",
+      "assignee": "Người phụ trách",
+      "createdAt": "Ngày tạo",
+      "empty": "Không có yêu cầu.",
+      "back": "Danh sách yêu cầu",
+      "phone": "Điện thoại",
+      "preferredContact": "Kênh ưu tiên",
+      "locale": "Ngôn ngữ",
+      "account": "Tài khoản",
+      "member": "Thành viên",
+      "guest": "Khách",
+      "quantity": "Số lượng",
+      "history": "Lịch sử xử lý",
+      "noHistory": "Chưa có thay đổi.",
+      "system": "Hệ thống",
+      "update": "Cập nhật",
+      "updated": "Đã cập nhật.",
+      "unassigned": "Chưa giao",
+      "assignToMe": "Nhận xử lý",
+      "note": "Ghi chú nội bộ",
+      "noteHint": "Khách hàng không nhìn thấy ghi chú này.",
+      "save": "Lưu"
+    },
+    "users": {
+      "title": "Người dùng",
+      "total": "{count} người dùng",
+      "search": "Tìm tên hoặc email",
+      "role": "Vai trò",
+      "allRoles": "Mọi vai trò",
+      "roles": {
+        "CUSTOMER": "Khách hàng",
+        "ADMIN": "Quản trị"
+      },
+      "status": "Trạng thái",
+      "allStatuses": "Mọi trạng thái",
+      "statuses": {
+        "PENDING_VERIFICATION": "Chờ xác minh",
+        "ACTIVE": "Hoạt động",
+        "LOCKED": "Bị khoá",
+        "DELETED": "Đã xoá"
+      },
+      "user": "Người dùng",
+      "lastLogin": "Đăng nhập gần nhất",
+      "createdAt": "Ngày tạo",
+      "actions": "Thao tác",
+      "empty": "Không có người dùng.",
+      "lock": "Khoá",
+      "unlock": "Mở khoá",
+      "resend": "Gửi lại xác minh",
+      "lockConfirm": "Khoá tài khoản {email}? Mọi phiên đăng nhập sẽ bị thu hồi.",
+      "roleConfirm": "Đổi vai trò của {email} thành {role}?",
+      "updated": "Đã cập nhật người dùng.",
+      "verificationSent": "Đã gửi lại email xác minh tới {email}."
+    },
+    "audit": {
+      "title": "Nhật ký quản trị",
+      "subtitle": "Mọi thao tác ghi của quản trị viên, mới nhất trước.",
+      "entityType": "Lọc theo loại (product, category…)",
+      "time": "Thời gian",
+      "action": "Hành động",
+      "entity": "Đối tượng",
+      "actor": "Người thực hiện",
+      "changes": "Thay đổi",
+      "show": "Xem trước / sau",
+      "before": "Trước",
+      "after": "Sau",
+      "empty": "Chưa có nhật ký."
+    },
+    "import": {
+      "title": "Nhập dữ liệu",
+      "subtitle": "Đồng bộ danh mục từ thư mục product/ trên máy chủ.",
+      "body": "Trình nhập cập nhật danh mục và sản phẩm theo slug, có thể chạy lại nhiều lần. Chỉ bật ở môi trường dev / staging; production dùng lệnh CLI.",
+      "run": "Chạy nhập dữ liệu",
+      "confirm": "Chạy nhập dữ liệu từ thư mục product/?",
+      "done": "Đã nhập xong.",
+      "disabled": "Chức năng nhập dữ liệu không bật trên môi trường này.",
+      "categoriesCreated": "Danh mục tạo mới",
+      "categoriesUpdated": "Danh mục cập nhật",
+      "productsCreated": "Sản phẩm tạo mới",
+      "productsUpdated": "Sản phẩm cập nhật",
+      "productsSkipped": "Sản phẩm bỏ qua",
+      "errors": "{count} lỗi"
+    }
+  }
+}

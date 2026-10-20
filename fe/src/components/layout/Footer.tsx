@@ -1,23 +1,26 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { Phone, MessageCircle, Mail, MapPin } from 'lucide-react';
-import { useQuery } from '@tanstack/react-query';
-import { CatalogApi } from '@/lib/api/endpoints';
+import { Link } from '@/i18n/navigation';
+import { useCategories } from '@/features/catalog/hooks';
 import { siteConfig } from '@/config/site';
 
 export default function Footer() {
+  const t = useTranslations('footer');
+  const tSite = useTranslations('site');
+  const tNav = useTranslations('nav');
   const { contact } = siteConfig;
-  const { data: categories = [] } = useQuery({
-    queryKey: ['categories'],
-    queryFn: () => CatalogApi.getCategories(),
-  });
+  const { data: categories = [] } = useCategories();
 
   const links = [
-    { name: 'Tất cả sản phẩm', href: '/products' },
-    { name: 'Đăng nhập', href: '/auth/login' },
-    { name: 'Đăng ký tài khoản', href: '/auth/register' },
+    { name: tNav('allProducts'), href: '/products' },
+    { name: tNav('contact'), href: '/contact' },
+    { name: tNav('login'), href: '/auth/login' },
+    { name: tNav('register'), href: '/auth/register' },
+    { name: t('privacy'), href: '/privacy' },
+    { name: t('terms'), href: '/terms' },
   ];
 
   return (
@@ -28,10 +31,10 @@ export default function Footer() {
           {/* Column 1: Brand & Contact Info */}
           <div className="md:col-span-5 flex flex-col">
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">{siteConfig.name}</h2>
-            <p className="text-[13px] text-white/85 mb-5 max-w-[380px]">{siteConfig.tagline}</p>
+            <p className="text-[13px] text-white/85 mb-5 max-w-[380px]">{tSite('tagline')}</p>
 
             <div className="space-y-3 text-[13px] sm:text-[14px]">
-              <h3 className="font-semibold text-white/95 text-base">Liên hệ</h3>
+              <h3 className="font-semibold text-white/95 text-base">{t('contact')}</h3>
 
               <div className="flex items-center gap-2.5 text-white/90">
                 <Phone className="w-4 h-4 text-white shrink-0" />
@@ -59,7 +62,7 @@ export default function Footer() {
 
               <div className="flex items-center gap-2.5 text-white/90">
                 <MapPin className="w-4 h-4 text-white shrink-0" />
-                <span>{contact.address}</span>
+                <span>{tSite('address')}</span>
               </div>
             </div>
           </div>
@@ -67,7 +70,7 @@ export default function Footer() {
           {/* Column 2: Categories */}
           <div className="md:col-span-4">
             <h3 className="text-base sm:text-lg font-bold mb-4 pb-1 relative inline-block">
-              Danh mục sản phẩm
+              {t('categories')}
               <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white rounded-full" />
             </h3>
             <ul className="space-y-2 text-[13px] sm:text-[14px] text-white/90">
@@ -85,7 +88,7 @@ export default function Footer() {
           {/* Column 3: Quick links */}
           <div className="md:col-span-3">
             <h3 className="text-base sm:text-lg font-bold mb-4 pb-1 relative inline-block">
-              Liên kết nhanh
+              {t('quickLinks')}
               <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white rounded-full" />
             </h3>
             <ul className="space-y-2 text-[13px] sm:text-[14px] text-white/90">
@@ -103,7 +106,7 @@ export default function Footer() {
 
         {/* Bottom Bar: Copyright */}
         <div className="pt-6 text-center text-xs sm:text-sm text-white/80">
-          <p>© {new Date().getFullYear()} {siteConfig.name}. Bảo lưu mọi quyền.</p>
+          <p>{t('rights', { year: new Date().getFullYear(), name: siteConfig.name })}</p>
         </div>
       </div>
     </footer>

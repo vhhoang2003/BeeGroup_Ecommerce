@@ -1,6 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { ChevronRight } from 'lucide-react';
+import { Link } from '@/i18n/navigation';
 
 interface SectionTitleProps {
   prefix: string;
@@ -15,6 +16,7 @@ export default function SectionTitle({
   viewAllHref,
   className = '',
 }: SectionTitleProps) {
+  const t = useTranslations('common');
   return (
     <div className={`flex items-center justify-between border-b border-[#EDEDED] pb-3 mb-5 ${className}`}>
       <h2 className="text-[19px] sm:text-[22px] font-semibold text-[#222222] tracking-tight relative">
@@ -31,7 +33,7 @@ export default function SectionTitle({
           href={viewAllHref}
           className="group flex items-center gap-1 text-[13px] sm:text-[14px] font-medium text-[#222222] hover:text-[#008ECC] transition-colors"
         >
-          <span>Xem tất cả</span>
+          <span>{t('viewAll')}</span>
           <ChevronRight className="w-4 h-4 text-[#008ECC] transition-transform group-hover:translate-x-0.5" />
         </Link>
       )}

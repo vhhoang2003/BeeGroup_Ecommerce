@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import SectionTitle from '@/components/ui/SectionTitle';
 import ProductCard from './ProductCard';
 import { CatalogApi } from '@/lib/api/endpoints';
+import { useAppLocale } from '../hooks';
 
 interface ProductSectionProps {
   prefix: string;
@@ -16,12 +17,13 @@ interface ProductSectionProps {
 
 /** A home-page row of product cards: featured products, or the first products of one category. */
 export default function ProductSection({ prefix, highlight, viewAllHref, category }: ProductSectionProps) {
+  const locale = useAppLocale();
   const { data: products, isLoading } = useQuery({
-    queryKey: category ? ['products', { category, size: 4 }] : ['products', 'featured'],
+    queryKey: category ? ['products', locale, { category, size: 4 }] : ['products', locale, 'featured'],
     queryFn: async () =>
       category
-        ? (await CatalogApi.getProducts({ category, size: 4 })).content
-        : CatalogApi.getFeaturedProducts(),
+        ? (await CatalogApi.getProducts({ category, size: 4 }, locale)).content
+        : CatalogApi.getFeaturedProducts(locale),
   });
 
   if (!isLoading && !products?.length) return null;

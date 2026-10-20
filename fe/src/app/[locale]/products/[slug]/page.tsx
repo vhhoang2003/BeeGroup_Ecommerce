@@ -1,61 +1,103 @@
-'use client';
-
-import React, { useState, use } from 'react';
-import Link from 'next/link';
-import { useQuery } from '@tanstack/react-query';
-import { BadgeCheck, ExternalLink, Headset, Info, ShieldCheck } from 'lucide-react';
-import { CatalogApi } from '@/lib/api/endpoints';
+import React from 'react';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { BadgeCheck, ExternalLink, Headset, ShieldCheck } from 'lucide-react';
+import { Link } from '@/i18n/navigation';
+import { fetchProduct, fetchRelated } from '@/lib/api/server';
+import { alternates, localizedPath, OG_LOCALES } from '@/lib/seo';
 import { formatPrice } from '@/lib/utils';
-import ProductThumb from '@/features/catalog/components/ProductThumb';
+import { siteConfig } from '@/config/site';
+import ProductGallery from '@/features/catalog/components/ProductGallery';
 import ProductCard from '@/features/catalog/components/ProductCard';
 import StockBadge from '@/features/catalog/components/StockBadge';
 import SectionTitle from '@/components/ui/SectionTitle';
-import { ContactButtons } from '@/features/engagement/components/ContactCta';
+import ProductActions, { ViewTracker } from '@/features/engagement/components/ProductActions';
+import type { Locale, ProductDetail, StockStatus } from '@/types/product';
 
-export default function ProductDetailPage({ params }: PageProps<'/products/[slug]'>) {
-  const { slug } = use(params);
-  const [activeImage, setActiveImage] = useState(0);
+// ISR window; must be a literal for Next.js to read it (same value as REVALIDATE_SECONDS).
+export const revalidate = 300;
 
-  const { data: product, isLoading } = useQuery({
-    queryKey: ['product', slug],
-    queryFn: () => CatalogApi.getProduct(slug),
-  });
+type Props = PageProps<'/[locale]/products/[slug]'>;
 
-  const { data: related = [] } = useQuery({
-    queryKey: ['product', slug, 'related'],
-    queryFn: () => CatalogApi.getRelatedProducts(slug),
-    enabled: !!product,
-  });
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const product = await fetchProduct(slug, locale as Locale);
+  if (!product) return {};
+  const image = product.images[0];
+  return {
+    title: product.name,
+    description: product.shortDescription,
+    alternates: alternates(locale as Locale, `/products/${product.slug}`),
+    openGraph: {
+      type: 'website',
+      title: product.name,
+      description: product.shortDescription,
+      locale: OG_LOCALES[locale as Locale],
+      images: image ? [{ url: image.url, alt: image.alt }] : undefined,
+    },
+  };
+}
 
-  if (isLoading) {
-    return (
-      <div className="max-w-[1240px] mx-auto px-4 py-16 text-center">
-        <div className="w-12 h-12 border-4 border-[#008ECC] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-gray-500 font-medium">Đang tải thông tin sản phẩm…</p>
-      </div>
-    );
-  }
+const SCHEMA_AVAILABILITY: Record<StockStatus, string> = {
+  IN_STOCK: 'https://schema.org/InStock',
+  LOW_STOCK: 'https://schema.org/LimitedAvailability',
+  OUT_OF_STOCK: 'https://schema.org/OutOfStock',
+  PRE_ORDER: 'https://schema.org/PreOrder',
+};
 
-  if (!product) {
-    return (
-      <div className="max-w-[1240px] mx-auto px-4 py-20 text-center">
-        <h2 className="text-2xl font-bold text-[#222222] mb-3">Không tìm thấy sản phẩm</h2>
-        <p className="text-gray-500 mb-6">Sản phẩm bạn tìm không tồn tại hoặc đã ngừng kinh doanh.</p>
-        <Link href="/products" className="bg-[#008ECC] text-white px-6 py-2.5 rounded-full font-semibold">
-          Xem tất cả sản phẩm
-        </Link>
-      </div>
-    );
-  }
+/** JSON-LD `Product` (CAT-12); `offers` has no checkout URL since v1 sells through quote requests only. */
+function productJsonLd(product: ProductDetail, locale: Locale): string {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.shortDescription,
+    image: product.images.map((i) => new URL(i.url, siteConfig.url).toString()),
+    brand: { '@type': 'Brand', name: product.brand },
+    category: product.category.name,
+    url: new URL(localizedPath(locale, `/products/${product.slug}`), siteConfig.url).toString(),
+    ...(product.price !== null && {
+      offers: {
+        '@type': 'Offer',
+        price: product.price,
+        priceCurrency: 'VND',
+        availability: SCHEMA_AVAILABILITY[product.stockStatus],
+      },
+    }),
+  };
+  // `<` must not appear raw inside a <script> element.
+  return JSON.stringify(data).replace(/</g, '\\u003c');
+}
 
-  const mainImage = product.images[activeImage] ?? product.images[0] ?? null;
+export default async function ProductDetailPage({ params }: Props) {
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
+  const product = await fetchProduct(slug, locale as Locale);
+  if (!product) notFound();
+
+  const [related, t, tNav, tCommon] = await Promise.all([
+    fetchRelated(product.slug, locale as Locale).catch(() => []),
+    getTranslations('product'),
+    getTranslations('nav'),
+    getTranslations('common'),
+  ]);
+
+  const trust = [
+    { icon: ShieldCheck, title: t('trustWarranty'), sub: t('trustWarrantySub') },
+    { icon: BadgeCheck, title: t('trustChecked'), sub: t('trustCheckedSub') },
+    { icon: Headset, title: t('trustAdvice'), sub: t('trustAdviceSub') },
+  ];
 
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-6 sm:py-8">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: productJsonLd(product, locale as Locale) }} />
+      <ViewTracker productId={product.id} />
+
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-6">
+      <nav aria-label={t('breadcrumb')} className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-[#008ECC]">
-          Trang chủ
+          {tNav('home')}
         </Link>
         <span>/</span>
         <Link href={`/category/${product.category.slug}`} className="hover:text-[#008ECC]">
@@ -80,62 +122,21 @@ export default function ProductDetailPage({ params }: PageProps<'/products/[slug
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-white rounded-3xl p-5 sm:p-8 border border-gray-100 shadow-xs">
         {/* Left: Gallery */}
         <div className="lg:col-span-5 flex flex-col">
-          <div className="w-full bg-[#F5F5F5] rounded-2xl aspect-[4/3] relative overflow-hidden border border-gray-200/70">
-            <ProductThumb
-              image={mainImage}
-              categorySlug={product.category.slug}
-              sizes="(max-width: 1024px) 100vw, 480px"
-              priority
-            />
-          </div>
-
-          {product.images.length > 1 && (
-            <div className="grid grid-cols-4 gap-2 mt-3">
-              {product.images.map((img, i) => (
-                <button
-                  key={img.url}
-                  type="button"
-                  onClick={() => setActiveImage(i)}
-                  aria-label={`Xem ảnh ${i + 1}`}
-                  className={`relative aspect-square rounded-xl overflow-hidden bg-[#F5F5F5] border-2 transition-colors cursor-pointer ${
-                    i === activeImage ? 'border-[#008ECC]' : 'border-transparent hover:border-[#008ECC]/40'
-                  }`}
-                >
-                  <ProductThumb image={img} categorySlug={product.category.slug} sizes="120px" />
-                </button>
-              ))}
-            </div>
-          )}
-
-          {product.imageCredits && (
-            <details className="mt-3 text-[11px] text-gray-500">
-              <summary className="cursor-pointer flex items-center gap-1 hover:text-[#008ECC]">
-                <Info className="w-3.5 h-3.5" />
-                Nguồn ảnh &amp; giấy phép
-              </summary>
-              <p className="mt-2 whitespace-pre-line break-words bg-[#F8FAFB] rounded-lg p-3 border border-gray-100">
-                {product.imageCredits}
-              </p>
-            </details>
-          )}
+          <ProductGallery
+            images={product.images}
+            categorySlug={product.category.slug}
+            imageCredits={product.imageCredits}
+          />
 
           {/* Trust Guarantees */}
           <div className="grid grid-cols-3 gap-2 w-full mt-6 text-center text-xs text-gray-600">
-            <div className="p-3 bg-[#F8FAFB] rounded-xl border border-gray-100 flex flex-col items-center">
-              <ShieldCheck className="w-5 h-5 text-[#008ECC] mb-1" />
-              <span className="font-semibold text-[#222222]">Bảo hành</span>
-              <span className="text-[10px] text-gray-400">Theo từng sản phẩm</span>
-            </div>
-            <div className="p-3 bg-[#F8FAFB] rounded-xl border border-gray-100 flex flex-col items-center">
-              <BadgeCheck className="w-5 h-5 text-[#008ECC] mb-1" />
-              <span className="font-semibold text-[#222222]">Kiểm tra kỹ</span>
-              <span className="text-[10px] text-gray-400">Trước khi giao</span>
-            </div>
-            <div className="p-3 bg-[#F8FAFB] rounded-xl border border-gray-100 flex flex-col items-center">
-              <Headset className="w-5 h-5 text-[#008ECC] mb-1" />
-              <span className="font-semibold text-[#222222]">Tư vấn</span>
-              <span className="text-[10px] text-gray-400">Chọn cấu hình</span>
-            </div>
+            {trust.map(({ icon: Icon, title, sub }) => (
+              <div key={title} className="p-3 bg-[#F8FAFB] rounded-xl border border-gray-100 flex flex-col items-center">
+                <Icon className="w-5 h-5 text-[#008ECC] mb-1" />
+                <span className="font-semibold text-[#222222]">{title}</span>
+                <span className="text-[10px] text-gray-400">{sub}</span>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -153,21 +154,21 @@ export default function ProductDetailPage({ params }: PageProps<'/products/[slug
 
           {/* Price Box */}
           <div className="p-4 bg-[#F8FAFB] rounded-2xl border border-gray-200/80 mb-5">
-            <span className="text-3xl font-black text-[#222222]">{formatPrice(product.price)}</span>
-            <p className="text-xs text-gray-500 mt-1">
-              Giá tham khảo. Liên hệ để nhận báo giá theo số lượng và tình trạng hàng.
-            </p>
+            <span className="text-3xl font-black text-[#222222]">
+              {formatPrice(product.price) ?? tCommon('contactForPrice')}
+            </span>
+            <p className="text-xs text-gray-500 mt-1">{t('priceNote')}</p>
           </div>
 
-          {/* Inquiry actions (ENG-01; inquiry form comes with the BE) */}
+          {/* Quote request, wishlist and direct channels (ENG-01, ENG-06) */}
           <div className="mb-6">
-            <ContactButtons subject={`Báo giá ${product.name}`} />
+            <ProductActions product={product} />
           </div>
 
           {/* Highlights */}
           {product.highlights.length > 0 && (
             <div className="mb-6">
-              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">Điểm nổi bật</h2>
+              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">{t('highlights')}</h2>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {product.highlights.map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
@@ -182,7 +183,7 @@ export default function ProductDetailPage({ params }: PageProps<'/products/[slug
           {/* Use cases */}
           {product.useCases.length > 0 && (
             <div className="mb-6">
-              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">Phù hợp cho</h2>
+              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">{t('useCases')}</h2>
               <div className="flex flex-wrap gap-2">
                 {product.useCases.map((item) => (
                   <span key={item} className="text-xs font-medium text-[#008ECC] bg-[#EBF6FA] px-3 py-1 rounded-full">
@@ -196,7 +197,7 @@ export default function ProductDetailPage({ params }: PageProps<'/products/[slug
           {/* Description */}
           {product.description && (
             <div className="mb-6">
-              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">Mô tả</h2>
+              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">{t('description')}</h2>
               <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">{product.description}</p>
             </div>
           )}
@@ -215,7 +216,7 @@ export default function ProductDetailPage({ params }: PageProps<'/products/[slug
       {/* Specifications Table */}
       {product.specs.length > 0 && (
         <section className="mt-8 bg-white rounded-3xl p-5 sm:p-8 border border-gray-100 shadow-xs">
-          <h2 className="text-lg font-bold text-[#222222] mb-4">Thông số kỹ thuật</h2>
+          <h2 className="text-lg font-bold text-[#222222] mb-4">{t('specs')}</h2>
           <div className="rounded-xl border border-gray-200 overflow-hidden text-sm">
             {product.specs.map((row, idx) => (
               <div key={row.key} className={`flex py-2.5 px-4 ${idx % 2 === 0 ? 'bg-[#F9FBFD]' : 'bg-white'}`}>
@@ -227,7 +228,7 @@ export default function ProductDetailPage({ params }: PageProps<'/products/[slug
 
           {product.sources.length > 0 && (
             <div className="mt-4 text-xs text-gray-500">
-              <span className="font-semibold">Nguồn thông số: </span>
+              <span className="font-semibold">{t('sources')} </span>
               {product.sources.map((url, i) => (
                 <React.Fragment key={url}>
                   {i > 0 && ', '}
@@ -237,7 +238,7 @@ export default function ProductDetailPage({ params }: PageProps<'/products/[slug
                     rel="noreferrer"
                     className="inline-flex items-center gap-0.5 text-[#008ECC] hover:underline break-all"
                   >
-                    {new URL(url).hostname}
+                    {hostname(url)}
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </React.Fragment>
@@ -250,7 +251,11 @@ export default function ProductDetailPage({ params }: PageProps<'/products/[slug
       {/* Related products (CAT-09) */}
       {related.length > 0 && (
         <section className="mt-10">
-          <SectionTitle prefix="Sản phẩm" highlight="liên quan" viewAllHref={`/category/${product.category.slug}`} />
+          <SectionTitle
+            prefix={t('relatedPrefix')}
+            highlight={t('relatedHighlight')}
+            viewAllHref={`/category/${product.category.slug}`}
+          />
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
             {related.map((p) => (
               <ProductCard key={p.id} product={p} />
@@ -260,4 +265,12 @@ export default function ProductDetailPage({ params }: PageProps<'/products/[slug
       )}
     </div>
   );
+}
+
+function hostname(url: string): string {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return url;
+  }
 }

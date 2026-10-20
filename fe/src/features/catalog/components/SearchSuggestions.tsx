@@ -1,15 +1,19 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { Search, SlidersHorizontal, X } from 'lucide-react';
+import { Link, useRouter } from '@/i18n/navigation';
 import { CatalogApi } from '@/lib/api/endpoints';
 import type { ProductSummary } from '@/types/product';
 import { formatPrice } from '@/lib/utils';
+import { useAppLocale } from '../hooks';
 import ProductThumb from './ProductThumb';
 
 export default function SearchSuggestions() {
+  const t = useTranslations('search');
+  const tCommon = useTranslations('common');
+  const locale = useAppLocale();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<ProductSummary[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +30,7 @@ export default function SearchSuggestions() {
     const timer = setTimeout(async () => {
       setLoading(true);
       try {
-        const matches = await CatalogApi.searchSuggestions(query);
+        const matches = await CatalogApi.searchSuggestions(query, locale);
         setResults(matches);
         setIsOpen(true);
       } catch (err) {
@@ -37,7 +41,7 @@ export default function SearchSuggestions() {
     }, 250);
 
     return () => clearTimeout(timer);
-  }, [query]);
+  }, [query, locale]);
 
   // Click outside listener
   useEffect(() => {
@@ -71,6 +75,7 @@ export default function SearchSuggestions() {
     <div ref={containerRef} className="relative flex-1 max-w-[560px]">
       <form
         onSubmit={handleSearchSubmit}
+        role="search"
         className="flex items-center w-full h-[44px] bg-[#F3F9FB] rounded-[10px] px-3.5 border border-[#E0F0F8] focus-within:border-[#008ECC] focus-within:ring-2 focus-within:ring-[#008ECC]/15 transition-all"
       >
         <Search className="w-[18px] h-[18px] text-[#008ECC] shrink-0 mr-2.5" />
@@ -82,8 +87,8 @@ export default function SearchSuggestions() {
           onFocus={() => {
             if (results.length > 0) setIsOpen(true);
           }}
-          placeholder="Tìm CPU, mainboard, tản nhiệt… (vd: 7B13, SP3, 64 nhân)"
-          aria-label="Tìm sản phẩm"
+          placeholder={t('placeholder')}
+          aria-label={t('label')}
           className="w-full bg-transparent text-[13px] sm:text-[14px] text-[#222222] placeholder:text-[#888888] outline-none"
         />
 
@@ -95,7 +100,7 @@ export default function SearchSuggestions() {
               setResults([]);
               setIsOpen(false);
             }}
-            aria-label="Xoá từ khoá"
+            aria-label={t('clear')}
             className="p-1 text-gray-400 hover:text-gray-600 mr-1"
           >
             <X className="w-3.5 h-3.5" />
@@ -106,7 +111,8 @@ export default function SearchSuggestions() {
           type="button"
           onClick={() => router.push('/products')}
           className="text-[#008ECC] hover:text-[#0077b0] transition-colors p-1"
-          title="Lọc sản phẩm"
+          title={t('filter')}
+          aria-label={t('filter')}
         >
           <SlidersHorizontal className="w-[18px] h-[18px]" />
         </button>
@@ -116,8 +122,8 @@ export default function SearchSuggestions() {
       {isOpen && (
         <div className="absolute top-[48px] left-0 w-full bg-white rounded-xl shadow-xl border border-gray-100 z-50 overflow-hidden animate-in fade-in slide-in-from-top-1 duration-150">
           <div className="p-2 border-b border-gray-50 flex items-center justify-between text-xs text-gray-500 font-medium">
-            <span>{loading ? 'Đang tìm…' : `Kết quả gợi ý (${results.length})`}</span>
-            <span className="text-[11px] text-gray-400">Nhấn Enter để xem tất cả</span>
+            <span>{loading ? t('searching') : t('suggestions', { count: results.length })}</span>
+            <span className="text-[11px] text-gray-400">{t('enterHint')}</span>
           </div>
 
           {results.length > 0 ? (
@@ -141,16 +147,14 @@ export default function SearchSuggestions() {
                       {product.subCategory ? ` · ${product.subCategory.name}` : ''}
                     </p>
                   </div>
-                  <p className="text-sm font-semibold text-[#222222] shrink-0">{formatPrice(product.price)}</p>
+                  <p className="text-sm font-semibold text-[#222222] shrink-0">
+                    {formatPrice(product.price) ?? tCommon('contactForPrice')}
+                  </p>
                 </Link>
               ))}
             </div>
           ) : (
-            !loading && (
-              <div className="p-4 text-center text-sm text-gray-500">
-                Không tìm thấy sản phẩm cho &ldquo;{query}&rdquo;
-              </div>
-            )
+            !loading && <div className="p-4 text-center text-sm text-gray-500">{t('noResults', { q: query })}</div>
           )}
         </div>
       )}

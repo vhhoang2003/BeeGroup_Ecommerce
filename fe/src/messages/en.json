@@ -1,0 +1,666 @@
+{
+  "site": {
+    "title": "AMD EPYC CPUs, SP3 mainboards, GPUs & server cooling",
+    "tagline": "Server & workstation parts: AMD EPYC CPUs, GPUs, mainboards, cooling",
+    "description": "Bee Store supplies AMD EPYC CPUs, NVIDIA Tesla GPUs, SP3 mainboards and cooling for home labs, virtualization servers and workstations. Fast quotes by hotline, Zalo or email.",
+    "welcome": "Welcome to {name}: server & workstation parts",
+    "address": "Ho Chi Minh City, Vietnam"
+  },
+  "nav": {
+    "language": "Language",
+    "homeOf": "{name}, home",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "admin": "Admin",
+    "wishlist": "Saved products",
+    "login": "Sign in",
+    "register": "Create account",
+    "callUs": "Call us",
+    "home": "Home",
+    "allProducts": "All products",
+    "contact": "Contact",
+    "myAccount": "My account",
+    "hello": "Hello",
+    "loginOrRegister": "Sign in or create an account",
+    "categories": "Categories",
+    "chatZalo": "Chat on Zalo"
+  },
+  "footer": {
+    "contact": "Contact",
+    "categories": "Product categories",
+    "quickLinks": "Quick links",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "rights": "© {year} {name}. All rights reserved."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or has moved.",
+    "home": "Back to home"
+  },
+  "common": {
+    "viewAll": "View all",
+    "contactForPrice": "Contact for price",
+    "close": "Close",
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "stock": {
+    "IN_STOCK": "In stock",
+    "LOW_STOCK": "Low stock",
+    "OUT_OF_STOCK": "Out of stock",
+    "PRE_ORDER": "Pre-order"
+  },
+  "channel": {
+    "PHONE": "Phone",
+    "ZALO": "Zalo",
+    "EMAIL": "Email",
+    "MESSENGER": "Messenger"
+  },
+  "inquiryStatus": {
+    "NEW": "New",
+    "CONTACTED": "Contacted",
+    "QUOTED": "Quoted",
+    "CLOSED_WON": "Won",
+    "CLOSED_LOST": "Lost",
+    "SPAM": "Spam"
+  },
+  "home": {
+    "categoriesPrefix": "Shop by",
+    "categoriesHighlight": "category",
+    "featuredPrefix": "Featured",
+    "featuredHighlight": "products",
+    "mainboardPrefix": "SP3",
+    "mainboardHighlight": "mainboards",
+    "coolerPrefix": "Cooling",
+    "coolerHighlight": "for EPYC"
+  },
+  "hero": {
+    "zen2": {
+      "subtitle": "AMD EPYC 7002 · Rome · Zen 2",
+      "title": "EPYC SERVER CPUS.",
+      "description": "8 to 64 cores, 128 PCIe 4.0 lanes, 8-channel DDR4. Great for home labs, NAS and virtualization.",
+      "cta": "Browse Zen 2"
+    },
+    "zen3": {
+      "subtitle": "AMD EPYC 7003 · Milan · Zen 3",
+      "title": "ZEN 3 PERFORMANCE.",
+      "description": "EPYC 7663, 7B13, 7V13, 7V73X: many cores and large caches on SP3 mainboards.",
+      "cta": "Browse Zen 3"
+    },
+    "platform": {
+      "subtitle": "Mainboards · GPUs · Cooling",
+      "title": "THE WHOLE PLATFORM.",
+      "description": "1P/2P SP3 mainboards, NVIDIA Tesla A2 GPUs and AIO / air coolers for EPYC.",
+      "cta": "Browse all products"
+    },
+    "goTo": "Slide {n}",
+    "prev": "Previous slide",
+    "next": "Next slide"
+  },
+  "search": {
+    "placeholder": "Search CPUs, mainboards, coolers… (e.g. 7B13, SP3, 64 core)",
+    "label": "Search products",
+    "clear": "Clear search",
+    "filter": "Filter products",
+    "searching": "Searching…",
+    "suggestions": "Suggestions ({count})",
+    "enterHint": "Press Enter to see all",
+    "noResults": "No products found for “{q}”"
+  },
+  "catalog": {
+    "filters": "Filters",
+    "clearFilters": "Clear filters",
+    "sort": "Sort by",
+    "sorts": {
+      "featured": "Featured",
+      "price-asc": "Price: low to high",
+      "price-desc": "Price: high to low",
+      "newest": "Newest"
+    },
+    "category": "Category",
+    "allCategories": "All categories",
+    "stock": "Availability",
+    "all": "All",
+    "productCount": "{count, plural, one {# product} other {# products}}",
+    "loading": "Loading…",
+    "loadingProducts": "Loading products…",
+    "clearSearch": "Clear search “{q}”",
+    "emptyTitle": "No matching products",
+    "emptyHint": "Try removing some filters or search for something else, like “7B13”, “SP3” or “64 core”.",
+    "pagination": "Pagination",
+    "prevPage": "Previous page",
+    "nextPage": "Next page",
+    "allProducts": "All products",
+    "allProductsDescription": "AMD EPYC CPUs, NVIDIA Tesla GPUs, SP3 mainboards and server cooling at Bee Store, filtered by category, availability and price.",
+    "searchResults": "Search results for “{q}”",
+    "categoryDescription": "{name} at Bee Store: {subs}. Specs, reference prices and quote requests.",
+    "breadcrumb": "Breadcrumb",
+    "products": "Products"
+  },
+  "product": {
+    "photoPending": "Photo coming soon",
+    "viewImage": "View image {n}",
+    "imageCredits": "Image sources & licenses",
+    "breadcrumb": "Breadcrumb",
+    "trustWarranty": "Warranty",
+    "trustWarrantySub": "Per product",
+    "trustChecked": "Tested",
+    "trustCheckedSub": "Before delivery",
+    "trustAdvice": "Advice",
+    "trustAdviceSub": "On your build",
+    "priceNote": "Reference price. Contact us for a quote based on quantity and availability.",
+    "requestQuote": "Request a quote",
+    "save": "Save product",
+    "saved": "Saved",
+    "quoteSubject": "Quote for {name}",
+    "highlights": "Highlights",
+    "useCases": "Good for",
+    "description": "Description",
+    "specs": "Specifications",
+    "sources": "Spec sources:",
+    "relatedPrefix": "Related",
+    "relatedHighlight": "products"
+  },
+  "contactCta": {
+    "title": "Need advice on a build or a quote?",
+    "body": "The {name} team helps you pick the right CPU, mainboard and cooling for home labs, virtualization or rendering. Get in touch for the best price.",
+    "zalo": "Chat on Zalo",
+    "email": "Send email",
+    "sendMessage": "Send a message"
+  },
+  "floating": {
+    "open": "Open contact options",
+    "close": "Close contact options"
+  },
+  "inquiry": {
+    "title": "Request a quote",
+    "fullName": "Full name",
+    "email": "Email",
+    "quantity": "Quantity",
+    "phone": "Phone number",
+    "phoneHint": "e.g. 0901 234 567 or +84 901 234 567",
+    "preferredContact": "Preferred contact channel",
+    "message": "Message",
+    "messagePlaceholder": "Planned build, when you need it, invoice requirements…",
+    "submit": "Send request",
+    "captchaRequired": "Please complete the anti-spam check.",
+    "successTitle": "Request sent",
+    "successCode": "Request code: {code}",
+    "successBody": "We will contact you within 24 working hours.",
+    "privacyNote": "Your details are only used to reply to your request, as described in the Bee Store privacy policy."
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "Ask about products, builds or volume orders. We reply within 24 working hours.",
+    "hotline": "Hotline",
+    "address": "Address",
+    "hours": "Opening hours: 8:30 – 18:00, Monday to Saturday (ICT).",
+    "phoneOptional": "Phone number (optional)",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send message",
+    "sentTitle": "Message sent",
+    "sendAnother": "Send another message"
+  },
+  "auth": {
+    "metaTitle": "Account",
+    "email": "Email",
+    "password": "Password",
+    "fullName": "Full name",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to track your quote requests and saved products",
+    "forgotPassword": "Forgot password?",
+    "rememberMe": "Keep me signed in (30 days)",
+    "signIn": "Sign in",
+    "signingIn": "Signing in…",
+    "noAccount": "No account yet?",
+    "registerNow": "Create one",
+    "resendVerification": "Resend verification email",
+    "verificationResent": "If the address exists and is not verified yet, we sent a new verification link.",
+    "registerTitle": "Create account",
+    "registerSubtitle": "Join Bee Store to request quotes and follow their status",
+    "phoneOptional": "Phone number (optional)",
+    "phoneHint": "e.g. 0901 234 567 or +84 901 234 567",
+    "passwordHint": "8–72 characters with at least one letter and one digit.",
+    "passwordConfirmation": "Confirm password",
+    "acceptTerms": "I agree to the <terms>Terms of use</terms> and the <privacy>Privacy policy</privacy>.",
+    "createAccount": "Create account",
+    "registering": "Creating account…",
+    "haveAccount": "Already have an account?",
+    "checkInboxTitle": "Check your inbox",
+    "checkInboxBody": "We sent a verification link to {email}. It is valid for 24 hours.",
+    "noEmail": "No email?",
+    "goToLogin": "Go to sign in",
+    "goToAccount": "Go to my account",
+    "verifyTitle": "Verify email",
+    "verifying": "Verifying…",
+    "verifiedTitle": "Email verified",
+    "verifiedBody": "You can now sign in and use your account.",
+    "verifyFailedTitle": "Email could not be verified",
+    "missingToken": "The link is invalid or has no verification code.",
+    "resendPrompt": "Enter your email to get a new link:",
+    "forgotTitle": "Forgot password",
+    "forgotSubtitle": "Enter your account email and we will send you a reset link.",
+    "sendResetLink": "Send link",
+    "forgotSent": "If an account exists, we sent an email with instructions. The link is valid for 30 minutes.",
+    "backToLogin": "Back to sign in",
+    "resetTitle": "Reset password",
+    "resetSubtitle": "Choose a new password for your account.",
+    "newPassword": "New password",
+    "setNewPassword": "Change password",
+    "requestNewLink": "Request a new link",
+    "resetDoneTitle": "Password changed",
+    "resetDoneBody": "All previous sessions were signed out. Sign in again with your new password.",
+    "checkingSession": "Checking your session…",
+    "forbiddenTitle": "Access denied",
+    "forbiddenBody": "This page is for administrators only.",
+    "backHome": "Back to home"
+  },
+  "account": {
+    "metaTitle": "My account",
+    "navLabel": "Account sections",
+    "profile": "Profile",
+    "security": "Security",
+    "inquiries": "My quote requests",
+    "wishlist": "Saved products",
+    "logout": "Sign out",
+    "fullName": "Full name",
+    "email": "Email",
+    "emailHint": "Change your email under Security.",
+    "phone": "Phone number",
+    "phoneHint": "e.g. 0901 234 567. Leave empty to remove it.",
+    "preferredLocale": "Language",
+    "preferredContact": "Preferred contact channel",
+    "noPreference": "No preference",
+    "save": "Save changes",
+    "profileSaved": "Profile saved.",
+    "memberSince": "Member since",
+    "emailVerifiedAt": "Email verified",
+    "lastLogin": "Last sign-in",
+    "changePassword": "Change password",
+    "changePasswordHint": "Your other devices will be signed out; this one stays signed in.",
+    "currentPassword": "Current password",
+    "wrongPassword": "The current password is incorrect.",
+    "passwordChanged": "Password changed.",
+    "changeEmail": "Change email",
+    "changeEmailHint": "The new address takes effect only after you open the confirmation link we send to it.",
+    "newEmail": "New email",
+    "sameEmail": "The new email is the same as the current one.",
+    "changeEmailSent": "We sent a confirmation link to {email}.",
+    "logoutAll": "Sign out of all devices",
+    "logoutAllHint": "Revokes every session, including this one.",
+    "logoutAllConfirm": "Sign out of all devices?",
+    "deleteAccount": "Delete account",
+    "deleteAccountHint": "Your account is disabled right away and your personal data is anonymized after 30 days. This cannot be undone.",
+    "deleteAccountConfirm": "I understand my account and personal data will be deleted.",
+    "noInquiries": "No quote requests yet",
+    "noInquiriesHint": "Use “Request a quote” on a product page to send one.",
+    "browseProducts": "Browse products →",
+    "quantity": "Quantity",
+    "priceAtRequest": "Price when requested",
+    "statusHistory": "Status history",
+    "emptyWishlist": "No saved products",
+    "emptyWishlistHint": "Use “Save product” on a product page to come back to it later.",
+    "removeFromWishlist": "Remove {name}"
+  },
+  "errors": {
+    "VALIDATION_ERROR": "Some details are not valid. Please check and try again.",
+    "TOKEN_INVALID_OR_EXPIRED": "This link is invalid or has expired.",
+    "CAPTCHA_FAILED": "The anti-spam check failed. Please try again.",
+    "INVALID_CREDENTIALS": "Invalid email or password.",
+    "TOKEN_EXPIRED": "Your session has expired. Please sign in again.",
+    "REFRESH_TOKEN_INVALID": "Your session has expired. Please sign in again.",
+    "REFRESH_TOKEN_REUSED": "Your session was revoked for security reasons. Please sign in again.",
+    "EMAIL_NOT_VERIFIED": "Your email is not verified yet. Open the link in the email we sent you.",
+    "ACCESS_DENIED": "You are not allowed to do this.",
+    "RESOURCE_NOT_FOUND": "Not found.",
+    "EMAIL_ALREADY_EXISTS": "This email is already registered. Sign in or reset your password.",
+    "SLUG_ALREADY_EXISTS": "This slug is already in use; pick another one.",
+    "FILE_TOO_LARGE": "The file is too large (5 MB max).",
+    "ACCOUNT_LOCKED": "The account is temporarily locked after too many failed sign-ins.",
+    "ACCOUNT_LOCKED_retry": "The account is temporarily locked. Try again in {minutes} min.",
+    "RATE_LIMITED": "Too many attempts. Please try again later.",
+    "RATE_LIMITED_retry": "Too many attempts. Try again in {minutes} min.",
+    "INTERNAL_ERROR": "Something went wrong on our side. Please try again later.",
+    "NETWORK": "Could not reach the server. Check your connection and try again."
+  },
+  "validation": {
+    "required": "This field is required.",
+    "email": "Enter a valid email address.",
+    "phone": "Enter a valid phone number.",
+    "quantity": "Quantity must be between 1 and 100,000.",
+    "max": "At most {max} characters.",
+    "invalid": "Invalid value.",
+    "password_length": "The password needs 8–72 characters.",
+    "password_letterDigit": "The password needs at least one letter and one digit.",
+    "password_sameAsEmail": "The password must not be your email.",
+    "passwordWeak": "This password is too easy to guess; pick another one.",
+    "passwordMismatch": "The passwords do not match.",
+    "acceptTerms": "You need to accept the terms to continue."
+  },
+  "legal": {
+    "updated": "Last updated: {date}",
+    "privacy": {
+      "title": "Privacy policy",
+      "updatedAt": "20 October 2026",
+      "intro": "This policy explains how Bee Store collects, uses and protects your personal data when you use this website, in line with Vietnam’s Decree 13/2023/ND-CP on personal data protection.",
+      "sections": [
+        {
+          "title": "Data we collect",
+          "paragraphs": [
+            "When you create an account: full name, email, phone number (optional), preferred language and contact channel, and when you accepted the terms.",
+            "When you send a quote request or contact message: name, email, phone number, your message and the related product.",
+            "Technical data: IP address and browser, used for spam protection, rate limiting and account security."
+          ]
+        },
+        {
+          "title": "How we use it",
+          "paragraphs": [
+            "To create and manage your account, verify your email and reset your password.",
+            "To contact you, advise you and send quotes through the channel you choose.",
+            "To protect the service from unauthorized access and abuse. We do not sell personal data or use it for third-party advertising."
+          ]
+        },
+        {
+          "title": "Storage and security",
+          "paragraphs": [
+            "Data is stored on servers managed by Bee Store. Passwords are hashed with Argon2id, verification codes are stored only as hashes, and every connection uses HTTPS.",
+            "Database backups are encrypted and kept for at most 8 weeks."
+          ]
+        },
+        {
+          "title": "Sharing",
+          "paragraphs": [
+            "We share data only with service providers needed to run the website (email delivery, spam protection with Cloudflare Turnstile, network infrastructure by Cloudflare) or when the law requires it."
+          ]
+        },
+        {
+          "title": "Your rights",
+          "paragraphs": [
+            "You can view and edit your details under My account, change your email, sign out of all devices and delete your account yourself. A deleted account is disabled immediately and its personal data is anonymized after 30 days.",
+            "To request a copy of your data or withdraw consent, write to sales@beegroupnas.com."
+          ]
+        },
+        {
+          "title": "Cookies",
+          "paragraphs": [
+            "The site uses strictly necessary cookies only: the sign-in session cookie (HttpOnly) and a cookie that remembers your language. We do not use advertising cookies."
+          ]
+        },
+        {
+          "title": "Contact",
+          "paragraphs": ["Questions about this policy: sales@beegroupnas.com or hotline +84 366 789 371."]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of use",
+      "updatedAt": "20 October 2026",
+      "intro": "By using the Bee Store website you agree to the terms below.",
+      "sections": [
+        {
+          "title": "The service",
+          "paragraphs": [
+            "The website presents server and workstation parts and lets you read specifications, save products and request quotes. It does not take online payments; deals are agreed directly after a quote."
+          ]
+        },
+        {
+          "title": "Prices and product information",
+          "paragraphs": [
+            "Displayed prices are reference prices in VND and may change with quantity, availability and time. The final price is the one in the official quote.",
+            "Specifications are compiled from manufacturer sources. We aim for accuracy but errors are possible."
+          ]
+        },
+        {
+          "title": "Accounts",
+          "paragraphs": [
+            "You are responsible for keeping your password secret and for activity on your account. We may lock accounts that break these terms or show signs of abuse."
+          ]
+        },
+        {
+          "title": "Acceptable use",
+          "paragraphs": ["No spam, no automated scraping that overloads the service, and no attempts to access the system without permission."]
+        },
+        {
+          "title": "Warranty and returns",
+          "paragraphs": ["Warranty and return conditions are stated in the quote and sales documents of each product."]
+        },
+        {
+          "title": "Images",
+          "paragraphs": [
+            "Some product photos belong to third parties and are used under the licenses listed in each product’s “Image sources & licenses” section."
+          ]
+        },
+        {
+          "title": "Changes",
+          "paragraphs": ["We may update these terms; the date of the last update is shown at the top of the page."]
+        }
+      ]
+    }
+  },
+  "admin": {
+    "metaTitle": "Admin",
+    "nav": {
+      "title": "Admin",
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "categories": "Categories",
+      "inquiries": "Inquiries",
+      "users": "Users",
+      "auditLogs": "Audit log",
+      "import": "Import"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "newInquiries": "New inquiries",
+      "allInquiries": "All inquiries",
+      "users": "Users",
+      "products": "Products",
+      "topViewed": "Most viewed",
+      "product": "Product",
+      "views": "Views",
+      "noData": "No data yet."
+    },
+    "productStatus": {
+      "DRAFT": "Draft",
+      "PUBLISHED": "Published",
+      "ARCHIVED": "Archived"
+    },
+    "products": {
+      "title": "Products",
+      "new": "New product",
+      "newHint": "Save the product first, then upload images on its edit page.",
+      "create": "Create product",
+      "save": "Save product",
+      "delete": "Delete",
+      "deleteConfirm": "Permanently delete “{name}”?",
+      "search": "Search by name or slug",
+      "status": "Status",
+      "allStatuses": "All statuses",
+      "category": "Category",
+      "allCategories": "All categories",
+      "name": "Name",
+      "price": "Price",
+      "stock": "Stock",
+      "views": "Views",
+      "updatedAt": "Updated",
+      "empty": "No products.",
+      "meta": "{views} views · updated {updated}",
+      "viewOnSite": "View on site"
+    },
+    "productForm": {
+      "saved": "Saved. The public pages will refresh.",
+      "basics": "Basics",
+      "slug": "Slug",
+      "slugHint": "Lowercase letters, digits and dashes, e.g. amd-epyc-7402.",
+      "slugInvalid": "Use only lowercase letters, digits and dashes.",
+      "slugFromName": "Generate slug from name",
+      "sku": "SKU",
+      "brand": "Brand",
+      "price": "Price (VND)",
+      "priceHint": "Leave empty for “Contact for price”.",
+      "priceInvalid": "Digits only.",
+      "category": "Category",
+      "subCategory": "Sub-category",
+      "stock": "Stock",
+      "status": "Status",
+      "featured": "Featured (shown on the home page)",
+      "content": "Content per language",
+      "contentHint": "Vietnamese is required; a language without a name falls back to the Vietnamese content.",
+      "name": "Product name",
+      "shortDescription": "Short description",
+      "description": "Full description",
+      "highlights": "Highlights",
+      "useCases": "Good for",
+      "notes": "Notes",
+      "onePerLine": "One item per line.",
+      "metaTitle": "SEO title",
+      "metaDescription": "SEO description",
+      "specs": "Specifications",
+      "specsHint": "Each row has a key plus a label and value per language.",
+      "addSpec": "Add row",
+      "noSpecs": "No specifications yet.",
+      "specKey": "Key (e.g. cores)",
+      "specLabel": "Label",
+      "specValue": "Value",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "removeSpec": "Remove row",
+      "sources": "Spec sources (URLs)"
+    },
+    "images": {
+      "title": "Images",
+      "hint": "JPEG, PNG or WebP, up to 5 MB. The first image is the primary one.",
+      "none": "No images yet.",
+      "file": "Image file",
+      "fileHint": "The server creates 320 / 800 / 1600 px WebP variants and strips EXIF.",
+      "alt": "Alt text",
+      "credit": "Source / license",
+      "upload": "Upload image",
+      "tooLarge": "The image is larger than 5 MB.",
+      "primary": "Primary",
+      "moveUp": "Move earlier",
+      "moveDown": "Move later",
+      "setPrimary": "Set as primary",
+      "saveMeta": "Save text",
+      "delete": "Delete image",
+      "deleteConfirm": "Delete this image?"
+    },
+    "categories": {
+      "title": "Categories",
+      "add": "Add category",
+      "addSub": "Add sub-category",
+      "subCategories": "Sub-categories",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this category? Categories that still have products cannot be deleted.",
+      "deleteSubConfirm": "Delete this sub-category?",
+      "order": "order {n}",
+      "productCount": "{count, plural, one {# product} other {# products}}",
+      "slug": "Slug",
+      "slugInvalid": "Use only lowercase letters, digits and dashes.",
+      "sortOrder": "Order",
+      "name": "Name",
+      "nameRequired": "A Vietnamese name is required.",
+      "imageUrl": "Category image URL (optional)"
+    },
+    "inquiries": {
+      "title": "Inquiries",
+      "total": "{count, plural, one {# inquiry} other {# inquiries}}",
+      "search": "Search code, name, email, phone",
+      "status": "Status",
+      "allStatuses": "All statuses",
+      "from": "From",
+      "to": "To",
+      "assignedToMe": "Assigned to me",
+      "code": "Code",
+      "subject": "Subject",
+      "customer": "Customer",
+      "assignee": "Assignee",
+      "createdAt": "Created",
+      "empty": "No inquiries.",
+      "back": "All inquiries",
+      "phone": "Phone",
+      "preferredContact": "Preferred channel",
+      "locale": "Language",
+      "account": "Account",
+      "member": "Member",
+      "guest": "Guest",
+      "quantity": "Quantity",
+      "history": "History",
+      "noHistory": "No changes yet.",
+      "system": "System",
+      "update": "Update",
+      "updated": "Updated.",
+      "unassigned": "Unassigned",
+      "assignToMe": "Assign to me",
+      "note": "Internal note",
+      "noteHint": "Customers never see this note.",
+      "save": "Save"
+    },
+    "users": {
+      "title": "Users",
+      "total": "{count, plural, one {# user} other {# users}}",
+      "search": "Search name or email",
+      "role": "Role",
+      "allRoles": "All roles",
+      "roles": {
+        "CUSTOMER": "Customer",
+        "ADMIN": "Admin"
+      },
+      "status": "Status",
+      "allStatuses": "All statuses",
+      "statuses": {
+        "PENDING_VERIFICATION": "Pending verification",
+        "ACTIVE": "Active",
+        "LOCKED": "Locked",
+        "DELETED": "Deleted"
+      },
+      "user": "User",
+      "lastLogin": "Last sign-in",
+      "createdAt": "Created",
+      "actions": "Actions",
+      "empty": "No users.",
+      "lock": "Lock",
+      "unlock": "Unlock",
+      "resend": "Resend verification",
+      "lockConfirm": "Lock {email}? All of their sessions will be revoked.",
+      "roleConfirm": "Change the role of {email} to {role}?",
+      "updated": "User updated.",
+      "verificationSent": "Verification email sent again to {email}."
+    },
+    "audit": {
+      "title": "Audit log",
+      "subtitle": "Every admin write, newest first.",
+      "entityType": "Filter by type (product, category…)",
+      "time": "Time",
+      "action": "Action",
+      "entity": "Entity",
+      "actor": "Actor",
+      "changes": "Changes",
+      "show": "Show before / after",
+      "before": "Before",
+      "after": "After",
+      "empty": "No entries yet."
+    },
+    "import": {
+      "title": "Import",
+      "subtitle": "Sync the catalog from the product/ folder on the server.",
+      "body": "The importer upserts categories and products by slug and can be run again safely. It is enabled in dev / staging only; production uses the CLI runner.",
+      "run": "Run import",
+      "confirm": "Run the import from the product/ folder?",
+      "done": "Import finished.",
+      "disabled": "The import endpoint is not enabled in this environment.",
+      "categoriesCreated": "Categories created",
+      "categoriesUpdated": "Categories updated",
+      "productsCreated": "Products created",
+      "productsUpdated": "Products updated",
+      "productsSkipped": "Products skipped",
+      "errors": "{count, plural, one {# error} other {# errors}}"
+    }
+  }
+}

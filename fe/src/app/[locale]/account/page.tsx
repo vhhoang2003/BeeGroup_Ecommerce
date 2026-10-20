@@ -1,98 +1,156 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { User, LogOut, MessageSquareText } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useTranslations } from 'next-intl';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
+import { optionalPhoneField } from '@/features/auth/schemas';
+import { useAppLocale } from '@/features/catalog/hooks';
+import { Alert, Button, Card, Field, inputClass } from '@/components/ui/form';
+import { usePathname, useRouter } from '@/i18n/navigation';
+import { LOCALE_LABELS, routing } from '@/i18n/routing';
+import { MeApi } from '@/lib/api/endpoints';
+import { applyFieldErrors, useErrorMessage } from '@/lib/api/errors';
+import { formatDateTime, formatPhone, toE164 } from '@/lib/utils';
+import { CONTACT_CHANNELS, type ContactChannel } from '@/types/user';
+import type { Locale } from '@/types/product';
 
-export default function AccountPage() {
+/** Profile (AUTH-14): name, phone, preferred language and contact channel. */
+export default function ProfilePage() {
+  const t = useTranslations('account');
+  const tv = useTranslations('validation');
+  const tc = useTranslations('channel');
+  const errorMessage = useErrorMessage();
+  const locale = useAppLocale();
   const router = useRouter();
-  const { user, isAuthenticated, logout } = useAuthStore();
+  const pathname = usePathname();
+  const { user, setUser } = useAuthStore();
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState('');
 
-  if (!isAuthenticated || !user) {
-    return (
-      <div className="max-w-[500px] mx-auto px-4 py-20 text-center">
-        <div className="w-16 h-16 rounded-full bg-[#EBF6FA] text-[#008ECC] flex items-center justify-center mx-auto mb-4">
-          <User className="w-8 h-8" />
-        </div>
-        <h2 className="text-2xl font-bold text-[#222222] mb-2">Cần đăng nhập</h2>
-        <p className="text-sm text-gray-500 mb-6">
-          Đăng nhập để xem thông tin tài khoản và các yêu cầu báo giá của bạn.
-        </p>
-        <Link
-          href="/auth/login"
-          className="inline-block bg-[#008ECC] hover:bg-[#0077b0] text-white px-8 py-3 rounded-full font-bold text-sm shadow-md transition-all"
-        >
-          Đăng nhập
-        </Link>
-      </div>
-    );
-  }
+  const schema = useMemo(
+    () =>
+      z.object({
+        fullName: z.string().trim().min(1, tv('required')).max(100, tv('max', { max: 100 })),
+        phone: optionalPhoneField(tv),
+        preferredLocale: z.enum(['vi', 'en', 'zh']),
+        preferredContact: z.enum(['PHONE', 'ZALO', 'EMAIL', 'MESSENGER', '']),
+      }),
+    [tv]
+  );
+  type FormValues = z.infer<typeof schema>;
 
-  const handleLogout = () => {
-    logout();
-    router.push('/');
-  };
+  const {
+    register,
+    handleSubmit,
+    setError: setFieldError,
+    formState: { errors, isSubmitting, isDirty },
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    values: user
+      ? {
+          fullName: user.fullName,
+          phone: formatPhone(user.phone),
+          preferredLocale: user.preferredLocale ?? locale,
+          preferredContact: user.preferredContact ?? '',
+        }
+      : undefined,
+  });
 
-  const fields = [
-    { label: 'Họ và tên', value: user.name },
-    { label: 'Email', value: user.email },
-    { label: 'Số điện thoại', value: user.phone ?? '—' },
-  ];
+  if (!user) return null;
+
+  const onSubmit = handleSubmit(async (values) => {
+    setSaved(false);
+    setError('');
+    try {
+      const updated = await MeApi.update({
+        fullName: values.fullName.trim(),
+        phone: toE164(values.phone) ?? '',
+        preferredLocale: values.preferredLocale as Locale,
+        preferredContact: (values.preferredContact || undefined) as ContactChannel | undefined,
+      });
+      setUser(updated);
+      setSaved(true);
+      // Show the site in the language the user just picked.
+      if (updated.preferredLocale && updated.preferredLocale !== locale) {
+        router.replace(pathname, { locale: updated.preferredLocale });
+      }
+    } catch (err) {
+      if (!applyFieldErrors(err, setFieldError, ['fullName', 'phone'] as const, () => tv('invalid'))) {
+        setError(errorMessage(err));
+      }
+    }
+  });
 
   return (
-    <div className="max-w-[1240px] mx-auto px-4 py-8 sm:py-12">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-gray-200 mb-8">
-        <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-[#008ECC] text-white flex items-center justify-center text-xl font-bold">
-            {user.name.charAt(0).toUpperCase()}
-          </div>
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#222222]">{user.name}</h1>
-            <p className="text-xs sm:text-sm text-gray-500">{user.email}</p>
-          </div>
-        </div>
+    <div className="space-y-6">
+      <h1 className="text-2xl sm:text-3xl font-extrabold text-[#222222]">{t('profile')}</h1>
 
-        <button
-          type="button"
-          onClick={handleLogout}
-          className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-4 py-2 rounded-xl transition-colors w-fit"
-        >
-          <LogOut className="w-4 h-4" />
-          <span>Đăng xuất</span>
-        </button>
-      </div>
+      <Card>
+        <form onSubmit={onSubmit} noValidate className="space-y-4 max-w-xl">
+          {saved && <Alert tone="success">{t('profileSaved')}</Alert>}
+          {error && <Alert>{error}</Alert>}
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-        <div className="md:col-span-7 bg-white rounded-2xl border border-gray-200/80 p-6 sm:p-8 shadow-xs">
-          <h2 className="text-lg font-bold text-[#222222] mb-4">Thông tin cá nhân</h2>
-          <div className="max-w-md space-y-4">
-            {fields.map((field) => (
-              <div key={field.label}>
-                <label className="block text-xs font-semibold text-gray-500 mb-1">{field.label}</label>
-                <input
-                  type="text"
-                  disabled
-                  value={field.value}
-                  className="w-full bg-[#F5F5F5] border border-gray-200 rounded-xl px-3.5 py-2 text-sm text-[#222222]"
-                />
-              </div>
-            ))}
+          <Field id="p-name" label={t('fullName')} error={errors.fullName?.message} required>
+            {(a) => <input {...a} {...register('fullName')} autoComplete="name" className={inputClass} />}
+          </Field>
+
+          <Field id="p-email" label={t('email')} hint={t('emailHint')}>
+            {(a) => <input {...a} value={user.email} disabled className={inputClass} />}
+          </Field>
+
+          <Field id="p-phone" label={t('phone')} error={errors.phone?.message} hint={t('phoneHint')}>
+            {(a) => <input {...a} {...register('phone')} type="tel" autoComplete="tel" className={inputClass} />}
+          </Field>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Field id="p-locale" label={t('preferredLocale')}>
+              {(a) => (
+                <select {...a} {...register('preferredLocale')} className={inputClass}>
+                  {routing.locales.map((l) => (
+                    <option key={l} value={l}>
+                      {LOCALE_LABELS[l]}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </Field>
+            <Field id="p-contact" label={t('preferredContact')}>
+              {(a) => (
+                <select {...a} {...register('preferredContact')} className={inputClass}>
+                  <option value="">{t('noPreference')}</option>
+                  {CONTACT_CHANNELS.map((c) => (
+                    <option key={c} value={c}>
+                      {tc(c)}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </Field>
           </div>
-        </div>
 
-        <div className="md:col-span-5 bg-[#F3F9FB] rounded-2xl border border-[#E0F0F8] p-6 sm:p-8">
-          <MessageSquareText className="w-6 h-6 text-[#008ECC] mb-3" />
-          <h2 className="text-lg font-bold text-[#222222] mb-2">Yêu cầu báo giá của tôi</h2>
-          <p className="text-sm text-gray-600 mb-4">
-            Danh sách yêu cầu báo giá và trạng thái xử lý sẽ hiển thị ở đây khi hệ thống backend sẵn sàng.
-          </p>
-          <Link href="/products" className="text-sm font-semibold text-[#008ECC] hover:underline">
-            Xem sản phẩm →
-          </Link>
-        </div>
-      </div>
+          <Button type="submit" loading={isSubmitting} disabled={!isDirty}>
+            {t('save')}
+          </Button>
+        </form>
+      </Card>
+
+      <Card className="text-xs text-gray-500 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <p>
+          <span className="block font-semibold text-gray-700">{t('memberSince')}</span>
+          {formatDateTime(user.createdAt, locale)}
+        </p>
+        <p>
+          <span className="block font-semibold text-gray-700">{t('emailVerifiedAt')}</span>
+          {formatDateTime(user.emailVerifiedAt, locale)}
+        </p>
+        <p>
+          <span className="block font-semibold text-gray-700">{t('lastLogin')}</span>
+          {formatDateTime(user.lastLoginAt, locale)}
+        </p>
+      </Card>
     </div>
   );
 }

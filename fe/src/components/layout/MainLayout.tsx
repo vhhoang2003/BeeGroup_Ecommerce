@@ -6,6 +6,7 @@ import Header from './Header';
 import CategoryNav from './CategoryNav';
 import Footer from './Footer';
 import MobileNav from './MobileNav';
+import FloatingContact from '@/features/engagement/components/FloatingContact';
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,6 +30,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 
       {/* 4. Footer */}
       <Footer />
+
+      {/* Zalo / Messenger / phone on every page (ENG-07) */}
+      <FloatingContact />
     </div>
   );
 }
