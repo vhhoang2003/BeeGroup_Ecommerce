@@ -10,6 +10,7 @@ import { USE_MOCK } from '@/lib/api/client';
 import type { ProductSummary } from '@/types/product';
 import { cn } from '@/lib/utils';
 import { useToggleWishlist, useWishlist } from '../wishlist';
+import AddToCart from '@/features/cart/components/AddToCart';
 import InquiryDialog from './InquiryDialog';
 import { ContactButtons } from './ContactCta';
 
@@ -36,6 +37,7 @@ export default function ProductActions({ product }: { product: ProductSummary })
 
   return (
     <div className="space-y-3">
+      <AddToCart product={product} />
       <div className="flex flex-wrap gap-3">
         <button
           type="button"

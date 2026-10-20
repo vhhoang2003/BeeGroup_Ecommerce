@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useTranslations } from 'next-intl';
-import { X, Phone, MessageCircle, User, ChevronRight, LayoutGrid, Mail, ShieldCheck } from 'lucide-react';
+import { X, Phone, MessageCircle, User, ChevronRight, LayoutGrid, Mail, ShieldCheck, ShoppingCart } from 'lucide-react';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
 import { useCategories } from '@/features/catalog/hooks';
 import CategoryIcon from '@/features/catalog/components/CategoryIcon';
@@ -95,6 +95,13 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 <span className="flex items-center gap-2.5">
                   <LayoutGrid className="w-4 h-4 text-[#008ECC]" />
                   {t('allProducts')}
+                </span>
+                <ChevronRight className="w-4 h-4 text-gray-400" />
+              </Link>
+              <Link href="/cart" onClick={onClose} className={rowClass}>
+                <span className="flex items-center gap-2.5">
+                  <ShoppingCart className="w-4 h-4 text-[#008ECC]" />
+                  {t('cart')}
                 </span>
                 <ChevronRight className="w-4 h-4 text-gray-400" />
               </Link>

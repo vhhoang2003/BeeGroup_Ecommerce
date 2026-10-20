@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { siteConfig } from '@/config/site';
 import { routing } from '@/i18n/routing';
 
-const PRIVATE = ['/account', '/admin', '/auth'];
+const PRIVATE = ['/account', '/admin', '/auth', '/cart', '/checkout'];
 
 export default function robots(): MetadataRoute.Robots {
   return {

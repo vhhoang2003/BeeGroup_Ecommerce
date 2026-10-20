@@ -23,7 +23,8 @@
     "hello": "Hello",
     "loginOrRegister": "Sign in or create an account",
     "categories": "Categories",
-    "chatZalo": "Chat on Zalo"
+    "chatZalo": "Chat on Zalo",
+    "cart": "Cart"
   },
   "footer": {
     "contact": "Contact",
@@ -162,6 +163,66 @@
     "sources": "Spec sources:",
     "relatedPrefix": "Related",
     "relatedHighlight": "products"
+  },
+  "cart": {
+    "title": "Cart",
+    "add": "Add to cart",
+    "added": "Added to your cart.",
+    "viewCart": "View cart",
+    "outOfStock": "Out of stock",
+    "quantity": "Quantity",
+    "quantityOf": "Quantity of {name}",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity",
+    "headerLabel": "Cart",
+    "headerLabelCount": "Cart ({count, plural, one {# item} other {# items}})",
+    "emptyTitle": "Your cart is empty",
+    "emptyBody": "Add the CPUs, mainboards or coolers you are interested in to see the total.",
+    "continueShopping": "Continue shopping",
+    "clear": "Empty cart",
+    "clearConfirm": "Remove every product from the cart?",
+    "each": "each",
+    "remove": "Remove {name} from the cart",
+    "summary": "Order summary",
+    "items": "Subtotal ({count, plural, one {# item} other {# items}})",
+    "shipping": "Shipping",
+    "shippingLater": "Calculated later",
+    "subtotal": "Total",
+    "unpricedNote": "Some products have no listed price and are not in the total; we will quote them separately.",
+    "unpricedShort": "excluding products priced on request",
+    "checkout": "Proceed to checkout"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "steps": "Checkout steps",
+    "delivery": "Delivery details",
+    "fullName": "Full name",
+    "phone": "Phone number",
+    "email": "Email",
+    "address": "Address",
+    "city": "Province / City",
+    "note": "Note",
+    "noteOptional": "Note (optional)",
+    "notePlaceholder": "Delivery time, invoice details…",
+    "payment": "Payment method",
+    "paymentComingSoon": "Online payment is coming soon.",
+    "methods": {
+      "bank": "Bank transfer",
+      "vnpay": "VNPay (ATM card, Visa / Mastercard, QR)",
+      "momo": "MoMo wallet",
+      "cod": "Cash on delivery (COD)"
+    },
+    "soon": "Soon",
+    "order": "Your order",
+    "total": "Total",
+    "pay": "Pay now",
+    "payDisabled": "Online payment is not open yet. You can send your cart for a quote below.",
+    "quoteHint": "Send your cart to the Bee Store team; we will confirm prices, stock and how to pay.",
+    "requestQuote": "Request a quote for this cart",
+    "quoteSubject": "Cart quote ({count, plural, one {# item} other {# items}})",
+    "messageItems": "Products in the cart:",
+    "quoteSentTitle": "Cart sent",
+    "emptyBody": "Add products to your cart before checking out."
   },
   "contactCta": {
     "title": "Need advice on a build or a quote?",
@@ -393,7 +454,9 @@
         },
         {
           "title": "Contact",
-          "paragraphs": ["Questions about this policy: sales@beegroupnas.com or hotline +84 366 789 371."]
+          "paragraphs": [
+            "Questions about this policy: sales@beegroupnas.com or hotline +84 366 789 371."
+          ]
         }
       ]
     },
@@ -423,11 +486,15 @@
         },
         {
           "title": "Acceptable use",
-          "paragraphs": ["No spam, no automated scraping that overloads the service, and no attempts to access the system without permission."]
+          "paragraphs": [
+            "No spam, no automated scraping that overloads the service, and no attempts to access the system without permission."
+          ]
         },
         {
           "title": "Warranty and returns",
-          "paragraphs": ["Warranty and return conditions are stated in the quote and sales documents of each product."]
+          "paragraphs": [
+            "Warranty and return conditions are stated in the quote and sales documents of each product."
+          ]
         },
         {
           "title": "Images",
@@ -437,7 +504,9 @@
         },
         {
           "title": "Changes",
-          "paragraphs": ["We may update these terms; the date of the last update is shown at the top of the page."]
+          "paragraphs": [
+            "We may update these terms; the date of the last update is shown at the top of the page."
+          ]
         }
       ]
     }

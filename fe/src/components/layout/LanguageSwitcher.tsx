@@ -2,7 +2,8 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Check, Globe } from 'lucide-react';
+import { Check, ChevronDown } from 'lucide-react';
+import Flag from '@/components/ui/Flag';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { LOCALE_LABELS, routing } from '@/i18n/routing';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
@@ -44,16 +45,17 @@ export default function LanguageSwitcher({ className }: { className?: string }) 
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={t('language')}
-        className="flex items-center gap-1.5 hover:text-[#008ECC] transition-colors cursor-pointer"
+        className="flex items-center gap-2 rounded-full border border-gray-200 bg-white pl-2.5 pr-2 py-1 text-[14px] font-medium text-[#222222] hover:border-[#008ECC] hover:text-[#008ECC] transition-colors cursor-pointer"
       >
-        <Globe className="w-3.5 h-3.5 text-[#008ECC]" />
+        <Flag locale={locale} />
         <span>{LOCALE_LABELS[locale]}</span>
+        <ChevronDown className={cn('w-4 h-4 text-gray-400 transition-transform', open && 'rotate-180')} />
       </button>
       {open && (
         <ul
           role="listbox"
           aria-label={t('language')}
-          className="absolute right-0 top-full mt-1.5 w-40 bg-white rounded-xl shadow-lg border border-gray-100 py-1 z-50 text-[13px] text-[#222222]"
+          className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-1.5 z-50 text-[14px] text-[#222222]"
         >
           {routing.locales.map((l) => (
             <li key={l}>
@@ -62,10 +64,16 @@ export default function LanguageSwitcher({ className }: { className?: string }) 
                 role="option"
                 aria-selected={l === locale}
                 onClick={() => choose(l)}
-                className="w-full flex items-center justify-between px-3 py-2 hover:bg-[#F3F9FB] cursor-pointer"
+                className={cn(
+                  'w-full flex items-center gap-3 px-3.5 py-2.5 hover:bg-[#F3F9FB] cursor-pointer',
+                  l === locale && 'font-semibold text-[#008ECC]'
+                )}
               >
-                <span lang={l}>{LOCALE_LABELS[l]}</span>
-                {l === locale && <Check className="w-3.5 h-3.5 text-[#008ECC]" />}
+                <Flag locale={l} />
+                <span lang={l} className="flex-1 text-left">
+                  {LOCALE_LABELS[l]}
+                </span>
+                {l === locale && <Check className="w-4 h-4 text-[#008ECC]" />}
               </button>
             </li>
           ))}

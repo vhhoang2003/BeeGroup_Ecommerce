@@ -23,7 +23,8 @@
     "hello": "您好",
     "loginOrRegister": "登录或注册",
     "categories": "分类",
-    "chatZalo": "Zalo 聊天"
+    "chatZalo": "Zalo 聊天",
+    "cart": "购物车"
   },
   "footer": {
     "contact": "联系方式",
@@ -162,6 +163,66 @@
     "sources": "规格来源：",
     "relatedPrefix": "相关",
     "relatedHighlight": "商品"
+  },
+  "cart": {
+    "title": "购物车",
+    "add": "加入购物车",
+    "added": "已加入购物车。",
+    "viewCart": "查看购物车",
+    "outOfStock": "缺货",
+    "quantity": "数量",
+    "quantityOf": "{name} 的数量",
+    "decrease": "减少数量",
+    "increase": "增加数量",
+    "headerLabel": "购物车",
+    "headerLabelCount": "购物车（{count} 件）",
+    "emptyTitle": "购物车是空的",
+    "emptyBody": "加入您感兴趣的处理器、主板或散热器，即可查看总价。",
+    "continueShopping": "继续购物",
+    "clear": "清空购物车",
+    "clearConfirm": "确定移除购物车中的所有商品？",
+    "each": "/ 件",
+    "remove": "从购物车移除 {name}",
+    "summary": "订单摘要",
+    "items": "小计（{count} 件）",
+    "shipping": "运费",
+    "shippingLater": "稍后计算",
+    "subtotal": "合计",
+    "unpricedNote": "部分商品暂无标价，未计入合计，我们会单独报价。",
+    "unpricedShort": "不含需询价的商品",
+    "checkout": "去结算"
+  },
+  "checkout": {
+    "title": "结算",
+    "steps": "下单步骤",
+    "delivery": "收货信息",
+    "fullName": "姓名",
+    "phone": "电话号码",
+    "email": "邮箱",
+    "address": "地址",
+    "city": "省 / 城市",
+    "note": "备注",
+    "noteOptional": "备注（选填）",
+    "notePlaceholder": "收货时间、开票要求…",
+    "payment": "支付方式",
+    "paymentComingSoon": "在线支付即将上线。",
+    "methods": {
+      "bank": "银行转账",
+      "vnpay": "VNPay（ATM 卡、Visa / Mastercard、二维码）",
+      "momo": "MoMo 钱包",
+      "cod": "货到付款（COD）"
+    },
+    "soon": "即将推出",
+    "order": "您的订单",
+    "total": "应付总额",
+    "pay": "立即支付",
+    "payDisabled": "在线支付暂未开放，您可以在下方提交购物车获取报价。",
+    "quoteHint": "将购物车发送给 Bee Store 团队，我们会联系您确认价格、库存和付款方式。",
+    "requestQuote": "提交购物车询价",
+    "quoteSubject": "购物车询价（{count} 件）",
+    "messageItems": "购物车商品：",
+    "quoteSentTitle": "购物车已提交",
+    "emptyBody": "请先将商品加入购物车再结算。"
   },
   "contactCta": {
     "title": "需要配置建议或报价？",
@@ -387,11 +448,15 @@
         },
         {
           "title": "Cookie",
-          "paragraphs": ["本网站仅使用必要的 Cookie：登录会话 Cookie（HttpOnly）和记住语言的 Cookie。我们不使用广告 Cookie。"]
+          "paragraphs": [
+            "本网站仅使用必要的 Cookie：登录会话 Cookie（HttpOnly）和记住语言的 Cookie。我们不使用广告 Cookie。"
+          ]
         },
         {
           "title": "联系我们",
-          "paragraphs": ["如对本政策有疑问，请联系 sales@beegroupnas.com 或热线 +84 366 789 371。"]
+          "paragraphs": [
+            "如对本政策有疑问，请联系 sales@beegroupnas.com 或热线 +84 366 789 371。"
+          ]
         }
       ]
     },
@@ -402,7 +467,9 @@
       "sections": [
         {
           "title": "服务范围",
-          "paragraphs": ["本网站展示服务器与工作站配件，您可以查看规格、收藏商品并提交询价。网站不提供在线支付，交易在报价后直接协商。"]
+          "paragraphs": [
+            "本网站展示服务器与工作站配件，您可以查看规格、收藏商品并提交询价。网站不提供在线支付，交易在报价后直接协商。"
+          ]
         },
         {
           "title": "价格与商品信息",
@@ -413,23 +480,33 @@
         },
         {
           "title": "账号",
-          "paragraphs": ["您有责任保管好密码，并对账号下的活动负责。对于违反条款或存在滥用迹象的账号，我们可能予以锁定。"]
+          "paragraphs": [
+            "您有责任保管好密码，并对账号下的活动负责。对于违反条款或存在滥用迹象的账号，我们可能予以锁定。"
+          ]
         },
         {
           "title": "合理使用",
-          "paragraphs": ["禁止发送垃圾信息、禁止造成服务过载的自动抓取，禁止未经授权访问系统。"]
+          "paragraphs": [
+            "禁止发送垃圾信息、禁止造成服务过载的自动抓取，禁止未经授权访问系统。"
+          ]
         },
         {
           "title": "保修与退换",
-          "paragraphs": ["保修和退换条件以各商品的报价及销售单据为准。"]
+          "paragraphs": [
+            "保修和退换条件以各商品的报价及销售单据为准。"
+          ]
         },
         {
           "title": "图片",
-          "paragraphs": ["部分商品图片归第三方所有，依据各商品“图片来源与授权”中列出的许可使用。"]
+          "paragraphs": [
+            "部分商品图片归第三方所有，依据各商品“图片来源与授权”中列出的许可使用。"
+          ]
         },
         {
           "title": "条款变更",
-          "paragraphs": ["我们可能更新本条款，最近更新日期显示在页面顶部。"]
+          "paragraphs": [
+            "我们可能更新本条款，最近更新日期显示在页面顶部。"
+          ]
         }
       ]
     }

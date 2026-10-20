@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Heart, Menu, Phone, ShieldCheck, User as UserIcon } from 'lucide-react';
 import SearchSuggestions from '@/features/catalog/components/SearchSuggestions';
 import { useAuthStore } from '@/features/auth/store/useAuthStore';
+import CartButton from '@/features/cart/components/CartButton';
 import Logo from '@/components/ui/Logo';
 import { Link } from '@/i18n/navigation';
 import { siteConfig } from '@/config/site';
@@ -58,6 +59,8 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
               <Heart className="w-[18px] h-[18px] text-[#008ECC]" />
             </Link>
           )}
+
+          <CartButton />
 
           {isAuthenticated && user ? (
             <Link

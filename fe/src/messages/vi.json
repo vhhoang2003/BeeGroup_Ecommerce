@@ -23,7 +23,8 @@
     "hello": "Xin chào",
     "loginOrRegister": "Đăng nhập hoặc đăng ký",
     "categories": "Danh mục",
-    "chatZalo": "Chat Zalo"
+    "chatZalo": "Chat Zalo",
+    "cart": "Giỏ hàng"
   },
   "footer": {
     "contact": "Liên hệ",
@@ -162,6 +163,66 @@
     "sources": "Nguồn thông số:",
     "relatedPrefix": "Sản phẩm",
     "relatedHighlight": "liên quan"
+  },
+  "cart": {
+    "title": "Giỏ hàng",
+    "add": "Thêm vào giỏ",
+    "added": "Đã thêm vào giỏ hàng.",
+    "viewCart": "Xem giỏ hàng",
+    "outOfStock": "Hết hàng",
+    "quantity": "Số lượng",
+    "quantityOf": "Số lượng {name}",
+    "decrease": "Giảm số lượng",
+    "increase": "Tăng số lượng",
+    "headerLabel": "Giỏ hàng",
+    "headerLabelCount": "Giỏ hàng ({count} sản phẩm)",
+    "emptyTitle": "Giỏ hàng đang trống",
+    "emptyBody": "Thêm CPU, mainboard hay tản nhiệt bạn quan tâm để xem tổng chi phí.",
+    "continueShopping": "Tiếp tục mua sắm",
+    "clear": "Xoá giỏ hàng",
+    "clearConfirm": "Xoá tất cả sản phẩm khỏi giỏ hàng?",
+    "each": "/ chiếc",
+    "remove": "Xoá {name} khỏi giỏ",
+    "summary": "Tóm tắt đơn hàng",
+    "items": "Tạm tính ({count} sản phẩm)",
+    "shipping": "Phí vận chuyển",
+    "shippingLater": "Tính sau",
+    "subtotal": "Tổng cộng",
+    "unpricedNote": "Một số sản phẩm chưa có giá niêm yết và chưa được cộng vào tổng; chúng tôi sẽ báo giá riêng.",
+    "unpricedShort": "chưa gồm sản phẩm liên hệ giá",
+    "checkout": "Tiến hành thanh toán"
+  },
+  "checkout": {
+    "title": "Thanh toán",
+    "steps": "Các bước đặt hàng",
+    "delivery": "Thông tin nhận hàng",
+    "fullName": "Họ và tên",
+    "phone": "Số điện thoại",
+    "email": "Email",
+    "address": "Địa chỉ",
+    "city": "Tỉnh / Thành phố",
+    "note": "Ghi chú",
+    "noteOptional": "Ghi chú (không bắt buộc)",
+    "notePlaceholder": "Thời gian nhận hàng, yêu cầu xuất hoá đơn…",
+    "payment": "Phương thức thanh toán",
+    "paymentComingSoon": "Thanh toán trực tuyến sắp ra mắt.",
+    "methods": {
+      "bank": "Chuyển khoản ngân hàng",
+      "vnpay": "VNPay (thẻ ATM, Visa / Mastercard, QR)",
+      "momo": "Ví MoMo",
+      "cod": "Thanh toán khi nhận hàng (COD)"
+    },
+    "soon": "Sắp có",
+    "order": "Đơn hàng của bạn",
+    "total": "Tổng thanh toán",
+    "pay": "Thanh toán",
+    "payDisabled": "Thanh toán trực tuyến chưa mở. Bạn có thể gửi giỏ hàng để nhận báo giá bên dưới.",
+    "quoteHint": "Gửi giỏ hàng cho đội ngũ Bee Store, chúng tôi sẽ liên hệ xác nhận giá, tồn kho và cách thanh toán.",
+    "requestQuote": "Gửi yêu cầu báo giá cho giỏ hàng",
+    "quoteSubject": "Báo giá giỏ hàng ({count} sản phẩm)",
+    "messageItems": "Sản phẩm trong giỏ:",
+    "quoteSentTitle": "Đã gửi giỏ hàng",
+    "emptyBody": "Thêm sản phẩm vào giỏ trước khi thanh toán."
   },
   "contactCta": {
     "title": "Cần tư vấn cấu hình hoặc báo giá?",
@@ -393,7 +454,9 @@
         },
         {
           "title": "Liên hệ",
-          "paragraphs": ["Mọi câu hỏi về chính sách này, vui lòng gửi về sales@beegroupnas.com hoặc hotline 036 6789 371."]
+          "paragraphs": [
+            "Mọi câu hỏi về chính sách này, vui lòng gửi về sales@beegroupnas.com hoặc hotline 036 6789 371."
+          ]
         }
       ]
     },
@@ -429,7 +492,9 @@
         },
         {
           "title": "Bảo hành và đổi trả",
-          "paragraphs": ["Điều kiện bảo hành, đổi trả được ghi rõ trong báo giá và chứng từ bán hàng của từng sản phẩm."]
+          "paragraphs": [
+            "Điều kiện bảo hành, đổi trả được ghi rõ trong báo giá và chứng từ bán hàng của từng sản phẩm."
+          ]
         },
         {
           "title": "Hình ảnh",
@@ -439,7 +504,9 @@
         },
         {
           "title": "Thay đổi điều khoản",
-          "paragraphs": ["Chúng tôi có thể cập nhật điều khoản; ngày cập nhật được ghi ở đầu trang."]
+          "paragraphs": [
+            "Chúng tôi có thể cập nhật điều khoản; ngày cập nhật được ghi ở đầu trang."
+          ]
         }
       ]
     }

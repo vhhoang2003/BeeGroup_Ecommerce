@@ -1162,7 +1162,7 @@ ADMIN_BOOTSTRAP_PASSWORD=change-me
 | **3 — Engagement** | Inquiry + contact forms, emails/webhooks, My inquiries, wishlist, floating contact button | 1 week | ✅ BE + FE |
 | **4 — Admin** | Product/category/image CRUD, inquiry management, user management, audit log | 2 weeks | ✅ BE + FE |
 | **5 — Hardening & Launch** | CD to staging/prod, backups, monitoring, security headers, load and ZAP tests, legal pages (Privacy, Terms) | 1 week | 🟡 see below |
-| **Future** | Google sign-in, product compare, compatibility hints, reviews, online payment (VNPay/MoMo), cart/orders | — | — |
+| **Future** | Google sign-in, product compare, compatibility hints, reviews, online payment (VNPay/MoMo), server-side orders | — | Cart + checkout UI done (D-23); payment not integrated |
 
 Phase 5 status: CD, backups, security headers (Caddy + Next.js CSP), `/api/health`, legal pages in three languages, the k6 load test (`infra/loadtest/catalog.js`, p95 59 ms locally) and a ZAP baseline run (0 FAIL, warnings in §19 D-19) are done; `.github/workflows/release-checks.yml` repeats both against the live site. Still open: uptime monitoring and error tracking need accounts (UptimeRobot / Better Stack, Sentry) and are not wired; the legal texts are drafts that need a legal review before launch.
 
@@ -1230,6 +1230,7 @@ Decisions taken during the backend gap analysis (2026-10-19) to resolve conflict
 | D-20 | The JDK HTTP client asks for an h2c upgrade on plain `http://`, and Node.js drops such requests, so revalidation from the API never reached Next.js | `RevalidationNotifier` forces HTTP/1.1 (`RevalidationNotifierTest`) | §6.7 |
 | D-21 | §6.3 asks for a `middleware.ts` guard that checks the refresh cookie, but that cookie is scoped to `/api/v1/auth` (SEC-04) and never reaches page requests | `/account/**` and `/admin/**` are guarded client-side (`RequireAuth`) after the session restore; the API stays the enforcement point | §6.3 |
 | D-22 | The sitemap was prerendered during `docker build`, when the API is unreachable, and cached without products | `app/sitemap.ts` renders per request; the API data behind it is still cached by `fetch` for 5 minutes | CAT-12 |
+| D-23 | Cart and checkout were requested before online payment exists | Cart kept in the browser (`localStorage`, `features/cart/store.ts`), `/cart` and `/checkout` pages; the Pay button and payment methods are shown disabled ("coming soon"), and the cart can be sent to sales as one `GENERAL` inquiry via `POST /contact`. No BE change; a server-side order model comes with payment | §5.3, §17 |
 
 ---
 
