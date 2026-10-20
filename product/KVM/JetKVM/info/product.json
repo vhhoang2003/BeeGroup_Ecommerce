@@ -1,0 +1,235 @@
+{
+  "id": "23",
+  "name": "JetKVM",
+  "slug": "jetkvm",
+  "brand": "JetKVM",
+  "category": "KVM",
+  "categorySlug": "kvm",
+  "subCategory": "JetKVM",
+  "price": null,
+  "specs": {
+    "SoC": "Rockchip RV1106 (Arm Cortex-A7)",
+    "Memory / storage": "256 MB DDR3L / 16 GB eMMC",
+    "Video": "1080p @ 60 fps, H.264, 30–60 ms latency",
+    "Display": "1.69-inch IPS touchscreen",
+    "Network": "100 Mbps Ethernet",
+    "Ports": "Mini HDMI in, USB-C (keyboard / mouse + power), Ethernet, RJ12 extension port",
+    "Extensions": "ATX power, DC power control, serial console (sold separately)",
+    "Software": "Open source (Go + Linux), optional JetKVM Cloud over WebRTC"
+  },
+  "image": "images/01-device.png",
+  "images": [
+    "images/01-device.png",
+    "images/02-product.jpg"
+  ],
+  "description": "JetKVM là KVM over IP nhỏ gọn cỡ bao diêm với phần mềm mã nguồn mở hoàn toàn. Hình ảnh 1080p@60fps truyền qua WebRTC với độ trễ chỉ 30–60 ms nên thao tác từ xa mượt như ngồi trước máy. Màn hình cảm ứng 1,69 inch hiển thị IP và trạng thái, cổng RJ12 cho phép gắn thêm bo ATX, điều khiển nguồn DC hoặc console serial. Truy cập từ xa qua JetKVM Cloud miễn phí (tuỳ chọn) hoặc tự host.",
+  "features": [
+    "1080p@60fps, độ trễ 30–60 ms",
+    "Phần mềm mã nguồn mở",
+    "Màn hình cảm ứng 1,69 inch",
+    "Cổng mở rộng RJ12 (ATX, DC, serial)",
+    "JetKVM Cloud miễn phí, tuỳ chọn"
+  ],
+  "specsDetailed": [
+    {
+      "key": "soc",
+      "label": {
+        "en": "SoC",
+        "vi": "Chip xử lý",
+        "zh": "主控芯片"
+      },
+      "value": {
+        "en": "Rockchip RV1106 (Arm Cortex-A7)",
+        "vi": "Rockchip RV1106 (Arm Cortex-A7)",
+        "zh": "Rockchip RV1106 (Arm Cortex-A7)"
+      }
+    },
+    {
+      "key": "memory",
+      "label": {
+        "en": "Memory / storage",
+        "vi": "RAM / bộ nhớ",
+        "zh": "内存 / 存储"
+      },
+      "value": {
+        "en": "256 MB DDR3L / 16 GB eMMC",
+        "vi": "256 MB DDR3L / 16 GB eMMC",
+        "zh": "256 MB DDR3L / 16 GB eMMC"
+      }
+    },
+    {
+      "key": "video",
+      "label": {
+        "en": "Video",
+        "vi": "Video",
+        "zh": "视频"
+      },
+      "value": {
+        "en": "1080p @ 60 fps, H.264, 30–60 ms latency",
+        "vi": "1080p @ 60 fps, H.264, độ trễ 30–60 ms",
+        "zh": "1080p @ 60 fps，H.264，延迟 30–60 ms"
+      }
+    },
+    {
+      "key": "display",
+      "label": {
+        "en": "Display",
+        "vi": "Màn hình",
+        "zh": "屏幕"
+      },
+      "value": {
+        "en": "1.69-inch IPS touchscreen",
+        "vi": "Màn hình cảm ứng IPS 1,69 inch",
+        "zh": "1.69 英寸 IPS 触摸屏"
+      }
+    },
+    {
+      "key": "network",
+      "label": {
+        "en": "Network",
+        "vi": "Mạng",
+        "zh": "网络"
+      },
+      "value": {
+        "en": "100 Mbps Ethernet",
+        "vi": "100 Mbps Ethernet",
+        "zh": "100 Mbps Ethernet"
+      }
+    },
+    {
+      "key": "ports",
+      "label": {
+        "en": "Ports",
+        "vi": "Cổng kết nối",
+        "zh": "接口"
+      },
+      "value": {
+        "en": "Mini HDMI in, USB-C (keyboard / mouse + power), Ethernet, RJ12 extension port",
+        "vi": "Mini HDMI vào, USB-C (bàn phím / chuột + nguồn), Ethernet, cổng mở rộng RJ12",
+        "zh": "Mini HDMI 输入、USB-C（键鼠 + 供电）、以太网、RJ12 扩展口"
+      }
+    },
+    {
+      "key": "extensions",
+      "label": {
+        "en": "Extensions",
+        "vi": "Bo mở rộng",
+        "zh": "扩展"
+      },
+      "value": {
+        "en": "ATX power, DC power control, serial console (sold separately)",
+        "vi": "Nguồn ATX, điều khiển nguồn DC, console serial (bán riêng)",
+        "zh": "ATX 电源、DC 电源控制、串口控制台（另购）"
+      }
+    },
+    {
+      "key": "software",
+      "label": {
+        "en": "Software",
+        "vi": "Phần mềm",
+        "zh": "软件"
+      },
+      "value": {
+        "en": "Open source (Go + Linux), optional JetKVM Cloud over WebRTC",
+        "vi": "Mã nguồn mở (Go + Linux), JetKVM Cloud qua WebRTC (tuỳ chọn)",
+        "zh": "开源（Go + Linux），可选 JetKVM Cloud（WebRTC）"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "shortDescription": "Tiny open-source KVM over IP: 1080p60, just 30–60 ms latency, touchscreen.",
+      "description": "JetKVM is a matchbox-sized KVM over IP with fully open-source software. 1080p@60fps video streams over WebRTC with only 30–60 ms latency, so remote work feels local. A 1.69-inch touchscreen shows the IP address and status, and the RJ12 port takes add-on ATX, DC power control or serial console boards. Remote access through the free, optional JetKVM Cloud, or self-host it.",
+      "highlights": [
+        "1080p@60fps, 30–60 ms latency",
+        "Open-source software",
+        "1.69-inch touchscreen",
+        "RJ12 extension port (ATX, DC, serial)",
+        "Free, optional JetKVM Cloud"
+      ],
+      "useCases": [
+        "Home labs",
+        "Remote server management",
+        "Developers and makers"
+      ],
+      "name": "JetKVM",
+      "specs": {
+        "SoC": "Rockchip RV1106 (Arm Cortex-A7)",
+        "Memory / storage": "256 MB DDR3L / 16 GB eMMC",
+        "Video": "1080p @ 60 fps, H.264, 30–60 ms latency",
+        "Display": "1.69-inch IPS touchscreen",
+        "Network": "100 Mbps Ethernet",
+        "Ports": "Mini HDMI in, USB-C (keyboard / mouse + power), Ethernet, RJ12 extension port",
+        "Extensions": "ATX power, DC power control, serial console (sold separately)",
+        "Software": "Open source (Go + Linux), optional JetKVM Cloud over WebRTC"
+      },
+      "notes": [
+        "100 Mbps Ethernet. ATX / DC / serial extensions sold separately."
+      ]
+    },
+    "vi": {
+      "shortDescription": "KVM over IP mã nguồn mở siêu nhỏ: 1080p60, độ trễ chỉ 30–60 ms, màn hình cảm ứng.",
+      "description": "JetKVM là KVM over IP nhỏ gọn cỡ bao diêm với phần mềm mã nguồn mở hoàn toàn. Hình ảnh 1080p@60fps truyền qua WebRTC với độ trễ chỉ 30–60 ms nên thao tác từ xa mượt như ngồi trước máy. Màn hình cảm ứng 1,69 inch hiển thị IP và trạng thái, cổng RJ12 cho phép gắn thêm bo ATX, điều khiển nguồn DC hoặc console serial. Truy cập từ xa qua JetKVM Cloud miễn phí (tuỳ chọn) hoặc tự host.",
+      "highlights": [
+        "1080p@60fps, độ trễ 30–60 ms",
+        "Phần mềm mã nguồn mở",
+        "Màn hình cảm ứng 1,69 inch",
+        "Cổng mở rộng RJ12 (ATX, DC, serial)",
+        "JetKVM Cloud miễn phí, tuỳ chọn"
+      ],
+      "useCases": [
+        "Home lab",
+        "Quản trị server từ xa",
+        "Nhà phát triển, maker"
+      ],
+      "name": "JetKVM",
+      "specs": {
+        "Chip xử lý": "Rockchip RV1106 (Arm Cortex-A7)",
+        "RAM / bộ nhớ": "256 MB DDR3L / 16 GB eMMC",
+        "Video": "1080p @ 60 fps, H.264, độ trễ 30–60 ms",
+        "Màn hình": "Màn hình cảm ứng IPS 1,69 inch",
+        "Mạng": "100 Mbps Ethernet",
+        "Cổng kết nối": "Mini HDMI vào, USB-C (bàn phím / chuột + nguồn), Ethernet, cổng mở rộng RJ12",
+        "Bo mở rộng": "Nguồn ATX, điều khiển nguồn DC, console serial (bán riêng)",
+        "Phần mềm": "Mã nguồn mở (Go + Linux), JetKVM Cloud qua WebRTC (tuỳ chọn)"
+      },
+      "notes": [
+        "Cổng mạng 100 Mbps. Bo mở rộng ATX / DC / serial bán riêng."
+      ]
+    },
+    "zh": {
+      "shortDescription": "迷你开源 KVM over IP：1080p60，延迟仅 30–60 ms，带触摸屏。",
+      "description": "JetKVM 是一款火柴盒大小的 KVM over IP，软件完全开源。1080p@60fps 视频通过 WebRTC 传输，延迟仅 30–60 ms，远程操作如同本地。1.69 英寸触摸屏显示 IP 与状态，RJ12 接口可扩展 ATX、DC 电源控制或串口控制台板。可使用免费可选的 JetKVM Cloud 远程访问，也可自行部署。",
+      "highlights": [
+        "1080p@60fps，延迟 30–60 ms",
+        "开源软件",
+        "1.69 英寸触摸屏",
+        "RJ12 扩展口（ATX、DC、串口）",
+        "免费可选 JetKVM Cloud"
+      ],
+      "useCases": [
+        "家庭实验室",
+        "远程服务器管理",
+        "开发者与创客"
+      ],
+      "name": "JetKVM",
+      "specs": {
+        "主控芯片": "Rockchip RV1106 (Arm Cortex-A7)",
+        "内存 / 存储": "256 MB DDR3L / 16 GB eMMC",
+        "视频": "1080p @ 60 fps，H.264，延迟 30–60 ms",
+        "屏幕": "1.69 英寸 IPS 触摸屏",
+        "网络": "100 Mbps Ethernet",
+        "接口": "Mini HDMI 输入、USB-C（键鼠 + 供电）、以太网、RJ12 扩展口",
+        "扩展": "ATX 电源、DC 电源控制、串口控制台（另购）",
+        "软件": "开源（Go + Linux），可选 JetKVM Cloud（WebRTC）"
+      },
+      "notes": [
+        "百兆以太网。ATX / DC / 串口扩展板需另购。"
+      ]
+    }
+  },
+  "sources": [
+    "https://jetkvm.com/",
+    "https://www.cnx-software.com/2025/03/21/jetkvm-a-69-kvm-over-ip-solution-with-open-source-software/"
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "id": "24",
+  "name": "Luckfox PicoKVM",
+  "slug": "luckfox-picokvm",
+  "brand": "Luckfox",
+  "category": "KVM",
+  "categorySlug": "kvm",
+  "subCategory": "Luckfox",
+  "price": null,
+  "specs": {
+    "SoC": "Rockchip RV1106G3, Cortex-A7 @ 1.2 GHz",
+    "Memory / storage": "256 MB DDR3 / 8 GB eMMC + microSD slot",
+    "Video": "HDMI in, 1080p @ 60 fps, H.264 / H.265, 80–200 ms latency",
+    "USB emulation": "Keyboard, mouse and USB storage",
+    "Display": "1.54-inch 240 × 240 touchscreen",
+    "Network": "100 Mbps Ethernet",
+    "Other features": "Audio, UEFI / BIOS access, Wake-on-LAN, web terminal, 1 × serial terminal, custom scripts, GPIO power control",
+    "Power input": "USB-C",
+    "Dimensions": "48.5 × 48.5 × 29 mm"
+  },
+  "image": "images/01-front.jpg",
+  "images": [
+    "images/01-front.jpg",
+    "images/02-ports.jpg",
+    "images/03-screen.jpg"
+  ],
+  "description": "Luckfox PicoKVM là KVM over IP nhỏ gọn dùng chip Rockchip RV1106: thu hình HDMI 1080p@60fps, giả lập bàn phím, chuột và cả ổ lưu trữ USB để gắn file ISO cài hệ điều hành từ xa. Màn hình cảm ứng 1,54 inch hiển thị IP và trạng thái, có Wake-on-LAN, web terminal, cổng serial và chân GPIO để bật/tắt nguồn máy. Lựa chọn tiết kiệm cho home lab và các bo mạch phát triển.",
+  "features": [
+    "1080p@60fps, H.264 / H.265",
+    "Giả lập ổ USB – cài OS từ xa",
+    "Màn hình cảm ứng 1,54 inch",
+    "Wake-on-LAN, web terminal, serial",
+    "Điều khiển nguồn qua GPIO"
+  ],
+  "specsDetailed": [
+    {
+      "key": "soc",
+      "label": {
+        "en": "SoC",
+        "vi": "Chip xử lý",
+        "zh": "主控芯片"
+      },
+      "value": {
+        "en": "Rockchip RV1106G3, Cortex-A7 @ 1.2 GHz",
+        "vi": "Rockchip RV1106G3, Cortex-A7 @ 1.2 GHz",
+        "zh": "Rockchip RV1106G3, Cortex-A7 @ 1.2 GHz"
+      }
+    },
+    {
+      "key": "memory",
+      "label": {
+        "en": "Memory / storage",
+        "vi": "RAM / bộ nhớ",
+        "zh": "内存 / 存储"
+      },
+      "value": {
+        "en": "256 MB DDR3 / 8 GB eMMC + microSD slot",
+        "vi": "256 MB DDR3 / 8 GB eMMC + khe microSD",
+        "zh": "256 MB DDR3 / 8 GB eMMC + microSD 卡槽"
+      }
+    },
+    {
+      "key": "video",
+      "label": {
+        "en": "Video",
+        "vi": "Video",
+        "zh": "视频"
+      },
+      "value": {
+        "en": "HDMI in, 1080p @ 60 fps, H.264 / H.265, 80–200 ms latency",
+        "vi": "HDMI vào, 1080p @ 60 fps, H.264 / H.265, độ trễ 80–200 ms",
+        "zh": "HDMI 输入，1080p @ 60 fps，H.264 / H.265，延迟 80–200 ms"
+      }
+    },
+    {
+      "key": "usb",
+      "label": {
+        "en": "USB emulation",
+        "vi": "Giả lập USB",
+        "zh": "USB 模拟"
+      },
+      "value": {
+        "en": "Keyboard, mouse and USB storage",
+        "vi": "Bàn phím, chuột và ổ lưu trữ USB",
+        "zh": "键盘、鼠标与 USB 存储"
+      }
+    },
+    {
+      "key": "display",
+      "label": {
+        "en": "Display",
+        "vi": "Màn hình",
+        "zh": "屏幕"
+      },
+      "value": {
+        "en": "1.54-inch 240 × 240 touchscreen",
+        "vi": "Màn hình cảm ứng 1,54 inch 240 × 240",
+        "zh": "1.54 英寸 240 × 240 触摸屏"
+      }
+    },
+    {
+      "key": "network",
+      "label": {
+        "en": "Network",
+        "vi": "Mạng",
+        "zh": "网络"
+      },
+      "value": {
+        "en": "100 Mbps Ethernet",
+        "vi": "100 Mbps Ethernet",
+        "zh": "100 Mbps Ethernet"
+      }
+    },
+    {
+      "key": "features",
+      "label": {
+        "en": "Other features",
+        "vi": "Tính năng khác",
+        "zh": "其他功能"
+      },
+      "value": {
+        "en": "Audio, UEFI / BIOS access, Wake-on-LAN, web terminal, 1 × serial terminal, custom scripts, GPIO power control",
+        "vi": "Âm thanh, truy cập UEFI / BIOS, Wake-on-LAN, web terminal, 1 cổng serial, script tuỳ biến, điều khiển nguồn qua GPIO",
+        "zh": "音频、UEFI / BIOS 访问、网络唤醒、Web 终端、1 路串口、自定义脚本、GPIO 电源控制"
+      }
+    },
+    {
+      "key": "power",
+      "label": {
+        "en": "Power input",
+        "vi": "Nguồn",
+        "zh": "电源"
+      },
+      "value": {
+        "en": "USB-C",
+        "vi": "USB-C",
+        "zh": "USB-C"
+      }
+    },
+    {
+      "key": "size",
+      "label": {
+        "en": "Dimensions",
+        "vi": "Kích thước",
+        "zh": "尺寸"
+      },
+      "value": {
+        "en": "48.5 × 48.5 × 29 mm",
+        "vi": "48.5 × 48.5 × 29 mm",
+        "zh": "48.5 × 48.5 × 29 mm"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "shortDescription": "Affordable Luckfox KVM over IP: 1080p60, USB storage emulation for remote OS installs, touchscreen.",
+      "description": "The Luckfox PicoKVM is a compact KVM over IP built on the Rockchip RV1106: it captures HDMI at 1080p@60fps and emulates a keyboard, a mouse and even a USB drive, so you can mount an ISO and install an OS remotely. A 1.54-inch touchscreen shows the IP and status, and it adds Wake-on-LAN, a web terminal, a serial port and GPIO pins to switch the machine on and off. A budget-friendly pick for home labs and development boards.",
+      "highlights": [
+        "1080p@60fps, H.264 / H.265",
+        "USB drive emulation for remote OS installs",
+        "1.54-inch touchscreen",
+        "Wake-on-LAN, web terminal, serial",
+        "GPIO power control"
+      ],
+      "useCases": [
+        "Budget home labs",
+        "Development boards and mini PCs",
+        "Remote OS installation"
+      ],
+      "name": "Luckfox PicoKVM",
+      "specs": {
+        "SoC": "Rockchip RV1106G3, Cortex-A7 @ 1.2 GHz",
+        "Memory / storage": "256 MB DDR3 / 8 GB eMMC + microSD slot",
+        "Video": "HDMI in, 1080p @ 60 fps, H.264 / H.265, 80–200 ms latency",
+        "USB emulation": "Keyboard, mouse and USB storage",
+        "Display": "1.54-inch 240 × 240 touchscreen",
+        "Network": "100 Mbps Ethernet",
+        "Other features": "Audio, UEFI / BIOS access, Wake-on-LAN, web terminal, 1 × serial terminal, custom scripts, GPIO power control",
+        "Power input": "USB-C",
+        "Dimensions": "48.5 × 48.5 × 29 mm"
+      },
+      "notes": [
+        "100 Mbps Ethernet, 80–200 ms video latency."
+      ]
+    },
+    "vi": {
+      "shortDescription": "KVM over IP giá tốt của Luckfox: 1080p60, giả lập ổ USB để cài hệ điều hành, màn hình cảm ứng.",
+      "description": "Luckfox PicoKVM là KVM over IP nhỏ gọn dùng chip Rockchip RV1106: thu hình HDMI 1080p@60fps, giả lập bàn phím, chuột và cả ổ lưu trữ USB để gắn file ISO cài hệ điều hành từ xa. Màn hình cảm ứng 1,54 inch hiển thị IP và trạng thái, có Wake-on-LAN, web terminal, cổng serial và chân GPIO để bật/tắt nguồn máy. Lựa chọn tiết kiệm cho home lab và các bo mạch phát triển.",
+      "highlights": [
+        "1080p@60fps, H.264 / H.265",
+        "Giả lập ổ USB – cài OS từ xa",
+        "Màn hình cảm ứng 1,54 inch",
+        "Wake-on-LAN, web terminal, serial",
+        "Điều khiển nguồn qua GPIO"
+      ],
+      "useCases": [
+        "Home lab tiết kiệm",
+        "Bo mạch phát triển, mini PC",
+        "Cài đặt hệ điều hành từ xa"
+      ],
+      "name": "Luckfox PicoKVM",
+      "specs": {
+        "Chip xử lý": "Rockchip RV1106G3, Cortex-A7 @ 1.2 GHz",
+        "RAM / bộ nhớ": "256 MB DDR3 / 8 GB eMMC + khe microSD",
+        "Video": "HDMI vào, 1080p @ 60 fps, H.264 / H.265, độ trễ 80–200 ms",
+        "Giả lập USB": "Bàn phím, chuột và ổ lưu trữ USB",
+        "Màn hình": "Màn hình cảm ứng 1,54 inch 240 × 240",
+        "Mạng": "100 Mbps Ethernet",
+        "Tính năng khác": "Âm thanh, truy cập UEFI / BIOS, Wake-on-LAN, web terminal, 1 cổng serial, script tuỳ biến, điều khiển nguồn qua GPIO",
+        "Nguồn": "USB-C",
+        "Kích thước": "48.5 × 48.5 × 29 mm"
+      },
+      "notes": [
+        "Cổng mạng 100 Mbps, độ trễ video 80–200 ms."
+      ]
+    },
+    "zh": {
+      "shortDescription": "高性价比 Luckfox KVM over IP：1080p60，USB 存储模拟远程装系统，带触摸屏。",
+      "description": "Luckfox PicoKVM 是一款基于瑞芯微 RV1106 的小巧 KVM over IP：支持 1080p@60fps HDMI 采集，可模拟键盘、鼠标乃至 U 盘，挂载 ISO 即可远程安装系统。1.54 英寸触摸屏显示 IP 与状态，并支持网络唤醒、Web 终端、串口以及通过 GPIO 控制开关机。是家庭实验室与开发板的高性价比之选。",
+      "highlights": [
+        "1080p@60fps，H.264 / H.265",
+        "U 盘模拟，远程装系统",
+        "1.54 英寸触摸屏",
+        "网络唤醒、Web 终端、串口",
+        "GPIO 电源控制"
+      ],
+      "useCases": [
+        "高性价比家庭实验室",
+        "开发板与迷你主机",
+        "远程安装系统"
+      ],
+      "name": "Luckfox PicoKVM",
+      "specs": {
+        "主控芯片": "Rockchip RV1106G3, Cortex-A7 @ 1.2 GHz",
+        "内存 / 存储": "256 MB DDR3 / 8 GB eMMC + microSD 卡槽",
+        "视频": "HDMI 输入，1080p @ 60 fps，H.264 / H.265，延迟 80–200 ms",
+        "USB 模拟": "键盘、鼠标与 USB 存储",
+        "屏幕": "1.54 英寸 240 × 240 触摸屏",
+        "网络": "100 Mbps Ethernet",
+        "其他功能": "音频、UEFI / BIOS 访问、网络唤醒、Web 终端、1 路串口、自定义脚本、GPIO 电源控制",
+        "电源": "USB-C",
+        "尺寸": "48.5 × 48.5 × 29 mm"
+      },
+      "notes": [
+        "百兆以太网，视频延迟 80–200 ms。"
+      ]
+    }
+  },
+  "sources": [
+    "https://www.waveshare.com/luckfox-picokvm.htm",
+    "https://wiki.luckfox.com/"
+  ]
+}

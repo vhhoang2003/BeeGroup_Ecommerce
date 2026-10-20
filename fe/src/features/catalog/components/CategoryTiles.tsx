@@ -18,9 +18,9 @@ export default function CategoryTiles() {
     <section className="w-full max-w-[1240px] mx-auto px-4 mb-10 sm:mb-12">
       <SectionTitle prefix={t('categoriesPrefix')} highlight={t('categoriesHighlight')} viewAllHref="/products" />
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
         {isLoading || !categories
-          ? [...Array(4)].map((_, i) => <div key={i} className="h-[150px] bg-gray-100 rounded-[16px] animate-pulse" />)
+          ? [...Array(5)].map((_, i) => <div key={i} className="h-[150px] bg-gray-100 rounded-[16px] animate-pulse" />)
           : categories.map((cat) => (
               <Link
                 key={cat.id}

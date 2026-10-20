@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 
 interface HeroSlide {
-  id: 'zen2' | 'zen3' | 'platform';
+  id: 'zen2' | 'zen3' | 'kvm' | 'platform';
   image: string;
   link: string;
 }
@@ -16,6 +16,7 @@ interface HeroSlide {
 const slides: HeroSlide[] = [
   { id: 'zen2', image: '/storage/CPU/Epyc%207402/images/03-in-socket.jpg', link: '/category/cpu?sub=zen-2' },
   { id: 'zen3', image: '/storage/CPU/Epyc%207V73X/images/01-top.jpg', link: '/category/cpu?sub=zen-3' },
+  { id: 'kvm', image: '/storage/KVM/Comet%20Pro%20GL-RM10/images/01-front.jpg', link: '/category/kvm' },
   { id: 'platform', image: '/storage/CPU/Epyc%207532/images/04-carrier.jpg', link: '/products' },
 ];
 

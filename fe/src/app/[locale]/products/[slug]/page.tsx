@@ -158,7 +158,7 @@ export default async function ProductDetailPage({ params }: Props) {
             <span className="text-3xl font-black text-[#222222]">
               {formatPrice(product.price) ?? tCommon('contactForPrice')}
             </span>
-            <p className="text-xs text-gray-500 mt-1">{t('priceNote')}</p>
+            {product.price !== null && <p className="text-xs text-gray-500 mt-1">{t('priceNote')}</p>}
             <p className="flex items-center gap-1.5 text-xs font-semibold text-[#008ECC] mt-2">
               <Truck className="w-4 h-4 shrink-0" />
               {tSite('delivery')}

@@ -1,8 +1,8 @@
 {
   "site": {
-    "title": "CPU AMD EPYC, mainboard SP3, GPU & tản nhiệt server",
-    "tagline": "Linh kiện server & workstation: CPU AMD EPYC, GPU, mainboard, tản nhiệt",
-    "description": "Bee Store chuyên CPU AMD EPYC, GPU NVIDIA Tesla, mainboard SP3 và tản nhiệt cho home lab, máy chủ ảo hoá và workstation. Giao hàng tới khắp châu Á – Thái Bình Dương, báo giá nhanh qua hotline, Zalo, WhatsApp hoặc email.",
+    "title": "CPU AMD EPYC, mainboard SP3, GPU, tản nhiệt & KVM over IP",
+    "tagline": "Linh kiện server & workstation: CPU AMD EPYC, GPU, mainboard, tản nhiệt và KVM over IP",
+    "description": "Bee Store chuyên CPU AMD EPYC, GPU NVIDIA Tesla, mainboard SP3, tản nhiệt và KVM over IP (GL.iNet, JetKVM, Luckfox) cho home lab, máy chủ ảo hoá và workstation. Giao hàng tới khắp châu Á – Thái Bình Dương, báo giá nhanh qua hotline, Zalo, WhatsApp hoặc email.",
     "delivery": "Giao hàng tới khắp các khu vực châu Á – Thái Bình Dương, chỉ 15–20 ngày kể từ khi nhận đơn",
     "deliveryShort": "Giao hàng tới khắp châu Á – Thái Bình Dương trong 15–20 ngày",
     "address": "TP. Hồ Chí Minh, Việt Nam"
@@ -76,7 +76,9 @@
     "mainboardPrefix": "Mainboard",
     "mainboardHighlight": "SP3",
     "coolerPrefix": "Tản nhiệt",
-    "coolerHighlight": "cho EPYC"
+    "coolerHighlight": "cho EPYC",
+    "kvmPrefix": "KVM",
+    "kvmHighlight": "over IP"
   },
   "hero": {
     "zen2": {
@@ -91,6 +93,12 @@
       "description": "EPYC 7663, 7B13, 7V13 và 7V73X: nhiều nhân, bộ nhớ đệm lớn, tương thích mainboard SP3.",
       "cta": "Xem dòng Zen 3"
     },
+    "kvm": {
+      "subtitle": "GL.iNet · JetKVM · Luckfox",
+      "title": "ĐIỀU KHIỂN TỪ XA.",
+      "description": "KVM over IP chính hãng: vào BIOS, cài lại hệ điều hành, bật tắt máy từ bất cứ đâu – không cần ngồi trước màn hình.",
+      "cta": "Xem các dòng KVM"
+    },
     "platform": {
       "subtitle": "Mainboard · GPU · Tản nhiệt",
       "title": "TRỌN BỘ NỀN TẢNG.",
@@ -102,7 +110,7 @@
     "next": "Slide tiếp"
   },
   "search": {
-    "placeholder": "Tìm CPU, mainboard, tản nhiệt… (vd: 7B13, SP3, 64 nhân)",
+    "placeholder": "Tìm CPU, mainboard, KVM… (vd: 7B13, SP3, JetKVM)",
     "label": "Tìm sản phẩm",
     "clear": "Xoá từ khoá",
     "filter": "Lọc sản phẩm",

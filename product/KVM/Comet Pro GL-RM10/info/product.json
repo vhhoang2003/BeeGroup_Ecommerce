@@ -1,0 +1,288 @@
+{
+  "id": "22",
+  "name": "GL.iNet Comet Pro (GL-RM10)",
+  "slug": "gl-inet-comet-pro-gl-rm10",
+  "brand": "GL.iNet",
+  "category": "KVM",
+  "categorySlug": "kvm",
+  "subCategory": "GL.iNet",
+  "price": null,
+  "specs": {
+    "Model": "GL-RM10 (Comet Pro)",
+    "CPU": "Quad-core ARM Cortex-A53",
+    "Memory / storage": "1 GB DDR3L / 32 GB eMMC",
+    "Operating system": "Linux 6.1",
+    "Display": "2.22-inch touchscreen",
+    "Video": "HDMI in + HDMI out (loop-through), up to 4K @ 30 fps",
+    "Wi-Fi": "Wi-Fi 6 (802.11a/b/g/n/ac/ax), 286 Mbps 2.4 GHz + 286 Mbps 5 GHz",
+    "Ethernet": "Gigabit, automatic failover between Wi-Fi and Ethernet",
+    "Ports": "USB-C (keyboard / mouse), USB 2.0 Type-A (ATX board / Fingerbot), Gigabit Ethernet, HDMI in, HDMI out, USB-C power",
+    "Power input": "USB-C 5 V / 2 A, PD compatible",
+    "Dimensions / weight": "93 × 84 × 47 mm / 170 g"
+  },
+  "image": "images/01-front.jpg",
+  "images": [
+    "images/01-front.jpg",
+    "images/02-back.jpg",
+    "images/03-award.png",
+    "images/04-specs.jpg"
+  ],
+  "description": "GL.iNet Comet Pro (GL-RM10) là bản nâng cấp của Comet dành cho người cần đặt KVM ở bất cứ đâu: có Wi-Fi 6 bên cạnh cổng Gigabit (tự chuyển dự phòng khi một đường mất kết nối), màn hình cảm ứng 2,22 inch để xem IP và cài đặt nhanh, cùng cổng HDMI ra để vẫn dùng màn hình tại chỗ trong khi điều khiển từ xa. Video tới 4K@30fps với mã hoá H.264 phần cứng, 32 GB eMMC và điều khiển nguồn qua bo ATX hoặc Fingerbot.",
+  "features": [
+    "Wi-Fi 6 + Ethernet Gigabit, tự dự phòng",
+    "Màn hình cảm ứng 2,22 inch",
+    "HDMI loop-through, video tới 4K@30fps",
+    "32 GB eMMC",
+    "Điều khiển tới mức BIOS/UEFI"
+  ],
+  "specsDetailed": [
+    {
+      "key": "model",
+      "label": {
+        "en": "Model",
+        "vi": "Mã sản phẩm",
+        "zh": "型号"
+      },
+      "value": {
+        "en": "GL-RM10 (Comet Pro)",
+        "vi": "GL-RM10 (Comet Pro)",
+        "zh": "GL-RM10 (Comet Pro)"
+      }
+    },
+    {
+      "key": "cpu",
+      "label": {
+        "en": "CPU",
+        "vi": "CPU",
+        "zh": "处理器"
+      },
+      "value": {
+        "en": "Quad-core ARM Cortex-A53",
+        "vi": "ARM Cortex-A53 4 nhân",
+        "zh": "四核 ARM Cortex-A53"
+      }
+    },
+    {
+      "key": "memory",
+      "label": {
+        "en": "Memory / storage",
+        "vi": "RAM / bộ nhớ",
+        "zh": "内存 / 存储"
+      },
+      "value": {
+        "en": "1 GB DDR3L / 32 GB eMMC",
+        "vi": "1 GB DDR3L / 32 GB eMMC",
+        "zh": "1 GB DDR3L / 32 GB eMMC"
+      }
+    },
+    {
+      "key": "os",
+      "label": {
+        "en": "Operating system",
+        "vi": "Hệ điều hành",
+        "zh": "操作系统"
+      },
+      "value": {
+        "en": "Linux 6.1",
+        "vi": "Linux 6.1",
+        "zh": "Linux 6.1"
+      }
+    },
+    {
+      "key": "display",
+      "label": {
+        "en": "Display",
+        "vi": "Màn hình",
+        "zh": "屏幕"
+      },
+      "value": {
+        "en": "2.22-inch touchscreen",
+        "vi": "Màn hình cảm ứng 2,22 inch",
+        "zh": "2.22 英寸触摸屏"
+      }
+    },
+    {
+      "key": "video",
+      "label": {
+        "en": "Video",
+        "vi": "Video",
+        "zh": "视频"
+      },
+      "value": {
+        "en": "HDMI in + HDMI out (loop-through), up to 4K @ 30 fps",
+        "vi": "HDMI vào + HDMI ra (loop-through), tới 4K @ 30 fps",
+        "zh": "HDMI 输入 + HDMI 输出（环出），最高 4K @ 30 fps"
+      }
+    },
+    {
+      "key": "wifi",
+      "label": {
+        "en": "Wi-Fi",
+        "vi": "Wi-Fi",
+        "zh": "Wi-Fi"
+      },
+      "value": {
+        "en": "Wi-Fi 6 (802.11a/b/g/n/ac/ax), 286 Mbps 2.4 GHz + 286 Mbps 5 GHz",
+        "vi": "Wi-Fi 6 (802.11a/b/g/n/ac/ax), 286 Mbps 2.4 GHz + 286 Mbps 5 GHz",
+        "zh": "Wi-Fi 6 (802.11a/b/g/n/ac/ax), 286 Mbps 2.4 GHz + 286 Mbps 5 GHz"
+      }
+    },
+    {
+      "key": "network",
+      "label": {
+        "en": "Ethernet",
+        "vi": "Ethernet",
+        "zh": "以太网"
+      },
+      "value": {
+        "en": "Gigabit, automatic failover between Wi-Fi and Ethernet",
+        "vi": "Gigabit, tự chuyển đổi dự phòng giữa Wi-Fi và Ethernet",
+        "zh": "千兆，Wi-Fi 与有线自动切换备份"
+      }
+    },
+    {
+      "key": "ports",
+      "label": {
+        "en": "Ports",
+        "vi": "Cổng kết nối",
+        "zh": "接口"
+      },
+      "value": {
+        "en": "USB-C (keyboard / mouse), USB 2.0 Type-A (ATX board / Fingerbot), Gigabit Ethernet, HDMI in, HDMI out, USB-C power",
+        "vi": "USB-C (bàn phím / chuột), USB 2.0 Type-A (bo ATX / Fingerbot), Ethernet Gigabit, HDMI vào, HDMI ra, USB-C nguồn",
+        "zh": "USB-C（键鼠）、USB 2.0 Type-A（ATX 板 / Fingerbot）、千兆以太网、HDMI 输入、HDMI 输出、USB-C 供电"
+      }
+    },
+    {
+      "key": "power",
+      "label": {
+        "en": "Power input",
+        "vi": "Nguồn",
+        "zh": "电源"
+      },
+      "value": {
+        "en": "USB-C 5 V / 2 A, PD compatible",
+        "vi": "USB-C 5 V / 2 A, hỗ trợ PD",
+        "zh": "USB-C 5 V / 2 A，兼容 PD"
+      }
+    },
+    {
+      "key": "size",
+      "label": {
+        "en": "Dimensions / weight",
+        "vi": "Kích thước / trọng lượng",
+        "zh": "尺寸 / 重量"
+      },
+      "value": {
+        "en": "93 × 84 × 47 mm / 170 g",
+        "vi": "93 × 84 × 47 mm / 170 g",
+        "zh": "93 × 84 × 47 mm / 170 g"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "shortDescription": "Premium GL.iNet KVM over IP: Wi-Fi 6, 2.22-inch touchscreen and 4K HDMI loop-through.",
+      "description": "The GL.iNet Comet Pro (GL-RM10) is the step-up Comet for KVM that has to work anywhere: Wi-Fi 6 next to Gigabit Ethernet (with automatic failover between the two), a 2.22-inch touchscreen for the IP address and quick setup, and an HDMI output so the local monitor keeps working while you control the machine remotely. Video goes up to 4K@30fps with hardware H.264 encoding, plus 32 GB eMMC and power control through an ATX board or Fingerbot.",
+      "highlights": [
+        "Wi-Fi 6 + Gigabit Ethernet with failover",
+        "2.22-inch touchscreen",
+        "HDMI loop-through, video up to 4K@30fps",
+        "32 GB eMMC",
+        "BIOS/UEFI-level control"
+      ],
+      "useCases": [
+        "Server rooms and racks without spare cabling",
+        "Managing many machines remotely",
+        "IT support for branch offices"
+      ],
+      "name": "GL.iNet Comet Pro (GL-RM10)",
+      "specs": {
+        "Model": "GL-RM10 (Comet Pro)",
+        "CPU": "Quad-core ARM Cortex-A53",
+        "Memory / storage": "1 GB DDR3L / 32 GB eMMC",
+        "Operating system": "Linux 6.1",
+        "Display": "2.22-inch touchscreen",
+        "Video": "HDMI in + HDMI out (loop-through), up to 4K @ 30 fps",
+        "Wi-Fi": "Wi-Fi 6 (802.11a/b/g/n/ac/ax), 286 Mbps 2.4 GHz + 286 Mbps 5 GHz",
+        "Ethernet": "Gigabit, automatic failover between Wi-Fi and Ethernet",
+        "Ports": "USB-C (keyboard / mouse), USB 2.0 Type-A (ATX board / Fingerbot), Gigabit Ethernet, HDMI in, HDMI out, USB-C power",
+        "Power input": "USB-C 5 V / 2 A, PD compatible",
+        "Dimensions / weight": "93 × 84 × 47 mm / 170 g"
+      },
+      "notes": [
+        "ATX board and Fingerbot sold separately."
+      ]
+    },
+    "vi": {
+      "shortDescription": "KVM over IP cao cấp của GL.iNet: Wi-Fi 6, màn hình cảm ứng 2,22 inch, HDMI loop-through 4K.",
+      "description": "GL.iNet Comet Pro (GL-RM10) là bản nâng cấp của Comet dành cho người cần đặt KVM ở bất cứ đâu: có Wi-Fi 6 bên cạnh cổng Gigabit (tự chuyển dự phòng khi một đường mất kết nối), màn hình cảm ứng 2,22 inch để xem IP và cài đặt nhanh, cùng cổng HDMI ra để vẫn dùng màn hình tại chỗ trong khi điều khiển từ xa. Video tới 4K@30fps với mã hoá H.264 phần cứng, 32 GB eMMC và điều khiển nguồn qua bo ATX hoặc Fingerbot.",
+      "highlights": [
+        "Wi-Fi 6 + Ethernet Gigabit, tự dự phòng",
+        "Màn hình cảm ứng 2,22 inch",
+        "HDMI loop-through, video tới 4K@30fps",
+        "32 GB eMMC",
+        "Điều khiển tới mức BIOS/UEFI"
+      ],
+      "useCases": [
+        "Phòng server, tủ rack không có dây mạng",
+        "Quản trị nhiều máy từ xa",
+        "Hỗ trợ kỹ thuật cho văn phòng chi nhánh"
+      ],
+      "name": "GL.iNet Comet Pro (GL-RM10)",
+      "specs": {
+        "Mã sản phẩm": "GL-RM10 (Comet Pro)",
+        "CPU": "ARM Cortex-A53 4 nhân",
+        "RAM / bộ nhớ": "1 GB DDR3L / 32 GB eMMC",
+        "Hệ điều hành": "Linux 6.1",
+        "Màn hình": "Màn hình cảm ứng 2,22 inch",
+        "Video": "HDMI vào + HDMI ra (loop-through), tới 4K @ 30 fps",
+        "Wi-Fi": "Wi-Fi 6 (802.11a/b/g/n/ac/ax), 286 Mbps 2.4 GHz + 286 Mbps 5 GHz",
+        "Ethernet": "Gigabit, tự chuyển đổi dự phòng giữa Wi-Fi và Ethernet",
+        "Cổng kết nối": "USB-C (bàn phím / chuột), USB 2.0 Type-A (bo ATX / Fingerbot), Ethernet Gigabit, HDMI vào, HDMI ra, USB-C nguồn",
+        "Nguồn": "USB-C 5 V / 2 A, hỗ trợ PD",
+        "Kích thước / trọng lượng": "93 × 84 × 47 mm / 170 g"
+      },
+      "notes": [
+        "Bo ATX và Fingerbot bán riêng."
+      ]
+    },
+    "zh": {
+      "shortDescription": "GL.iNet 高端 KVM over IP：Wi-Fi 6、2.22 英寸触摸屏、4K HDMI 环出。",
+      "description": "GL.iNet Comet Pro（GL-RM10）是 Comet 的进阶版，适合需要灵活部署的场景：除千兆网口外还支持 Wi-Fi 6（两者可自动切换备份），配备 2.22 英寸触摸屏用于查看 IP 与快速设置，并带 HDMI 输出，远程控制的同时本地显示器照常使用。视频最高 4K@30fps，硬件 H.264 编码，32 GB eMMC，可通过 ATX 板或 Fingerbot 控制电源。",
+      "highlights": [
+        "Wi-Fi 6 + 千兆以太网自动备份",
+        "2.22 英寸触摸屏",
+        "HDMI 环出，视频最高 4K@30fps",
+        "32 GB eMMC",
+        "BIOS/UEFI 级控制"
+      ],
+      "useCases": [
+        "布线不便的机房与机柜",
+        "远程管理多台设备",
+        "分支机构 IT 支持"
+      ],
+      "name": "GL.iNet Comet Pro (GL-RM10)",
+      "specs": {
+        "型号": "GL-RM10 (Comet Pro)",
+        "处理器": "四核 ARM Cortex-A53",
+        "内存 / 存储": "1 GB DDR3L / 32 GB eMMC",
+        "操作系统": "Linux 6.1",
+        "屏幕": "2.22 英寸触摸屏",
+        "视频": "HDMI 输入 + HDMI 输出（环出），最高 4K @ 30 fps",
+        "Wi-Fi": "Wi-Fi 6 (802.11a/b/g/n/ac/ax), 286 Mbps 2.4 GHz + 286 Mbps 5 GHz",
+        "以太网": "千兆，Wi-Fi 与有线自动切换备份",
+        "接口": "USB-C（键鼠）、USB 2.0 Type-A（ATX 板 / Fingerbot）、千兆以太网、HDMI 输入、HDMI 输出、USB-C 供电",
+        "电源": "USB-C 5 V / 2 A，兼容 PD",
+        "尺寸 / 重量": "93 × 84 × 47 mm / 170 g"
+      },
+      "notes": [
+        "ATX 板与 Fingerbot 需另购。"
+      ]
+    }
+  },
+  "sources": [
+    "https://www.gl-inet.com/products/gl-rm10/",
+    "https://docs.gl-inet.com/kvm/en/user_guide/gl-rm10/product_overview"
+  ]
+}

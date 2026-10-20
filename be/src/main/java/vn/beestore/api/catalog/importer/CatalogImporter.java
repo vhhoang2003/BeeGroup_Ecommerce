@@ -50,7 +50,7 @@ import vn.beestore.api.storage.StorageService;
 public class CatalogImporter {
 
     private static final Logger log = LoggerFactory.getLogger(CatalogImporter.class);
-    private static final List<String> CATEGORY_ORDER = List.of("cpu", "gpu", "mainboard", "cooler");
+    private static final List<String> CATEGORY_ORDER = List.of("cpu", "gpu", "mainboard", "cooler", "kvm");
 
     private final CategoryRepository categories;
     private final ProductRepository products;

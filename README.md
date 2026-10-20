@@ -87,6 +87,7 @@ A standalone web system made of three deployable units (Next.js web app, Spring 
 | GPU | `gpu` | NVIDIA | 1 (Tesla A2) |
 | Mainboard | `mainboard` | Gigabyte, Huananzhi | 3 (MZ71-CE1 2P, H12D-8D 1P, H12D-8D 1P BMC) |
 | Cooler | `cooler` | AIO, Air | 5 (AIO 360 1P/2P, M95 Pro, M97, M99) |
+| KVM | `kvm` | GL.iNet, JetKVM, Luckfox | 4 (GL.iNet Comet GL-RM1, Comet Pro GL-RM10, JetKVM, Luckfox PicoKVM); price not set yet ("contact for price"); official manufacturer photos, Bee Store is an authorised distributor (`images/CREDITS.txt`) |
 
 Prices are in **VND**. Content is available in **English (en)**, **Vietnamese (vi, default)**, and **Chinese (zh)**.
 

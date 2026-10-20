@@ -54,15 +54,15 @@ class CatalogIT extends IntegrationTest {
         assertThat(again.errors()).isEmpty();
         assertThat(again.productsCreated()).isZero();
         assertThat(again.productsUpdated()).isZero();
-        assertThat(again.productsSkipped()).isEqualTo(20);
+        assertThat(again.productsSkipped()).isEqualTo(24);
         assertThat(again.categoriesCreated()).isZero();
 
         assertThat(jdbc.queryForObject("select count(*) from products", Integer.class))
-                .isEqualTo(20);
+                .isEqualTo(24);
         assertThat(jdbc.queryForObject("select count(*) from categories", Integer.class))
-                .isEqualTo(4);
+                .isEqualTo(5);
         assertThat(jdbc.queryForObject("select count(*) from product_translations", Integer.class))
-                .isEqualTo(60);
+                .isEqualTo(72);
     }
 
     @Test
@@ -82,7 +82,7 @@ class CatalogIT extends IntegrationTest {
         AuthSupport.Session admin = AuthSupport.newAdmin(mvc, jdbc, passwordEncoder.encode(AuthSupport.PASSWORD));
         mvc.perform(post("/api/v1/admin/import").header("Authorization", admin.bearer()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.productsSkipped").value(20))
+                .andExpect(jsonPath("$.data.productsSkipped").value(24))
                 .andExpect(jsonPath("$.data.errors").isEmpty());
         assertThat(jdbc.queryForObject(
                         "select count(*) from audit_logs where action = 'CATALOG_IMPORT'", Integer.class))
@@ -95,13 +95,14 @@ class CatalogIT extends IntegrationTest {
     void categoriesComeInMenuOrderWithCounts() throws Exception {
         mvc.perform(get("/api/v1/categories"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data[*].slug", contains("cpu", "gpu", "mainboard", "cooler")))
+                .andExpect(jsonPath("$.data[*].slug", contains("cpu", "gpu", "mainboard", "cooler", "kvm")))
                 .andExpect(jsonPath("$.data[0].itemCount").value(11))
                 .andExpect(jsonPath("$.data[0].subCategories[*].slug", contains("zen-2", "zen-3")))
                 .andExpect(jsonPath("$.data[0].subCategories[0].itemCount").value(7))
                 .andExpect(jsonPath("$.data[0].subCategories[1].itemCount").value(4))
                 .andExpect(jsonPath("$.data[0].image", startsWith("http://localhost:8080/uploads/catalog/cpu/")))
-                .andExpect(jsonPath("$.data[3].itemCount").value(5));
+                .andExpect(jsonPath("$.data[3].itemCount").value(5))
+                .andExpect(jsonPath("$.data[4].itemCount").value(4));
 
         mvc.perform(get("/api/v1/categories/mainboard"))
                 .andExpect(status().isOk())
@@ -121,11 +122,11 @@ class CatalogIT extends IntegrationTest {
                 .andExpect(jsonPath("$.data.content", hasSize(12)))
                 .andExpect(jsonPath("$.data.pageNumber").value(0))
                 .andExpect(jsonPath("$.data.pageSize").value(12))
-                .andExpect(jsonPath("$.data.totalElements").value(20))
+                .andExpect(jsonPath("$.data.totalElements").value(24))
                 .andExpect(jsonPath("$.data.totalPages").value(2))
                 .andExpect(jsonPath("$.data.last").value(false));
         mvc.perform(get("/api/v1/products?page=1"))
-                .andExpect(jsonPath("$.data.content", hasSize(8)))
+                .andExpect(jsonPath("$.data.content", hasSize(12)))
                 .andExpect(jsonPath("$.data.last").value(true));
         mvc.perform(get("/api/v1/products?size=49")).andExpect(status().isBadRequest());
     }

@@ -1,0 +1,5 @@
+Photos: BuildJet, Inc. / JetKVM (official product images). Copyright BuildJet, Inc.; used by Bee Store as an authorised distributor to illustrate the genuine product.
+
+01-device.png: https://jetkvm.com/assets/jetkvm-device-still3-4hEBsXZG.png
+02-product.jpg: https://jetkvm.com/og.jpg
+Source page: https://jetkvm.com/

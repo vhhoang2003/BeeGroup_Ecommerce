@@ -26,7 +26,7 @@ export const STORAGE_BASE_URL = '/storage';
 
 const DEFAULT_LOCALE: Locale = 'vi';
 const LOCALES: Locale[] = ['vi', 'en', 'zh'];
-const CATEGORY_ORDER = ['cpu', 'gpu', 'mainboard', 'cooler'];
+const CATEGORY_ORDER = ['cpu', 'gpu', 'mainboard', 'cooler', 'kvm'];
 
 type Localized = Partial<Record<Locale, string>>;
 

@@ -1,0 +1,29 @@
+{
+  "name": "KVM",
+  "slug": "kvm",
+  "itemCount": 4,
+  "subCategories": [
+    {
+      "name": "GL.iNet",
+      "slug": "gl-inet",
+      "products": [
+        "Comet GL-RM1",
+        "Comet Pro GL-RM10"
+      ]
+    },
+    {
+      "name": "JetKVM",
+      "slug": "jetkvm",
+      "products": [
+        "JetKVM"
+      ]
+    },
+    {
+      "name": "Luckfox",
+      "slug": "luckfox",
+      "products": [
+        "PicoKVM"
+      ]
+    }
+  ]
+}

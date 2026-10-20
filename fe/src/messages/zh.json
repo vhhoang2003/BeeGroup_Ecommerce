@@ -1,8 +1,8 @@
 {
   "site": {
-    "title": "AMD EPYC 处理器、SP3 主板、GPU 与服务器散热",
-    "tagline": "服务器与工作站配件：AMD EPYC 处理器、GPU、主板、散热器",
-    "description": "Bee Store 专营 AMD EPYC 处理器、NVIDIA Tesla GPU、SP3 主板及散热器，适用于家庭实验室、虚拟化服务器和工作站。配送覆盖亚太全区，可通过热线、Zalo、WhatsApp 或邮件快速询价。",
+    "title": "AMD EPYC 处理器、SP3 主板、GPU、散热器与 KVM over IP",
+    "tagline": "服务器与工作站配件：AMD EPYC 处理器、GPU、主板、散热器及 KVM over IP",
+    "description": "Bee Store 专营 AMD EPYC 处理器、NVIDIA Tesla GPU、SP3 主板、散热器及 KVM over IP（GL.iNet、JetKVM、Luckfox），适用于家庭实验室、虚拟化服务器和工作站。配送覆盖亚太全区，可通过热线、Zalo、WhatsApp 或邮件快速询价。",
     "delivery": "配送覆盖亚太全区，收到订单后 15–20 天送达",
     "deliveryShort": "亚太全区配送 · 15–20 天送达",
     "address": "越南胡志明市"
@@ -76,7 +76,9 @@
     "mainboardPrefix": "SP3",
     "mainboardHighlight": "主板",
     "coolerPrefix": "EPYC",
-    "coolerHighlight": "散热器"
+    "coolerHighlight": "散热器",
+    "kvmPrefix": "KVM",
+    "kvmHighlight": "over IP"
   },
   "hero": {
     "zen2": {
@@ -91,6 +93,12 @@
       "description": "EPYC 7663、7B13、7V13 与 7V73X：核心多、缓存大，兼容 SP3 主板。",
       "cta": "查看 Zen 3"
     },
+    "kvm": {
+      "subtitle": "GL.iNet · JetKVM · Luckfox",
+      "title": "随时随地远程掌控。",
+      "description": "正品 KVM over IP：远程进入 BIOS、重装系统、开关机，无需守在电脑前。",
+      "cta": "查看 KVM 产品"
+    },
     "platform": {
       "subtitle": "主板 · GPU · 散热",
       "title": "完整平台方案。",
@@ -102,7 +110,7 @@
     "next": "下一张"
   },
   "search": {
-    "placeholder": "搜索处理器、主板、散热器…（如：7B13、SP3、64 核）",
+    "placeholder": "搜索处理器、主板、KVM…（如：7B13、SP3、JetKVM）",
     "label": "搜索商品",
     "clear": "清除关键词",
     "filter": "筛选商品",

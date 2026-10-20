@@ -27,6 +27,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
         viewAllHref="/category/cooler"
         category="cooler"
       />
+      <ProductSection prefix={t('kvmPrefix')} highlight={t('kvmHighlight')} viewAllHref="/category/kvm" category="kvm" />
       <ContactCta />
     </div>
   );

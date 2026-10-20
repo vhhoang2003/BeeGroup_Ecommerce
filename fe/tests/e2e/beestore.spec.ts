@@ -62,6 +62,18 @@ test.describe('Bee Store catalog', () => {
     expect(jsonLd.offers.priceCurrency).toBe('VND');
   });
 
+  test('KVM category lists the distributed brands', async ({ page }) => {
+    await page.goto('/vi/category/kvm');
+    await expect(page.locator('h1')).toContainText('KVM');
+    await expect(page.getByText('4 sản phẩm')).toBeVisible();
+    for (const name of ['GL.iNet Comet (GL-RM1)', 'GL.iNet Comet Pro (GL-RM10)', 'JetKVM', 'Luckfox PicoKVM']) {
+      await expect(page.getByRole('heading', { name, exact: true })).toBeVisible();
+    }
+    await page.getByRole('heading', { name: 'JetKVM', exact: true }).click();
+    await expect(page.locator('h1')).toHaveText('JetKVM');
+    await expect(page.getByText('1080p @ 60 fps, H.264, độ trễ 30–60 ms')).toBeVisible();
+  });
+
   test('unknown pages show the localized 404', async ({ page }) => {
     const response = await page.goto('/en/no-such-page');
     expect(response?.status()).toBe(404);

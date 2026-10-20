@@ -1,0 +1,236 @@
+{
+  "id": "21",
+  "name": "GL.iNet Comet (GL-RM1)",
+  "slug": "gl-inet-comet-gl-rm1",
+  "brand": "GL.iNet",
+  "category": "KVM",
+  "categorySlug": "kvm",
+  "subCategory": "GL.iNet",
+  "price": null,
+  "specs": {
+    "Model": "GL-RM1 (Comet)",
+    "CPU": "Quad-core ARM Cortex-A7",
+    "Memory / storage": "1 GB DDR3 / 8 GB eMMC",
+    "Video input": "HDMI, up to 4K @ 30 fps",
+    "Network": "Gigabit Ethernet (10/100/1000 Mbps)",
+    "Ports": "HDMI in, USB-C (keyboard / mouse), USB 2.0 Type-A (ATX board / Fingerbot), Ethernet, USB-C power, reset button",
+    "Power input": "USB-C, 5 V / 2 A (about 3 W)",
+    "Dimensions / weight": "80 × 60 × 17.5 mm / 85 g"
+  },
+  "image": "images/01-front.jpg",
+  "images": [
+    "images/01-front.jpg",
+    "images/02-ports.jpg",
+    "images/03-product.png",
+    "images/04-features.jpg"
+  ],
+  "description": "GL.iNet Comet (GL-RM1) biến bất kỳ PC, server hay máy trạm nào thành máy điều khiển được từ xa qua trình duyệt hoặc ứng dụng GL.iNet: xem màn hình, gõ phím, di chuột, vào BIOS, cài lại hệ điều hành – kể cả khi máy treo hay mất mạng hệ điều hành. Thiết bị nhận hình qua HDMI tới 4K@30fps, giả lập bàn phím chuột qua USB-C, truyền tệp và âm thanh, và có cổng USB-A để gắn bo ATX hoặc Fingerbot bật/tắt nguồn từ xa.",
+  "features": [
+    "Điều khiển tới mức BIOS/UEFI",
+    "Video HDMI tới 4K@30fps",
+    "Ethernet Gigabit",
+    "Truyền tệp, clipboard, âm thanh",
+    "Bật/tắt nguồn qua bo ATX hoặc Fingerbot"
+  ],
+  "specsDetailed": [
+    {
+      "key": "model",
+      "label": {
+        "en": "Model",
+        "vi": "Mã sản phẩm",
+        "zh": "型号"
+      },
+      "value": {
+        "en": "GL-RM1 (Comet)",
+        "vi": "GL-RM1 (Comet)",
+        "zh": "GL-RM1 (Comet)"
+      }
+    },
+    {
+      "key": "cpu",
+      "label": {
+        "en": "CPU",
+        "vi": "CPU",
+        "zh": "处理器"
+      },
+      "value": {
+        "en": "Quad-core ARM Cortex-A7",
+        "vi": "ARM Cortex-A7 4 nhân",
+        "zh": "四核 ARM Cortex-A7"
+      }
+    },
+    {
+      "key": "memory",
+      "label": {
+        "en": "Memory / storage",
+        "vi": "RAM / bộ nhớ",
+        "zh": "内存 / 存储"
+      },
+      "value": {
+        "en": "1 GB DDR3 / 8 GB eMMC",
+        "vi": "1 GB DDR3 / 8 GB eMMC",
+        "zh": "1 GB DDR3 / 8 GB eMMC"
+      }
+    },
+    {
+      "key": "video",
+      "label": {
+        "en": "Video input",
+        "vi": "Đầu vào video",
+        "zh": "视频输入"
+      },
+      "value": {
+        "en": "HDMI, up to 4K @ 30 fps",
+        "vi": "HDMI, tới 4K @ 30 fps",
+        "zh": "HDMI，最高 4K @ 30 fps"
+      }
+    },
+    {
+      "key": "network",
+      "label": {
+        "en": "Network",
+        "vi": "Mạng",
+        "zh": "网络"
+      },
+      "value": {
+        "en": "Gigabit Ethernet (10/100/1000 Mbps)",
+        "vi": "Ethernet Gigabit (10/100/1000 Mbps)",
+        "zh": "千兆以太网（10/100/1000 Mbps）"
+      }
+    },
+    {
+      "key": "ports",
+      "label": {
+        "en": "Ports",
+        "vi": "Cổng kết nối",
+        "zh": "接口"
+      },
+      "value": {
+        "en": "HDMI in, USB-C (keyboard / mouse), USB 2.0 Type-A (ATX board / Fingerbot), Ethernet, USB-C power, reset button",
+        "vi": "HDMI vào, USB-C (bàn phím / chuột), USB 2.0 Type-A (bo ATX / Fingerbot), Ethernet, USB-C nguồn, nút reset",
+        "zh": "HDMI 输入、USB-C（键鼠）、USB 2.0 Type-A（ATX 板 / Fingerbot）、以太网、USB-C 供电、复位键"
+      }
+    },
+    {
+      "key": "power",
+      "label": {
+        "en": "Power input",
+        "vi": "Nguồn",
+        "zh": "电源"
+      },
+      "value": {
+        "en": "USB-C, 5 V / 2 A (about 3 W)",
+        "vi": "USB-C, 5 V / 2 A (khoảng 3 W)",
+        "zh": "USB-C，5 V / 2 A（约 3 W）"
+      }
+    },
+    {
+      "key": "size",
+      "label": {
+        "en": "Dimensions / weight",
+        "vi": "Kích thước / trọng lượng",
+        "zh": "尺寸 / 重量"
+      },
+      "value": {
+        "en": "80 × 60 × 17.5 mm / 85 g",
+        "vi": "80 × 60 × 17.5 mm / 85 g",
+        "zh": "80 × 60 × 17.5 mm / 85 g"
+      }
+    }
+  ],
+  "i18n": {
+    "en": {
+      "shortDescription": "Compact GL.iNet KVM over IP: BIOS-level remote control, 4K video and Gigabit Ethernet.",
+      "description": "The GL.iNet Comet (GL-RM1) turns any PC, server or workstation into a machine you can run from anywhere through a browser or the GL.iNet app: see the screen, type, move the mouse, enter the BIOS and reinstall the OS – even when the system hangs or its own network is down. It captures HDMI up to 4K@30fps, emulates keyboard and mouse over USB-C, transfers files and audio, and has a USB-A port for an ATX board or Fingerbot to switch power remotely.",
+      "highlights": [
+        "BIOS/UEFI-level control",
+        "HDMI video up to 4K@30fps",
+        "Gigabit Ethernet",
+        "File transfer, clipboard, audio",
+        "Power control via ATX board or Fingerbot"
+      ],
+      "useCases": [
+        "Server and home lab management",
+        "Remote IT support",
+        "Remote OS installation"
+      ],
+      "name": "GL.iNet Comet (GL-RM1)",
+      "specs": {
+        "Model": "GL-RM1 (Comet)",
+        "CPU": "Quad-core ARM Cortex-A7",
+        "Memory / storage": "1 GB DDR3 / 8 GB eMMC",
+        "Video input": "HDMI, up to 4K @ 30 fps",
+        "Network": "Gigabit Ethernet (10/100/1000 Mbps)",
+        "Ports": "HDMI in, USB-C (keyboard / mouse), USB 2.0 Type-A (ATX board / Fingerbot), Ethernet, USB-C power, reset button",
+        "Power input": "USB-C, 5 V / 2 A (about 3 W)",
+        "Dimensions / weight": "80 × 60 × 17.5 mm / 85 g"
+      },
+      "notes": [
+        "Wired Ethernet only, no Wi-Fi. ATX board and Fingerbot sold separately."
+      ]
+    },
+    "vi": {
+      "shortDescription": "KVM over IP nhỏ gọn của GL.iNet: điều khiển máy tính từ xa tới tận BIOS, video 4K, cổng mạng Gigabit.",
+      "description": "GL.iNet Comet (GL-RM1) biến bất kỳ PC, server hay máy trạm nào thành máy điều khiển được từ xa qua trình duyệt hoặc ứng dụng GL.iNet: xem màn hình, gõ phím, di chuột, vào BIOS, cài lại hệ điều hành – kể cả khi máy treo hay mất mạng hệ điều hành. Thiết bị nhận hình qua HDMI tới 4K@30fps, giả lập bàn phím chuột qua USB-C, truyền tệp và âm thanh, và có cổng USB-A để gắn bo ATX hoặc Fingerbot bật/tắt nguồn từ xa.",
+      "highlights": [
+        "Điều khiển tới mức BIOS/UEFI",
+        "Video HDMI tới 4K@30fps",
+        "Ethernet Gigabit",
+        "Truyền tệp, clipboard, âm thanh",
+        "Bật/tắt nguồn qua bo ATX hoặc Fingerbot"
+      ],
+      "useCases": [
+        "Quản trị server, home lab",
+        "Hỗ trợ kỹ thuật từ xa",
+        "Cài đặt hệ điều hành từ xa"
+      ],
+      "name": "GL.iNet Comet (GL-RM1)",
+      "specs": {
+        "Mã sản phẩm": "GL-RM1 (Comet)",
+        "CPU": "ARM Cortex-A7 4 nhân",
+        "RAM / bộ nhớ": "1 GB DDR3 / 8 GB eMMC",
+        "Đầu vào video": "HDMI, tới 4K @ 30 fps",
+        "Mạng": "Ethernet Gigabit (10/100/1000 Mbps)",
+        "Cổng kết nối": "HDMI vào, USB-C (bàn phím / chuột), USB 2.0 Type-A (bo ATX / Fingerbot), Ethernet, USB-C nguồn, nút reset",
+        "Nguồn": "USB-C, 5 V / 2 A (khoảng 3 W)",
+        "Kích thước / trọng lượng": "80 × 60 × 17.5 mm / 85 g"
+      },
+      "notes": [
+        "Chỉ có cổng mạng dây, không có Wi-Fi. Bo ATX và Fingerbot bán riêng."
+      ]
+    },
+    "zh": {
+      "shortDescription": "GL.iNet 小巧 KVM over IP：BIOS 级远程控制、4K 视频、千兆网口。",
+      "description": "GL.iNet Comet（GL-RM1）让任何 PC、服务器或工作站都能通过浏览器或 GL.iNet App 远程操作：查看屏幕、键盘鼠标输入、进入 BIOS、重装系统——即使系统卡死或操作系统网络中断也不受影响。支持最高 4K@30fps 的 HDMI 采集，通过 USB-C 模拟键鼠，可传输文件与音频，并提供 USB-A 接口连接 ATX 板或 Fingerbot 实现远程开关机。",
+      "highlights": [
+        "BIOS/UEFI 级控制",
+        "HDMI 视频最高 4K@30fps",
+        "千兆以太网",
+        "文件传输、剪贴板、音频",
+        "通过 ATX 板或 Fingerbot 控制电源"
+      ],
+      "useCases": [
+        "服务器与家庭实验室管理",
+        "远程技术支持",
+        "远程安装系统"
+      ],
+      "name": "GL.iNet Comet (GL-RM1)",
+      "specs": {
+        "型号": "GL-RM1 (Comet)",
+        "处理器": "四核 ARM Cortex-A7",
+        "内存 / 存储": "1 GB DDR3 / 8 GB eMMC",
+        "视频输入": "HDMI，最高 4K @ 30 fps",
+        "网络": "千兆以太网（10/100/1000 Mbps）",
+        "接口": "HDMI 输入、USB-C（键鼠）、USB 2.0 Type-A（ATX 板 / Fingerbot）、以太网、USB-C 供电、复位键",
+        "电源": "USB-C，5 V / 2 A（约 3 W）",
+        "尺寸 / 重量": "80 × 60 × 17.5 mm / 85 g"
+      },
+      "notes": [
+        "仅支持有线网络，不带 Wi-Fi。ATX 板与 Fingerbot 需另购。"
+      ]
+    }
+  },
+  "sources": [
+    "https://www.gl-inet.com/products/gl-rm1/"
+  ]
+}

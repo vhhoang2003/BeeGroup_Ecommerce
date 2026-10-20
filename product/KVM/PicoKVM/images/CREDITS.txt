@@ -1,0 +1,6 @@
+Photos: Luckfox / Waveshare (official product images). Copyright Luckfox Technology; used by Bee Store as an authorised distributor to illustrate the genuine product.
+
+01-front.jpg: https://www.waveshare.com/media/catalog/product/l/u/luckfox-picokvm-1.jpg
+02-ports.jpg: https://www.waveshare.com/media/catalog/product/l/u/luckfox-picokvm-4.jpg
+03-screen.jpg: https://www.waveshare.com/media/catalog/product/l/u/luckfox-picokvm-2.jpg
+Source page: https://www.waveshare.com/luckfox-picokvm.htm

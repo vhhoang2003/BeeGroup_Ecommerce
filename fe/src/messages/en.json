@@ -1,8 +1,8 @@
 {
   "site": {
-    "title": "AMD EPYC CPUs, SP3 mainboards, GPUs & server cooling",
-    "tagline": "Server & workstation parts: AMD EPYC CPUs, GPUs, mainboards, cooling",
-    "description": "Bee Store specialises in AMD EPYC CPUs, NVIDIA Tesla GPUs, SP3 mainboards and cooling for home labs, virtualization servers and workstations. Delivery across Asia-Pacific, with fast quotes by phone, Zalo, WhatsApp or email.",
+    "title": "AMD EPYC CPUs, SP3 mainboards, GPUs, cooling & KVM over IP",
+    "tagline": "Server & workstation parts: AMD EPYC CPUs, GPUs, mainboards, cooling and KVM over IP",
+    "description": "Bee Store specialises in AMD EPYC CPUs, NVIDIA Tesla GPUs, SP3 mainboards, cooling and KVM over IP (GL.iNet, JetKVM, Luckfox) for home labs, virtualization servers and workstations. Delivery across Asia-Pacific, with fast quotes by phone, Zalo, WhatsApp or email.",
     "delivery": "Delivered anywhere in the Asia-Pacific region within 15–20 days of receiving your order",
     "deliveryShort": "Delivery across Asia-Pacific in 15–20 days",
     "address": "Ho Chi Minh City, Vietnam"
@@ -76,7 +76,9 @@
     "mainboardPrefix": "SP3",
     "mainboardHighlight": "mainboards",
     "coolerPrefix": "Cooling",
-    "coolerHighlight": "for EPYC"
+    "coolerHighlight": "for EPYC",
+    "kvmPrefix": "KVM",
+    "kvmHighlight": "over IP"
   },
   "hero": {
     "zen2": {
@@ -91,6 +93,12 @@
       "description": "EPYC 7663, 7B13, 7V13 and 7V73X: high core counts and large caches, all on SP3 mainboards.",
       "cta": "Browse Zen 3"
     },
+    "kvm": {
+      "subtitle": "GL.iNet · JetKVM · Luckfox",
+      "title": "CONTROL FROM ANYWHERE.",
+      "description": "Genuine KVM over IP: enter the BIOS, reinstall the OS and power machines on or off from anywhere – no need to sit in front of them.",
+      "cta": "Browse KVMs"
+    },
     "platform": {
       "subtitle": "Mainboards · GPUs · Cooling",
       "title": "THE WHOLE PLATFORM.",
@@ -102,7 +110,7 @@
     "next": "Next slide"
   },
   "search": {
-    "placeholder": "Search CPUs, mainboards, coolers… (e.g. 7B13, SP3, 64 core)",
+    "placeholder": "Search CPUs, mainboards, KVMs… (e.g. 7B13, SP3, JetKVM)",
     "label": "Search products",
     "clear": "Clear search",
     "filter": "Filter products",
