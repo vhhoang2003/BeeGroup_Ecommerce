@@ -1,0 +1,49 @@
+# README §15 "Before release": OWASP ZAP baseline scan of the site and the k6 catalog load test. Run by hand from the
+# Actions tab against the deployed site (or staging); nothing here deploys anything.
+name: Release checks
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: Site to scan (home page of one locale)
+        required: true
+        default: https://beestore.vn/vi
+      api_url:
+        description: API base URL for the load test; leave empty to skip it (needs the API rate limit disabled)
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  zap:
+    name: OWASP ZAP baseline
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Baseline scan (passive, about 2 minutes)
+        # Inputs go through env, not straight into the script, so they cannot inject shell code.
+        env:
+          SITE_URL: ${{ inputs.site_url }}
+        run: |
+          mkdir -p zap && chmod 777 zap
+          # -I: warnings do not fail the job; FAIL-level alerts still do.
+          docker run --rm -v "$PWD/zap:/zap/wrk:rw" ghcr.io/zaproxy/zaproxy:2.17.0 \
+            zap-baseline.py -t "$SITE_URL" -m 2 -I -r zap-report.html -J zap-report.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: zap-report
+          path: zap/
+          retention-days: 30
+
+  load:
+    name: k6 catalog load test (p95 < 300 ms at 50 VUs)
+    if: inputs.api_url != ''
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - env:
+          BASE_URL: ${{ inputs.api_url }}
+        run: docker run --rm -i -e BASE_URL grafana/k6:2.3.0 run - < infra/loadtest/catalog.js

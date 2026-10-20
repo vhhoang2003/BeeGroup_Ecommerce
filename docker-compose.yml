@@ -35,9 +35,14 @@ services:
     build:
       context: ./fe
       args:
+        NEXT_PUBLIC_USE_MOCK: "false"
         NEXT_PUBLIC_API_URL: http://localhost:8080/api/v1
+        NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${NEXT_PUBLIC_TURNSTILE_SITE_KEY:-}
     environment:
       INTERNAL_API_URL: http://api:8080/api/v1   # used for server-side fetches
+      REVALIDATE_SECRET: ${REVALIDATE_SECRET:-}
+      CATALOG_SOURCE_DIR: /data/product          # hero photos under /storage
+    volumes: ["./product:/data/product:ro"]
     depends_on:
       api: { condition: service_healthy }
     ports: ["3000:3000"]

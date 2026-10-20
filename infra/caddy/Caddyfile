@@ -8,7 +8,8 @@
 :80 {
 	encode zstd gzip
 
-	# SEC-01 / SEC-10 response headers (a Content-Security-Policy needs nonces in Next.js and is still to do).
+	# SEC-01 / SEC-10 response headers. The Content-Security-Policy comes from Next.js (fe/next.config.ts), which knows
+	# the Turnstile and API origins; the API's JSON responses do not need one.
 	header {
 		Strict-Transport-Security "max-age=31536000; includeSubDomains"
 		X-Content-Type-Options "nosniff"
