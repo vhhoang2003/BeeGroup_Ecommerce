@@ -24,6 +24,7 @@
     <mapstruct.version>1.6.3</mapstruct.version>
     <bucket4j.version>8.19.0</bucket4j.version>
     <scrimage.version>4.6.9</scrimage.version>
+    <poi.version>5.4.1</poi.version>
     <logstash-encoder.version>8.1</logstash-encoder.version>
     <bouncycastle.version>1.86</bouncycastle.version>
     <greenmail.version>2.1.14</greenmail.version>
@@ -113,6 +114,12 @@
       <groupId>com.sksamuel.scrimage</groupId>
       <artifactId>scrimage-webp</artifactId>
       <version>${scrimage.version}</version>
+    </dependency>
+    <!-- Product price list import / export (.xlsx) -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>${poi.version}</version>
     </dependency>
     <dependency>
       <groupId>net.logstash.logback</groupId>

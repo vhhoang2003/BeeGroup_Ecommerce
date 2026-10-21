@@ -188,3 +188,52 @@ export interface ImportReport {
   productsSkipped: number;
   errors: string[];
 }
+
+/** A problem in the price list file; `code` is translated under `admin.priceList.issues`. */
+export interface SheetIssue {
+  code: string;
+  value: string | null;
+}
+
+export type SheetChangeField =
+  | 'NAME'
+  | 'SKU'
+  | 'BRAND'
+  | 'SUB_CATEGORY'
+  | 'PRICE'
+  | 'STOCK'
+  | 'STATUS'
+  | 'WARRANTY'
+  | 'SPEC';
+
+export interface SheetChange {
+  field: SheetChangeField;
+  /** Spec label (Vietnamese) when `field` is SPEC. */
+  label: string | null;
+  from: string | null;
+  to: string | null;
+}
+
+export type SheetRowAction = 'CREATE' | 'UPDATE' | 'UNCHANGED' | 'ERROR';
+
+export interface SheetRowResult {
+  sheet: string;
+  row: number;
+  action: SheetRowAction;
+  productId: string | null;
+  slug: string | null;
+  name: string | null;
+  changes: SheetChange[];
+  errors: SheetIssue[];
+}
+
+export interface SheetImportReport {
+  applied: boolean;
+  created: number;
+  updated: number;
+  unchanged: number;
+  failed: number;
+  newSubCategories: string[];
+  errors: SheetIssue[];
+  rows: SheetRowResult[];
+}

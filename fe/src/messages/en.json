@@ -530,6 +530,7 @@
       "inquiries": "Inquiries",
       "users": "Users",
       "auditLogs": "Audit log",
+      "priceList": "Excel price list",
       "import": "Import"
     },
     "dashboard": {
@@ -739,6 +740,72 @@
       "productsUpdated": "Products updated",
       "productsSkipped": "Products skipped",
       "errors": "{count, plural, one {# error} other {# errors}}"
+    },
+    "priceList": {
+      "title": "Excel price list",
+      "subtitle": "Update prices and add products in bulk with the standard Excel file.",
+      "step1": "1. Download the current price list",
+      "step1Body": "The file has one sheet per category, pre-filled with every product, price and spec on the site. The \"Hướng dẫn\" sheet explains each column.",
+      "download": "Download Excel file",
+      "step2": "2. Import the edited file",
+      "rule1": "Edit prices, stock, status or specs right in the file. Do not edit the \"Mã sản phẩm\" (code) column.",
+      "rule2": "Add a product as a new row with an empty code. Its code, name, specs and descriptions in 3 languages are generated; new products start as drafts so you can add images before publishing.",
+      "rule3": "Press \"Check\" to preview the changes. Nothing is written while the file has errors.",
+      "choose": "Choose .xlsx file",
+      "check": "Check",
+      "apply": "Apply {count} changes",
+      "confirmApply": "Write these changes to the site?",
+      "applied": "Import finished. Product pages refresh in a moment.",
+      "blocked": "The file has errors, so nothing was written. Fix the rows marked in red and check again.",
+      "nothing": "The file has no differences from the site.",
+      "newSubCategories": "New product lines will be created: {list}",
+      "created": "New",
+      "updated": "Updated",
+      "unchanged": "Unchanged",
+      "failed": "Errors",
+      "showUnchanged": "Show unchanged rows too",
+      "row": "Sheet · row",
+      "product": "Product",
+      "result": "Result",
+      "details": "Details",
+      "noRows": "No rows changed.",
+      "addImages": "Open it to add images, then publish.",
+      "actions": {
+        "CREATE": "New",
+        "UPDATE": "Update",
+        "UNCHANGED": "Unchanged",
+        "ERROR": "Error"
+      },
+      "fields": {
+        "NAME": "Name",
+        "SKU": "SKU",
+        "BRAND": "Brand",
+        "SUB_CATEGORY": "Line",
+        "PRICE": "Price",
+        "STOCK": "Stock",
+        "STATUS": "Status",
+        "WARRANTY": "Warranty",
+        "SPEC": "Spec"
+      },
+      "issues": {
+        "NO_ROWS": "The file has no product rows. Use the file from step 1.",
+        "UNKNOWN_CATEGORY": "Sheet \"{value}\" does not match any category on the site.",
+        "UNKNOWN_CODE": "No product has the code \"{value}\".",
+        "WRONG_CATEGORY": "This product belongs to \"{value}\", not this sheet.",
+        "DUPLICATE_ROW": "Product \"{value}\" appears more than once in the file.",
+        "DUPLICATE_SKU": "SKU \"{value}\" is repeated in the file.",
+        "SKU_TAKEN": "SKU already used by another product: {value}",
+        "NAME_REQUIRED": "A new product needs a name or an SKU / model.",
+        "BRAND_REQUIRED": "A new product needs a brand.",
+        "BAD_NAME": "Cannot make a code from the name \"{value}\".",
+        "NAME_TOO_LONG": "Name too long (max 200 characters): {value}",
+        "SKU_TOO_LONG": "SKU too long (max 50 characters): {value}",
+        "BRAND_TOO_LONG": "Brand too long (max 60 characters): {value}",
+        "BAD_PRICE": "Price \"{value}\" is not valid, use digits only.",
+        "BAD_WARRANTY": "Warranty \"{value}\" is not valid, use a number of months.",
+        "BAD_STOCK": "Stock \"{value}\" is not valid.",
+        "BAD_STATUS": "Status \"{value}\" is not valid."
+      }
     }
   }
 }

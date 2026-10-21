@@ -1,4 +1,4 @@
-import { ApiError, apiClient, json } from './client';
+import { ApiError, apiBlob, apiClient, json } from './client';
 import type { Locale, ProductDetail, ProductFilterParams, ProductSummary } from '@/types/product';
 import type { Category } from '@/types/category';
 import type { PaginatedResponse } from '@/types/api';
@@ -18,6 +18,7 @@ import type {
   InquiryUpdateRequest,
   ProductRequest,
   ProductStatus,
+  SheetImportReport,
   SubCategoryRequest,
   UserUpdateRequest,
 } from '@/types/admin';
@@ -229,5 +230,16 @@ export const AdminApi = {
 
   runImport(): Promise<ImportReport> {
     return apiClient<ImportReport>('/admin/import', { method: 'POST' });
+  },
+
+  /** The price list workbook, filled with the current catalog. */
+  downloadPriceList(): Promise<{ blob: Blob; filename: string | null }> {
+    return apiBlob('/admin/products/sheet');
+  },
+  /** Checks the workbook; with `apply` imports it (nothing is written when it has errors). */
+  uploadPriceList(file: File, apply: boolean): Promise<SheetImportReport> {
+    const form = new FormData();
+    form.append('file', file);
+    return apiClient<SheetImportReport>(`/admin/products/sheet${toQuery({ apply })}`, { method: 'POST', body: form });
   },
 };

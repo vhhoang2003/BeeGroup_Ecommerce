@@ -31,6 +31,9 @@ public interface ProductRepository extends JpaRepository<Product, UUID>, JpaSpec
     @EntityGraph(attributePaths = {"category", "subCategory"})
     Optional<Product> findBySlugAndStatus(String slug, ProductStatus status);
 
+    @EntityGraph(attributePaths = {"category", "subCategory"})
+    Optional<Product> findBySku(String sku);
+
     boolean existsBySlug(String slug);
 
     boolean existsBySku(String sku);

@@ -111,6 +111,19 @@ async function parse<T>(response: Response): Promise<T> {
 }
 
 export async function apiClient<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+  return parse<T>(await authorized(endpoint, options));
+}
+
+/** File download: the body as a Blob plus the file name from `Content-Disposition`, when the browser exposes it. */
+export async function apiBlob(endpoint: string): Promise<{ blob: Blob; filename: string | null }> {
+  const response = await authorized(endpoint, {});
+  if (!response.ok) return parse<never>(response);
+  const match = /filename="?([^";]+)"?/.exec(response.headers.get('Content-Disposition') ?? '');
+  return { blob: await response.blob(), filename: match ? match[1] : null };
+}
+
+/** Sends with the access token; on 401 refreshes once and retries. */
+async function authorized(endpoint: string, options: RequestInit): Promise<Response> {
   const token = accessToken;
   let response = await send(endpoint, options, token);
 
@@ -123,7 +136,7 @@ export async function apiClient<T>(endpoint: string, options: RequestInit = {}):
     }
   }
 
-  return parse<T>(response);
+  return response;
 }
 
 /** JSON body helper: `apiClient(url, json('POST', body))`. */

@@ -530,6 +530,7 @@
       "inquiries": "Yêu cầu báo giá",
       "users": "Người dùng",
       "auditLogs": "Nhật ký",
+      "priceList": "Bảng giá Excel",
       "import": "Nhập dữ liệu"
     },
     "dashboard": {
@@ -739,6 +740,72 @@
       "productsUpdated": "Sản phẩm cập nhật",
       "productsSkipped": "Sản phẩm bỏ qua",
       "errors": "{count} lỗi"
+    },
+    "priceList": {
+      "title": "Bảng giá Excel",
+      "subtitle": "Cập nhật giá và thêm sản phẩm hàng loạt bằng file Excel chuẩn.",
+      "step1": "1. Tải bảng giá hiện tại",
+      "step1Body": "File gồm một sheet cho mỗi danh mục, đã điền sẵn toàn bộ sản phẩm, giá và thông số đang có trên web. Sheet \"Hướng dẫn\" giải thích cách điền từng cột.",
+      "download": "Tải file Excel",
+      "step2": "2. Nhập file đã chỉnh sửa",
+      "rule1": "Sửa giá, tình trạng kho, trạng thái hoặc thông số ngay trong file. Không sửa cột \"Mã sản phẩm\".",
+      "rule2": "Thêm sản phẩm mới bằng một dòng mới, để trống \"Mã sản phẩm\". Hệ thống tự sinh mã, tên, thông số và mô tả 3 ngôn ngữ; sản phẩm mới ở trạng thái Nháp để bạn thêm ảnh trước khi đăng.",
+      "rule3": "Bấm \"Kiểm tra\" để xem trước thay đổi. Nếu file còn lỗi thì không có gì được ghi.",
+      "choose": "Chọn file .xlsx",
+      "check": "Kiểm tra",
+      "apply": "Áp dụng {count} thay đổi",
+      "confirmApply": "Ghi các thay đổi này lên web?",
+      "applied": "Đã nhập xong. Các trang sản phẩm sẽ cập nhật trong giây lát.",
+      "blocked": "File còn lỗi nên chưa có gì được ghi. Sửa các dòng báo đỏ rồi kiểm tra lại.",
+      "nothing": "File không có gì khác với dữ liệu trên web.",
+      "newSubCategories": "Dòng sản phẩm mới sẽ được tạo: {list}",
+      "created": "Tạo mới",
+      "updated": "Cập nhật",
+      "unchanged": "Không đổi",
+      "failed": "Lỗi",
+      "showUnchanged": "Hiện cả các dòng không đổi",
+      "row": "Sheet · dòng",
+      "product": "Sản phẩm",
+      "result": "Kết quả",
+      "details": "Chi tiết",
+      "noRows": "Không có dòng nào thay đổi.",
+      "addImages": "Bấm vào tên để thêm ảnh, rồi đăng bán.",
+      "actions": {
+        "CREATE": "Tạo mới",
+        "UPDATE": "Cập nhật",
+        "UNCHANGED": "Không đổi",
+        "ERROR": "Lỗi"
+      },
+      "fields": {
+        "NAME": "Tên",
+        "SKU": "SKU",
+        "BRAND": "Thương hiệu",
+        "SUB_CATEGORY": "Dòng",
+        "PRICE": "Giá",
+        "STOCK": "Kho",
+        "STATUS": "Trạng thái",
+        "WARRANTY": "Bảo hành",
+        "SPEC": "Thông số"
+      },
+      "issues": {
+        "NO_ROWS": "File không có dòng sản phẩm nào. Hãy dùng file tải ở bước 1.",
+        "UNKNOWN_CATEGORY": "Sheet \"{value}\" không trùng tên danh mục nào trên web.",
+        "UNKNOWN_CODE": "Không tìm thấy sản phẩm có mã \"{value}\".",
+        "WRONG_CATEGORY": "Sản phẩm này thuộc danh mục \"{value}\", không phải sheet này.",
+        "DUPLICATE_ROW": "Sản phẩm \"{value}\" xuất hiện nhiều lần trong file.",
+        "DUPLICATE_SKU": "SKU \"{value}\" bị lặp trong file.",
+        "SKU_TAKEN": "SKU đã dùng cho sản phẩm khác: {value}",
+        "NAME_REQUIRED": "Sản phẩm mới cần \"Tên sản phẩm\" hoặc \"SKU / Model\".",
+        "BRAND_REQUIRED": "Sản phẩm mới cần \"Thương hiệu\".",
+        "BAD_NAME": "Không tạo được mã từ tên \"{value}\".",
+        "NAME_TOO_LONG": "Tên quá dài (tối đa 200 ký tự): {value}",
+        "SKU_TOO_LONG": "SKU quá dài (tối đa 50 ký tự): {value}",
+        "BRAND_TOO_LONG": "Thương hiệu quá dài (tối đa 60 ký tự): {value}",
+        "BAD_PRICE": "Giá \"{value}\" không hợp lệ, chỉ nhập số.",
+        "BAD_WARRANTY": "Bảo hành \"{value}\" không hợp lệ, nhập số tháng.",
+        "BAD_STOCK": "Tình trạng kho \"{value}\" không hợp lệ.",
+        "BAD_STATUS": "Trạng thái \"{value}\" không hợp lệ."
+      }
     }
   }
 }

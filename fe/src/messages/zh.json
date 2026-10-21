@@ -530,6 +530,7 @@
       "inquiries": "询价",
       "users": "用户",
       "auditLogs": "审计日志",
+      "priceList": "Excel 价目表",
       "import": "数据导入"
     },
     "dashboard": {
@@ -739,6 +740,72 @@
       "productsUpdated": "更新商品",
       "productsSkipped": "跳过商品",
       "errors": "{count} 个错误"
+    },
+    "priceList": {
+      "title": "Excel 价目表",
+      "subtitle": "使用标准 Excel 文件批量更新价格和添加产品。",
+      "step1": "1. 下载当前价目表",
+      "step1Body": "文件按分类分为多个工作表，已填入网站上的全部产品、价格和规格。\"Hướng dẫn\" 工作表说明了每一列的填写方法。",
+      "download": "下载 Excel 文件",
+      "step2": "2. 导入修改后的文件",
+      "rule1": "直接在文件中修改价格、库存、状态或规格。请勿修改 \"Mã sản phẩm\"（编码）列。",
+      "rule2": "新增产品时添加一行并留空编码。系统会自动生成编码、名称、规格以及三种语言的描述；新产品为草稿状态，添加图片后再发布。",
+      "rule3": "先点击\"检查\"预览更改。文件有错误时不会写入任何内容。",
+      "choose": "选择 .xlsx 文件",
+      "check": "检查",
+      "apply": "应用 {count} 项更改",
+      "confirmApply": "将这些更改写入网站？",
+      "applied": "导入完成，产品页面将很快更新。",
+      "blocked": "文件有错误，未写入任何内容。请修正标红的行后重新检查。",
+      "nothing": "文件与网站数据没有差异。",
+      "newSubCategories": "将创建新的产品系列：{list}",
+      "created": "新增",
+      "updated": "更新",
+      "unchanged": "未变",
+      "failed": "错误",
+      "showUnchanged": "同时显示未变的行",
+      "row": "工作表 · 行",
+      "product": "产品",
+      "result": "结果",
+      "details": "详情",
+      "noRows": "没有变化的行。",
+      "addImages": "点击名称添加图片后发布。",
+      "actions": {
+        "CREATE": "新增",
+        "UPDATE": "更新",
+        "UNCHANGED": "未变",
+        "ERROR": "错误"
+      },
+      "fields": {
+        "NAME": "名称",
+        "SKU": "SKU",
+        "BRAND": "品牌",
+        "SUB_CATEGORY": "系列",
+        "PRICE": "价格",
+        "STOCK": "库存",
+        "STATUS": "状态",
+        "WARRANTY": "保修",
+        "SPEC": "规格"
+      },
+      "issues": {
+        "NO_ROWS": "文件中没有产品行。请使用第 1 步下载的文件。",
+        "UNKNOWN_CATEGORY": "工作表 \"{value}\" 与网站上的任何分类都不匹配。",
+        "UNKNOWN_CODE": "找不到编码为 \"{value}\" 的产品。",
+        "WRONG_CATEGORY": "该产品属于 \"{value}\"，不属于此工作表。",
+        "DUPLICATE_ROW": "产品 \"{value}\" 在文件中出现多次。",
+        "DUPLICATE_SKU": "SKU \"{value}\" 在文件中重复。",
+        "SKU_TAKEN": "SKU 已被其他产品使用：{value}",
+        "NAME_REQUIRED": "新产品需要名称或 SKU / 型号。",
+        "BRAND_REQUIRED": "新产品需要品牌。",
+        "BAD_NAME": "无法根据名称 \"{value}\" 生成编码。",
+        "NAME_TOO_LONG": "名称过长（最多 200 个字符）：{value}",
+        "SKU_TOO_LONG": "SKU 过长（最多 50 个字符）：{value}",
+        "BRAND_TOO_LONG": "品牌过长（最多 60 个字符）：{value}",
+        "BAD_PRICE": "价格 \"{value}\" 无效，只能填写数字。",
+        "BAD_WARRANTY": "保修 \"{value}\" 无效，请填写月数。",
+        "BAD_STOCK": "库存 \"{value}\" 无效。",
+        "BAD_STATUS": "状态 \"{value}\" 无效。"
+      }
     }
   }
 }

@@ -171,6 +171,36 @@ public final class AdminDtos {
             Instant updatedAt,
             List<InquiryEventDto> events) {}
 
+    // --- Price list workbook ------------------------------------------------------------------------------------
+
+    /** A problem in the file; {@code code} is translated by the admin UI, {@code value} is the offending text. */
+    public record SheetIssue(String code, String value) {}
+
+    /** {@code field} is NAME, SKU, BRAND, SUB_CATEGORY, PRICE, STOCK, STATUS, WARRANTY or SPEC (then see label). */
+    public record SheetChange(String field, String label, String from, String to) {}
+
+    /** {@code action}: CREATE, UPDATE, UNCHANGED or ERROR. */
+    public record SheetRowResult(
+            String sheet,
+            int row,
+            String action,
+            UUID productId,
+            String slug,
+            String name,
+            List<SheetChange> changes,
+            List<SheetIssue> errors) {}
+
+    /** {@code applied} is false for a check run, and when errors blocked the import. */
+    public record SheetImportReport(
+            boolean applied,
+            int created,
+            int updated,
+            int unchanged,
+            int failed,
+            List<String> newSubCategories,
+            List<SheetIssue> errors,
+            List<SheetRowResult> rows) {}
+
     // --- Users (ADM-06) ------------------------------------------------------------------------------------------
 
     /** {@code status} accepts ACTIVE (unlock) or LOCKED (lock). */

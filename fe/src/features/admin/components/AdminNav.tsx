@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useTranslations } from 'next-intl';
-import { FileDown, FolderTree, History, Inbox, LayoutDashboard, Package, Users } from 'lucide-react';
+import { FileDown, FileSpreadsheet, FolderTree, History, Inbox, LayoutDashboard, Package, Users } from 'lucide-react';
 import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
 
@@ -12,6 +12,7 @@ export default function AdminNav() {
   const items = [
     { href: '/admin', label: t('dashboard'), icon: LayoutDashboard, exact: true },
     { href: '/admin/products', label: t('products'), icon: Package },
+    { href: '/admin/price-list', label: t('priceList'), icon: FileSpreadsheet },
     { href: '/admin/categories', label: t('categories'), icon: FolderTree },
     { href: '/admin/inquiries', label: t('inquiries'), icon: Inbox },
     { href: '/admin/users', label: t('users'), icon: Users },
