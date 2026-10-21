@@ -23,6 +23,7 @@ export default function CategoryNav() {
       active: pathname === `/category/${c.slug}`,
     })),
     { name: t('allProducts'), href: '/products', slug: '', active: pathname === '/products' },
+    { name: t('about'), href: '/about', slug: '', active: pathname === '/about' },
     { name: t('contact'), href: '/contact', slug: '', active: pathname === '/contact' },
   ];
 

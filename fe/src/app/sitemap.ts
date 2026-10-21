@@ -21,7 +21,7 @@ function entry(path: string, priority: number): MetadataRoute.Sitemap[number] {
 
 /** One URL per page with `hreflang` alternates for vi / en / zh (CAT-12). */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const pages = [entry('/', 1), entry('/products', 0.8), entry('/contact', 0.5), entry('/privacy', 0.2), entry('/terms', 0.2)];
+  const pages = [entry('/', 1), entry('/products', 0.8), entry('/about', 0.5), entry('/contact', 0.5), entry('/privacy', 0.2), entry('/terms', 0.2)];
   try {
     const [categories, slugs] = await Promise.all([fetchCategories(routing.defaultLocale), fetchAllProductSlugs()]);
     return [

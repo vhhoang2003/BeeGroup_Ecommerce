@@ -17,7 +17,7 @@ class SchemaMigrationIT extends IntegrationTest {
     void allMigrationsAppliedAndSearchExtensionsPresent() {
         Integer applied = jdbc.queryForObject(
                 "select count(*) from flyway_schema_history where success and version is not null", Integer.class);
-        assertThat(applied).isEqualTo(4);
+        assertThat(applied).isEqualTo(5);
 
         Integer trgm =
                 jdbc.queryForObject("select count(*) from pg_extension where extname = 'pg_trgm'", Integer.class);

@@ -19,6 +19,7 @@
     "callUs": "Gọi tư vấn",
     "home": "Trang chủ",
     "allProducts": "Tất cả sản phẩm",
+    "about": "Giới thiệu",
     "contact": "Liên hệ",
     "myAccount": "Tài khoản của tôi",
     "hello": "Xin chào",
@@ -820,5 +821,96 @@
     "deposit": "Cọc trước (50%)",
     "rest": "Còn lại, thanh toán khi nhận hàng",
     "unpriced": "Sản phẩm \"Liên hệ\" sẽ được tính vào tiền cọc khi báo giá."
+  },
+  "about": {
+    "title": "Giới thiệu",
+    "eyebrow": "Về Bee Store",
+    "headline": "Kết nối nguồn hàng, kiến tạo niềm tin.",
+    "lead": "Bee Store là đơn vị phân phối linh kiện server và workstation: CPU AMD EPYC, GPU, mainboard, tản nhiệt và KVM over IP. Gần 10 năm qua, chúng tôi đưa hàng từ thị trường nội địa Trung Quốc đến khách hàng tại Việt Nam và Đông Nam Á.",
+    "facts": {
+      "years": {
+        "value": "~10 năm",
+        "label": "kinh nghiệm phân phối xuyên biên giới"
+      },
+      "lines": {
+        "value": "5 nhóm",
+        "label": "CPU, GPU, mainboard, tản nhiệt, KVM"
+      },
+      "delivery": {
+        "value": "15–20 ngày",
+        "label": "giao tới khắp châu Á – Thái Bình Dương"
+      }
+    },
+    "story": {
+      "title": "Hành trình của chúng tôi",
+      "paragraphs": [
+        "Gần một thập kỷ qua, chúng tôi làm một việc: kết nối nguồn hàng của một trong những thị trường sản xuất lớn nhất thế giới với nhu cầu của khách hàng trong khu vực. Tìm nguồn, đặt mua, vận chuyển và phân phối xuyên biên giới – mỗi khâu chúng tôi đều trực tiếp làm và rút kinh nghiệm qua từng đơn hàng.",
+        "Chặng đường đó cho chúng tôi thấy khách hàng cần nhiều hơn một mức giá hợp lý. Họ cần biết rõ mình đang mua gì, cần giá và chất lượng nhất quán qua mỗi lần mua, và cần một nhà phân phối giữ đúng cam kết.",
+        "Bee Store là bước tiếp theo của hành trình ấy. Chúng tôi tập trung vào linh kiện cho máy chủ, home lab và hệ thống AI, đưa toàn bộ sản phẩm lên một kênh mua hàng hiện đại: thông số rõ ràng, giá niêm yết công khai và đội ngũ sẵn sàng tư vấn cho từng cấu hình."
+      ]
+    },
+    "linesTitle": "Chúng tôi phân phối",
+    "linesSubtitle": "Linh kiện cho máy chủ, workstation, home lab và hệ thống AI.",
+    "lines": {
+      "cpu": {
+        "name": "CPU",
+        "body": "AMD EPYC thế hệ Zen 2 và Zen 3, từ 8 đến 64 nhân."
+      },
+      "gpu": {
+        "name": "GPU",
+        "body": "GPU NVIDIA cho AI inference, render và ảo hoá."
+      },
+      "mainboard": {
+        "name": "Mainboard",
+        "body": "Mainboard socket SP3 cho 1 hoặc 2 CPU."
+      },
+      "cooler": {
+        "name": "Tản nhiệt",
+        "body": "Tản khí chuẩn server và tản nước AIO cho CPU SP3."
+      },
+      "kvm": {
+        "name": "KVM over IP",
+        "body": "Điều khiển và quản lý máy chủ từ xa qua mạng."
+      }
+    },
+    "valuesTitle": "Cam kết của chúng tôi",
+    "values": {
+      "transparent": {
+        "title": "Minh bạch",
+        "body": "Thông số tổng hợp từ nguồn của nhà sản xuất, giá niêm yết công khai bằng VND. Trước khi nhận cọc, chúng tôi kiểm tra lại giá và tình trạng hàng với bạn."
+      },
+      "consistent": {
+        "title": "Nhất quán",
+        "body": "Mỗi sản phẩm có điều kiện bảo hành rõ ràng. Quy trình đặt hàng như nhau cho mọi khách hàng, dù bạn mua một linh kiện hay cả một cấu hình."
+      },
+      "partner": {
+        "title": "Đồng hành",
+        "body": "Đội ngũ tư vấn qua điện thoại, Zalo và WhatsApp giúp bạn chọn đúng linh kiện cho home lab, máy chủ ảo hoá hay hệ thống AI."
+      }
+    },
+    "stepsTitle": "Đặt hàng như thế nào",
+    "steps": {
+      "request": {
+        "title": "Gửi yêu cầu",
+        "body": "Thêm sản phẩm vào giỏ hoặc gửi yêu cầu báo giá ngay trên website."
+      },
+      "confirm": {
+        "title": "Xác nhận giá và hàng",
+        "body": "Chúng tôi kiểm tra giá, tình trạng hàng và báo lại cho bạn."
+      },
+      "deposit": {
+        "title": "Đặt cọc 50%",
+        "body": "Liên hệ quản lý bán hàng qua số {phone} để được hướng dẫn thanh toán."
+      },
+      "deliver": {
+        "title": "Nhận hàng",
+        "body": "Giao tới khắp châu Á – Thái Bình Dương trong 15–20 ngày; phần còn lại thanh toán khi nhận hàng."
+      }
+    },
+    "closing": "Gần 10 năm là chặng đường chúng tôi đã đi qua. Niềm tin của khách hàng là giá trị chúng tôi tiếp tục gìn giữ.",
+    "tagline": "Beyond Borders. Built on Trust.",
+    "browse": "Xem sản phẩm",
+    "contactTitle": "Cần tư vấn cấu hình?",
+    "contactBody": "Gọi hoặc nhắn tin cho chúng tôi, đội ngũ Bee Store sẽ hỗ trợ bạn."
   }
 }

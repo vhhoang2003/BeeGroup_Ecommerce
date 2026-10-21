@@ -19,6 +19,7 @@
     "callUs": "Call us",
     "home": "Home",
     "allProducts": "All products",
+    "about": "About us",
     "contact": "Contact",
     "myAccount": "My account",
     "hello": "Hello",
@@ -820,5 +821,96 @@
     "deposit": "Deposit due now (50%)",
     "rest": "Balance, paid on delivery",
     "unpriced": "Items priced on request are added to the deposit once quoted."
+  },
+  "about": {
+    "title": "About us",
+    "eyebrow": "About Bee Store",
+    "headline": "Connecting supply. Building trust.",
+    "lead": "Bee Store is a distributor of server and workstation components: AMD EPYC CPUs, GPUs, mainboards, coolers and KVM over IP. For nearly 10 years we have been bringing products from mainland China to customers in Vietnam and Southeast Asia.",
+    "facts": {
+      "years": {
+        "value": "~10 years",
+        "label": "of cross-border distribution"
+      },
+      "lines": {
+        "value": "5 lines",
+        "label": "CPUs, GPUs, mainboards, coolers, KVM"
+      },
+      "delivery": {
+        "value": "15–20 days",
+        "label": "delivery anywhere in Asia-Pacific"
+      }
+    },
+    "story": {
+      "title": "Our journey",
+      "paragraphs": [
+        "For almost a decade we have done one thing: connect the supply of one of the world's largest manufacturing markets with the needs of customers across the region. Sourcing, purchasing, shipping and cross-border distribution – we handle every step ourselves and learn from every order.",
+        "That journey taught us that customers need more than a fair price. They need to know exactly what they are buying, consistent prices and quality from one order to the next, and a distributor that keeps its word.",
+        "Bee Store is the next step on that journey. We focus on components for servers, home labs and AI systems, and bring the whole range to a modern store: clear specs, published prices and a team ready to advise on every build."
+      ]
+    },
+    "linesTitle": "What we distribute",
+    "linesSubtitle": "Components for servers, workstations, home labs and AI systems.",
+    "lines": {
+      "cpu": {
+        "name": "CPUs",
+        "body": "AMD EPYC Zen 2 and Zen 3, from 8 to 64 cores."
+      },
+      "gpu": {
+        "name": "GPUs",
+        "body": "NVIDIA GPUs for AI inference, rendering and virtualization."
+      },
+      "mainboard": {
+        "name": "Mainboards",
+        "body": "SP3 mainboards for single or dual CPUs."
+      },
+      "cooler": {
+        "name": "Coolers",
+        "body": "Server air coolers and AIO liquid coolers for SP3 CPUs."
+      },
+      "kvm": {
+        "name": "KVM over IP",
+        "body": "Control and manage servers remotely over the network."
+      }
+    },
+    "valuesTitle": "Our commitments",
+    "values": {
+      "transparent": {
+        "title": "Transparent",
+        "body": "Specs compiled from manufacturer sources and prices published in VND. Before taking a deposit, we check the price and availability with you."
+      },
+      "consistent": {
+        "title": "Consistent",
+        "body": "Every product has clear warranty terms. Ordering works the same for every customer, whether you buy one part or a full build."
+      },
+      "partner": {
+        "title": "By your side",
+        "body": "Our team advises by phone, Zalo and WhatsApp to help you pick the right parts for a home lab, virtualization host or AI system."
+      }
+    },
+    "stepsTitle": "How ordering works",
+    "steps": {
+      "request": {
+        "title": "Send a request",
+        "body": "Add products to the cart or request a quote right on the website."
+      },
+      "confirm": {
+        "title": "Confirm price and stock",
+        "body": "We check the price and availability and get back to you."
+      },
+      "deposit": {
+        "title": "Pay a 50% deposit",
+        "body": "Contact our sales manager at {phone} for payment instructions."
+      },
+      "deliver": {
+        "title": "Receive your order",
+        "body": "Delivered anywhere in Asia-Pacific in 15–20 days; the balance is paid on delivery."
+      }
+    },
+    "closing": "Nearly 10 years is the road we have travelled. Our customers' trust is what we keep working for.",
+    "tagline": "Beyond Borders. Built on Trust.",
+    "browse": "Browse products",
+    "contactTitle": "Need help with a build?",
+    "contactBody": "Call or message us and the Bee Store team will help."
   }
 }

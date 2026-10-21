@@ -17,6 +17,7 @@ export default function Footer() {
 
   const links = [
     { name: tNav('allProducts'), href: '/products' },
+    { name: tNav('about'), href: '/about' },
     { name: tNav('contact'), href: '/contact' },
     { name: tNav('login'), href: '/auth/login' },
     { name: tNav('register'), href: '/auth/register' },

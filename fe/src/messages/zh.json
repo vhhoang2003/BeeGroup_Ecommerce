@@ -19,6 +19,7 @@
     "callUs": "电话咨询",
     "home": "首页",
     "allProducts": "全部商品",
+    "about": "关于我们",
     "contact": "联系我们",
     "myAccount": "我的账号",
     "hello": "您好",
@@ -820,5 +821,96 @@
     "deposit": "预付定金（50%）",
     "rest": "余款，收货时支付",
     "unpriced": "询价产品的定金将在报价后计入。"
+  },
+  "about": {
+    "title": "关于我们",
+    "eyebrow": "关于 Bee Store",
+    "headline": "连接货源，建立信任。",
+    "lead": "Bee Store 是服务器与工作站配件分销商，经营 AMD EPYC 处理器、GPU、主板、散热器和 KVM over IP。近 10 年来，我们把中国国内市场的产品带给越南及东南亚的客户。",
+    "facts": {
+      "years": {
+        "value": "近 10 年",
+        "label": "跨境分销经验"
+      },
+      "lines": {
+        "value": "5 大类",
+        "label": "CPU、GPU、主板、散热器、KVM"
+      },
+      "delivery": {
+        "value": "15–20 天",
+        "label": "送达亚太各地"
+      }
+    },
+    "story": {
+      "title": "我们的历程",
+      "paragraphs": [
+        "近十年来，我们专注于一件事：把全球最大的制造市场之一的货源，与本地区客户的需求连接起来。寻找货源、采购、运输到跨境分销，每个环节都由我们亲自完成，并在每一笔订单中积累经验。",
+        "这段历程让我们明白，客户需要的不只是合理的价格。他们需要清楚知道自己买的是什么，需要每次购买时价格和品质保持一致，也需要一个信守承诺的分销商。",
+        "Bee Store 是这段历程的延续。我们专注于服务器、家庭实验室和 AI 系统所需的配件，并把全部产品放到一个现代化的购物渠道：规格清晰、价格公开，团队随时为每一套配置提供咨询。"
+      ]
+    },
+    "linesTitle": "我们分销的产品",
+    "linesSubtitle": "适用于服务器、工作站、家庭实验室和 AI 系统的配件。",
+    "lines": {
+      "cpu": {
+        "name": "CPU",
+        "body": "AMD EPYC Zen 2 与 Zen 3，8 至 64 核。"
+      },
+      "gpu": {
+        "name": "GPU",
+        "body": "用于 AI 推理、渲染和虚拟化的 NVIDIA GPU。"
+      },
+      "mainboard": {
+        "name": "主板",
+        "body": "支持单路或双路 CPU 的 SP3 主板。"
+      },
+      "cooler": {
+        "name": "散热器",
+        "body": "服务器风冷散热器与 SP3 一体式水冷。"
+      },
+      "kvm": {
+        "name": "KVM over IP",
+        "body": "通过网络远程控制和管理服务器。"
+      }
+    },
+    "valuesTitle": "我们的承诺",
+    "values": {
+      "transparent": {
+        "title": "透明",
+        "body": "规格来自制造商资料，价格以越南盾公开标示。收取定金前，我们会与您再次确认价格和库存。"
+      },
+      "consistent": {
+        "title": "一致",
+        "body": "每件产品都有明确的保修条款。无论购买一个配件还是整套配置，所有客户的下单流程都一样。"
+      },
+      "partner": {
+        "title": "陪伴",
+        "body": "团队通过电话、Zalo 和 WhatsApp 提供咨询，帮您为家庭实验室、虚拟化服务器或 AI 系统选择合适的配件。"
+      }
+    },
+    "stepsTitle": "如何下单",
+    "steps": {
+      "request": {
+        "title": "提交需求",
+        "body": "在网站上加入购物车或直接提交询价。"
+      },
+      "confirm": {
+        "title": "确认价格与库存",
+        "body": "我们核实价格和库存后回复您。"
+      },
+      "deposit": {
+        "title": "支付 50% 定金",
+        "body": "请联系销售经理 {phone} 获取付款指引。"
+      },
+      "deliver": {
+        "title": "收货",
+        "body": "15–20 天内送达亚太各地；余款于收货时支付。"
+      }
+    },
+    "closing": "近 10 年是我们走过的路，客户的信任是我们持续守护的价值。",
+    "tagline": "Beyond Borders. Built on Trust.",
+    "browse": "浏览产品",
+    "contactTitle": "需要配置建议？",
+    "contactBody": "致电或发消息给我们，Bee Store 团队将为您提供帮助。"
   }
 }
