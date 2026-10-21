@@ -62,8 +62,10 @@ describe('cart store', () => {
 
     expect(cartTotals(useCartStore.getState().items)).toEqual({
       count: 3,
+      soldCount: 3,
       subtotal: 6760000,
       hasUnpriced: true,
+      hasUnavailable: false,
     });
   });
 
@@ -71,5 +73,32 @@ describe('cart store', () => {
     useCartStore.getState().add(product('1', 10), 4);
     const saved = JSON.parse(localStorage.getItem('beestore-cart') ?? '{}');
     expect(saved.state.items[0]).toMatchObject({ productId: '1', quantity: 4, price: 10 });
+  });
+});
+
+describe('cart refresh', () => {
+  it('updates a line to the current catalog price and name', () => {
+    useCartStore.getState().add(product('1', null), 2);
+    useCartStore.getState().refresh('p-1', { ...product('1', 3200000), name: 'JetKVM' });
+    const [line] = useCartStore.getState().items;
+    expect(line).toMatchObject({ price: 3200000, name: 'JetKVM', quantity: 2, unavailable: false });
+    expect(cartTotals(useCartStore.getState().items).subtotal).toBe(6400000);
+  });
+
+  it('marks a product that is gone and leaves it out of the totals', () => {
+    useCartStore.getState().add(product('1', 1000), 1);
+    useCartStore.getState().add(product('2', null), 1);
+    useCartStore.getState().refresh('p-2', null);
+    const totals = cartTotals(useCartStore.getState().items);
+    expect(useCartStore.getState().items[1].unavailable).toBe(true);
+    expect(totals).toMatchObject({ subtotal: 1000, hasUnpriced: false, hasUnavailable: true, count: 2 });
+  });
+
+  it('keeps the same state object when nothing changed', () => {
+    useCartStore.getState().add(product('1', 1000), 1);
+    useCartStore.getState().refresh('p-1', product('1', 1000));
+    const before = useCartStore.getState().items;
+    useCartStore.getState().refresh('p-1', product('1', 1000));
+    expect(useCartStore.getState().items).toBe(before);
   });
 });

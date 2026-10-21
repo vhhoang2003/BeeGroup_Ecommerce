@@ -200,7 +200,9 @@
     "subtotal": "合计",
     "unpricedNote": "部分商品暂无标价，未计入合计，我们会单独报价。",
     "unpricedShort": "不含需询价的商品",
-    "checkout": "去结算"
+    "checkout": "去结算",
+    "unavailable": "该产品已停售，请从购物车中移除。",
+    "allUnavailable": "购物车中的产品均已停售，请选择其他产品。"
   },
   "checkout": {
     "title": "结算",
@@ -912,5 +914,11 @@
     "browse": "浏览产品",
     "contactTitle": "需要配置建议？",
     "contactBody": "致电或发消息给我们，Bee Store 团队将为您提供帮助。"
+  },
+  "errorPage": {
+    "title": "出现错误",
+    "body": "页面暂时无法加载，可能是连接短暂中断。请几分钟后重试，或致电 <phone></phone> 立即获得帮助。",
+    "retry": "重试",
+    "home": "返回首页"
   }
 }

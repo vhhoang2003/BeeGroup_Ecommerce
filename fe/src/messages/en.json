@@ -200,7 +200,9 @@
     "subtotal": "Total",
     "unpricedNote": "Some products have no listed price and are not in the total; we will quote them separately.",
     "unpricedShort": "excluding products priced on request",
-    "checkout": "Proceed to checkout"
+    "checkout": "Proceed to checkout",
+    "unavailable": "This product is no longer available; please remove it from your cart.",
+    "allUnavailable": "None of the products in your cart are available any more. Please choose other products."
   },
   "checkout": {
     "title": "Checkout",
@@ -912,5 +914,11 @@
     "browse": "Browse products",
     "contactTitle": "Need help with a build?",
     "contactBody": "Call or message us and the Bee Store team will help."
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "body": "This page could not be loaded, possibly because of a temporary connection problem. Please try again in a few minutes, or call <phone></phone> for help right away.",
+    "retry": "Try again",
+    "home": "Back to home"
   }
 }

@@ -18,6 +18,8 @@ export interface CartItem {
   price: number | null;
   image: ProductSummary['image'];
   quantity: number;
+  /** Set by `refresh` when the product is no longer published; such lines are left out of totals and quotes. */
+  unavailable?: boolean;
 }
 
 interface CartState {
@@ -26,6 +28,11 @@ interface CartState {
   setQuantity: (productId: string, quantity: number) => void;
   remove: (productId: string) => void;
   clear: () => void;
+  /**
+   * Brings the lines of `slug` up to date with the catalog (price, name, image), or marks them unavailable when
+   * the product is gone (`null`). A no-op when nothing changed, so it is safe to call on every fetch.
+   */
+  refresh: (slug: string, product: ProductSummary | null) => void;
 }
 
 const clamp = (n: number) => Math.min(Math.max(Math.round(n) || 1, 1), MAX_QUANTITY);
@@ -91,6 +98,35 @@ export const useCartStore = create<CartState>()(
         })),
       remove: (productId) => set((state) => ({ items: state.items.filter((i) => i.productId !== productId) })),
       clear: () => set({ items: [] }),
+      refresh: (slug, product) =>
+        set((state) => {
+          let changed = false;
+          const items = state.items.map((i) => {
+            if (i.slug !== slug) return i;
+            const next: CartItem = product
+              ? {
+                  ...i,
+                  name: product.name,
+                  brand: product.brand,
+                  categorySlug: product.category.slug,
+                  price: product.price,
+                  image: product.image,
+                  unavailable: false,
+                }
+              : { ...i, unavailable: true };
+            const same =
+              next.name === i.name &&
+              next.brand === i.brand &&
+              next.categorySlug === i.categorySlug &&
+              next.price === i.price &&
+              next.image?.url === i.image?.url &&
+              !!next.unavailable === !!i.unavailable;
+            if (same) return i;
+            changed = true;
+            return next;
+          });
+          return changed ? { items } : state;
+        }),
     }),
     { name: 'beestore-cart', version: 1, storage: createJSONStorage(() => safeStorage) }
   )
@@ -99,17 +135,24 @@ export const useCartStore = create<CartState>()(
 export interface CartTotals {
   /** Number of units, for the header badge. */
   count: number;
+  /** Units that are still sold, for the order summary. */
+  soldCount: number;
   /** Sum of the priced lines, in VND. */
   subtotal: number;
   /** True when some lines have no published price. */
   hasUnpriced: boolean;
+  /** True when some lines are no longer sold (see `CartItem.unavailable`). */
+  hasUnavailable: boolean;
 }
 
 export function cartTotals(items: CartItem[]): CartTotals {
+  const sold = items.filter((i) => !i.unavailable);
   return {
     count: items.reduce((n, i) => n + i.quantity, 0),
-    subtotal: items.reduce((sum, i) => sum + (i.price ?? 0) * i.quantity, 0),
-    hasUnpriced: items.some((i) => i.price === null),
+    soldCount: sold.reduce((n, i) => n + i.quantity, 0),
+    subtotal: sold.reduce((sum, i) => sum + (i.price ?? 0) * i.quantity, 0),
+    hasUnpriced: sold.some((i) => i.price === null),
+    hasUnavailable: sold.length < items.length,
   };
 }
 

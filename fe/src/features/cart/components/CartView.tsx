@@ -7,6 +7,7 @@ import { Link } from '@/i18n/navigation';
 import { Spinner } from '@/components/ui/form';
 import { formatPrice } from '@/lib/utils';
 import { cartTotals, useCartStore, useHydrated } from '../store';
+import { useCartSync } from '../useCartSync';
 import QuantityInput from './QuantityInput';
 import CartLineThumb from './CartLineThumb';
 import { DepositSummary } from './DepositNote';
@@ -19,6 +20,7 @@ export default function CartView() {
   const { items, setQuantity, remove, clear } = useCartStore();
   const hydrated = useHydrated();
   const totals = cartTotals(items);
+  useCartSync();
 
   if (!hydrated) return <Spinner label={tCommon('loading')} />;
 
@@ -56,7 +58,7 @@ export default function CartView() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <ul className="lg:col-span-8 bg-white rounded-2xl border border-slate-200/80 divide-y divide-slate-100">
           {items.map((item) => {
-            const line = item.price === null ? null : item.price * item.quantity;
+            const line = item.price === null || item.unavailable ? null : item.price * item.quantity;
             return (
               <li key={item.productId} className="p-4 sm:p-5 flex gap-4">
                 <CartLineThumb item={item} />
@@ -65,16 +67,22 @@ export default function CartView() {
                   <Link href={`/products/${item.slug}`} className="font-semibold text-ink hover:text-honey-700 line-clamp-2">
                     {item.name}
                   </Link>
-                  <p className="text-xs text-slate-500 mt-0.5">
-                    {formatPrice(item.price) ?? tCommon('contactForPrice')} {item.price !== null && t('each')}
-                  </p>
+                  {item.unavailable ? (
+                    <p className="text-xs font-semibold text-red-600 mt-0.5">{t('unavailable')}</p>
+                  ) : (
+                    <p className="text-xs text-slate-500 mt-0.5">
+                      {formatPrice(item.price) ?? tCommon('contactForPrice')} {item.price !== null && t('each')}
+                    </p>
+                  )}
                   <div className="flex flex-wrap items-center justify-between gap-3 mt-3">
                     <QuantityInput
                       value={item.quantity}
                       onChange={(v) => setQuantity(item.productId, v)}
                       label={t('quantityOf', { name: item.name })}
                     />
-                    <span className="font-bold text-ink">{formatPrice(line) ?? tCommon('contactForPrice')}</span>
+                    <span className="font-bold text-ink">
+                      {item.unavailable ? '—' : (formatPrice(line) ?? tCommon('contactForPrice'))}
+                    </span>
                   </div>
                 </div>
                 <button
@@ -94,7 +102,7 @@ export default function CartView() {
           <h2 className="text-lg font-bold text-ink">{t('summary')}</h2>
           <dl className="space-y-2 text-sm">
             <div className="flex justify-between">
-              <dt className="text-slate-600">{t('items', { count: totals.count })}</dt>
+              <dt className="text-slate-600">{t('items', { count: totals.soldCount })}</dt>
               <dd className="font-semibold text-ink">{formatPrice(totals.subtotal)}</dd>
             </div>
             <div className="flex justify-between">

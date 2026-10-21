@@ -18,6 +18,7 @@ import { cn, formatPhone, formatPrice, toE164 } from '@/lib/utils';
 import { cartTotals, type CartItem, useCartStore, useHydrated } from '../store';
 import CartLineThumb from './CartLineThumb';
 import DepositNote, { DepositSummary, depositSplit } from './DepositNote';
+import { useCartSync } from '../useCartSync';
 
 /** Online payment is not live yet; the methods are listed so customers see what is coming. */
 const PAYMENT_METHODS = [
@@ -51,7 +52,9 @@ export default function CheckoutView() {
   const { items, clear } = useCartStore();
   const hydrated = useHydrated();
   const totals = cartTotals(items);
+  const sold = items.filter((i) => !i.unavailable);
   const isGuest = !user;
+  useCartSync();
 
   const [captcha, setCaptcha] = useState<string | null>(null);
   const [captchaKey, setCaptchaKey] = useState(0);
@@ -99,9 +102,13 @@ export default function CheckoutView() {
       setFormError(tInq('captchaRequired'));
       return;
     }
+    if (sold.length === 0) {
+      setFormError(tCart('allUnavailable'));
+      return;
+    }
     const lines = [
       t('messageItems'),
-      ...items.map(lineText),
+      ...sold.map(lineText),
       `${tCart('subtotal')}: ${formatPrice(totals.subtotal)}${totals.hasUnpriced ? ` (${tCart('unpricedShort')})` : ''}`,
       `${tDeposit('deposit')}: ${formatPrice(depositSplit(totals.subtotal).deposit)}`,
       '',
@@ -114,7 +121,7 @@ export default function CheckoutView() {
         fullName: isGuest ? values.fullName.trim() : undefined,
         email: isGuest ? values.email.trim() : undefined,
         phone: toE164(values.phone) || undefined,
-        subject: t('quoteSubject', { count: totals.count }),
+        subject: t('quoteSubject', { count: totals.soldCount }),
         message,
         captchaToken: captcha ?? undefined,
         locale,
@@ -228,17 +235,21 @@ export default function CheckoutView() {
                 <CartLineThumb item={item} size="w-14 h-14" />
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-ink line-clamp-1">{item.name}</p>
-                  <p className="text-xs text-slate-500">× {item.quantity}</p>
+                  <p className={cn('text-xs', item.unavailable ? 'font-semibold text-red-600' : 'text-slate-500')}>
+                    {item.unavailable ? tCart('unavailable') : `× ${item.quantity}`}
+                  </p>
                 </div>
                 <span className="text-sm font-semibold text-ink whitespace-nowrap">
-                  {formatPrice(item.price === null ? null : item.price * item.quantity) ?? tCommon('contactForPrice')}
+                  {item.unavailable
+                    ? '—'
+                    : (formatPrice(item.price === null ? null : item.price * item.quantity) ?? tCommon('contactForPrice'))}
                 </span>
               </li>
             ))}
           </ul>
           <dl className="space-y-2 text-sm border-t border-slate-200 pt-4">
             <div className="flex justify-between">
-              <dt className="text-slate-600">{tCart('items', { count: totals.count })}</dt>
+              <dt className="text-slate-600">{tCart('items', { count: totals.soldCount })}</dt>
               <dd className="font-semibold text-ink">{formatPrice(totals.subtotal)}</dd>
             </div>
             <div className="flex justify-between">

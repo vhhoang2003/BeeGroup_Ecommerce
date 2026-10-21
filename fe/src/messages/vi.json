@@ -200,7 +200,9 @@
     "subtotal": "Tổng cộng",
     "unpricedNote": "Một số sản phẩm chưa có giá niêm yết và chưa được cộng vào tổng; chúng tôi sẽ báo giá riêng.",
     "unpricedShort": "chưa gồm sản phẩm liên hệ giá",
-    "checkout": "Tiến hành thanh toán"
+    "checkout": "Tiến hành thanh toán",
+    "unavailable": "Sản phẩm này hiện không còn bán, vui lòng xoá khỏi giỏ hàng.",
+    "allUnavailable": "Các sản phẩm trong giỏ đều không còn bán. Vui lòng chọn sản phẩm khác."
   },
   "checkout": {
     "title": "Thanh toán",
@@ -912,5 +914,11 @@
     "browse": "Xem sản phẩm",
     "contactTitle": "Cần tư vấn cấu hình?",
     "contactBody": "Gọi hoặc nhắn tin cho chúng tôi, đội ngũ Bee Store sẽ hỗ trợ bạn."
+  },
+  "errorPage": {
+    "title": "Có lỗi xảy ra",
+    "body": "Trang chưa tải được, có thể do kết nối tạm thời gián đoạn. Bạn thử lại sau ít phút, hoặc gọi <phone></phone> để được hỗ trợ ngay.",
+    "retry": "Thử lại",
+    "home": "Về trang chủ"
   }
 }

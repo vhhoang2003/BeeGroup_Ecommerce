@@ -15,9 +15,14 @@ const BASE_URL =
   process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api/v1';
 
 export const REVALIDATE_SECONDS = 300;
+/** A hung API must not hang page rendering: the page falls back to `error.tsx` instead. */
+const TIMEOUT_MS = 10_000;
 
 async function get<T>(path: string): Promise<T | null> {
-  const response = await fetch(`${BASE_URL}${path}`, { next: { revalidate: REVALIDATE_SECONDS } });
+  const response = await fetch(`${BASE_URL}${path}`, {
+    next: { revalidate: REVALIDATE_SECONDS },
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+  });
   if (response.status === 404) return null;
   if (!response.ok) throw new Error(`GET ${path} failed: ${response.status}`);
   return ((await response.json()) as ApiResponse<T>).data;
