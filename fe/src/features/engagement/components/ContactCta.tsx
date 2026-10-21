@@ -26,7 +26,7 @@ export default function ContactCta() {
         <div className="max-w-[560px] relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-honey/15 border border-honey/30 text-honey text-xs font-bold uppercase tracking-wider mb-3">
             <HexagonIcon className="w-3.5 h-3.5 text-honey" />
-            <span>Bee Store B2B & Home Lab</span>
+            <span>{t('eyebrow')}</span>
           </div>
           <h2 className="text-[22px] sm:text-[30px] font-black text-white tracking-tight leading-snug mb-3">
             {t('title')}
@@ -37,16 +37,26 @@ export default function ContactCta() {
         </div>
 
         <div className="relative z-10 shrink-0">
-          <ContactButtons />
+          <ContactButtons tone="dark" />
         </div>
       </div>
     </section>
   );
 }
 
-export function ContactButtons({ subject }: { subject?: string }) {
+/** `tone="dark"` on ink surfaces (the contact banner); the default suits white / paper backgrounds. */
+export function ContactButtons({ subject, tone = 'light' }: { subject?: string; tone?: 'light' | 'dark' }) {
   const t = useTranslations('contactCta');
   const { contact } = siteConfig;
+  const quiet =
+    tone === 'dark'
+      ? 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
+      : 'bg-white hover:border-honey-500 text-ink border border-line';
+  const quietIcon = tone === 'dark' ? 'text-honey' : 'text-honey-700';
+  const whatsapp =
+    tone === 'dark'
+      ? 'bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#25D366] border border-[#25D366]/40'
+      : 'bg-white hover:bg-[#25D366]/10 text-[#128C7E] border border-[#25D366]/50';
   const mailto = `mailto:${contact.email}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;
 
   return (
@@ -63,9 +73,9 @@ export function ContactButtons({ subject }: { subject?: string }) {
         href={contact.zaloHref}
         target="_blank"
         rel="noreferrer"
-        className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 text-[13px] sm:text-[14px] font-bold px-5 py-2.5 rounded-full transition-all min-h-[44px]"
+        className={`inline-flex items-center gap-2 ${quiet} text-[13px] sm:text-[14px] font-bold px-5 py-2.5 rounded-full transition-all min-h-[44px]`}
       >
-        <MessageCircle className="w-4 h-4 text-honey" />
+        <MessageCircle className={`w-4 h-4 ${quietIcon}`} />
         <span>{t('zalo')}</span>
       </a>
 
@@ -73,26 +83,26 @@ export function ContactButtons({ subject }: { subject?: string }) {
         href={contact.whatsappHref}
         target="_blank"
         rel="noreferrer"
-        className="inline-flex items-center gap-2 bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#25D366] border border-[#25D366]/40 text-[13px] sm:text-[14px] font-bold px-5 py-2.5 rounded-full transition-all min-h-[44px]"
+        className={`inline-flex items-center gap-2 ${whatsapp} text-[13px] sm:text-[14px] font-bold px-5 py-2.5 rounded-full transition-all min-h-[44px]`}
       >
-        <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+        <WhatsAppIcon className="w-4 h-4" />
         <span>WhatsApp</span>
       </a>
 
       {subject ? (
         <a
           href={mailto}
-          className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 text-[13px] sm:text-[14px] font-semibold px-5 py-2.5 rounded-full transition-all min-h-[44px]"
+          className={`inline-flex items-center gap-2 ${quiet} text-[13px] sm:text-[14px] font-semibold px-5 py-2.5 rounded-full transition-all min-h-[44px]`}
         >
-          <Mail className="w-4 h-4 text-honey" />
+          <Mail className={`w-4 h-4 ${quietIcon}`} />
           <span>{t('email')}</span>
         </a>
       ) : (
         <Link
           href="/contact"
-          className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 text-[13px] sm:text-[14px] font-semibold px-5 py-2.5 rounded-full transition-all min-h-[44px]"
+          className={`inline-flex items-center gap-2 ${quiet} text-[13px] sm:text-[14px] font-semibold px-5 py-2.5 rounded-full transition-all min-h-[44px]`}
         >
-          <Mail className="w-4 h-4 text-honey" />
+          <Mail className={`w-4 h-4 ${quietIcon}`} />
           <span>{t('sendMessage')}</span>
         </Link>
       )}

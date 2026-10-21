@@ -87,7 +87,7 @@
     "trustAdvice": "Tư vấn cấu hình",
     "trustAdviceSub": "Home lab, máy chủ & render",
     "trustDeposit": "Đặt cọc 50%",
-    "trustDepositSub": "Hỗ trợ hotline & Zalo 24/7"
+    "trustDepositSub": "Gọi quản lý bán hàng để được hướng dẫn"
   },
   "hero": {
     "zen2": {
@@ -116,7 +116,8 @@
     },
     "goTo": "Slide {n}",
     "prev": "Slide trước",
-    "next": "Slide tiếp"
+    "next": "Slide tiếp",
+    "carouselLabel": "Sản phẩm nổi bật"
   },
   "search": {
     "placeholder": "Tìm CPU, mainboard, KVM… (vd: 7B13, SP3, JetKVM)",
@@ -252,7 +253,8 @@
     "body": "Đội ngũ {name} sẵn sàng tư vấn CPU, mainboard và tản nhiệt phù hợp cho home lab, ảo hoá hay render. Liên hệ ngay để nhận báo giá tốt nhất.",
     "zalo": "Chat Zalo",
     "email": "Gửi email",
-    "sendMessage": "Gửi tin nhắn"
+    "sendMessage": "Gửi tin nhắn",
+    "eyebrow": "Doanh nghiệp & home lab"
   },
   "floating": {
     "open": "Mở các kênh liên hệ",

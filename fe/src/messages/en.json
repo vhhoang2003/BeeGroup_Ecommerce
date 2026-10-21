@@ -87,7 +87,7 @@
     "trustAdvice": "Setup Advice",
     "trustAdviceSub": "Home lab, server & render",
     "trustDeposit": "50% Deposit",
-    "trustDepositSub": "Hotline & Zalo support"
+    "trustDepositSub": "Call our sales manager for instructions"
   },
   "hero": {
     "zen2": {
@@ -116,7 +116,8 @@
     },
     "goTo": "Slide {n}",
     "prev": "Previous slide",
-    "next": "Next slide"
+    "next": "Next slide",
+    "carouselLabel": "Featured products"
   },
   "search": {
     "placeholder": "Search CPUs, mainboards, KVMs… (e.g. 7B13, SP3, JetKVM)",
@@ -252,7 +253,8 @@
     "body": "The {name} team will help you choose the right CPU, mainboard and cooling for home labs, virtualization or rendering. Get in touch for the best price.",
     "zalo": "Chat on Zalo",
     "email": "Send email",
-    "sendMessage": "Send a message"
+    "sendMessage": "Send a message",
+    "eyebrow": "Businesses & home labs"
   },
   "floating": {
     "open": "Open contact options",

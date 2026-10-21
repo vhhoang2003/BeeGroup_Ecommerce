@@ -50,7 +50,7 @@ export default function HeroBanner() {
       onMouseLeave={() => setIsPaused(false)}
       role="region"
       aria-roledescription="carousel"
-      aria-label="Hero Highlights"
+      aria-label={t('carouselLabel')}
     >
       {/* Main Container */}
       <div className="relative w-full bg-ink rounded-[24px] sm:rounded-[32px] overflow-hidden min-h-[380px] sm:min-h-[440px] md:min-h-[480px] flex items-center px-6 sm:px-12 md:px-16 py-10 sm:py-14 shadow-2xl border border-white/10">

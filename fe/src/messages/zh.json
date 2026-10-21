@@ -87,7 +87,7 @@
     "trustAdvice": "配置咨询",
     "trustAdviceSub": "家庭实验室、服务器与渲染",
     "trustDeposit": "50% 定金",
-    "trustDepositSub": "热线与Zalo专属支持"
+    "trustDepositSub": "致电销售经理获取付款指引"
   },
   "hero": {
     "zen2": {
@@ -116,7 +116,8 @@
     },
     "goTo": "第 {n} 张",
     "prev": "上一张",
-    "next": "下一张"
+    "next": "下一张",
+    "carouselLabel": "精选产品"
   },
   "search": {
     "placeholder": "搜索处理器、主板、KVM…（如：7B13、SP3、JetKVM）",
@@ -252,7 +253,8 @@
     "body": "{name} 团队为您的家庭实验室、虚拟化或渲染需求推荐合适的处理器、主板和散热器。立即联系，获取优惠报价。",
     "zalo": "Zalo 聊天",
     "email": "发送邮件",
-    "sendMessage": "发送留言"
+    "sendMessage": "发送留言",
+    "eyebrow": "企业与家庭实验室"
   },
   "floating": {
     "open": "打开联系方式",
