@@ -79,7 +79,15 @@
     "coolerPrefix": "EPYC",
     "coolerHighlight": "散热器",
     "kvmPrefix": "KVM",
-    "kvmHighlight": "over IP"
+    "kvmHighlight": "over IP",
+    "trustDelivery": "亚太配送",
+    "trustDeliverySub": "全区15–20天送达",
+    "trustWarranty": "透明质保",
+    "trustWarrantySub": "每件产品独立保障",
+    "trustAdvice": "配置咨询",
+    "trustAdviceSub": "家庭实验室、服务器与渲染",
+    "trustDeposit": "50% 定金",
+    "trustDepositSub": "热线与Zalo专属支持"
   },
   "hero": {
     "zen2": {
@@ -122,6 +130,9 @@
   },
   "catalog": {
     "filters": "筛选",
+    "filterDrawerTitle": "筛选与排序",
+    "applyFilters": "查看 {count} 件商品",
+    "closeFilters": "关闭筛选",
     "clearFilters": "清除筛选",
     "sort": "排序",
     "sorts": {

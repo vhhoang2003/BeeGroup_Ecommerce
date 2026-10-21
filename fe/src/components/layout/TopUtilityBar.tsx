@@ -12,28 +12,33 @@ export default function TopUtilityBar() {
   const { contact } = siteConfig;
 
   return (
-    <div className="w-full bg-slate-100 border-b border-line text-[13px] sm:text-[14px] text-muted">
-      <div className="max-w-[1240px] mx-auto px-4 py-2.5 flex items-center justify-between gap-4 min-h-[48px]">
+    <div className="w-full bg-ink border-b border-white/10 text-[12px] sm:text-[13px] text-slate-300">
+      <div className="max-w-[1240px] mx-auto px-4 flex items-center justify-between gap-4 min-h-[42px]">
         {/* Delivery promise */}
-        <div className="flex items-center gap-2 min-w-0 font-medium text-ink" title={t('delivery')}>
-          <Truck className="w-4 h-4 text-honey-700 shrink-0" />
+        <div className="flex items-center gap-2 min-w-0 font-medium text-white/95 py-1" title={t('delivery')}>
+          <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+            <Truck className="w-3.5 h-3.5 text-honey shrink-0" />
+          </div>
           <span className="truncate">{t('deliveryShort')}</span>
         </div>
 
         {/* Right utility links */}
-        <div className="flex items-center gap-5 shrink-0">
-          <a href={contact.hotlineHref} className="hidden md:flex items-center gap-2 hover:text-honey-700 transition-colors">
-            <Phone className="w-4 h-4 text-honey-700" />
-            <span className="font-semibold text-ink">{contact.hotline}</span>
+        <div className="flex items-center gap-4 sm:gap-6 shrink-0">
+          <a
+            href={contact.hotlineHref}
+            className="hidden md:flex items-center gap-1.5 hover:text-honey transition-colors min-h-[40px] py-1"
+          >
+            <Phone className="w-3.5 h-3.5 text-honey" />
+            <span className="font-bold text-white tracking-wide">{contact.hotline}</span>
           </a>
 
           <a
             href={contact.zaloHref}
             target="_blank"
             rel="noreferrer"
-            className="hidden lg:flex items-center gap-2 hover:text-honey-700 transition-colors"
+            className="hidden lg:flex items-center gap-1.5 hover:text-white transition-colors min-h-[40px] py-1"
           >
-            <MessageCircle className="w-4 h-4 text-honey-700" />
+            <MessageCircle className="w-3.5 h-3.5 text-honey" />
             <span>Zalo</span>
           </a>
 
@@ -41,21 +46,23 @@ export default function TopUtilityBar() {
             href={contact.whatsappHref}
             target="_blank"
             rel="noreferrer"
-            className="hidden lg:flex items-center gap-2 hover:text-honey-700 transition-colors"
+            className="hidden lg:flex items-center gap-1.5 hover:text-white transition-colors min-h-[40px] py-1"
           >
-            <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+            <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366]" />
             <span>WhatsApp</span>
           </a>
 
           <a
             href={`mailto:${contact.email}`}
-            className="hidden 2xl:flex items-center gap-2 hover:text-honey-700 transition-colors"
+            className="hidden 2xl:flex items-center gap-1.5 hover:text-white transition-colors min-h-[40px] py-1"
           >
-            <Mail className="w-4 h-4 text-honey-700" />
+            <Mail className="w-3.5 h-3.5 text-honey" />
             <span>{contact.email}</span>
           </a>
 
-          <LanguageSwitcher />
+          <div className="flex items-center min-h-[40px]">
+            <LanguageSwitcher />
+          </div>
         </div>
       </div>
     </div>

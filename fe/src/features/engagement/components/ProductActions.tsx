@@ -36,34 +36,45 @@ export default function ProductActions({ product }: { product: ProductSummary })
   };
 
   return (
-    <div className="space-y-3">
-      <AddToCart product={product} />
+    <div className="space-y-4">
+      {/* Primary: Add to Cart */}
+      <div>
+        <AddToCart product={product} />
+      </div>
+
+      {/* Secondary CTAs: Quote Request & Wishlist */}
       <div className="flex flex-wrap gap-3">
         <button
           type="button"
           onClick={() => setInquiryOpen(true)}
-          className="inline-flex items-center gap-2 bg-honey hover:bg-honey-500 text-ink text-[14px] font-bold px-6 py-2.5 rounded-full transition-colors cursor-pointer"
+          className="inline-flex items-center justify-center gap-2 bg-honey hover:bg-honey-400 text-ink text-[14px] font-extrabold px-6 py-2.5 rounded-full transition-all shadow-xs hover:shadow-sm hover:scale-[1.01] active:scale-[0.98] min-h-[44px] cursor-pointer"
         >
-          <FileText className="w-4 h-4" />
-          {t('requestQuote')}
+          <FileText className="w-4 h-4 stroke-[2.2]" />
+          <span>{t('requestQuote')}</span>
         </button>
+
         <button
           type="button"
           onClick={onWishlist}
           aria-pressed={saved}
           disabled={toggle.isPending}
           className={cn(
-            'inline-flex items-center gap-2 text-[14px] font-semibold px-5 py-2.5 rounded-full border transition-colors cursor-pointer',
+            'inline-flex items-center justify-center gap-2 text-[14px] font-bold px-5 py-2.5 rounded-full border transition-all min-h-[44px] cursor-pointer shadow-2xs',
             saved
-              ? 'bg-rose-50 border-rose-200 text-rose-600'
-              : 'bg-white border-line text-ink hover:border-rose-300 hover:text-rose-600'
+              ? 'bg-rose-50 border-rose-300 text-rose-600'
+              : 'bg-white border-line text-slate-700 hover:border-rose-300 hover:text-rose-600'
           )}
         >
-          <Heart className={cn('w-4 h-4', saved && 'fill-current')} />
-          {saved ? t('saved') : t('save')}
+          <Heart className={cn('w-4 h-4', saved && 'fill-current text-rose-600')} />
+          <span>{saved ? t('saved') : t('save')}</span>
         </button>
       </div>
-      <ContactButtons subject={t('quoteSubject', { name: product.name })} />
+
+      {/* Direct Communication Channels */}
+      <div className="pt-2">
+        <ContactButtons subject={t('quoteSubject', { name: product.name })} />
+      </div>
+
       <InquiryDialog product={product} open={inquiryOpen} onClose={() => setInquiryOpen(false)} />
     </div>
   );

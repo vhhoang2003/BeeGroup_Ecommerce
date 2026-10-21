@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { ChevronRight, Home } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import CatalogBrowser from '@/features/catalog/components/CatalogBrowser';
 import { fetchCategory } from '@/lib/api/server';
@@ -43,19 +44,20 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-6 sm:py-8">
       {/* Breadcrumb */}
-      <nav aria-label={t('breadcrumb')} className="flex items-center gap-2 text-xs text-slate-500 mb-6">
-        <Link href="/" className="hover:text-honey-700">
-          {tNav('home')}
+      <nav aria-label={t('breadcrumb')} className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 mb-6">
+        <Link href="/" className="hover:text-honey-700 flex items-center gap-1 transition-colors">
+          <Home className="w-3.5 h-3.5 text-slate-400" />
+          <span>{tNav('home')}</span>
         </Link>
-        <span>/</span>
-        <Link href="/products" className="hover:text-honey-700">
+        <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+        <Link href="/products" className="hover:text-honey-700 transition-colors">
           {t('products')}
         </Link>
-        <span>/</span>
-        <span className="font-semibold text-ink">{category.name}</span>
+        <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+        <span className="font-bold text-ink">{category.name}</span>
       </nav>
 
-      <Suspense fallback={<div className="py-12 text-center text-slate-500">{t('loadingProducts')}</div>}>
+      <Suspense fallback={<div className="py-12 text-center text-slate-500 font-medium">{t('loadingProducts')}</div>}>
         <CatalogBrowser category={slug} title={category.name} />
       </Suspense>
     </div>

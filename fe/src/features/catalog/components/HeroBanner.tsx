@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import { HexagonIcon, OrbitPattern, TechGridPattern } from '@/components/ui/BrandDecorations';
 
 interface HeroSlide {
   id: 'zen2' | 'zen3' | 'kvm' | 'platform';
@@ -23,74 +24,117 @@ const slides: HeroSlide[] = [
 export default function HeroBanner() {
   const t = useTranslations('hero');
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-slide every 6 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
-    return () => clearInterval(timer);
+  const handleNext = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
   }, []);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  };
+  }, []);
 
-  const handleNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
+  // Auto-slide every 6 seconds, pauses on user interaction
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(handleNext, 6000);
+    return () => clearInterval(timer);
+  }, [isPaused, handleNext]);
 
   const active = slides[currentSlide];
 
   return (
-    <div className="relative w-full max-w-[1240px] mx-auto px-4 mt-4 sm:mt-6 mb-8 sm:mb-10">
-      {/* Main Navy Card */}
-      <div className="relative w-full bg-ink rounded-[20px] sm:rounded-[24px] overflow-hidden min-h-[300px] sm:min-h-[350px] flex items-center px-6 sm:px-12 py-8 sm:py-10 shadow-md">
-        {/* Photo on the right, faded into the navy background */}
-        <div className="absolute inset-y-0 right-0 w-full md:w-[60%]">
-          <Image
-            key={active.id}
-            src={active.image}
-            alt={t(`${active.id}.title`)}
-            fill
-            sizes="(max-width: 768px) 100vw, 750px"
-            priority
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 md:via-ink/40 to-transparent" />
+    <div
+      className="relative w-full max-w-[1240px] mx-auto px-4 mt-3 sm:mt-5 mb-8 sm:mb-10 select-none"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Hero Highlights"
+    >
+      {/* Main Container */}
+      <div className="relative w-full bg-ink rounded-[24px] sm:rounded-[32px] overflow-hidden min-h-[380px] sm:min-h-[440px] md:min-h-[480px] flex items-center px-6 sm:px-12 md:px-16 py-10 sm:py-14 shadow-2xl border border-white/10">
+        {/* Subtle Tech Pattern and Orbit Ornaments */}
+        <div className="absolute inset-0 opacity-15 text-white pointer-events-none">
+          <TechGridPattern />
+        </div>
+        <div className="absolute -right-20 -bottom-20 w-[550px] h-[300px] pointer-events-none opacity-30">
+          <OrbitPattern />
         </div>
 
-        {/* Left Text Content */}
-        <div className="relative z-10 max-w-[520px] flex flex-col justify-center text-white">
-          <p className="text-[14px] sm:text-[16px] font-medium text-honey mb-1.5 sm:mb-2 tracking-wide">
-            {t(`${active.id}.subtitle`)}
-          </p>
+        {/* Ambient Gold Radial Highlight */}
+        <div
+          className="absolute -top-32 left-1/4 w-96 h-96 rounded-full bg-honey/10 blur-3xl pointer-events-none"
+          aria-hidden="true"
+        />
 
-          <h1 className="text-[28px] sm:text-[40px] md:text-[48px] font-black text-white tracking-tight leading-[1.1] mb-3">
+        {/* Slide Photo on the right with smooth fade */}
+        <div className="absolute inset-y-0 right-0 w-full md:w-[62%] overflow-hidden">
+          {slides.map((slide, index) => {
+            const isActive = index === currentSlide;
+            return (
+              <div
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  isActive ? 'opacity-100 z-0' : 'opacity-0 -z-10'
+                }`}
+                aria-hidden={!isActive}
+              >
+                <Image
+                  src={slide.image}
+                  alt={t(`${slide.id}.title`)}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  priority={index === 0}
+                  className={`object-cover transition-transform duration-1000 ease-out ${
+                    isActive ? 'scale-100' : 'scale-105'
+                  }`}
+                />
+              </div>
+            );
+          })}
+          {/* Multi-step gradient fade for high contrast readability */}
+          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-ink via-ink/80 md:via-ink/65 to-transparent z-10" />
+        </div>
+
+        {/* Left Content (Text + CTAs) */}
+        <div className="relative z-20 max-w-[560px] flex flex-col justify-center text-white">
+          {/* Subtitle pill with hexagon accent */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-honey/15 border border-honey/30 text-honey text-xs sm:text-[13px] font-bold tracking-wider uppercase mb-3.5 w-fit shadow-xs">
+            <HexagonIcon className="w-3.5 h-3.5 text-honey" />
+            <span>{t(`${active.id}.subtitle`)}</span>
+          </div>
+
+          {/* Main Title */}
+          <h1 className="text-[28px] sm:text-[42px] md:text-[50px] font-black text-white tracking-tight leading-[1.08] mb-4">
             {t(`${active.id}.title`)}
           </h1>
 
-          <p className="text-[14px] sm:text-[16px] text-white/85 mb-6 leading-relaxed">
+          {/* Description */}
+          <p className="text-[14px] sm:text-[16px] text-slate-300 mb-8 leading-relaxed max-w-[500px]">
             {t(`${active.id}.description`)}
           </p>
 
-          <div className="flex items-center gap-4">
+          {/* Action Row */}
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <Link
               href={active.link}
-              className="inline-flex items-center justify-center bg-ink hover:bg-ink-800 text-white text-[14px] sm:text-[15px] font-semibold px-6 py-2.5 rounded-full transition-all shadow-sm hover:shadow"
+              className="inline-flex items-center justify-center gap-2 bg-honey hover:bg-honey-400 text-ink text-[14px] sm:text-[15px] font-extrabold px-7 py-3 rounded-full transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-honey/20 hover:scale-[1.02] active:scale-[0.98] min-h-[44px]"
             >
-              {t(`${active.id}.cta`)}
+              <span>{t(`${active.id}.cta`)}</span>
+              <ArrowRight className="w-4 h-4 stroke-[2.5]" />
             </Link>
 
-            <div className="flex items-center gap-1.5 ml-2">
+            {/* Slide Navigation Dots */}
+            <div className="flex items-center gap-2 py-2">
               {slides.map((slide, index) => (
                 <button
                   key={slide.id}
                   type="button"
                   onClick={() => setCurrentSlide(index)}
                   aria-label={t('goTo', { n: index + 1 })}
-                  className={`h-2 transition-all rounded-full cursor-pointer ${
-                    index === currentSlide ? 'w-6 bg-white' : 'w-2 bg-white/40 hover:bg-white/70'
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer min-h-[16px] min-w-[16px] flex items-center justify-center ${
+                    index === currentSlide ? 'w-8 bg-honey' : 'w-2.5 bg-white/30 hover:bg-white/60'
                   }`}
                 />
               ))}
@@ -99,23 +143,23 @@ export default function HeroBanner() {
         </div>
       </div>
 
-      {/* Floating Navigation Controls (Left & Right circles) */}
+      {/* Floating Prev / Next Controls */}
       <button
         type="button"
         onClick={handlePrev}
         aria-label={t('prev')}
-        className="absolute -left-1 sm:left-1 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white text-honey-700 shadow-lg border border-slate-100 flex items-center justify-center hover:bg-paper hover:scale-105 transition-all z-20 cursor-pointer"
+        className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-ink/80 hover:bg-ink text-white border border-white/20 hover:border-honey/60 shadow-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-20 cursor-pointer focus-visible:outline-honey-500"
       >
-        <ChevronLeft className="w-5 sm:w-6 h-5 sm:h-6 stroke-[2.5]" />
+        <ChevronLeft className="w-5 h-5 text-honey stroke-[2.5]" />
       </button>
 
       <button
         type="button"
         onClick={handleNext}
         aria-label={t('next')}
-        className="absolute -right-1 sm:right-1 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white text-honey-700 shadow-lg border border-slate-100 flex items-center justify-center hover:bg-paper hover:scale-105 transition-all z-20 cursor-pointer"
+        className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-ink/80 hover:bg-ink text-white border border-white/20 hover:border-honey/60 shadow-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-20 cursor-pointer focus-visible:outline-honey-500"
       >
-        <ChevronRight className="w-5 sm:w-6 h-5 sm:h-6 stroke-[2.5]" />
+        <ChevronRight className="w-5 h-5 text-honey stroke-[2.5]" />
       </button>
     </div>
   );

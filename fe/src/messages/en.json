@@ -79,7 +79,15 @@
     "coolerPrefix": "Cooling",
     "coolerHighlight": "for EPYC",
     "kvmPrefix": "KVM",
-    "kvmHighlight": "over IP"
+    "kvmHighlight": "over IP",
+    "trustDelivery": "APAC Delivery",
+    "trustDeliverySub": "15–20 days across the region",
+    "trustWarranty": "Clear Warranty",
+    "trustWarrantySub": "Dedicated per product",
+    "trustAdvice": "Setup Advice",
+    "trustAdviceSub": "Home lab, server & render",
+    "trustDeposit": "50% Deposit",
+    "trustDepositSub": "Hotline & Zalo support"
   },
   "hero": {
     "zen2": {
@@ -122,6 +130,9 @@
   },
   "catalog": {
     "filters": "Filters",
+    "filterDrawerTitle": "Filters & Sort",
+    "applyFilters": "View {count} products",
+    "closeFilters": "Close filters",
     "clearFilters": "Clear filters",
     "sort": "Sort by",
     "sorts": {

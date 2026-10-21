@@ -12,7 +12,13 @@ import type { Locale } from '@/types/product';
 import { cn } from '@/lib/utils';
 
 /** Switches the URL locale prefix (kept in the NEXT_LOCALE cookie) and the profile's preferred language. */
-export default function LanguageSwitcher({ className }: { className?: string }) {
+export default function LanguageSwitcher({
+  className,
+  tone = 'dark',
+}: {
+  className?: string;
+  tone?: 'dark' | 'light';
+}) {
   const t = useTranslations('nav');
   const locale = useLocale() as Locale;
   const pathname = usePathname();
@@ -45,17 +51,28 @@ export default function LanguageSwitcher({ className }: { className?: string }) 
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={t('language')}
-        className="flex items-center gap-2 rounded-full border border-slate-200 bg-white pl-2.5 pr-2 py-1 text-[14px] font-medium text-ink hover:border-honey-500 hover:text-honey-700 transition-colors cursor-pointer"
+        className={cn(
+          'flex items-center gap-2 rounded-full px-3 py-1 text-[13px] font-medium transition-colors cursor-pointer min-h-[36px]',
+          tone === 'dark'
+            ? 'border border-white/20 bg-white/10 text-white hover:bg-white/20 hover:border-honey/60'
+            : 'border border-slate-200 bg-white text-ink hover:border-honey-500 hover:text-honey-700'
+        )}
       >
         <Flag locale={locale} />
         <span>{LOCALE_LABELS[locale]}</span>
-        <ChevronDown className={cn('w-4 h-4 text-slate-400 transition-transform', open && 'rotate-180')} />
+        <ChevronDown
+          className={cn(
+            'w-3.5 h-3.5 transition-transform',
+            tone === 'dark' ? 'text-slate-300' : 'text-slate-400',
+            open && 'rotate-180'
+          )}
+        />
       </button>
       {open && (
         <ul
           role="listbox"
           aria-label={t('language')}
-          className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-100 py-1.5 z-50 text-[14px] text-ink"
+          className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl border border-line py-1.5 z-50 text-[14px] text-ink"
         >
           {routing.locales.map((l) => (
             <li key={l}>
@@ -65,8 +82,8 @@ export default function LanguageSwitcher({ className }: { className?: string }) 
                 aria-selected={l === locale}
                 onClick={() => choose(l)}
                 className={cn(
-                  'w-full flex items-center gap-3 px-3.5 py-2.5 hover:bg-paper cursor-pointer',
-                  l === locale && 'font-semibold text-honey-700'
+                  'w-full flex items-center gap-3 px-3.5 py-2.5 hover:bg-paper cursor-pointer transition-colors',
+                  l === locale && 'font-bold text-honey-700 bg-honey-50/50'
                 )}
               >
                 <Flag locale={l} />

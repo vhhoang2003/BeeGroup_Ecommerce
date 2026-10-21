@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { BadgeCheck, ExternalLink, Headset, ShieldCheck, Truck } from 'lucide-react';
+import { BadgeCheck, ChevronRight, ExternalLink, Headset, Home, ShieldCheck, Truck } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { fetchProduct, fetchRelated } from '@/lib/api/server';
 import { alternates, localizedPath, OG_LOCALES } from '@/lib/seo';
@@ -96,33 +96,34 @@ export default async function ProductDetailPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: productJsonLd(product, locale as Locale) }} />
       <ViewTracker productId={product.id} />
 
-      {/* Breadcrumb */}
+      {/* Breadcrumb Navigation */}
       <nav aria-label={t('breadcrumb')} className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-500 mb-6">
-        <Link href="/" className="hover:text-honey-700">
-          {tNav('home')}
+        <Link href="/" className="hover:text-honey-700 flex items-center gap-1 transition-colors">
+          <Home className="w-3.5 h-3.5 text-slate-400" />
+          <span>{tNav('home')}</span>
         </Link>
-        <span>/</span>
-        <Link href={`/category/${product.category.slug}`} className="hover:text-honey-700">
+        <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+        <Link href={`/category/${product.category.slug}`} className="hover:text-honey-700 transition-colors">
           {product.category.name}
         </Link>
         {product.subCategory && (
           <>
-            <span>/</span>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
             <Link
               href={`/category/${product.category.slug}?sub=${product.subCategory.slug}`}
-              className="hover:text-honey-700"
+              className="hover:text-honey-700 transition-colors"
             >
               {product.subCategory.name}
             </Link>
           </>
         )}
-        <span>/</span>
-        <span className="font-semibold text-ink truncate max-w-[200px] sm:max-w-none">{product.name}</span>
+        <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+        <span className="font-bold text-ink truncate max-w-[200px] sm:max-w-none">{product.name}</span>
       </nav>
 
       {/* Main PDP Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-white rounded-3xl p-5 sm:p-8 border border-slate-100 shadow-xs">
-        {/* Left: Gallery */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-white rounded-3xl p-5 sm:p-8 lg:p-10 border border-line shadow-xs">
+        {/* Left: Gallery & Trust */}
         <div className="lg:col-span-5 flex flex-col">
           <ProductGallery
             images={product.images}
@@ -131,12 +132,17 @@ export default async function ProductDetailPage({ params }: Props) {
           />
 
           {/* Trust Guarantees */}
-          <div className="grid grid-cols-3 gap-2 w-full mt-6 text-center text-xs text-slate-600">
+          <div className="grid grid-cols-3 gap-2.5 w-full mt-6 text-center text-xs">
             {trust.map(({ icon: Icon, title, sub }) => (
-              <div key={title} className="p-3 bg-paper rounded-xl border border-slate-100 flex flex-col items-center">
-                <Icon className="w-5 h-5 text-honey-700 mb-1" />
-                <span className="font-semibold text-ink">{title}</span>
-                <span className="text-[10px] text-slate-400">{sub}</span>
+              <div
+                key={title}
+                className="p-3 bg-paper rounded-2xl border border-line flex flex-col items-center justify-center transition-all hover:border-honey-300"
+              >
+                <div className="w-8 h-8 rounded-xl bg-honey-50 border border-honey-200/80 flex items-center justify-center text-honey-700 mb-1.5">
+                  <Icon className="w-4 h-4" />
+                </div>
+                <span className="font-bold text-ink leading-tight">{title}</span>
+                <span className="text-[10px] text-muted mt-0.5 leading-tight">{sub}</span>
               </div>
             ))}
           </div>
@@ -144,43 +150,48 @@ export default async function ProductDetailPage({ params }: Props) {
 
         {/* Right: Product Info */}
         <div className="lg:col-span-7 flex flex-col">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-honey-700 bg-honey-50 px-2.5 py-0.5 rounded-md">
+          {/* Brand & Stock Status Header */}
+          <div className="flex items-center gap-2.5 mb-2.5">
+            <span className="text-xs font-bold uppercase tracking-wider text-honey-800 bg-honey-100 border border-honey-300 px-3 py-1 rounded-full">
               {product.brand}
             </span>
             <StockBadge status={product.stockStatus} />
           </div>
 
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight mb-2">{product.name}</h1>
-          <p className="text-sm text-slate-600 mb-4">{product.shortDescription}</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-ink tracking-tight mb-2.5 leading-tight">
+            {product.name}
+          </h1>
+          <p className="text-sm text-slate-600 mb-5 leading-relaxed">{product.shortDescription}</p>
 
           {/* Price Box */}
-          <div className="p-4 bg-paper rounded-2xl border border-slate-200/80 mb-5">
-            <span className="text-3xl font-black text-ink">
+          <div className="p-5 bg-paper rounded-2xl border border-line mb-6 shadow-2xs">
+            <div className="text-3xl sm:text-4xl font-black text-ink tracking-tight">
               {formatPrice(product.price) ?? tCommon('contactForPrice')}
-            </span>
-            {product.price !== null && <p className="text-xs text-slate-500 mt-1">{t('priceNote')}</p>}
-            <p className="flex items-center gap-1.5 text-xs font-semibold text-honey-700 mt-2">
-              <Truck className="w-4 h-4 shrink-0" />
-              {tSite('delivery')}
-            </p>
-            <DepositNote className="mt-2" />
+            </div>
+            {product.price !== null && <p className="text-xs text-slate-500 mt-1.5">{t('priceNote')}</p>}
+
+            <div className="flex items-center gap-2 text-xs font-bold text-honey-800 mt-3 bg-honey-50 border border-honey-200/80 px-3 py-1.5 rounded-xl w-fit">
+              <Truck className="w-4 h-4 text-honey-700 shrink-0" />
+              <span>{tSite('delivery')}</span>
+            </div>
+
+            <DepositNote className="mt-3" />
           </div>
 
-          {/* Quote request, wishlist and direct channels (ENG-01, ENG-06) */}
+          {/* Actions: Add to Cart, Quote request, wishlist and direct channels (ENG-01, ENG-06) */}
           <div className="mb-6">
             <ProductActions product={product} />
           </div>
 
           {/* Highlights */}
           {product.highlights.length > 0 && (
-            <div className="mb-6">
-              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">{t('highlights')}</h2>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="mb-6 pt-5 border-t border-line">
+              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">{t('highlights')}</h2>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {product.highlights.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-slate-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-ink mt-2 shrink-0" />
-                    <span>{item}</span>
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-slate-700">
+                    <span className="w-2 h-2 rounded-[2px] bg-honey rotate-45 mt-1.5 shrink-0" />
+                    <span className="font-medium">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -189,11 +200,14 @@ export default async function ProductDetailPage({ params }: Props) {
 
           {/* Use cases */}
           {product.useCases.length > 0 && (
-            <div className="mb-6">
-              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">{t('useCases')}</h2>
+            <div className="mb-6 pt-5 border-t border-line">
+              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">{t('useCases')}</h2>
               <div className="flex flex-wrap gap-2">
                 {product.useCases.map((item) => (
-                  <span key={item} className="text-xs font-medium text-honey-700 bg-honey-50 px-3 py-1 rounded-full">
+                  <span
+                    key={item}
+                    className="text-xs font-bold text-slate-700 bg-paper border border-line px-3 py-1.5 rounded-full"
+                  >
                     {item}
                   </span>
                 ))}
@@ -203,15 +217,15 @@ export default async function ProductDetailPage({ params }: Props) {
 
           {/* Description */}
           {product.description && (
-            <div className="mb-6">
-              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">{t('description')}</h2>
+            <div className="mb-6 pt-5 border-t border-line">
+              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">{t('description')}</h2>
               <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line">{product.description}</p>
             </div>
           )}
 
           {/* Notes */}
           {product.notes.length > 0 && (
-            <div className="mb-6 p-4 rounded-xl bg-amber-50 border border-amber-100 text-sm text-amber-800 space-y-1">
+            <div className="mb-6 p-4 rounded-2xl bg-amber-50/80 border border-amber-200 text-sm text-amber-900 space-y-1.5 leading-relaxed">
               {product.notes.map((note) => (
                 <p key={note}>{note}</p>
               ))}
@@ -222,31 +236,39 @@ export default async function ProductDetailPage({ params }: Props) {
 
       {/* Specifications Table */}
       {product.specs.length > 0 && (
-        <section className="mt-8 bg-white rounded-3xl p-5 sm:p-8 border border-slate-100 shadow-xs">
-          <h2 className="text-lg font-bold text-ink mb-4">{t('specs')}</h2>
-          <div className="rounded-xl border border-slate-200 overflow-hidden text-sm">
+        <section className="mt-8 bg-white rounded-3xl p-5 sm:p-8 lg:p-10 border border-line shadow-xs">
+          <h2 className="text-xl font-black text-ink mb-5 tracking-tight flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-[2px] bg-honey rotate-45" />
+            <span>{t('specs')}</span>
+          </h2>
+          <div className="rounded-2xl border border-line overflow-hidden text-sm">
             {product.specs.map((row, idx) => (
-              <div key={row.key} className={`flex py-2.5 px-4 ${idx % 2 === 0 ? 'bg-paper' : 'bg-white'}`}>
+              <div
+                key={row.key}
+                className={`flex py-3 px-4 sm:px-6 transition-colors ${
+                  idx % 2 === 0 ? 'bg-paper' : 'bg-white'
+                }`}
+              >
                 <span className="w-2/5 sm:w-1/3 font-semibold text-slate-500 pr-3">{row.label}</span>
-                <span className="w-3/5 sm:w-2/3 text-ink font-medium">{row.value}</span>
+                <span className="w-3/5 sm:w-2/3 text-ink font-bold">{row.value}</span>
               </div>
             ))}
           </div>
 
           {product.sources.length > 0 && (
-            <div className="mt-4 text-xs text-slate-500">
+            <div className="mt-4 text-xs text-slate-500 flex flex-wrap items-center gap-1.5">
               <span className="font-semibold">{t('sources')} </span>
               {product.sources.map((url, i) => (
                 <React.Fragment key={url}>
-                  {i > 0 && ', '}
+                  {i > 0 && '·'}
                   <a
                     href={url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-0.5 text-honey-700 hover:underline break-all"
+                    className="inline-flex items-center gap-1 text-honey-700 hover:text-ink font-medium hover:underline break-all"
                   >
-                    {hostname(url)}
-                    <ExternalLink className="w-3 h-3" />
+                    <span>{hostname(url)}</span>
+                    <ExternalLink className="w-3 h-3 text-honey-700" />
                   </a>
                 </React.Fragment>
               ))}
@@ -257,13 +279,13 @@ export default async function ProductDetailPage({ params }: Props) {
 
       {/* Related products (CAT-09) */}
       {related.length > 0 && (
-        <section className="mt-10">
+        <section className="mt-12">
           <SectionTitle
             prefix={t('relatedPrefix')}
             highlight={t('relatedHighlight')}
             viewAllHref={`/category/${product.category.slug}`}
           />
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3.5 sm:gap-5">
             {related.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

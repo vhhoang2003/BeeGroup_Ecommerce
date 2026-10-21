@@ -79,7 +79,15 @@
     "coolerPrefix": "Tản nhiệt",
     "coolerHighlight": "cho EPYC",
     "kvmPrefix": "KVM",
-    "kvmHighlight": "over IP"
+    "kvmHighlight": "over IP",
+    "trustDelivery": "Giao hàng APAC",
+    "trustDeliverySub": "15–20 ngày toàn khu vực",
+    "trustWarranty": "Bảo hành minh bạch",
+    "trustWarrantySub": "Theo từng sản phẩm",
+    "trustAdvice": "Tư vấn cấu hình",
+    "trustAdviceSub": "Home lab, máy chủ & render",
+    "trustDeposit": "Đặt cọc 50%",
+    "trustDepositSub": "Hỗ trợ hotline & Zalo 24/7"
   },
   "hero": {
     "zen2": {
@@ -122,6 +130,9 @@
   },
   "catalog": {
     "filters": "Bộ lọc",
+    "filterDrawerTitle": "Bộ lọc & Sắp xếp",
+    "applyFilters": "Xem {count} sản phẩm",
+    "closeFilters": "Đóng bộ lọc",
     "clearFilters": "Xoá bộ lọc",
     "sort": "Sắp xếp",
     "sorts": {
