@@ -6,7 +6,7 @@
   "category": "KVM",
   "categorySlug": "kvm",
   "subCategory": "Luckfox",
-  "price": null,
+  "price": 2800000,
   "specs": {
     "SoC": "Rockchip RV1106G3, Cortex-A7 @ 1.2 GHz",
     "Memory / storage": "256 MB DDR3 / 8 GB eMMC + microSD slot",
@@ -16,7 +16,8 @@
     "Network": "100 Mbps Ethernet",
     "Other features": "Audio, UEFI / BIOS access, Wake-on-LAN, web terminal, 1 × serial terminal, custom scripts, GPIO power control",
     "Power input": "USB-C",
-    "Dimensions": "48.5 × 48.5 × 29 mm"
+    "Dimensions": "48.5 × 48.5 × 29 mm",
+    "Warranty": "3 months"
   },
   "image": "images/01-front.jpg",
   "images": [
@@ -149,6 +150,19 @@
         "vi": "48.5 × 48.5 × 29 mm",
         "zh": "48.5 × 48.5 × 29 mm"
       }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "3 months",
+        "vi": "3 tháng",
+        "zh": "3 个月"
+      }
     }
   ],
   "i18n": {
@@ -177,7 +191,8 @@
         "Network": "100 Mbps Ethernet",
         "Other features": "Audio, UEFI / BIOS access, Wake-on-LAN, web terminal, 1 × serial terminal, custom scripts, GPIO power control",
         "Power input": "USB-C",
-        "Dimensions": "48.5 × 48.5 × 29 mm"
+        "Dimensions": "48.5 × 48.5 × 29 mm",
+        "Warranty": "3 months"
       },
       "notes": [
         "100 Mbps Ethernet, 80–200 ms video latency."
@@ -208,7 +223,8 @@
         "Mạng": "100 Mbps Ethernet",
         "Tính năng khác": "Âm thanh, truy cập UEFI / BIOS, Wake-on-LAN, web terminal, 1 cổng serial, script tuỳ biến, điều khiển nguồn qua GPIO",
         "Nguồn": "USB-C",
-        "Kích thước": "48.5 × 48.5 × 29 mm"
+        "Kích thước": "48.5 × 48.5 × 29 mm",
+        "Bảo hành": "3 tháng"
       },
       "notes": [
         "Cổng mạng 100 Mbps, độ trễ video 80–200 ms."
@@ -239,7 +255,8 @@
         "网络": "100 Mbps Ethernet",
         "其他功能": "音频、UEFI / BIOS 访问、网络唤醒、Web 终端、1 路串口、自定义脚本、GPIO 电源控制",
         "电源": "USB-C",
-        "尺寸": "48.5 × 48.5 × 29 mm"
+        "尺寸": "48.5 × 48.5 × 29 mm",
+        "保修": "3 个月"
       },
       "notes": [
         "百兆以太网，视频延迟 80–200 ms。"

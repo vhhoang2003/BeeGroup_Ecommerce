@@ -6,7 +6,7 @@
   "category": "KVM",
   "categorySlug": "kvm",
   "subCategory": "GL.iNet",
-  "price": null,
+  "price": 3800000,
   "specs": {
     "Model": "GL-RM1 (Comet)",
     "CPU": "Quad-core ARM Cortex-A7",
@@ -15,7 +15,8 @@
     "Network": "Gigabit Ethernet (10/100/1000 Mbps)",
     "Ports": "HDMI in, USB-C (keyboard / mouse), USB 2.0 Type-A (ATX board / Fingerbot), Ethernet, USB-C power, reset button",
     "Power input": "USB-C, 5 V / 2 A (about 3 W)",
-    "Dimensions / weight": "80 × 60 × 17.5 mm / 85 g"
+    "Dimensions / weight": "80 × 60 × 17.5 mm / 85 g",
+    "Warranty": "3 months"
   },
   "image": "images/01-front.jpg",
   "images": [
@@ -136,6 +137,19 @@
         "vi": "80 × 60 × 17.5 mm / 85 g",
         "zh": "80 × 60 × 17.5 mm / 85 g"
       }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "3 months",
+        "vi": "3 tháng",
+        "zh": "3 个月"
+      }
     }
   ],
   "i18n": {
@@ -163,7 +177,8 @@
         "Network": "Gigabit Ethernet (10/100/1000 Mbps)",
         "Ports": "HDMI in, USB-C (keyboard / mouse), USB 2.0 Type-A (ATX board / Fingerbot), Ethernet, USB-C power, reset button",
         "Power input": "USB-C, 5 V / 2 A (about 3 W)",
-        "Dimensions / weight": "80 × 60 × 17.5 mm / 85 g"
+        "Dimensions / weight": "80 × 60 × 17.5 mm / 85 g",
+        "Warranty": "3 months"
       },
       "notes": [
         "Wired Ethernet only, no Wi-Fi. ATX board and Fingerbot sold separately."
@@ -193,7 +208,8 @@
         "Mạng": "Ethernet Gigabit (10/100/1000 Mbps)",
         "Cổng kết nối": "HDMI vào, USB-C (bàn phím / chuột), USB 2.0 Type-A (bo ATX / Fingerbot), Ethernet, USB-C nguồn, nút reset",
         "Nguồn": "USB-C, 5 V / 2 A (khoảng 3 W)",
-        "Kích thước / trọng lượng": "80 × 60 × 17.5 mm / 85 g"
+        "Kích thước / trọng lượng": "80 × 60 × 17.5 mm / 85 g",
+        "Bảo hành": "3 tháng"
       },
       "notes": [
         "Chỉ có cổng mạng dây, không có Wi-Fi. Bo ATX và Fingerbot bán riêng."
@@ -223,7 +239,8 @@
         "网络": "千兆以太网（10/100/1000 Mbps）",
         "接口": "HDMI 输入、USB-C（键鼠）、USB 2.0 Type-A（ATX 板 / Fingerbot）、以太网、USB-C 供电、复位键",
         "电源": "USB-C，5 V / 2 A（约 3 W）",
-        "尺寸 / 重量": "80 × 60 × 17.5 mm / 85 g"
+        "尺寸 / 重量": "80 × 60 × 17.5 mm / 85 g",
+        "保修": "3 个月"
       },
       "notes": [
         "仅支持有线网络，不带 Wi-Fi。ATX 板与 Fingerbot 需另购。"

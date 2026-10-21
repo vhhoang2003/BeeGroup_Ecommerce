@@ -6,7 +6,7 @@
   "category": "KVM",
   "categorySlug": "kvm",
   "subCategory": "JetKVM",
-  "price": null,
+  "price": 3200000,
   "specs": {
     "SoC": "Rockchip RV1106 (Arm Cortex-A7)",
     "Memory / storage": "256 MB DDR3L / 16 GB eMMC",
@@ -15,7 +15,8 @@
     "Network": "100 Mbps Ethernet",
     "Ports": "Mini HDMI in, USB-C (keyboard / mouse + power), Ethernet, RJ12 extension port",
     "Extensions": "ATX power, DC power control, serial console (sold separately)",
-    "Software": "Open source (Go + Linux), optional JetKVM Cloud over WebRTC"
+    "Software": "Open source (Go + Linux), optional JetKVM Cloud over WebRTC",
+    "Warranty": "3 months"
   },
   "image": "images/01-device.png",
   "images": [
@@ -134,6 +135,19 @@
         "vi": "Mã nguồn mở (Go + Linux), JetKVM Cloud qua WebRTC (tuỳ chọn)",
         "zh": "开源（Go + Linux），可选 JetKVM Cloud（WebRTC）"
       }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "3 months",
+        "vi": "3 tháng",
+        "zh": "3 个月"
+      }
     }
   ],
   "i18n": {
@@ -161,7 +175,8 @@
         "Network": "100 Mbps Ethernet",
         "Ports": "Mini HDMI in, USB-C (keyboard / mouse + power), Ethernet, RJ12 extension port",
         "Extensions": "ATX power, DC power control, serial console (sold separately)",
-        "Software": "Open source (Go + Linux), optional JetKVM Cloud over WebRTC"
+        "Software": "Open source (Go + Linux), optional JetKVM Cloud over WebRTC",
+        "Warranty": "3 months"
       },
       "notes": [
         "100 Mbps Ethernet. ATX / DC / serial extensions sold separately."
@@ -191,7 +206,8 @@
         "Mạng": "100 Mbps Ethernet",
         "Cổng kết nối": "Mini HDMI vào, USB-C (bàn phím / chuột + nguồn), Ethernet, cổng mở rộng RJ12",
         "Bo mở rộng": "Nguồn ATX, điều khiển nguồn DC, console serial (bán riêng)",
-        "Phần mềm": "Mã nguồn mở (Go + Linux), JetKVM Cloud qua WebRTC (tuỳ chọn)"
+        "Phần mềm": "Mã nguồn mở (Go + Linux), JetKVM Cloud qua WebRTC (tuỳ chọn)",
+        "Bảo hành": "3 tháng"
       },
       "notes": [
         "Cổng mạng 100 Mbps. Bo mở rộng ATX / DC / serial bán riêng."
@@ -221,7 +237,8 @@
         "网络": "100 Mbps Ethernet",
         "接口": "Mini HDMI 输入、USB-C（键鼠 + 供电）、以太网、RJ12 扩展口",
         "扩展": "ATX 电源、DC 电源控制、串口控制台（另购）",
-        "软件": "开源（Go + Linux），可选 JetKVM Cloud（WebRTC）"
+        "软件": "开源（Go + Linux），可选 JetKVM Cloud（WebRTC）",
+        "保修": "3 个月"
       },
       "notes": [
         "百兆以太网。ATX / DC / 串口扩展板需另购。"

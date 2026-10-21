@@ -6,7 +6,7 @@
   "category": "KVM",
   "categorySlug": "kvm",
   "subCategory": "GL.iNet",
-  "price": null,
+  "price": 4000000,
   "specs": {
     "Model": "GL-RM10 (Comet Pro)",
     "CPU": "Quad-core ARM Cortex-A53",
@@ -18,7 +18,8 @@
     "Ethernet": "Gigabit, automatic failover between Wi-Fi and Ethernet",
     "Ports": "USB-C (keyboard / mouse), USB 2.0 Type-A (ATX board / Fingerbot), Gigabit Ethernet, HDMI in, HDMI out, USB-C power",
     "Power input": "USB-C 5 V / 2 A, PD compatible",
-    "Dimensions / weight": "93 × 84 × 47 mm / 170 g"
+    "Dimensions / weight": "93 × 84 × 47 mm / 170 g",
+    "Warranty": "3 months"
   },
   "image": "images/01-front.jpg",
   "images": [
@@ -178,6 +179,19 @@
         "vi": "93 × 84 × 47 mm / 170 g",
         "zh": "93 × 84 × 47 mm / 170 g"
       }
+    },
+    {
+      "key": "warranty",
+      "label": {
+        "en": "Warranty",
+        "vi": "Bảo hành",
+        "zh": "保修"
+      },
+      "value": {
+        "en": "3 months",
+        "vi": "3 tháng",
+        "zh": "3 个月"
+      }
     }
   ],
   "i18n": {
@@ -208,7 +222,8 @@
         "Ethernet": "Gigabit, automatic failover between Wi-Fi and Ethernet",
         "Ports": "USB-C (keyboard / mouse), USB 2.0 Type-A (ATX board / Fingerbot), Gigabit Ethernet, HDMI in, HDMI out, USB-C power",
         "Power input": "USB-C 5 V / 2 A, PD compatible",
-        "Dimensions / weight": "93 × 84 × 47 mm / 170 g"
+        "Dimensions / weight": "93 × 84 × 47 mm / 170 g",
+        "Warranty": "3 months"
       },
       "notes": [
         "ATX board and Fingerbot sold separately."
@@ -241,7 +256,8 @@
         "Ethernet": "Gigabit, tự chuyển đổi dự phòng giữa Wi-Fi và Ethernet",
         "Cổng kết nối": "USB-C (bàn phím / chuột), USB 2.0 Type-A (bo ATX / Fingerbot), Ethernet Gigabit, HDMI vào, HDMI ra, USB-C nguồn",
         "Nguồn": "USB-C 5 V / 2 A, hỗ trợ PD",
-        "Kích thước / trọng lượng": "93 × 84 × 47 mm / 170 g"
+        "Kích thước / trọng lượng": "93 × 84 × 47 mm / 170 g",
+        "Bảo hành": "3 tháng"
       },
       "notes": [
         "Bo ATX và Fingerbot bán riêng."
@@ -274,7 +290,8 @@
         "以太网": "千兆，Wi-Fi 与有线自动切换备份",
         "接口": "USB-C（键鼠）、USB 2.0 Type-A（ATX 板 / Fingerbot）、千兆以太网、HDMI 输入、HDMI 输出、USB-C 供电",
         "电源": "USB-C 5 V / 2 A，兼容 PD",
-        "尺寸 / 重量": "93 × 84 × 47 mm / 170 g"
+        "尺寸 / 重量": "93 × 84 × 47 mm / 170 g",
+        "保修": "3 个月"
       },
       "notes": [
         "ATX 板与 Fingerbot 需另购。"
