@@ -12,7 +12,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#222222] font-sans antialiased selection:bg-[#008ECC]/20 selection:text-[#008ECC]">
+    <div className="min-h-screen flex flex-col bg-white text-ink font-sans antialiased selection:bg-ink/20 selection:text-honey-700">
       {/* 1. Top Utility Bar */}
       <TopUtilityBar />
 

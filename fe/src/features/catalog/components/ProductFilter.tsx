@@ -31,7 +31,7 @@ function OptionButton({ active, onClick, children }: { active: boolean; onClick:
       onClick={onClick}
       aria-pressed={active}
       className={`w-full text-left text-sm px-2.5 py-1.5 rounded-lg transition-colors flex items-center justify-between ${
-        active ? 'bg-[#EBF6FA] text-[#008ECC] font-semibold' : 'text-gray-600 hover:bg-gray-50'
+        active ? 'bg-honey-50 text-honey-700 font-semibold' : 'text-slate-600 hover:bg-slate-50'
       }`}
     >
       {children}
@@ -43,24 +43,24 @@ export default function ProductFilter({ categories, filters, lockCategory, onCha
   const t = useTranslations('catalog');
   const tStock = useTranslations('stock');
   return (
-    <aside className="w-full lg:w-64 shrink-0 bg-white p-5 rounded-2xl border border-gray-200/80 shadow-xs space-y-6">
-      <div className="flex items-center justify-between pb-3 border-b border-gray-100">
-        <h3 className="font-bold text-[#222222] text-base">{t('filters')}</h3>
-        <button type="button" onClick={onReset} className="text-xs font-semibold text-[#008ECC] hover:underline">
+    <aside className="w-full lg:w-64 shrink-0 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs space-y-6">
+      <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 className="font-bold text-ink text-base">{t('filters')}</h3>
+        <button type="button" onClick={onReset} className="text-xs font-semibold text-honey-700 hover:underline">
           {t('clearFilters')}
         </button>
       </div>
 
       {/* Sort By */}
       <div>
-        <label htmlFor="sort" className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">
+        <label htmlFor="sort" className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">
           {t('sort')}
         </label>
         <select
           id="sort"
           value={filters.sort}
           onChange={(e) => onChange({ sort: e.target.value as ProductSort })}
-          className="w-full bg-[#F5F5F5] border border-gray-200 text-sm rounded-xl px-3 py-2 text-[#222222] outline-none focus:border-[#008ECC]"
+          className="w-full bg-slate-100 border border-slate-200 text-sm rounded-xl px-3 py-2 text-ink outline-none focus:border-honey-500"
         >
           {SORTS.map((value) => (
             <option key={value} value={value}>
@@ -73,7 +73,7 @@ export default function ProductFilter({ categories, filters, lockCategory, onCha
       {/* Category Filter */}
       {!lockCategory && (
         <div>
-          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">{t('category')}</p>
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">{t('category')}</p>
           <div className="space-y-1.5">
             <OptionButton active={filters.category === ''} onClick={() => onChange({ category: '', sub: '' })}>
               <span>{t('allCategories')}</span>
@@ -85,7 +85,7 @@ export default function ProductFilter({ categories, filters, lockCategory, onCha
                 onClick={() => onChange({ category: c.slug, sub: '' })}
               >
                 <span>{c.name}</span>
-                <span className="text-xs text-gray-400">({c.itemCount})</span>
+                <span className="text-xs text-slate-400">({c.itemCount})</span>
               </OptionButton>
             ))}
           </div>
@@ -94,7 +94,7 @@ export default function ProductFilter({ categories, filters, lockCategory, onCha
 
       {/* Stock Filter */}
       <div>
-        <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">{t('stock')}</p>
+        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">{t('stock')}</p>
         <div className="space-y-1">
           <OptionButton active={filters.stock === ''} onClick={() => onChange({ stock: '' })}>
             <span>{t('all')}</span>

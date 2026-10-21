@@ -19,7 +19,7 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
   const { user, isAuthenticated } = useAuthStore();
 
   return (
-    <header className="w-full bg-white border-b border-[#EDEDED] sticky top-0 z-40">
+    <header className="w-full bg-white border-b border-line sticky top-0 z-40">
       <div className="max-w-[1240px] mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
         {/* Left: Mobile Menu + Logo */}
         <div className="flex items-center gap-3 shrink-0">
@@ -27,9 +27,9 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
             type="button"
             onClick={onToggleMobileMenu}
             aria-label={t('openMenu')}
-            className="w-10 h-10 rounded-[8px] bg-[#F3F9FB] flex items-center justify-center text-[#008ECC] hover:bg-[#E2F2F9] transition-colors cursor-pointer md:hidden"
+            className="w-10 h-10 rounded-[8px] bg-paper flex items-center justify-center text-honey-700 hover:bg-honey-50 transition-colors cursor-pointer md:hidden"
           >
-            <Menu className="w-5 h-5 text-[#008ECC]" />
+            <Menu className="w-5 h-5 text-honey-700" />
           </button>
 
           <Link href="/" className="flex items-center group" aria-label={t('homeOf', { name: siteConfig.name })}>
@@ -47,7 +47,7 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
           {user?.role === 'ADMIN' && (
             <Link
               href="/admin"
-              className="hidden sm:flex items-center gap-1.5 text-[13px] font-semibold text-[#008ECC] hover:underline"
+              className="hidden sm:flex items-center gap-1.5 text-[13px] font-semibold text-honey-700 hover:underline"
             >
               <ShieldCheck className="w-4 h-4" />
               <span>{t('admin')}</span>
@@ -56,7 +56,7 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
 
           {isAuthenticated && (
             <Link href="/account/wishlist" aria-label={t('wishlist')} className="hover:opacity-80 transition-opacity">
-              <Heart className="w-[18px] h-[18px] text-[#008ECC]" />
+              <Heart className="w-[18px] h-[18px] text-honey-700" />
             </Link>
           )}
 
@@ -65,9 +65,9 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
           {isAuthenticated && user ? (
             <Link
               href="/account"
-              className="flex items-center gap-2 text-[13px] sm:text-[14px] font-medium text-[#222222] hover:text-[#008ECC] transition-colors"
+              className="flex items-center gap-2 text-[13px] sm:text-[14px] font-medium text-ink hover:text-honey-700 transition-colors"
             >
-              <div className="w-7 h-7 rounded-full bg-[#EBF6FA] flex items-center justify-center text-[#008ECC]">
+              <div className="w-7 h-7 rounded-full bg-honey-50 flex items-center justify-center text-honey-700">
                 <UserIcon className="w-4 h-4" />
               </div>
               <span className="hidden sm:inline truncate max-w-[110px]">{user.fullName}</span>
@@ -75,18 +75,18 @@ export default function Header({ onToggleMobileMenu }: HeaderProps) {
           ) : (
             <Link
               href="/auth/login"
-              className="flex items-center gap-1.5 text-[13px] sm:text-[14px] font-medium text-[#222222] hover:text-[#008ECC] transition-colors"
+              className="flex items-center gap-1.5 text-[13px] sm:text-[14px] font-medium text-ink hover:text-honey-700 transition-colors"
             >
-              <UserIcon className="w-[18px] h-[18px] text-[#008ECC]" />
+              <UserIcon className="w-[18px] h-[18px] text-honey-700" />
               <span className="hidden sm:inline">{t('login')}</span>
             </Link>
           )}
 
-          <div className="w-px h-5 bg-[#EDEDED] hidden sm:block" />
+          <div className="w-px h-5 bg-line hidden sm:block" />
 
           <a
             href={siteConfig.contact.hotlineHref}
-            className="flex items-center gap-2 text-[13px] sm:text-[14px] font-semibold text-white bg-[#008ECC] hover:bg-[#0077b0] px-3 sm:px-4 py-2 rounded-full transition-colors"
+            className="flex items-center gap-2 text-[13px] sm:text-[14px] font-semibold text-white bg-ink hover:bg-ink-800 px-3 sm:px-4 py-2 rounded-full transition-colors"
           >
             <Phone className="w-4 h-4" />
             <span className="hidden sm:inline">{t('callUs')}</span>

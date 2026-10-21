@@ -42,7 +42,7 @@ export default function AdminProductsPage() {
         actions={
           <Link
             href="/admin/products/new"
-            className="inline-flex items-center gap-2 bg-[#008ECC] hover:bg-[#0077b0] text-white px-4 py-2.5 rounded-xl font-semibold text-sm"
+            className="inline-flex items-center gap-2 bg-ink hover:bg-ink-800 text-white px-4 py-2.5 rounded-xl font-semibold text-sm"
           >
             <Plus className="w-4 h-4" />
             {t('new')}
@@ -114,13 +114,13 @@ export default function AdminProductsPage() {
           {isLoading && <EmptyRow colSpan={7}>{tCommon('loading')}</EmptyRow>}
           {data?.content.length === 0 && <EmptyRow colSpan={7}>{t('empty')}</EmptyRow>}
           {data?.content.map((p) => (
-            <tr key={p.id} className="hover:bg-[#F9FBFD]">
+            <tr key={p.id} className="hover:bg-paper">
               <Td>
-                <Link href={`/admin/products/${p.id}`} className="font-semibold text-[#222222] hover:text-[#008ECC]">
-                  {p.featured && <Star className="inline w-3.5 h-3.5 text-[#F5B301] fill-[#F5B301] mr-1 -mt-0.5" />}
+                <Link href={`/admin/products/${p.id}`} className="font-semibold text-ink hover:text-honey-700">
+                  {p.featured && <Star className="inline w-3.5 h-3.5 text-honey fill-honey mr-1 -mt-0.5" />}
                   {p.name}
                 </Link>
-                <p className="text-xs text-gray-400 font-mono">{p.slug}</p>
+                <p className="text-xs text-slate-400 font-mono">{p.slug}</p>
               </Td>
               <Td>{p.categorySlug}</Td>
               <Td className="text-right whitespace-nowrap">{formatPrice(p.price) ?? '—'}</Td>
@@ -131,7 +131,7 @@ export default function AdminProductsPage() {
                 <ProductStatusBadge status={p.status} />
               </Td>
               <Td className="text-right font-mono">{p.viewCount}</Td>
-              <Td className="whitespace-nowrap text-xs text-gray-500">{formatDateTime(p.updatedAt, locale)}</Td>
+              <Td className="whitespace-nowrap text-xs text-slate-500">{formatDateTime(p.updatedAt, locale)}</Td>
             </tr>
           ))}
         </tbody>

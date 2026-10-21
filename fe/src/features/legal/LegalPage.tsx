@@ -24,16 +24,16 @@ export default async function LegalPage({ doc }: { doc: Doc }) {
 
   return (
     <article className="max-w-[820px] mx-auto px-4 py-8 sm:py-12">
-      <h1 className="text-2xl sm:text-3xl font-extrabold text-[#222222] mb-2">{t('title')}</h1>
-      <p className="text-xs text-gray-500 mb-6">{tLegal('updated', { date: t('updatedAt') })}</p>
-      <p className="text-sm text-gray-700 leading-relaxed mb-8">{t('intro')}</p>
+      <h1 className="text-2xl sm:text-3xl font-extrabold text-ink mb-2">{t('title')}</h1>
+      <p className="text-xs text-slate-500 mb-6">{tLegal('updated', { date: t('updatedAt') })}</p>
+      <p className="text-sm text-slate-700 leading-relaxed mb-8">{t('intro')}</p>
       <div className="space-y-7">
         {sections.map((section, i) => (
           <section key={section.title}>
-            <h2 className="text-lg font-bold text-[#222222] mb-2">
+            <h2 className="text-lg font-bold text-ink mb-2">
               {i + 1}. {section.title}
             </h2>
-            <div className="space-y-2 text-sm text-gray-700 leading-relaxed">
+            <div className="space-y-2 text-sm text-slate-700 leading-relaxed">
               {section.paragraphs.map((p) => (
                 <p key={p}>{p}</p>
               ))}

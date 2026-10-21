@@ -103,14 +103,14 @@ export default function RegisterPage() {
         {resent ? (
           <Alert tone="success">{t('verificationResent')}</Alert>
         ) : (
-          <p className="text-xs text-gray-500 text-center">
+          <p className="text-xs text-slate-500 text-center">
             {t('noEmail')}{' '}
-            <button type="button" onClick={resend} className="font-semibold text-[#008ECC] hover:underline cursor-pointer">
+            <button type="button" onClick={resend} className="font-semibold text-honey-700 hover:underline cursor-pointer">
               {t('resendVerification')}
             </button>
           </p>
         )}
-        <Link href="/auth/login" className="block text-center mt-6 text-sm font-semibold text-[#008ECC] hover:underline">
+        <Link href="/auth/login" className="block text-center mt-6 text-sm font-semibold text-honey-700 hover:underline">
           {t('goToLogin')}
         </Link>
       </AuthCard>
@@ -125,7 +125,7 @@ export default function RegisterPage() {
       footer={
         <>
           {t('haveAccount')}{' '}
-          <Link href="/auth/login" className="font-semibold text-[#008ECC] hover:underline">
+          <Link href="/auth/login" className="font-semibold text-honey-700 hover:underline">
             {t('signIn')}
           </Link>
         </>
@@ -162,22 +162,22 @@ export default function RegisterPage() {
         </Field>
 
         <div>
-          <label className="flex items-start gap-2 text-xs text-gray-700 cursor-pointer">
+          <label className="flex items-start gap-2 text-xs text-slate-700 cursor-pointer">
             <input
               type="checkbox"
               {...register('acceptTerms')}
               aria-invalid={!!errors.acceptTerms}
-              className="accent-[#008ECC] w-4 h-4 mt-0.5"
+              className="accent-ink w-4 h-4 mt-0.5"
             />
             <span>
               {t.rich('acceptTerms', {
                 terms: (chunks) => (
-                  <Link href="/terms" target="_blank" className="font-semibold text-[#008ECC] hover:underline">
+                  <Link href="/terms" target="_blank" className="font-semibold text-honey-700 hover:underline">
                     {chunks}
                   </Link>
                 ),
                 privacy: (chunks) => (
-                  <Link href="/privacy" target="_blank" className="font-semibold text-[#008ECC] hover:underline">
+                  <Link href="/privacy" target="_blank" className="font-semibold text-honey-700 hover:underline">
                     {chunks}
                   </Link>
                 ),

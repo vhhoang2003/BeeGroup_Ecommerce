@@ -33,7 +33,7 @@ export default function FloatingContact() {
                 href={href}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noreferrer' : undefined}
-                className="flex items-center gap-2 bg-white shadow-lg border border-gray-100 rounded-full pl-3 pr-1 py-1 text-[13px] font-semibold text-[#222222] hover:text-[#008ECC]"
+                className="flex items-center gap-2 bg-white shadow-lg border border-slate-100 rounded-full pl-3 pr-1 py-1 text-[13px] font-semibold text-ink hover:text-honey-700"
               >
                 <span>{label}</span>
                 <span className={`w-9 h-9 rounded-full ${color} text-white flex items-center justify-center`}>
@@ -49,7 +49,7 @@ export default function FloatingContact() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-label={open ? t('close') : t('open')}
-        className="w-14 h-14 rounded-full bg-[#008ECC] hover:bg-[#0077b0] text-white shadow-xl flex items-center justify-center transition-colors cursor-pointer"
+        className="w-14 h-14 rounded-full bg-ink hover:bg-ink-800 text-white shadow-xl flex items-center justify-center transition-colors cursor-pointer"
       >
         {open ? <X className="w-6 h-6" /> : <Headset className="w-6 h-6" />}
       </button>

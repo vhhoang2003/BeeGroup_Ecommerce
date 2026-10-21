@@ -7,6 +7,7 @@ import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import { Link } from '@/i18n/navigation';
 import { useCategories } from '@/features/catalog/hooks';
 import { siteConfig } from '@/config/site';
+import Logo from '@/components/ui/Logo';
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -26,13 +27,15 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full bg-[#008ECC] text-white pt-12 sm:pt-14 pb-8">
+    <footer className="w-full bg-ink text-white pt-12 sm:pt-14 pb-8">
       <div className="max-w-[1240px] mx-auto px-4">
         {/* Main 3-column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 pb-10 border-b border-white/20">
           {/* Column 1: Brand & Contact Info */}
           <div className="md:col-span-5 flex flex-col">
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">{siteConfig.name}</h2>
+            <h2 className="mb-3">
+              <Logo tone="light" size="lg" />
+            </h2>
             <p className="text-[13px] text-white/85 mb-5 max-w-[380px]">{tSite('tagline')}</p>
 
             <div className="space-y-3 text-[13px] sm:text-[14px]">

@@ -24,7 +24,7 @@ export default function SecurityPage() {
   const t = useTranslations('account');
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl sm:text-3xl font-extrabold text-[#222222]">{t('security')}</h1>
+      <h1 className="text-2xl sm:text-3xl font-extrabold text-ink">{t('security')}</h1>
       <ChangePassword />
       <ChangeEmail />
       <LogoutEverywhere />
@@ -85,8 +85,8 @@ function ChangePassword() {
 
   return (
     <Card>
-      <h2 className="text-lg font-bold text-[#222222] mb-1">{t('changePassword')}</h2>
-      <p className="text-xs text-gray-500 mb-4">{t('changePasswordHint')}</p>
+      <h2 className="text-lg font-bold text-ink mb-1">{t('changePassword')}</h2>
+      <p className="text-xs text-slate-500 mb-4">{t('changePasswordHint')}</p>
       <form onSubmit={onSubmit} noValidate className="space-y-4 max-w-md">
         {done && <Alert tone="success">{t('passwordChanged')}</Alert>}
         {error && <Alert>{error}</Alert>}
@@ -149,8 +149,8 @@ function ChangeEmail() {
 
   return (
     <Card>
-      <h2 className="text-lg font-bold text-[#222222] mb-1">{t('changeEmail')}</h2>
-      <p className="text-xs text-gray-500 mb-4">{t('changeEmailHint')}</p>
+      <h2 className="text-lg font-bold text-ink mb-1">{t('changeEmail')}</h2>
+      <p className="text-xs text-slate-500 mb-4">{t('changeEmailHint')}</p>
       <form onSubmit={onSubmit} noValidate className="space-y-4 max-w-md">
         {sentTo && <Alert tone="success">{t('changeEmailSent', { email: sentTo })}</Alert>}
         {error && <Alert>{error}</Alert>}
@@ -192,8 +192,8 @@ function LogoutEverywhere() {
 
   return (
     <Card>
-      <h2 className="text-lg font-bold text-[#222222] mb-1">{t('logoutAll')}</h2>
-      <p className="text-xs text-gray-500 mb-4">{t('logoutAllHint')}</p>
+      <h2 className="text-lg font-bold text-ink mb-1">{t('logoutAll')}</h2>
+      <p className="text-xs text-slate-500 mb-4">{t('logoutAllHint')}</p>
       {error && <Alert className="mb-4">{error}</Alert>}
       <Button variant="secondary" onClick={run} loading={busy}>
         {t('logoutAll')}
@@ -243,13 +243,13 @@ function DeleteAccount() {
   return (
     <Card className="border-red-200">
       <h2 className="text-lg font-bold text-red-700 mb-1">{t('deleteAccount')}</h2>
-      <p className="text-xs text-gray-500 mb-4">{t('deleteAccountHint')}</p>
+      <p className="text-xs text-slate-500 mb-4">{t('deleteAccountHint')}</p>
       <form onSubmit={onSubmit} noValidate className="space-y-4 max-w-md">
         {error && <Alert>{error}</Alert>}
         <Field id="del-password" label={t('currentPassword')} error={errors.password?.message}>
           {(a) => <PasswordInput {...a} {...register('password')} autoComplete="current-password" />}
         </Field>
-        <label className="flex items-start gap-2 text-xs text-gray-700 cursor-pointer">
+        <label className="flex items-start gap-2 text-xs text-slate-700 cursor-pointer">
           <input type="checkbox" {...register('confirm')} className="accent-red-600 w-4 h-4 mt-0.5" />
           {t('deleteAccountConfirm')}
         </label>

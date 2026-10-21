@@ -67,7 +67,7 @@ function VerifyEmail() {
       <AuthCard icon={MailCheck} title={t('verifiedTitle')} subtitle={t('verifiedBody')}>
         <Link
           href={isAuthenticated ? '/account' : '/auth/login'}
-          className="block text-center bg-[#008ECC] hover:bg-[#0077b0] text-white py-3 rounded-xl font-bold text-sm"
+          className="block text-center bg-ink hover:bg-ink-800 text-white py-3 rounded-xl font-bold text-sm"
         >
           {isAuthenticated ? t('goToAccount') : t('goToLogin')}
         </Link>
@@ -82,7 +82,7 @@ function VerifyEmail() {
         <Alert tone="success">{t('verificationResent')}</Alert>
       ) : (
         <form onSubmit={resend} className="space-y-3">
-          <label htmlFor="resend-email" className="block text-xs font-semibold text-gray-700">
+          <label htmlFor="resend-email" className="block text-xs font-semibold text-slate-700">
             {t('resendPrompt')}
           </label>
           <input

@@ -34,11 +34,11 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
 
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-8 sm:py-12">
-      <h1 className="text-2xl sm:text-3xl font-extrabold text-[#222222] mb-2">{t('title')}</h1>
-      <p className="text-sm text-gray-500 mb-8 max-w-2xl">{t('subtitle')}</p>
+      <h1 className="text-2xl sm:text-3xl font-extrabold text-ink mb-2">{t('title')}</h1>
+      <p className="text-sm text-slate-500 mb-8 max-w-2xl">{t('subtitle')}</p>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <section className="lg:col-span-7 bg-white rounded-3xl border border-gray-200/80 p-5 sm:p-8 shadow-xs">
+        <section className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/80 p-5 sm:p-8 shadow-xs">
           <ContactForm />
         </section>
 
@@ -49,23 +49,23 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
               href={href}
               target={external ? '_blank' : undefined}
               rel={external ? 'noreferrer' : undefined}
-              className="flex items-center gap-4 bg-[#F3F9FB] border border-[#E0F0F8] rounded-2xl p-4 hover:border-[#008ECC] transition-colors"
+              className="flex items-center gap-4 bg-paper border border-honey-200 rounded-2xl p-4 hover:border-honey-500 transition-colors"
             >
-              <span className="w-11 h-11 rounded-xl bg-[#008ECC] text-white flex items-center justify-center shrink-0">
+              <span className="w-11 h-11 rounded-xl bg-ink text-white flex items-center justify-center shrink-0">
                 <Icon className="w-5 h-5" />
               </span>
               <span className="min-w-0">
-                <span className="block text-xs text-gray-500">{label}</span>
-                <span className="block font-semibold text-[#222222] truncate">{value}</span>
+                <span className="block text-xs text-slate-500">{label}</span>
+                <span className="block font-semibold text-ink truncate">{value}</span>
               </span>
             </a>
           ))}
-          <p className="flex items-start gap-2 text-sm font-medium text-[#222222] px-1">
-            <Truck className="w-4 h-4 text-[#008ECC] shrink-0 mt-0.5" />
+          <p className="flex items-start gap-2 text-sm font-medium text-ink px-1">
+            <Truck className="w-4 h-4 text-honey-700 shrink-0 mt-0.5" />
             {tSite('delivery')}
           </p>
           <DepositNote className="text-sm px-1" />
-          <p className="text-xs text-gray-500 px-1">{t('hours')}</p>
+          <p className="text-xs text-slate-500 px-1">{t('hours')}</p>
         </aside>
       </div>
     </div>

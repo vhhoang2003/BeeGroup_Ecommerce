@@ -18,7 +18,7 @@ interface MobileNavProps {
 }
 
 const rowClass =
-  'flex items-center justify-between py-2 text-sm text-[#222222] hover:text-[#008ECC] font-medium transition-colors';
+  'flex items-center justify-between py-2 text-sm text-ink hover:text-honey-700 font-medium transition-colors';
 
 export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const t = useTranslations('nav');
@@ -39,12 +39,12 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
       <div className="fixed inset-y-0 left-0 w-[290px] bg-white shadow-xl flex flex-col justify-between z-10 animate-in slide-in-from-left duration-200 overflow-y-auto">
         <div>
           {/* Header */}
-          <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-[#F3F9FB]">
+          <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-paper">
             <Logo />
             <button
               type="button"
               onClick={onClose}
-              className="p-1 text-gray-500 hover:text-gray-800"
+              className="p-1 text-slate-500 hover:text-slate-800"
               aria-label={t('closeMenu')}
             >
               <X className="w-5 h-5" />
@@ -52,25 +52,25 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
           </div>
 
           {/* User Status */}
-          <div className="p-4 border-b border-gray-100 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#008ECC]/10 flex items-center justify-center text-[#008ECC]">
+          <div className="p-4 border-b border-slate-100 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-ink/10 flex items-center justify-center text-honey-700">
               <User className="w-5 h-5" />
             </div>
             <div>
               {isAuthenticated && user ? (
                 <>
-                  <p className="text-sm font-semibold text-[#222222]">{user.fullName}</p>
-                  <Link href="/account" onClick={onClose} className="text-xs text-[#008ECC] font-medium hover:underline">
+                  <p className="text-sm font-semibold text-ink">{user.fullName}</p>
+                  <Link href="/account" onClick={onClose} className="text-xs text-honey-700 font-medium hover:underline">
                     {t('myAccount')}
                   </Link>
                 </>
               ) : (
                 <>
-                  <p className="text-sm font-semibold text-[#222222]">{t('hello')}</p>
+                  <p className="text-sm font-semibold text-ink">{t('hello')}</p>
                   <Link
                     href="/auth/login"
                     onClick={onClose}
-                    className="text-xs text-[#008ECC] font-medium hover:underline"
+                    className="text-xs text-honey-700 font-medium hover:underline"
                   >
                     {t('loginOrRegister')}
                   </Link>
@@ -81,52 +81,52 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
           {/* Category List */}
           <div className="p-4">
-            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">{t('categories')}</h4>
+            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t('categories')}</h4>
             <div className="space-y-1">
               {categories.map((c) => (
                 <Link key={c.slug} href={`/category/${c.slug}`} onClick={onClose} className={rowClass}>
                   <span className="flex items-center gap-2.5">
-                    <CategoryIcon slug={c.slug} className="w-4 h-4 text-[#008ECC]" />
+                    <CategoryIcon slug={c.slug} className="w-4 h-4 text-honey-700" />
                     {c.name}
                   </span>
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
+                  <ChevronRight className="w-4 h-4 text-slate-400" />
                 </Link>
               ))}
               <Link href="/products" onClick={onClose} className={rowClass}>
                 <span className="flex items-center gap-2.5">
-                  <LayoutGrid className="w-4 h-4 text-[#008ECC]" />
+                  <LayoutGrid className="w-4 h-4 text-honey-700" />
                   {t('allProducts')}
                 </span>
-                <ChevronRight className="w-4 h-4 text-gray-400" />
+                <ChevronRight className="w-4 h-4 text-slate-400" />
               </Link>
               <Link href="/cart" onClick={onClose} className={rowClass}>
                 <span className="flex items-center gap-2.5">
-                  <ShoppingCart className="w-4 h-4 text-[#008ECC]" />
+                  <ShoppingCart className="w-4 h-4 text-honey-700" />
                   {t('cart')}
                 </span>
-                <ChevronRight className="w-4 h-4 text-gray-400" />
+                <ChevronRight className="w-4 h-4 text-slate-400" />
               </Link>
               <Link href="/about" onClick={onClose} className={rowClass}>
                 <span className="flex items-center gap-2.5">
-                  <Info className="w-4 h-4 text-[#008ECC]" />
+                  <Info className="w-4 h-4 text-honey-700" />
                   {t('about')}
                 </span>
-                <ChevronRight className="w-4 h-4 text-gray-400" />
+                <ChevronRight className="w-4 h-4 text-slate-400" />
               </Link>
               <Link href="/contact" onClick={onClose} className={rowClass}>
                 <span className="flex items-center gap-2.5">
-                  <Mail className="w-4 h-4 text-[#008ECC]" />
+                  <Mail className="w-4 h-4 text-honey-700" />
                   {t('contact')}
                 </span>
-                <ChevronRight className="w-4 h-4 text-gray-400" />
+                <ChevronRight className="w-4 h-4 text-slate-400" />
               </Link>
               {user?.role === 'ADMIN' && (
                 <Link href="/admin" onClick={onClose} className={rowClass}>
                   <span className="flex items-center gap-2.5">
-                    <ShieldCheck className="w-4 h-4 text-[#008ECC]" />
+                    <ShieldCheck className="w-4 h-4 text-honey-700" />
                     {t('admin')}
                   </span>
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
+                  <ChevronRight className="w-4 h-4 text-slate-400" />
                 </Link>
               )}
             </div>
@@ -134,26 +134,26 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
         </div>
 
         {/* Footer shortcuts */}
-        <div className="p-4 border-t border-gray-100 bg-gray-50 space-y-2.5 text-xs text-gray-600">
+        <div className="p-4 border-t border-slate-100 bg-slate-50 space-y-2.5 text-xs text-slate-600">
           <LanguageSwitcher className="w-fit" />
-          <a href={siteConfig.contact.hotlineHref} className="flex items-center gap-2 hover:text-[#008ECC]">
-            <Phone className="w-4 h-4 text-[#008ECC]" />
+          <a href={siteConfig.contact.hotlineHref} className="flex items-center gap-2 hover:text-honey-700">
+            <Phone className="w-4 h-4 text-honey-700" />
             <span>Hotline {siteConfig.contact.hotline}</span>
           </a>
           <a
             href={siteConfig.contact.zaloHref}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 hover:text-[#008ECC]"
+            className="flex items-center gap-2 hover:text-honey-700"
           >
-            <MessageCircle className="w-4 h-4 text-[#008ECC]" />
+            <MessageCircle className="w-4 h-4 text-honey-700" />
             <span>{t('chatZalo')}</span>
           </a>
           <a
             href={siteConfig.contact.whatsappHref}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 hover:text-[#008ECC]"
+            className="flex items-center gap-2 hover:text-honey-700"
           >
             <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
             <span>WhatsApp</span>

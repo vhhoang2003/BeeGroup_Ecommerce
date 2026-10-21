@@ -20,12 +20,12 @@ export default function CategoryTiles() {
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
         {isLoading || !categories
-          ? [...Array(5)].map((_, i) => <div key={i} className="h-[150px] bg-gray-100 rounded-[16px] animate-pulse" />)
+          ? [...Array(5)].map((_, i) => <div key={i} className="h-[150px] bg-slate-100 rounded-[16px] animate-pulse" />)
           : categories.map((cat) => (
               <Link
                 key={cat.id}
                 href={`/category/${cat.slug}`}
-                className="group relative h-[150px] sm:h-[170px] rounded-[16px] overflow-hidden border border-[#EDEDED] hover:border-[#008ECC] bg-[#F3F9FB] transition-all hover:shadow-md"
+                className="group relative h-[150px] sm:h-[170px] rounded-[16px] overflow-hidden border border-line hover:border-honey-500 bg-paper transition-all hover:shadow-md"
               >
                 {cat.image ? (
                   <>
@@ -37,21 +37,21 @@ export default function CategoryTiles() {
                       unoptimized={isRemoteImage(cat.image)}
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#212844]/85 via-[#212844]/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
                   </>
                 ) : (
                   <CategoryIcon
                     slug={cat.slug}
                     strokeWidth={1.25}
-                    className="absolute right-3 top-3 w-20 h-20 text-[#008ECC]/25 transition-transform duration-300 group-hover:scale-110"
+                    className="absolute right-3 top-3 w-20 h-20 text-honey-700/25 transition-transform duration-300 group-hover:scale-110"
                   />
                 )}
 
                 <div className="absolute left-4 right-4 bottom-3">
-                  <p className={`text-[17px] sm:text-[19px] font-bold ${cat.image ? 'text-white' : 'text-[#222222]'}`}>
+                  <p className={`text-[17px] sm:text-[19px] font-bold ${cat.image ? 'text-white' : 'text-ink'}`}>
                     {cat.name}
                   </p>
-                  <p className={`text-[12px] line-clamp-1 ${cat.image ? 'text-white/80' : 'text-[#666666]'}`}>
+                  <p className={`text-[12px] line-clamp-1 ${cat.image ? 'text-white/80' : 'text-muted'}`}>
                     {tCatalog('productCount', { count: cat.itemCount })} ·{' '}
                     {cat.subCategories.map((s) => s.name).join(', ')}
                   </p>

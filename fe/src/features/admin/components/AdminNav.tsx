@@ -21,7 +21,7 @@ export default function AdminNav() {
   ];
 
   return (
-    <aside className="bg-[#212844] text-white rounded-2xl p-3 lg:sticky lg:top-24">
+    <aside className="bg-ink text-white rounded-2xl p-3 lg:sticky lg:top-24">
       <p className="px-3 pt-1 pb-3 text-xs font-bold uppercase tracking-wider text-white/50">{t('title')}</p>
       <nav aria-label={t('title')} className="flex lg:flex-col gap-1 overflow-x-auto">
         {items.map(({ href, label, icon: Icon, exact }) => {
@@ -33,7 +33,7 @@ export default function AdminNav() {
               aria-current={active ? 'page' : undefined}
               className={cn(
                 'flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-colors',
-                active ? 'bg-[#008ECC] text-white' : 'text-white/80 hover:bg-white/10'
+                active ? 'bg-ink text-white' : 'text-white/80 hover:bg-white/10'
               )}
             >
               <Icon className="w-4 h-4" />

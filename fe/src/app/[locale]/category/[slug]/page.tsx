@@ -43,19 +43,19 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-6 sm:py-8">
       {/* Breadcrumb */}
-      <nav aria-label={t('breadcrumb')} className="flex items-center gap-2 text-xs text-gray-500 mb-6">
-        <Link href="/" className="hover:text-[#008ECC]">
+      <nav aria-label={t('breadcrumb')} className="flex items-center gap-2 text-xs text-slate-500 mb-6">
+        <Link href="/" className="hover:text-honey-700">
           {tNav('home')}
         </Link>
         <span>/</span>
-        <Link href="/products" className="hover:text-[#008ECC]">
+        <Link href="/products" className="hover:text-honey-700">
           {t('products')}
         </Link>
         <span>/</span>
-        <span className="font-semibold text-[#222222]">{category.name}</span>
+        <span className="font-semibold text-ink">{category.name}</span>
       </nav>
 
-      <Suspense fallback={<div className="py-12 text-center text-gray-500">{t('loadingProducts')}</div>}>
+      <Suspense fallback={<div className="py-12 text-center text-slate-500">{t('loadingProducts')}</div>}>
         <CatalogBrowser category={slug} title={category.name} />
       </Suspense>
     </div>

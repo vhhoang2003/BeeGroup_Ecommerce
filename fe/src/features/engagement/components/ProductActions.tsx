@@ -42,7 +42,7 @@ export default function ProductActions({ product }: { product: ProductSummary })
         <button
           type="button"
           onClick={() => setInquiryOpen(true)}
-          className="inline-flex items-center gap-2 bg-[#F5B301] hover:bg-[#e0a300] text-[#222222] text-[14px] font-bold px-6 py-2.5 rounded-full transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 bg-honey hover:bg-honey-500 text-ink text-[14px] font-bold px-6 py-2.5 rounded-full transition-colors cursor-pointer"
         >
           <FileText className="w-4 h-4" />
           {t('requestQuote')}
@@ -56,7 +56,7 @@ export default function ProductActions({ product }: { product: ProductSummary })
             'inline-flex items-center gap-2 text-[14px] font-semibold px-5 py-2.5 rounded-full border transition-colors cursor-pointer',
             saved
               ? 'bg-rose-50 border-rose-200 text-rose-600'
-              : 'bg-white border-[#EDEDED] text-[#222222] hover:border-rose-300 hover:text-rose-600'
+              : 'bg-white border-line text-ink hover:border-rose-300 hover:text-rose-600'
           )}
         >
           <Heart className={cn('w-4 h-4', saved && 'fill-current')} />

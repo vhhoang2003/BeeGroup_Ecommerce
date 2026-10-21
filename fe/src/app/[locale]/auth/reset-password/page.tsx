@@ -59,7 +59,7 @@ function ResetPassword() {
       <AuthCard icon={KeyRound} title={t('resetDoneTitle')} subtitle={t('resetDoneBody')}>
         <Link
           href="/auth/login"
-          className="block text-center bg-[#008ECC] hover:bg-[#0077b0] text-white py-3 rounded-xl font-bold text-sm"
+          className="block text-center bg-ink hover:bg-ink-800 text-white py-3 rounded-xl font-bold text-sm"
         >
           {t('goToLogin')}
         </Link>

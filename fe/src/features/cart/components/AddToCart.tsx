@@ -34,7 +34,7 @@ export default function AddToCart({ product }: { product: ProductSummary }) {
           type="button"
           onClick={onAdd}
           disabled={outOfStock}
-          className="inline-flex items-center gap-2 bg-[#008ECC] hover:bg-[#0077b0] text-white text-[14px] font-bold px-6 py-2.5 rounded-full transition-colors cursor-pointer disabled:bg-gray-300 disabled:cursor-not-allowed"
+          className="inline-flex items-center gap-2 bg-ink hover:bg-ink-800 text-white text-[14px] font-bold px-6 py-2.5 rounded-full transition-colors cursor-pointer disabled:bg-slate-300 disabled:cursor-not-allowed"
         >
           <ShoppingCart className="w-4 h-4" />
           {outOfStock ? t('outOfStock') : t('add')}
@@ -44,7 +44,7 @@ export default function AddToCart({ product }: { product: ProductSummary }) {
         <p role="status" className="flex items-center gap-1.5 text-sm text-emerald-700">
           <CheckCircle2 className="w-4 h-4" />
           {t('added')}{' '}
-          <Link href="/cart" className="font-semibold text-[#008ECC] hover:underline">
+          <Link href="/cart" className="font-semibold text-honey-700 hover:underline">
             {t('viewCart')}
           </Link>
         </p>

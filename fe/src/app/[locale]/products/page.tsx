@@ -22,7 +22,7 @@ export default async function ProductsPage({ params }: PageProps<'/[locale]/prod
   const t = await getTranslations('catalog');
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-6 sm:py-8">
-      <Suspense fallback={<div className="py-12 text-center text-gray-500">{t('loadingProducts')}</div>}>
+      <Suspense fallback={<div className="py-12 text-center text-slate-500">{t('loadingProducts')}</div>}>
         <CatalogBrowser title={<ProductsTitle />} />
       </Suspense>
     </div>

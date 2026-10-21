@@ -28,7 +28,7 @@ const PAYMENT_METHODS = [
 ] as const;
 
 /** Members' name and email come from their account (the API uses the profile, not the form). */
-const lockedClass = 'bg-[#F5F5F5] text-gray-500';
+const lockedClass = 'bg-slate-100 text-slate-500';
 
 /** The contact API caps messages at 2000 characters. */
 const MESSAGE_LIMIT = 2000;
@@ -135,10 +135,10 @@ export default function CheckoutView() {
     return (
       <div className="max-w-[520px] mx-auto px-4 py-20 text-center">
         <CheckCircle2 className="w-14 h-14 text-emerald-500 mx-auto mb-4" />
-        <h1 className="text-2xl font-bold text-[#222222] mb-2">{t('quoteSentTitle')}</h1>
-        <p className="text-sm text-gray-600 mb-1">{tInq('successCode', { code: sentCode })}</p>
-        <p className="text-sm text-gray-500 mb-6">{tInq('successBody')}</p>
-        <Link href="/products" className="inline-block bg-[#008ECC] text-white px-8 py-3 rounded-full font-bold text-sm">
+        <h1 className="text-2xl font-bold text-ink mb-2">{t('quoteSentTitle')}</h1>
+        <p className="text-sm text-slate-600 mb-1">{tInq('successCode', { code: sentCode })}</p>
+        <p className="text-sm text-slate-500 mb-6">{tInq('successBody')}</p>
+        <Link href="/products" className="inline-block bg-ink text-white px-8 py-3 rounded-full font-bold text-sm">
           {tCart('continueShopping')}
         </Link>
       </div>
@@ -148,9 +148,9 @@ export default function CheckoutView() {
   if (items.length === 0) {
     return (
       <div className="max-w-[500px] mx-auto px-4 py-20 text-center">
-        <h1 className="text-2xl font-bold text-[#222222] mb-2">{tCart('emptyTitle')}</h1>
-        <p className="text-sm text-gray-500 mb-6">{t('emptyBody')}</p>
-        <Link href="/products" className="inline-block bg-[#008ECC] text-white px-8 py-3 rounded-full font-bold text-sm">
+        <h1 className="text-2xl font-bold text-ink mb-2">{tCart('emptyTitle')}</h1>
+        <p className="text-sm text-slate-500 mb-6">{t('emptyBody')}</p>
+        <Link href="/products" className="inline-block bg-ink text-white px-8 py-3 rounded-full font-bold text-sm">
           {tCart('continueShopping')}
         </Link>
       </div>
@@ -159,19 +159,19 @@ export default function CheckoutView() {
 
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-8 sm:py-12">
-      <nav aria-label={t('steps')} className="flex items-center gap-2 text-xs text-gray-500 mb-4">
-        <Link href="/cart" className="hover:text-[#008ECC]">
+      <nav aria-label={t('steps')} className="flex items-center gap-2 text-xs text-slate-500 mb-4">
+        <Link href="/cart" className="hover:text-honey-700">
           {tCart('title')}
         </Link>
         <span>/</span>
-        <span className="font-semibold text-[#222222]">{t('title')}</span>
+        <span className="font-semibold text-ink">{t('title')}</span>
       </nav>
-      <h1 className="text-2xl sm:text-3xl font-extrabold text-[#222222] mb-6">{t('title')}</h1>
+      <h1 className="text-2xl sm:text-3xl font-extrabold text-ink mb-6">{t('title')}</h1>
 
       <form onSubmit={requestQuote} noValidate className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <div className="lg:col-span-7 space-y-6">
-          <section className="bg-white rounded-2xl border border-gray-200/80 p-5 sm:p-6 space-y-4">
-            <h2 className="text-lg font-bold text-[#222222]">{t('delivery')}</h2>
+          <section className="bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 space-y-4">
+            <h2 className="text-lg font-bold text-ink">{t('delivery')}</h2>
             {formError && <Alert>{formError}</Alert>}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Field id="co-name" label={t('fullName')} error={errors.fullName?.message} required>
@@ -197,21 +197,21 @@ export default function CheckoutView() {
             </Field>
           </section>
 
-          <section className="bg-white rounded-2xl border border-gray-200/80 p-5 sm:p-6">
-            <h2 className="text-lg font-bold text-[#222222] mb-1">{t('payment')}</h2>
-            <p className="text-xs text-gray-500 mb-2">{t('paymentComingSoon')}</p>
+          <section className="bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6">
+            <h2 className="text-lg font-bold text-ink mb-1">{t('payment')}</h2>
+            <p className="text-xs text-slate-500 mb-2">{t('paymentComingSoon')}</p>
             <DepositNote className="mb-4" />
             <fieldset disabled className="space-y-2">
               <legend className="sr-only">{t('payment')}</legend>
               {PAYMENT_METHODS.map(({ id, icon: Icon }) => (
                 <label
                   key={id}
-                  className="flex items-center gap-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-400 cursor-not-allowed"
+                  className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-400 cursor-not-allowed"
                 >
-                  <input type="radio" name="payment" value={id} className="accent-[#008ECC]" />
+                  <input type="radio" name="payment" value={id} className="accent-ink" />
                   <Icon className="w-5 h-5" />
                   <span className="flex-1 font-medium">{t(`methods.${id}`)}</span>
-                  <span className="text-[11px] font-semibold uppercase tracking-wide bg-white border border-gray-200 rounded-full px-2 py-0.5">
+                  <span className="text-[11px] font-semibold uppercase tracking-wide bg-white border border-slate-200 rounded-full px-2 py-0.5">
                     {t('soon')}
                   </span>
                 </label>
@@ -220,39 +220,39 @@ export default function CheckoutView() {
           </section>
         </div>
 
-        <aside className="lg:col-span-5 bg-[#F8FAFB] rounded-2xl border border-gray-200/80 p-5 sm:p-6 lg:sticky lg:top-24 space-y-4">
-          <h2 className="text-lg font-bold text-[#222222]">{t('order')}</h2>
-          <ul className="divide-y divide-gray-200/70">
+        <aside className="lg:col-span-5 bg-paper rounded-2xl border border-slate-200/80 p-5 sm:p-6 lg:sticky lg:top-24 space-y-4">
+          <h2 className="text-lg font-bold text-ink">{t('order')}</h2>
+          <ul className="divide-y divide-slate-200/70">
             {items.map((item) => (
               <li key={item.productId} className="py-3 flex gap-3 items-center">
                 <CartLineThumb item={item} size="w-14 h-14" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-[#222222] line-clamp-1">{item.name}</p>
-                  <p className="text-xs text-gray-500">× {item.quantity}</p>
+                  <p className="text-sm font-semibold text-ink line-clamp-1">{item.name}</p>
+                  <p className="text-xs text-slate-500">× {item.quantity}</p>
                 </div>
-                <span className="text-sm font-semibold text-[#222222] whitespace-nowrap">
+                <span className="text-sm font-semibold text-ink whitespace-nowrap">
                   {formatPrice(item.price === null ? null : item.price * item.quantity) ?? tCommon('contactForPrice')}
                 </span>
               </li>
             ))}
           </ul>
-          <dl className="space-y-2 text-sm border-t border-gray-200 pt-4">
+          <dl className="space-y-2 text-sm border-t border-slate-200 pt-4">
             <div className="flex justify-between">
-              <dt className="text-gray-600">{tCart('items', { count: totals.count })}</dt>
-              <dd className="font-semibold text-[#222222]">{formatPrice(totals.subtotal)}</dd>
+              <dt className="text-slate-600">{tCart('items', { count: totals.count })}</dt>
+              <dd className="font-semibold text-ink">{formatPrice(totals.subtotal)}</dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-gray-600">{tCart('shipping')}</dt>
-              <dd className="text-gray-500">{tCart('shippingLater')}</dd>
+              <dt className="text-slate-600">{tCart('shipping')}</dt>
+              <dd className="text-slate-500">{tCart('shippingLater')}</dd>
             </div>
           </dl>
-          <div className="flex justify-between items-baseline border-t border-gray-200 pt-4">
-            <span className="font-bold text-[#222222]">{t('total')}</span>
-            <span className="text-2xl font-black text-[#222222]">{formatPrice(totals.subtotal)}</span>
+          <div className="flex justify-between items-baseline border-t border-slate-200 pt-4">
+            <span className="font-bold text-ink">{t('total')}</span>
+            <span className="text-2xl font-black text-ink">{formatPrice(totals.subtotal)}</span>
           </div>
           {totals.hasUnpriced && <p className="text-xs text-amber-700">{tCart('unpricedNote')}</p>}
           <DepositSummary subtotal={totals.subtotal} hasUnpriced={totals.hasUnpriced} />
-          <p className="flex items-start gap-1.5 text-xs text-[#008ECC] font-medium">
+          <p className="flex items-start gap-1.5 text-xs text-honey-700 font-medium">
             <Truck className="w-4 h-4 shrink-0" />
             {tSite('delivery')}
           </p>
@@ -263,18 +263,18 @@ export default function CheckoutView() {
               type="button"
               disabled
               aria-describedby="pay-disabled-note"
-              className="w-full inline-flex items-center justify-center gap-2 bg-gray-300 text-white py-3.5 rounded-xl font-bold text-base cursor-not-allowed"
+              className="w-full inline-flex items-center justify-center gap-2 bg-slate-300 text-white py-3.5 rounded-xl font-bold text-base cursor-not-allowed"
             >
               <Lock className="w-4 h-4" />
               {t('pay')}
             </button>
-            <p id="pay-disabled-note" className="text-xs text-gray-500 text-center mt-2">
+            <p id="pay-disabled-note" className="text-xs text-slate-500 text-center mt-2">
               {t('payDisabled')}
             </p>
           </div>
 
-          <div className="border-t border-gray-200 pt-4 space-y-3">
-            <p className="text-xs text-gray-600">{t('quoteHint')}</p>
+          <div className="border-t border-slate-200 pt-4 space-y-3">
+            <p className="text-xs text-slate-600">{t('quoteHint')}</p>
             {isGuest && <Turnstile key={captchaKey} onToken={setCaptcha} />}
             <Button type="submit" variant="secondary" loading={isSubmitting} className="w-full">
               <Wallet className="w-4 h-4" />

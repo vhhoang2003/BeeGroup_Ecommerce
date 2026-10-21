@@ -72,16 +72,16 @@ function InquiryList() {
             </option>
           ))}
         </select>
-        <label className="text-xs text-gray-600 flex items-center gap-1.5">
+        <label className="text-xs text-slate-600 flex items-center gap-1.5">
           {t('from')}
           <input type="date" value={from} onChange={(e) => change(setFrom)(e.target.value)} className={selectClass} />
         </label>
-        <label className="text-xs text-gray-600 flex items-center gap-1.5">
+        <label className="text-xs text-slate-600 flex items-center gap-1.5">
           {t('to')}
           <input type="date" value={to} onChange={(e) => change(setTo)(e.target.value)} className={selectClass} />
         </label>
-        <label className="text-sm text-gray-700 flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" checked={mine} onChange={(e) => change(setMine)(e.target.checked)} className="accent-[#008ECC] w-4 h-4" />
+        <label className="text-sm text-slate-700 flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" checked={mine} onChange={(e) => change(setMine)(e.target.checked)} className="accent-ink w-4 h-4" />
           {t('assignedToMe')}
         </label>
       </div>
@@ -103,27 +103,27 @@ function InquiryList() {
           {isLoading && <EmptyRow colSpan={6}>{tCommon('loading')}</EmptyRow>}
           {data?.content.length === 0 && <EmptyRow colSpan={6}>{t('empty')}</EmptyRow>}
           {data?.content.map((inq) => (
-            <tr key={inq.id} className="hover:bg-[#F9FBFD]">
+            <tr key={inq.id} className="hover:bg-paper">
               <Td>
-                <Link href={`/admin/inquiries/${inq.id}`} className="font-mono text-xs font-semibold text-[#008ECC] hover:underline">
+                <Link href={`/admin/inquiries/${inq.id}`} className="font-mono text-xs font-semibold text-honey-700 hover:underline">
                   {inq.code}
                 </Link>
               </Td>
               <Td>
-                <span className="font-semibold text-[#222222]">
+                <span className="font-semibold text-ink">
                   {inq.type === 'PRODUCT' ? inq.product?.name : inq.subject}
                 </span>
-                {inq.type === 'PRODUCT' && <span className="text-xs text-gray-500"> × {inq.quantity}</span>}
+                {inq.type === 'PRODUCT' && <span className="text-xs text-slate-500"> × {inq.quantity}</span>}
               </Td>
               <Td>
-                <p className="text-[#222222]">{inq.fullName}</p>
-                <p className="text-xs text-gray-500">{inq.email}</p>
+                <p className="text-ink">{inq.fullName}</p>
+                <p className="text-xs text-slate-500">{inq.email}</p>
               </Td>
               <Td>
                 <InquiryStatusBadge status={inq.status} />
               </Td>
               <Td className="text-xs">{inq.assigneeName ?? '—'}</Td>
-              <Td className="text-xs text-gray-500 whitespace-nowrap">{formatDateTime(inq.createdAt, locale)}</Td>
+              <Td className="text-xs text-slate-500 whitespace-nowrap">{formatDateTime(inq.createdAt, locale)}</Td>
             </tr>
           ))}
         </tbody>

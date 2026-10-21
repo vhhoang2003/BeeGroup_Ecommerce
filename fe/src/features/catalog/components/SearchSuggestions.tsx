@@ -76,9 +76,9 @@ export default function SearchSuggestions() {
       <form
         onSubmit={handleSearchSubmit}
         role="search"
-        className="flex items-center w-full h-[44px] bg-[#F3F9FB] rounded-[10px] px-3.5 border border-[#E0F0F8] focus-within:border-[#008ECC] focus-within:ring-2 focus-within:ring-[#008ECC]/15 transition-all"
+        className="flex items-center w-full h-[44px] bg-paper rounded-[10px] px-3.5 border border-honey-200 focus-within:border-honey-500 focus-within:ring-2 focus-within:ring-honey-400/15 transition-all"
       >
-        <Search className="w-[18px] h-[18px] text-[#008ECC] shrink-0 mr-2.5" />
+        <Search className="w-[18px] h-[18px] text-honey-700 shrink-0 mr-2.5" />
 
         <input
           type="text"
@@ -89,7 +89,7 @@ export default function SearchSuggestions() {
           }}
           placeholder={t('placeholder')}
           aria-label={t('label')}
-          className="w-full bg-transparent text-[13px] sm:text-[14px] text-[#222222] placeholder:text-[#888888] outline-none"
+          className="w-full bg-transparent text-[13px] sm:text-[14px] text-ink placeholder:text-muted outline-none"
         />
 
         {query && (
@@ -101,7 +101,7 @@ export default function SearchSuggestions() {
               setIsOpen(false);
             }}
             aria-label={t('clear')}
-            className="p-1 text-gray-400 hover:text-gray-600 mr-1"
+            className="p-1 text-slate-400 hover:text-slate-600 mr-1"
           >
             <X className="w-3.5 h-3.5" />
           </button>
@@ -110,7 +110,7 @@ export default function SearchSuggestions() {
         <button
           type="button"
           onClick={() => router.push('/products')}
-          className="text-[#008ECC] hover:text-[#0077b0] transition-colors p-1"
+          className="text-honey-700 hover:text-honey-800 transition-colors p-1"
           title={t('filter')}
           aria-label={t('filter')}
         >
@@ -120,41 +120,41 @@ export default function SearchSuggestions() {
 
       {/* Dropdown Suggestions */}
       {isOpen && (
-        <div className="absolute top-[48px] left-0 w-full bg-white rounded-xl shadow-xl border border-gray-100 z-50 overflow-hidden animate-in fade-in slide-in-from-top-1 duration-150">
-          <div className="p-2 border-b border-gray-50 flex items-center justify-between text-xs text-gray-500 font-medium">
+        <div className="absolute top-[48px] left-0 w-full bg-white rounded-xl shadow-xl border border-slate-100 z-50 overflow-hidden animate-in fade-in slide-in-from-top-1 duration-150">
+          <div className="p-2 border-b border-slate-50 flex items-center justify-between text-xs text-slate-500 font-medium">
             <span>{loading ? t('searching') : t('suggestions', { count: results.length })}</span>
-            <span className="text-[11px] text-gray-400">{t('enterHint')}</span>
+            <span className="text-[11px] text-slate-400">{t('enterHint')}</span>
           </div>
 
           {results.length > 0 ? (
-            <div className="divide-y divide-gray-50 max-h-[320px] overflow-y-auto">
+            <div className="divide-y divide-slate-50 max-h-[320px] overflow-y-auto">
               {results.map((product) => (
                 <Link
                   key={product.id}
                   href={`/products/${product.slug}`}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-3 p-3 hover:bg-[#F3F9FB] transition-colors group"
+                  className="flex items-center gap-3 p-3 hover:bg-paper transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded bg-[#F5F5F5] shrink-0 relative overflow-hidden">
+                  <div className="w-10 h-10 rounded bg-slate-100 shrink-0 relative overflow-hidden">
                     <ProductThumb image={product.image} categorySlug={product.category.slug} sizes="40px" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-[#222222] group-hover:text-[#008ECC] truncate">
+                    <p className="text-sm font-medium text-ink group-hover:text-honey-700 truncate">
                       {product.name}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-slate-500">
                       {product.category.name}
                       {product.subCategory ? ` · ${product.subCategory.name}` : ''}
                     </p>
                   </div>
-                  <p className="text-sm font-semibold text-[#222222] shrink-0">
+                  <p className="text-sm font-semibold text-ink shrink-0">
                     {formatPrice(product.price) ?? tCommon('contactForPrice')}
                   </p>
                 </Link>
               ))}
             </div>
           ) : (
-            !loading && <div className="p-4 text-center text-sm text-gray-500">{t('noResults', { q: query })}</div>
+            !loading && <div className="p-4 text-center text-sm text-slate-500">{t('noResults', { q: query })}</div>
           )}
         </div>
       )}

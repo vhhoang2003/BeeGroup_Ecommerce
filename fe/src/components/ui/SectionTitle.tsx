@@ -18,23 +18,23 @@ export default function SectionTitle({
 }: SectionTitleProps) {
   const t = useTranslations('common');
   return (
-    <div className={`flex items-center justify-between border-b border-[#EDEDED] pb-3 mb-5 ${className}`}>
-      <h2 className="text-[19px] sm:text-[22px] font-semibold text-[#222222] tracking-tight relative">
+    <div className={`flex items-center justify-between border-b border-line pb-3 mb-5 ${className}`}>
+      <h2 className="text-[19px] sm:text-[22px] font-semibold text-ink tracking-tight relative">
         <span>{prefix} </span>
-        <span className="text-[#008ECC] relative inline-block">
+        <span className="text-honey-700 relative inline-block">
           {highlight}
           {/* Underline cyan accent */}
-          <span className="absolute -bottom-3 left-0 w-full h-[3px] bg-[#008ECC] rounded-t-sm" />
+          <span className="absolute -bottom-3 left-0 w-full h-[3px] bg-ink rounded-t-sm" />
         </span>
       </h2>
 
       {viewAllHref && (
         <Link
           href={viewAllHref}
-          className="group flex items-center gap-1 text-[13px] sm:text-[14px] font-medium text-[#222222] hover:text-[#008ECC] transition-colors"
+          className="group flex items-center gap-1 text-[13px] sm:text-[14px] font-medium text-ink hover:text-honey-700 transition-colors"
         >
           <span>{t('viewAll')}</span>
-          <ChevronRight className="w-4 h-4 text-[#008ECC] transition-transform group-hover:translate-x-0.5" />
+          <ChevronRight className="w-4 h-4 text-honey-700 transition-transform group-hover:translate-x-0.5" />
         </Link>
       )}
     </div>

@@ -14,8 +14,8 @@ import type { SheetChange, SheetImportReport, SheetIssue, SheetRowAction } from 
 
 const ACTION_STYLE: Record<SheetRowAction, string> = {
   CREATE: 'bg-emerald-50 text-emerald-700',
-  UPDATE: 'bg-[#EBF6FA] text-[#007AB0]',
-  UNCHANGED: 'bg-gray-100 text-gray-500',
+  UPDATE: 'bg-honey-50 text-honey-700',
+  UNCHANGED: 'bg-slate-100 text-slate-500',
   ERROR: 'bg-red-50 text-red-700',
 };
 
@@ -94,8 +94,8 @@ export default function PriceListPage() {
   const tiles: [string, number, string][] = report
     ? [
         [t('created'), report.created, 'text-emerald-700'],
-        [t('updated'), report.updated, 'text-[#007AB0]'],
-        [t('unchanged'), report.unchanged, 'text-gray-500'],
+        [t('updated'), report.updated, 'text-honey-700'],
+        [t('unchanged'), report.unchanged, 'text-slate-500'],
         [t('failed'), report.failed, 'text-red-700'],
       ]
     : [];
@@ -105,8 +105,8 @@ export default function PriceListPage() {
       <PageHeader title={t('title')} subtitle={t('subtitle')} />
 
       <Card className="space-y-3">
-        <h2 className="font-bold text-[#222222]">{t('step1')}</h2>
-        <p className="text-sm text-gray-600">{t('step1Body')}</p>
+        <h2 className="font-bold text-ink">{t('step1')}</h2>
+        <p className="text-sm text-slate-600">{t('step1Body')}</p>
         <Button variant="secondary" onClick={download} loading={busy === 'download'}>
           <FileDown className="w-4 h-4" />
           {t('download')}
@@ -114,8 +114,8 @@ export default function PriceListPage() {
       </Card>
 
       <Card className="space-y-4">
-        <h2 className="font-bold text-[#222222]">{t('step2')}</h2>
-        <ul className="text-sm text-gray-600 list-disc pl-5 space-y-1">
+        <h2 className="font-bold text-ink">{t('step2')}</h2>
+        <ul className="text-sm text-slate-600 list-disc pl-5 space-y-1">
           <li>{t('rule1')}</li>
           <li>{t('rule2')}</li>
           <li>{t('rule3')}</li>
@@ -133,7 +133,7 @@ export default function PriceListPage() {
           />
           <label
             htmlFor="price-list-file"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-dashed border-gray-300 text-sm font-medium text-gray-700 cursor-pointer hover:border-[#008ECC] hover:text-[#008ECC]"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-dashed border-slate-300 text-sm font-medium text-slate-700 cursor-pointer hover:border-honey-500 hover:text-honey-700"
           >
             <FileSpreadsheet className="w-4 h-4" />
             {file ? file.name : t('choose')}
@@ -172,8 +172,8 @@ export default function PriceListPage() {
         {report && (
           <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {tiles.map(([label, value, color]) => (
-              <div key={label} className="rounded-xl bg-[#F9FBFD] border border-gray-100 p-3">
-                <dt className="text-xs text-gray-500">{label}</dt>
+              <div key={label} className="rounded-xl bg-paper border border-slate-100 p-3">
+                <dt className="text-xs text-slate-500">{label}</dt>
                 <dd className={cn('text-2xl font-black', color)}>{value}</dd>
               </div>
             ))}
@@ -183,7 +183,7 @@ export default function PriceListPage() {
 
       {report && (
         <>
-          <label className="flex items-center gap-2 text-sm text-gray-600">
+          <label className="flex items-center gap-2 text-sm text-slate-600">
             <input type="checkbox" checked={showUnchanged} onChange={(e) => setShowUnchanged(e.target.checked)} />
             {t('showUnchanged')}
           </label>
@@ -200,24 +200,24 @@ export default function PriceListPage() {
               {rows.length === 0 && <EmptyRow colSpan={4}>{t('noRows')}</EmptyRow>}
               {rows.map((r) => (
                 <tr key={`${r.sheet}-${r.row}`}>
-                  <Td className="whitespace-nowrap text-gray-500">
+                  <Td className="whitespace-nowrap text-slate-500">
                     {r.sheet} · {r.row}
                   </Td>
                   <Td>
                     {r.productId ? (
-                      <Link href={`/admin/products/${r.productId}`} className="font-semibold text-[#008ECC] hover:underline">
+                      <Link href={`/admin/products/${r.productId}`} className="font-semibold text-honey-700 hover:underline">
                         {r.name ?? r.slug}
                       </Link>
                     ) : (
                       <span className="font-semibold">{r.name ?? r.slug ?? '—'}</span>
                     )}
-                    {r.slug && <p className="text-xs text-gray-400">{r.slug}</p>}
+                    {r.slug && <p className="text-xs text-slate-400">{r.slug}</p>}
                   </Td>
                   <Td>
                     <span className={cn('px-2 py-0.5 rounded-full text-xs font-bold whitespace-nowrap', ACTION_STYLE[r.action])}>
                       {t(`actions.${r.action}`)}
                     </span>
-                    {report.applied && r.action === 'CREATE' && <p className="text-xs text-gray-500 mt-1">{t('addImages')}</p>}
+                    {report.applied && r.action === 'CREATE' && <p className="text-xs text-slate-500 mt-1">{t('addImages')}</p>}
                   </Td>
                   <Td>
                     {r.errors.length > 0 && (
@@ -228,11 +228,11 @@ export default function PriceListPage() {
                       </ul>
                     )}
                     {r.changes.length > 0 && (
-                      <ul className="text-xs text-gray-700 space-y-0.5">
+                      <ul className="text-xs text-slate-700 space-y-0.5">
                         {r.changes.map((c, i) => (
                           <li key={i}>
-                            <span className="text-gray-500">{c.field === 'SPEC' ? c.label : t(`fields.${c.field}`)}:</span>{' '}
-                            {c.from !== null && <span className="line-through text-gray-400">{show(c.field, c.from)}</span>}
+                            <span className="text-slate-500">{c.field === 'SPEC' ? c.label : t(`fields.${c.field}`)}:</span>{' '}
+                            {c.from !== null && <span className="line-through text-slate-400">{show(c.field, c.from)}</span>}
                             {c.from !== null && ' → '}
                             <b>{show(c.field, c.to)}</b>
                           </li>

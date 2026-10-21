@@ -45,7 +45,7 @@ export default function HeroBanner() {
   return (
     <div className="relative w-full max-w-[1240px] mx-auto px-4 mt-4 sm:mt-6 mb-8 sm:mb-10">
       {/* Main Navy Card */}
-      <div className="relative w-full bg-[#212844] rounded-[20px] sm:rounded-[24px] overflow-hidden min-h-[300px] sm:min-h-[350px] flex items-center px-6 sm:px-12 py-8 sm:py-10 shadow-md">
+      <div className="relative w-full bg-ink rounded-[20px] sm:rounded-[24px] overflow-hidden min-h-[300px] sm:min-h-[350px] flex items-center px-6 sm:px-12 py-8 sm:py-10 shadow-md">
         {/* Photo on the right, faded into the navy background */}
         <div className="absolute inset-y-0 right-0 w-full md:w-[60%]">
           <Image
@@ -57,12 +57,12 @@ export default function HeroBanner() {
             priority
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#212844] via-[#212844]/70 md:via-[#212844]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/70 md:via-ink/40 to-transparent" />
         </div>
 
         {/* Left Text Content */}
         <div className="relative z-10 max-w-[520px] flex flex-col justify-center text-white">
-          <p className="text-[14px] sm:text-[16px] font-medium text-[#F5B301] mb-1.5 sm:mb-2 tracking-wide">
+          <p className="text-[14px] sm:text-[16px] font-medium text-honey mb-1.5 sm:mb-2 tracking-wide">
             {t(`${active.id}.subtitle`)}
           </p>
 
@@ -77,7 +77,7 @@ export default function HeroBanner() {
           <div className="flex items-center gap-4">
             <Link
               href={active.link}
-              className="inline-flex items-center justify-center bg-[#008ECC] hover:bg-[#0077b0] text-white text-[14px] sm:text-[15px] font-semibold px-6 py-2.5 rounded-full transition-all shadow-sm hover:shadow"
+              className="inline-flex items-center justify-center bg-ink hover:bg-ink-800 text-white text-[14px] sm:text-[15px] font-semibold px-6 py-2.5 rounded-full transition-all shadow-sm hover:shadow"
             >
               {t(`${active.id}.cta`)}
             </Link>
@@ -104,7 +104,7 @@ export default function HeroBanner() {
         type="button"
         onClick={handlePrev}
         aria-label={t('prev')}
-        className="absolute -left-1 sm:left-1 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white text-[#008ECC] shadow-lg border border-gray-100 flex items-center justify-center hover:bg-[#F3F9FB] hover:scale-105 transition-all z-20 cursor-pointer"
+        className="absolute -left-1 sm:left-1 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white text-honey-700 shadow-lg border border-slate-100 flex items-center justify-center hover:bg-paper hover:scale-105 transition-all z-20 cursor-pointer"
       >
         <ChevronLeft className="w-5 sm:w-6 h-5 sm:h-6 stroke-[2.5]" />
       </button>
@@ -113,7 +113,7 @@ export default function HeroBanner() {
         type="button"
         onClick={handleNext}
         aria-label={t('next')}
-        className="absolute -right-1 sm:right-1 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white text-[#008ECC] shadow-lg border border-gray-100 flex items-center justify-center hover:bg-[#F3F9FB] hover:scale-105 transition-all z-20 cursor-pointer"
+        className="absolute -right-1 sm:right-1 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white text-honey-700 shadow-lg border border-slate-100 flex items-center justify-center hover:bg-paper hover:scale-105 transition-all z-20 cursor-pointer"
       >
         <ChevronRight className="w-5 sm:w-6 h-5 sm:h-6 stroke-[2.5]" />
       </button>

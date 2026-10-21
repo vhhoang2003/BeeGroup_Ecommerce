@@ -63,7 +63,7 @@ export default function EditProductPage({ params }: PageProps<'/[locale]/admin/p
               <Link
                 href={`/products/${product.slug}`}
                 target="_blank"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#008ECC] hover:underline px-3 py-2"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-honey-700 hover:underline px-3 py-2"
               >
                 <ExternalLink className="w-4 h-4" />
                 {t('viewOnSite')}

@@ -94,9 +94,9 @@ export default function ContactForm() {
     return (
       <div className="text-center py-8">
         <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto mb-3" />
-        <p className="text-lg font-bold text-[#222222] mb-1">{t('sentTitle')}</p>
-        <p className="text-sm text-gray-600 mb-1">{tInq('successCode', { code })}</p>
-        <p className="text-sm text-gray-500 mb-6">{tInq('successBody')}</p>
+        <p className="text-lg font-bold text-ink mb-1">{t('sentTitle')}</p>
+        <p className="text-sm text-slate-600 mb-1">{tInq('successCode', { code })}</p>
+        <p className="text-sm text-slate-500 mb-6">{tInq('successBody')}</p>
         <Button variant="secondary" onClick={() => setCode(null)}>
           {t('sendAnother')}
         </Button>
@@ -149,7 +149,7 @@ export default function ContactForm() {
       <Button type="submit" loading={isSubmitting}>
         {t('send')}
       </Button>
-      <p className="text-[11px] text-gray-500">{tInq('privacyNote')}</p>
+      <p className="text-[11px] text-slate-500">{tInq('privacyNote')}</p>
     </form>
   );
 }

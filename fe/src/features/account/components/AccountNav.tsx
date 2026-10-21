@@ -28,15 +28,15 @@ export default function AccountNav() {
   };
 
   return (
-    <aside className="bg-white rounded-2xl border border-gray-200/80 p-4 shadow-xs">
+    <aside className="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs">
       {user && (
-        <div className="flex items-center gap-3 pb-4 mb-3 border-b border-gray-100">
-          <div className="w-11 h-11 rounded-xl bg-[#008ECC] text-white flex items-center justify-center text-lg font-bold">
+        <div className="flex items-center gap-3 pb-4 mb-3 border-b border-slate-100">
+          <div className="w-11 h-11 rounded-xl bg-ink text-white flex items-center justify-center text-lg font-bold">
             {user.fullName.charAt(0).toUpperCase()}
           </div>
           <div className="min-w-0">
-            <p className="font-bold text-[#222222] truncate">{user.fullName}</p>
-            <p className="text-xs text-gray-500 truncate">{user.email}</p>
+            <p className="font-bold text-ink truncate">{user.fullName}</p>
+            <p className="text-xs text-slate-500 truncate">{user.email}</p>
           </div>
         </div>
       )}
@@ -48,7 +48,7 @@ export default function AccountNav() {
             aria-current={pathname === href ? 'page' : undefined}
             className={cn(
               'flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-colors',
-              pathname === href ? 'bg-[#EBF6FA] text-[#008ECC]' : 'text-gray-700 hover:bg-gray-50'
+              pathname === href ? 'bg-honey-50 text-honey-700' : 'text-slate-700 hover:bg-slate-50'
             )}
           >
             <Icon className="w-4 h-4" />

@@ -97,12 +97,12 @@ export default async function ProductDetailPage({ params }: Props) {
       <ViewTracker productId={product.id} />
 
       {/* Breadcrumb */}
-      <nav aria-label={t('breadcrumb')} className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-[#008ECC]">
+      <nav aria-label={t('breadcrumb')} className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-500 mb-6">
+        <Link href="/" className="hover:text-honey-700">
           {tNav('home')}
         </Link>
         <span>/</span>
-        <Link href={`/category/${product.category.slug}`} className="hover:text-[#008ECC]">
+        <Link href={`/category/${product.category.slug}`} className="hover:text-honey-700">
           {product.category.name}
         </Link>
         {product.subCategory && (
@@ -110,18 +110,18 @@ export default async function ProductDetailPage({ params }: Props) {
             <span>/</span>
             <Link
               href={`/category/${product.category.slug}?sub=${product.subCategory.slug}`}
-              className="hover:text-[#008ECC]"
+              className="hover:text-honey-700"
             >
               {product.subCategory.name}
             </Link>
           </>
         )}
         <span>/</span>
-        <span className="font-semibold text-[#222222] truncate max-w-[200px] sm:max-w-none">{product.name}</span>
+        <span className="font-semibold text-ink truncate max-w-[200px] sm:max-w-none">{product.name}</span>
       </nav>
 
       {/* Main PDP Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-white rounded-3xl p-5 sm:p-8 border border-gray-100 shadow-xs">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-white rounded-3xl p-5 sm:p-8 border border-slate-100 shadow-xs">
         {/* Left: Gallery */}
         <div className="lg:col-span-5 flex flex-col">
           <ProductGallery
@@ -131,12 +131,12 @@ export default async function ProductDetailPage({ params }: Props) {
           />
 
           {/* Trust Guarantees */}
-          <div className="grid grid-cols-3 gap-2 w-full mt-6 text-center text-xs text-gray-600">
+          <div className="grid grid-cols-3 gap-2 w-full mt-6 text-center text-xs text-slate-600">
             {trust.map(({ icon: Icon, title, sub }) => (
-              <div key={title} className="p-3 bg-[#F8FAFB] rounded-xl border border-gray-100 flex flex-col items-center">
-                <Icon className="w-5 h-5 text-[#008ECC] mb-1" />
-                <span className="font-semibold text-[#222222]">{title}</span>
-                <span className="text-[10px] text-gray-400">{sub}</span>
+              <div key={title} className="p-3 bg-paper rounded-xl border border-slate-100 flex flex-col items-center">
+                <Icon className="w-5 h-5 text-honey-700 mb-1" />
+                <span className="font-semibold text-ink">{title}</span>
+                <span className="text-[10px] text-slate-400">{sub}</span>
               </div>
             ))}
           </div>
@@ -145,22 +145,22 @@ export default async function ProductDetailPage({ params }: Props) {
         {/* Right: Product Info */}
         <div className="lg:col-span-7 flex flex-col">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#008ECC] bg-[#EBF6FA] px-2.5 py-0.5 rounded-md">
+            <span className="text-xs font-bold uppercase tracking-wider text-honey-700 bg-honey-50 px-2.5 py-0.5 rounded-md">
               {product.brand}
             </span>
             <StockBadge status={product.stockStatus} />
           </div>
 
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#222222] tracking-tight mb-2">{product.name}</h1>
-          <p className="text-sm text-gray-600 mb-4">{product.shortDescription}</p>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight mb-2">{product.name}</h1>
+          <p className="text-sm text-slate-600 mb-4">{product.shortDescription}</p>
 
           {/* Price Box */}
-          <div className="p-4 bg-[#F8FAFB] rounded-2xl border border-gray-200/80 mb-5">
-            <span className="text-3xl font-black text-[#222222]">
+          <div className="p-4 bg-paper rounded-2xl border border-slate-200/80 mb-5">
+            <span className="text-3xl font-black text-ink">
               {formatPrice(product.price) ?? tCommon('contactForPrice')}
             </span>
-            {product.price !== null && <p className="text-xs text-gray-500 mt-1">{t('priceNote')}</p>}
-            <p className="flex items-center gap-1.5 text-xs font-semibold text-[#008ECC] mt-2">
+            {product.price !== null && <p className="text-xs text-slate-500 mt-1">{t('priceNote')}</p>}
+            <p className="flex items-center gap-1.5 text-xs font-semibold text-honey-700 mt-2">
               <Truck className="w-4 h-4 shrink-0" />
               {tSite('delivery')}
             </p>
@@ -175,11 +175,11 @@ export default async function ProductDetailPage({ params }: Props) {
           {/* Highlights */}
           {product.highlights.length > 0 && (
             <div className="mb-6">
-              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">{t('highlights')}</h2>
+              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">{t('highlights')}</h2>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {product.highlights.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#008ECC] mt-2 shrink-0" />
+                  <li key={item} className="flex items-start gap-2 text-sm text-slate-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-ink mt-2 shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -190,10 +190,10 @@ export default async function ProductDetailPage({ params }: Props) {
           {/* Use cases */}
           {product.useCases.length > 0 && (
             <div className="mb-6">
-              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">{t('useCases')}</h2>
+              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">{t('useCases')}</h2>
               <div className="flex flex-wrap gap-2">
                 {product.useCases.map((item) => (
-                  <span key={item} className="text-xs font-medium text-[#008ECC] bg-[#EBF6FA] px-3 py-1 rounded-full">
+                  <span key={item} className="text-xs font-medium text-honey-700 bg-honey-50 px-3 py-1 rounded-full">
                     {item}
                   </span>
                 ))}
@@ -204,8 +204,8 @@ export default async function ProductDetailPage({ params }: Props) {
           {/* Description */}
           {product.description && (
             <div className="mb-6">
-              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">{t('description')}</h2>
-              <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">{product.description}</p>
+              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">{t('description')}</h2>
+              <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line">{product.description}</p>
             </div>
           )}
 
@@ -222,19 +222,19 @@ export default async function ProductDetailPage({ params }: Props) {
 
       {/* Specifications Table */}
       {product.specs.length > 0 && (
-        <section className="mt-8 bg-white rounded-3xl p-5 sm:p-8 border border-gray-100 shadow-xs">
-          <h2 className="text-lg font-bold text-[#222222] mb-4">{t('specs')}</h2>
-          <div className="rounded-xl border border-gray-200 overflow-hidden text-sm">
+        <section className="mt-8 bg-white rounded-3xl p-5 sm:p-8 border border-slate-100 shadow-xs">
+          <h2 className="text-lg font-bold text-ink mb-4">{t('specs')}</h2>
+          <div className="rounded-xl border border-slate-200 overflow-hidden text-sm">
             {product.specs.map((row, idx) => (
-              <div key={row.key} className={`flex py-2.5 px-4 ${idx % 2 === 0 ? 'bg-[#F9FBFD]' : 'bg-white'}`}>
-                <span className="w-2/5 sm:w-1/3 font-semibold text-gray-500 pr-3">{row.label}</span>
-                <span className="w-3/5 sm:w-2/3 text-[#222222] font-medium">{row.value}</span>
+              <div key={row.key} className={`flex py-2.5 px-4 ${idx % 2 === 0 ? 'bg-paper' : 'bg-white'}`}>
+                <span className="w-2/5 sm:w-1/3 font-semibold text-slate-500 pr-3">{row.label}</span>
+                <span className="w-3/5 sm:w-2/3 text-ink font-medium">{row.value}</span>
               </div>
             ))}
           </div>
 
           {product.sources.length > 0 && (
-            <div className="mt-4 text-xs text-gray-500">
+            <div className="mt-4 text-xs text-slate-500">
               <span className="font-semibold">{t('sources')} </span>
               {product.sources.map((url, i) => (
                 <React.Fragment key={url}>
@@ -243,7 +243,7 @@ export default async function ProductDetailPage({ params }: Props) {
                     href={url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-0.5 text-[#008ECC] hover:underline break-all"
+                    className="inline-flex items-center gap-0.5 text-honey-700 hover:underline break-all"
                   >
                     {hostname(url)}
                     <ExternalLink className="w-3 h-3" />

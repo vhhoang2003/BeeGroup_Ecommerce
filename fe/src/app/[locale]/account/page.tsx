@@ -86,7 +86,7 @@ export default function ProfilePage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl sm:text-3xl font-extrabold text-[#222222]">{t('profile')}</h1>
+      <h1 className="text-2xl sm:text-3xl font-extrabold text-ink">{t('profile')}</h1>
 
       <Card>
         <form onSubmit={onSubmit} noValidate className="space-y-4 max-w-xl">
@@ -137,17 +137,17 @@ export default function ProfilePage() {
         </form>
       </Card>
 
-      <Card className="text-xs text-gray-500 grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <Card className="text-xs text-slate-500 grid grid-cols-1 sm:grid-cols-3 gap-3">
         <p>
-          <span className="block font-semibold text-gray-700">{t('memberSince')}</span>
+          <span className="block font-semibold text-slate-700">{t('memberSince')}</span>
           {formatDateTime(user.createdAt, locale)}
         </p>
         <p>
-          <span className="block font-semibold text-gray-700">{t('emailVerifiedAt')}</span>
+          <span className="block font-semibold text-slate-700">{t('emailVerifiedAt')}</span>
           {formatDateTime(user.emailVerifiedAt, locale)}
         </p>
         <p>
-          <span className="block font-semibold text-gray-700">{t('lastLogin')}</span>
+          <span className="block font-semibold text-slate-700">{t('lastLogin')}</span>
           {formatDateTime(user.lastLoginAt, locale)}
         </p>
       </Card>

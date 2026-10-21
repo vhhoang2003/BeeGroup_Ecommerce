@@ -20,7 +20,7 @@ export default function ProductGallery({ images, categorySlug, imageCredits }: P
 
   return (
     <>
-      <div className="w-full bg-[#F5F5F5] rounded-2xl aspect-[4/3] relative overflow-hidden border border-gray-200/70">
+      <div className="w-full bg-slate-100 rounded-2xl aspect-[4/3] relative overflow-hidden border border-slate-200/70">
         <ProductThumb image={mainImage} categorySlug={categorySlug} sizes="(max-width: 1024px) 100vw, 480px" priority />
       </div>
 
@@ -33,8 +33,8 @@ export default function ProductGallery({ images, categorySlug, imageCredits }: P
               onClick={() => setActive(i)}
               aria-label={t('viewImage', { n: i + 1 })}
               aria-pressed={i === active}
-              className={`relative aspect-square rounded-xl overflow-hidden bg-[#F5F5F5] border-2 transition-colors cursor-pointer ${
-                i === active ? 'border-[#008ECC]' : 'border-transparent hover:border-[#008ECC]/40'
+              className={`relative aspect-square rounded-xl overflow-hidden bg-slate-100 border-2 transition-colors cursor-pointer ${
+                i === active ? 'border-honey-500' : 'border-transparent hover:border-honey-500/40'
               }`}
             >
               <ProductThumb image={img} categorySlug={categorySlug} sizes="120px" />
@@ -44,12 +44,12 @@ export default function ProductGallery({ images, categorySlug, imageCredits }: P
       )}
 
       {imageCredits && (
-        <details className="mt-3 text-[11px] text-gray-500">
-          <summary className="cursor-pointer flex items-center gap-1 hover:text-[#008ECC]">
+        <details className="mt-3 text-[11px] text-slate-500">
+          <summary className="cursor-pointer flex items-center gap-1 hover:text-honey-700">
             <Info className="w-3.5 h-3.5" />
             {t('imageCredits')}
           </summary>
-          <p className="mt-2 whitespace-pre-line break-words bg-[#F8FAFB] rounded-lg p-3 border border-gray-100">
+          <p className="mt-2 whitespace-pre-line break-words bg-paper rounded-lg p-3 border border-slate-100">
             {imageCredits}
           </p>
         </details>

@@ -12,9 +12,9 @@ import { useErrorMessage } from '@/lib/api/errors';
 import { formatDateTime } from '@/lib/utils';
 
 function Json({ value }: { value: unknown }) {
-  if (value === null || value === undefined) return <span className="text-gray-400">—</span>;
+  if (value === null || value === undefined) return <span className="text-slate-400">—</span>;
   return (
-    <pre className="text-[11px] bg-[#F8FAFB] border border-gray-100 rounded-lg p-2 max-h-64 overflow-auto whitespace-pre-wrap break-all">
+    <pre className="text-[11px] bg-paper border border-slate-100 rounded-lg p-2 max-h-64 overflow-auto whitespace-pre-wrap break-all">
       {JSON.stringify(value, null, 2)}
     </pre>
   );
@@ -65,26 +65,26 @@ export default function AuditLogsPage() {
           {data?.content.length === 0 && <EmptyRow colSpan={5}>{t('empty')}</EmptyRow>}
           {data?.content.map((log) => (
             <tr key={log.id}>
-              <Td className="text-xs text-gray-500 whitespace-nowrap">{formatDateTime(log.createdAt, locale)}</Td>
+              <Td className="text-xs text-slate-500 whitespace-nowrap">{formatDateTime(log.createdAt, locale)}</Td>
               <Td className="font-mono text-xs font-semibold">{log.action}</Td>
               <Td className="text-xs">
                 {log.entityType}
-                {log.entityId && <p className="font-mono text-gray-400 break-all">{log.entityId}</p>}
+                {log.entityId && <p className="font-mono text-slate-400 break-all">{log.entityId}</p>}
               </Td>
               <Td className="text-xs">
-                <p className="font-mono text-gray-500 break-all">{log.actorId ?? '—'}</p>
-                {log.ipAddress && <p className="text-gray-400">{log.ipAddress}</p>}
+                <p className="font-mono text-slate-500 break-all">{log.actorId ?? '—'}</p>
+                {log.ipAddress && <p className="text-slate-400">{log.ipAddress}</p>}
               </Td>
               <Td className="min-w-[280px]">
                 <details>
-                  <summary className="text-xs font-semibold text-[#008ECC] cursor-pointer">{t('show')}</summary>
+                  <summary className="text-xs font-semibold text-honey-700 cursor-pointer">{t('show')}</summary>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
                     <div>
-                      <p className="text-[11px] font-semibold text-gray-500 mb-1">{t('before')}</p>
+                      <p className="text-[11px] font-semibold text-slate-500 mb-1">{t('before')}</p>
                       <Json value={log.before} />
                     </div>
                     <div>
-                      <p className="text-[11px] font-semibold text-gray-500 mb-1">{t('after')}</p>
+                      <p className="text-[11px] font-semibold text-slate-500 mb-1">{t('after')}</p>
                       <Json value={log.after} />
                     </div>
                   </div>

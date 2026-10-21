@@ -52,7 +52,7 @@ export default function Modal({ open, onClose, title, closeLabel, children, clas
         )}
       >
         <div className="flex items-start justify-between gap-4 mb-4">
-          <h2 id={titleId} className="text-lg font-bold text-[#222222]">
+          <h2 id={titleId} className="text-lg font-bold text-ink">
             {title}
           </h2>
           <button
@@ -60,7 +60,7 @@ export default function Modal({ open, onClose, title, closeLabel, children, clas
             data-close
             onClick={onClose}
             aria-label={closeLabel}
-            className="p-1 -m-1 text-gray-400 hover:text-gray-700 cursor-pointer"
+            className="p-1 -m-1 text-slate-400 hover:text-slate-700 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>

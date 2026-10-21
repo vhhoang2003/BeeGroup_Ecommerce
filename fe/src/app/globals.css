@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Bee Store design tokens (brand: public/brand/logo-full.png).
+ *   ink    #111827  text, dark surfaces, primary buttons
+ *   paper  #F8FAFC  page background, quiet panels
+ *   honey  #FACC15  brand accent: fills, highlights, call-to-action (always with ink text: yellow text on white
+ *                   is ~1.5:1); honey-700 #A16207 is the readable accent for text on light backgrounds
+ *   muted  #64748B  secondary text
+ * The logo's gold runs from #FACC15 to amber #F59E0B: `bg-honey-gradient` echoes it.
+ */
+@theme {
+  --color-ink: #111827;
+  --color-ink-800: #1f2937;
+  --color-ink-700: #374151;
+  --color-paper: #f8fafc;
+  --color-muted: #64748b;
+  --color-line: #e2e8f0;
+
+  --color-honey: #facc15;
+  --color-honey-50: #fefce8;
+  --color-honey-100: #fef9c3;
+  --color-honey-200: #fef08a;
+  --color-honey-300: #fde047;
+  --color-honey-400: #facc15;
+  --color-honey-500: #eab308;
+  --color-honey-600: #ca8a04;
+  --color-honey-700: #a16207;
+  --color-honey-800: #854d0e;
+  --color-amber-brand: #f59e0b;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-be-vietnam-pro);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@utility bg-honey-gradient {
+  background-image: linear-gradient(135deg, #facc15 0%, #f59e0b 100%);
+}
+
+@utility text-honey-gradient {
+  background-image: linear-gradient(135deg, #facc15 0%, #f59e0b 100%);
+  background-clip: text;
+  color: transparent;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-be-vietnam-pro), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--color-honey-300);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

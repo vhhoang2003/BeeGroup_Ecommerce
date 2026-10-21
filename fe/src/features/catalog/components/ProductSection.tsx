@@ -34,7 +34,7 @@ export default function ProductSection({ prefix, highlight, viewAllHref, categor
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
         {isLoading || !products
-          ? [...Array(4)].map((_, i) => <div key={i} className="bg-gray-100 rounded-[16px] h-[300px] animate-pulse" />)
+          ? [...Array(4)].map((_, i) => <div key={i} className="bg-slate-100 rounded-[16px] h-[300px] animate-pulse" />)
           : products.map((product) => <ProductCard key={product.id} product={product} />)}
       </div>
     </section>

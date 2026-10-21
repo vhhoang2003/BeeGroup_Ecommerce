@@ -6,8 +6,8 @@ import { cn } from '@/lib/utils';
 const styles: Record<StockStatus, string> = {
   IN_STOCK: 'bg-emerald-50 text-emerald-700',
   LOW_STOCK: 'bg-amber-50 text-amber-700',
-  OUT_OF_STOCK: 'bg-gray-100 text-gray-500',
-  PRE_ORDER: 'bg-[#EBF6FA] text-[#008ECC]',
+  OUT_OF_STOCK: 'bg-slate-100 text-slate-500',
+  PRE_ORDER: 'bg-honey-50 text-honey-700',
 };
 
 export default function StockBadge({ status, className }: { status: StockStatus; className?: string }) {

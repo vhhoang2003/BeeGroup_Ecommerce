@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 const styles: Record<ProductStatus, string> = {
   DRAFT: 'bg-amber-50 text-amber-700',
   PUBLISHED: 'bg-emerald-50 text-emerald-700',
-  ARCHIVED: 'bg-gray-100 text-gray-500',
+  ARCHIVED: 'bg-slate-100 text-slate-500',
 };
 
 export default function ProductStatusBadge({ status, className }: { status: ProductStatus; className?: string }) {

@@ -21,7 +21,7 @@ const statusStyle: Record<UserStatus, string> = {
   PENDING_VERIFICATION: 'bg-amber-50 text-amber-700',
   ACTIVE: 'bg-emerald-50 text-emerald-700',
   LOCKED: 'bg-red-50 text-red-600',
-  DELETED: 'bg-gray-100 text-gray-500',
+  DELETED: 'bg-slate-100 text-slate-500',
 };
 
 /** User search, lock / unlock, role change and resend verification (ADM-06). */
@@ -114,10 +114,10 @@ export default function AdminUsersPage() {
             const self = user.id === me?.id;
             const busy = busyId === user.id;
             return (
-              <tr key={user.id} className="hover:bg-[#F9FBFD]">
+              <tr key={user.id} className="hover:bg-paper">
                 <Td>
-                  <p className="font-semibold text-[#222222]">{user.fullName}</p>
-                  <p className="text-xs text-gray-500">{user.email}</p>
+                  <p className="font-semibold text-ink">{user.fullName}</p>
+                  <p className="text-xs text-slate-500">{user.email}</p>
                 </Td>
                 <Td>
                   <select
@@ -141,8 +141,8 @@ export default function AdminUsersPage() {
                     {t(`statuses.${user.status}`)}
                   </span>
                 </Td>
-                <Td className="text-xs text-gray-500 whitespace-nowrap">{formatDateTime(user.lastLoginAt, locale)}</Td>
-                <Td className="text-xs text-gray-500 whitespace-nowrap">{formatDateTime(user.createdAt, locale)}</Td>
+                <Td className="text-xs text-slate-500 whitespace-nowrap">{formatDateTime(user.lastLoginAt, locale)}</Td>
+                <Td className="text-xs text-slate-500 whitespace-nowrap">{formatDateTime(user.createdAt, locale)}</Td>
                 <Td className="text-right whitespace-nowrap space-x-1">
                   {user.status === 'ACTIVE' && !self && (
                     <Button variant="secondary" disabled={busy} onClick={() => update(user, { status: 'LOCKED' }, t('lockConfirm', { email: user.email }))} className="py-1.5 text-xs">

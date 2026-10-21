@@ -79,7 +79,7 @@ function LoginForm() {
       footer={
         <>
           {t('noAccount')}{' '}
-          <Link href="/auth/register" className="font-semibold text-[#008ECC] hover:underline">
+          <Link href="/auth/register" className="font-semibold text-honey-700 hover:underline">
             {t('registerNow')}
           </Link>
         </>
@@ -112,7 +112,7 @@ function LoginForm() {
           id="login-password"
           label={t('password')}
           aside={
-            <Link href="/auth/forgot-password" className="text-[#008ECC] hover:underline">
+            <Link href="/auth/forgot-password" className="text-honey-700 hover:underline">
               {t('forgotPassword')}
             </Link>
           }
@@ -121,8 +121,8 @@ function LoginForm() {
           {(a) => <PasswordInput {...a} {...register('password')} autoComplete="current-password" />}
         </Field>
 
-        <label className="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
-          <input type="checkbox" {...register('rememberMe')} className="accent-[#008ECC] w-4 h-4" />
+        <label className="flex items-center gap-2 text-xs text-slate-700 cursor-pointer">
+          <input type="checkbox" {...register('rememberMe')} className="accent-ink w-4 h-4" />
           {t('rememberMe')}
         </label>
 

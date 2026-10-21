@@ -49,7 +49,7 @@ export default function ImportPage() {
     <div>
       <PageHeader title={t('title')} subtitle={t('subtitle')} />
       <Card className="space-y-4 max-w-2xl">
-        <p className="text-sm text-gray-600">{t('body')}</p>
+        <p className="text-sm text-slate-600">{t('body')}</p>
         <Button onClick={run} loading={busy}>
           <FileDown className="w-4 h-4" />
           {t('run')}
@@ -60,9 +60,9 @@ export default function ImportPage() {
             <Alert tone="success">{t('done')}</Alert>
             <dl className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {rows.map(([label, value]) => (
-                <div key={label} className="rounded-xl bg-[#F9FBFD] border border-gray-100 p-3">
-                  <dt className="text-xs text-gray-500">{label}</dt>
-                  <dd className="text-2xl font-black text-[#222222]">{value}</dd>
+                <div key={label} className="rounded-xl bg-paper border border-slate-100 p-3">
+                  <dt className="text-xs text-slate-500">{label}</dt>
+                  <dd className="text-2xl font-black text-ink">{value}</dd>
                 </div>
               ))}
             </dl>

@@ -28,7 +28,7 @@ export default function CategoryNav() {
   ];
 
   return (
-    <nav className="w-full bg-white border-b border-[#EDEDED] overflow-x-auto scrollbar-none py-2.5">
+    <nav className="w-full bg-white border-b border-line overflow-x-auto scrollbar-none py-2.5">
       <div className="max-w-[1240px] mx-auto px-4 flex items-center gap-2.5 sm:gap-3.5 min-w-max">
         {pills.map((pill) => (
           <Link
@@ -36,14 +36,14 @@ export default function CategoryNav() {
             href={pill.href}
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-all ${
               pill.active
-                ? 'bg-[#008ECC] text-white shadow-sm'
-                : 'bg-[#F3F9FB] text-[#222222] hover:bg-[#E2F2F9] hover:text-[#008ECC]'
+                ? 'bg-ink text-white shadow-sm'
+                : 'bg-paper text-ink hover:bg-honey-50 hover:text-honey-700'
             }`}
           >
             {pill.slug && (
               <CategoryIcon
                 slug={pill.slug}
-                className={`w-3.5 h-3.5 ${pill.active ? 'text-white' : 'text-[#008ECC]'}`}
+                className={`w-3.5 h-3.5 ${pill.active ? 'text-white' : 'text-honey-700'}`}
               />
             )}
             <span>{pill.name}</span>

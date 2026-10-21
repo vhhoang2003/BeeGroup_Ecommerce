@@ -7,7 +7,7 @@ import { AlertCircle, CheckCircle2, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export const inputClass =
-  'w-full bg-[#F9FBFD] border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm text-[#222222] outline-none focus:border-[#008ECC] focus:ring-2 focus:ring-[#008ECC]/15 disabled:bg-[#F5F5F5] disabled:text-gray-500 aria-[invalid=true]:border-red-400';
+  'w-full bg-paper border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-ink outline-none focus:border-honey-500 focus:ring-2 focus:ring-honey-400/15 disabled:bg-slate-100 disabled:text-slate-500 aria-[invalid=true]:border-red-400';
 
 interface FieldProps {
   id: string;
@@ -31,7 +31,7 @@ export function Field({ id, label, error, hint, required, aside, children, class
   return (
     <div className={className}>
       <div className="flex items-center justify-between gap-2 mb-1">
-        <label htmlFor={id} className="block text-xs font-semibold text-gray-700">
+        <label htmlFor={id} className="block text-xs font-semibold text-slate-700">
           {label}
           {required && (
             <span className="text-red-500" aria-hidden>
@@ -49,7 +49,7 @@ export function Field({ id, label, error, hint, required, aside, children, class
         'aria-required': required || undefined,
       })}
       {hint && !error && (
-        <p id={`${id}-hint`} className="text-[11px] text-gray-500 mt-1">
+        <p id={`${id}-hint`} className="text-[11px] text-slate-500 mt-1">
           {hint}
         </p>
       )}
@@ -65,10 +65,10 @@ export function Field({ id, label, error, hint, required, aside, children, class
 type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost';
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-[#008ECC] hover:bg-[#0077b0] text-white shadow-sm',
-  secondary: 'bg-white border border-gray-200 text-[#222222] hover:border-[#008ECC] hover:text-[#008ECC]',
+  primary: 'bg-ink hover:bg-ink-800 text-white shadow-sm',
+  secondary: 'bg-white border border-slate-200 text-ink hover:border-honey-500 hover:text-honey-700',
   danger: 'bg-red-600 hover:bg-red-700 text-white',
-  ghost: 'text-[#008ECC] hover:bg-[#EBF6FA]',
+  ghost: 'text-honey-700 hover:bg-honey-50',
 };
 
 export function Button({
@@ -85,7 +85,7 @@ export function Button({
       {...props}
       disabled={disabled || loading}
       className={cn(
-        'inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#008ECC]',
+        'inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-honey-500',
         variants[variant],
         className
       )}
@@ -108,7 +108,7 @@ export function Alert({
   const styles = {
     error: 'bg-red-50 text-red-700 border-red-100',
     success: 'bg-emerald-50 text-emerald-800 border-emerald-100',
-    info: 'bg-[#F3F9FB] text-[#225A73] border-[#E0F0F8]',
+    info: 'bg-paper text-ink-700 border-honey-200',
   }[tone];
   const Icon = tone === 'success' ? CheckCircle2 : AlertCircle;
   return (
@@ -121,15 +121,15 @@ export function Alert({
 
 export function Card({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn('bg-white rounded-2xl border border-gray-200/80 p-5 sm:p-6 shadow-xs', className)}>{children}</div>
+    <div className={cn('bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 shadow-xs', className)}>{children}</div>
   );
 }
 
 export function Spinner({ label }: { label: string }) {
   return (
     <div className="py-16 text-center" role="status">
-      <div className="w-10 h-10 border-4 border-[#008ECC] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-      <p className="text-sm text-gray-500">{label}</p>
+      <div className="w-10 h-10 border-4 border-honey-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+      <p className="text-sm text-slate-500">{label}</p>
     </div>
   );
 }

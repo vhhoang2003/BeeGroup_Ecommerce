@@ -12,28 +12,28 @@ export default function TopUtilityBar() {
   const { contact } = siteConfig;
 
   return (
-    <div className="w-full bg-[#F5F5F5] border-b border-[#EBEBEB] text-[13px] sm:text-[14px] text-[#555555]">
+    <div className="w-full bg-slate-100 border-b border-line text-[13px] sm:text-[14px] text-muted">
       <div className="max-w-[1240px] mx-auto px-4 py-2.5 flex items-center justify-between gap-4 min-h-[48px]">
         {/* Delivery promise */}
-        <div className="flex items-center gap-2 min-w-0 font-medium text-[#222222]" title={t('delivery')}>
-          <Truck className="w-4 h-4 text-[#008ECC] shrink-0" />
+        <div className="flex items-center gap-2 min-w-0 font-medium text-ink" title={t('delivery')}>
+          <Truck className="w-4 h-4 text-honey-700 shrink-0" />
           <span className="truncate">{t('deliveryShort')}</span>
         </div>
 
         {/* Right utility links */}
         <div className="flex items-center gap-5 shrink-0">
-          <a href={contact.hotlineHref} className="hidden md:flex items-center gap-2 hover:text-[#008ECC] transition-colors">
-            <Phone className="w-4 h-4 text-[#008ECC]" />
-            <span className="font-semibold text-[#222222]">{contact.hotline}</span>
+          <a href={contact.hotlineHref} className="hidden md:flex items-center gap-2 hover:text-honey-700 transition-colors">
+            <Phone className="w-4 h-4 text-honey-700" />
+            <span className="font-semibold text-ink">{contact.hotline}</span>
           </a>
 
           <a
             href={contact.zaloHref}
             target="_blank"
             rel="noreferrer"
-            className="hidden lg:flex items-center gap-2 hover:text-[#008ECC] transition-colors"
+            className="hidden lg:flex items-center gap-2 hover:text-honey-700 transition-colors"
           >
-            <MessageCircle className="w-4 h-4 text-[#008ECC]" />
+            <MessageCircle className="w-4 h-4 text-honey-700" />
             <span>Zalo</span>
           </a>
 
@@ -41,7 +41,7 @@ export default function TopUtilityBar() {
             href={contact.whatsappHref}
             target="_blank"
             rel="noreferrer"
-            className="hidden lg:flex items-center gap-2 hover:text-[#008ECC] transition-colors"
+            className="hidden lg:flex items-center gap-2 hover:text-honey-700 transition-colors"
           >
             <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
             <span>WhatsApp</span>
@@ -49,9 +49,9 @@ export default function TopUtilityBar() {
 
           <a
             href={`mailto:${contact.email}`}
-            className="hidden 2xl:flex items-center gap-2 hover:text-[#008ECC] transition-colors"
+            className="hidden 2xl:flex items-center gap-2 hover:text-honey-700 transition-colors"
           >
-            <Mail className="w-4 h-4 text-[#008ECC]" />
+            <Mail className="w-4 h-4 text-honey-700" />
             <span>{contact.email}</span>
           </a>
 

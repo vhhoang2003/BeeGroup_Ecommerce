@@ -76,10 +76,10 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
   return (
     <>
       {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-5 border-b border-gray-200 mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-5 border-b border-slate-200 mb-6">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#222222] tracking-tight">{title}</h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">{title}</h1>
+          <p className="text-sm text-slate-500 mt-1">
             {response ? t('productCount', { count: response.totalElements }) : t('loading')}
           </p>
         </div>
@@ -88,7 +88,7 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
           <button
             type="button"
             onClick={() => navigate({ q: '', page: 1 })}
-            className="text-xs bg-[#EBF6FA] text-[#008ECC] font-semibold px-3 py-1.5 rounded-full hover:bg-[#008ECC] hover:text-white transition-colors w-fit"
+            className="text-xs bg-honey-50 text-honey-700 font-semibold px-3 py-1.5 rounded-full hover:bg-ink hover:text-white transition-colors w-fit"
           >
             {t('clearSearch', { q })} &times;
           </button>
@@ -107,8 +107,8 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
                 aria-pressed={filters.sub === s.slug}
                 className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
                   filters.sub === s.slug
-                    ? 'bg-[#008ECC] text-white'
-                    : 'bg-[#F3F9FB] text-[#222222] hover:bg-[#E2F2F9] hover:text-[#008ECC]'
+                    ? 'bg-ink text-white'
+                    : 'bg-paper text-ink hover:bg-honey-50 hover:text-honey-700'
                 }`}
               >
                 {s.name} <span className="opacity-70">({s.itemCount})</span>
@@ -131,20 +131,20 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
           {isLoading ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-[300px] bg-gray-100 rounded-2xl animate-pulse" />
+                <div key={i} className="h-[300px] bg-slate-100 rounded-2xl animate-pulse" />
               ))}
             </div>
           ) : products.length === 0 ? (
-            <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-gray-300 p-8">
-              <div className="w-16 h-16 rounded-full bg-[#F3F9FB] flex items-center justify-center text-[#008ECC] mx-auto mb-4">
+            <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-slate-300 p-8">
+              <div className="w-16 h-16 rounded-full bg-paper flex items-center justify-center text-honey-700 mx-auto mb-4">
                 <Search className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-bold text-[#222222] mb-2">{t('emptyTitle')}</h3>
-              <p className="text-sm text-gray-500 max-w-md mx-auto mb-6">{t('emptyHint')}</p>
+              <h3 className="text-lg font-bold text-ink mb-2">{t('emptyTitle')}</h3>
+              <p className="text-sm text-slate-500 max-w-md mx-auto mb-6">{t('emptyHint')}</p>
               <button
                 type="button"
                 onClick={handleReset}
-                className="bg-[#008ECC] hover:bg-[#0077b0] text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-colors"
+                className="bg-ink hover:bg-ink-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-colors"
               >
                 {t('clearFilters')}
               </button>
@@ -164,7 +164,7 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
                     disabled={page <= 1}
                     onClick={() => navigate({ page: page - 1 })}
                     aria-label={t('prevPage')}
-                    className="w-9 h-9 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:border-[#008ECC] hover:text-[#008ECC] disabled:opacity-40 disabled:pointer-events-none"
+                    className="w-9 h-9 rounded-full flex items-center justify-center border border-slate-200 text-slate-600 hover:border-honey-500 hover:text-honey-700 disabled:opacity-40 disabled:pointer-events-none"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
@@ -175,7 +175,7 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
                       onClick={() => navigate({ page: i + 1 })}
                       aria-current={page === i + 1 ? 'page' : undefined}
                       className={`w-9 h-9 rounded-full text-sm font-semibold ${
-                        page === i + 1 ? 'bg-[#008ECC] text-white' : 'text-gray-600 hover:bg-[#F3F9FB]'
+                        page === i + 1 ? 'bg-ink text-white' : 'text-slate-600 hover:bg-paper'
                       }`}
                     >
                       {i + 1}
@@ -186,7 +186,7 @@ export default function CatalogBrowser({ category: fixedCategory, title }: Catal
                     disabled={response.last}
                     onClick={() => navigate({ page: page + 1 })}
                     aria-label={t('nextPage')}
-                    className="w-9 h-9 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 hover:border-[#008ECC] hover:text-[#008ECC] disabled:opacity-40 disabled:pointer-events-none"
+                    className="w-9 h-9 rounded-full flex items-center justify-center border border-slate-200 text-slate-600 hover:border-honey-500 hover:text-honey-700 disabled:opacity-40 disabled:pointer-events-none"
                   >
                     <ChevronRight className="w-4 h-4" />
                   </button>

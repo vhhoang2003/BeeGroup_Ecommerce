@@ -19,7 +19,7 @@ export default function WishlistPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl sm:text-3xl font-extrabold text-[#222222]">{t('wishlist')}</h1>
+      <h1 className="text-2xl sm:text-3xl font-extrabold text-ink">{t('wishlist')}</h1>
 
       {isLoading && <Spinner label={tCommon('loading')} />}
       {error && <Alert>{errorMessage(error)}</Alert>}
@@ -27,9 +27,9 @@ export default function WishlistPage() {
       {products && products.length === 0 && (
         <Card className="text-center py-12">
           <Heart className="w-10 h-10 text-rose-400 mx-auto mb-3" />
-          <p className="font-semibold text-[#222222] mb-1">{t('emptyWishlist')}</p>
-          <p className="text-sm text-gray-500 mb-4">{t('emptyWishlistHint')}</p>
-          <Link href="/products" className="text-sm font-semibold text-[#008ECC] hover:underline">
+          <p className="font-semibold text-ink mb-1">{t('emptyWishlist')}</p>
+          <p className="text-sm text-slate-500 mb-4">{t('emptyWishlistHint')}</p>
+          <Link href="/products" className="text-sm font-semibold text-honey-700 hover:underline">
             {t('browseProducts')}
           </Link>
         </Card>
@@ -44,7 +44,7 @@ export default function WishlistPage() {
                 type="button"
                 onClick={() => toggle.mutate({ product, saved: true })}
                 aria-label={t('removeFromWishlist', { name: product.name })}
-                className="absolute top-2 left-2 z-20 w-8 h-8 rounded-full bg-white/95 shadow border border-gray-100 flex items-center justify-center text-gray-500 hover:text-rose-600 cursor-pointer"
+                className="absolute top-2 left-2 z-20 w-8 h-8 rounded-full bg-white/95 shadow border border-slate-100 flex items-center justify-center text-slate-500 hover:text-rose-600 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>

@@ -12,7 +12,7 @@ export default function DepositNote({ className }: { className?: string }) {
   const t = useTranslations('deposit');
   const { hotline, hotlineHref } = siteConfig.contact;
   return (
-    <p className={cn('flex items-start gap-1.5 text-xs text-[#7A4B00] font-medium', className)}>
+    <p className={cn('flex items-start gap-1.5 text-xs text-honey-800 font-medium', className)}>
       <HandCoins className="w-4 h-4 shrink-0 text-amber-600" aria-hidden />
       <span>
         {t.rich('policy', {
@@ -42,16 +42,16 @@ export function DepositSummary({ subtotal, hasUnpriced }: { subtotal: number; ha
       {subtotal > 0 && (
         <dl className="space-y-1 text-sm">
           <div className="flex justify-between gap-3">
-            <dt className="font-semibold text-[#7A4B00]">{t('deposit')}</dt>
-            <dd className="font-bold text-[#7A4B00] whitespace-nowrap">{formatPrice(deposit)}</dd>
+            <dt className="font-semibold text-honey-800">{t('deposit')}</dt>
+            <dd className="font-bold text-honey-800 whitespace-nowrap">{formatPrice(deposit)}</dd>
           </div>
           <div className="flex justify-between gap-3">
-            <dt className="text-gray-600">{t('rest')}</dt>
-            <dd className="text-gray-700 whitespace-nowrap">{formatPrice(rest)}</dd>
+            <dt className="text-slate-600">{t('rest')}</dt>
+            <dd className="text-slate-700 whitespace-nowrap">{formatPrice(rest)}</dd>
           </div>
         </dl>
       )}
-      {hasUnpriced && <p className="text-xs text-gray-600">{t('unpriced')}</p>}
+      {hasUnpriced && <p className="text-xs text-slate-600">{t('unpriced')}</p>}
       <DepositNote />
     </div>
   );

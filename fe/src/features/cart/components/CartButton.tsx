@@ -19,9 +19,9 @@ export default function CartButton() {
       aria-label={count > 0 ? t('headerLabelCount', { count }) : t('headerLabel')}
       className="relative hover:opacity-80 transition-opacity"
     >
-      <ShoppingCart className="w-[19px] h-[19px] text-[#008ECC]" />
+      <ShoppingCart className="w-[19px] h-[19px] text-honey-700" />
       {count > 0 && (
-        <span className="absolute -top-2 -right-2.5 min-w-[18px] h-[18px] px-1 rounded-full bg-[#F5B301] text-[#222222] text-[10px] font-bold flex items-center justify-center">
+        <span className="absolute -top-2 -right-2.5 min-w-[18px] h-[18px] px-1 rounded-full bg-honey text-ink text-[10px] font-bold flex items-center justify-center">
           {count > 99 ? '99+' : count}
         </span>
       )}

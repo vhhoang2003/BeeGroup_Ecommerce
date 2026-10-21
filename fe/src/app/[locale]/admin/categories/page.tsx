@@ -54,7 +54,7 @@ export default function AdminCategoriesPage() {
 
       {adding && (
         <Card className="mb-6">
-          <h2 className="font-bold text-[#222222] mb-3">{t('add')}</h2>
+          <h2 className="font-bold text-ink mb-3">{t('add')}</h2>
           <Editor
             withImage
             initial={{ slug: '', name: {}, sortOrder: (query.data?.length ?? 0) * 10, imageUrl: '' }}
@@ -113,12 +113,12 @@ function CategoryCard({ category, onChange }: { category: AdminCategory; onChang
       ) : (
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h2 className="text-lg font-bold text-[#222222]">{category.name[locale] ?? category.name.vi}</h2>
-            <p className="text-xs text-gray-500">
+            <h2 className="text-lg font-bold text-ink">{category.name[locale] ?? category.name.vi}</h2>
+            <p className="text-xs text-slate-500">
               <span className="font-mono">{category.slug}</span> · {t('order', { n: category.sortOrder })} ·{' '}
               {t('productCount', { count: category.productCount })}
             </p>
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-slate-400 mt-1">
               {routing.locales.map((l) => `${l}: ${category.name[l] ?? '—'}`).join(' · ')}
             </p>
           </div>
@@ -140,9 +140,9 @@ function CategoryCard({ category, onChange }: { category: AdminCategory; onChang
         </div>
       )}
 
-      <div className="mt-4 border-t border-gray-100 pt-3">
+      <div className="mt-4 border-t border-slate-100 pt-3">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400">{t('subCategories')}</h3>
+          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">{t('subCategories')}</h3>
           {!addingSub && (
             <Button variant="ghost" onClick={() => setAddingSub(true)}>
               <Plus className="w-4 h-4" />
@@ -150,7 +150,7 @@ function CategoryCard({ category, onChange }: { category: AdminCategory; onChang
             </Button>
           )}
         </div>
-        <ul className="divide-y divide-gray-100">
+        <ul className="divide-y divide-slate-100">
           {category.subCategories.map((sub) => (
             <li key={sub.id} className="py-2">
               {editingSub === sub.id ? (
@@ -166,9 +166,9 @@ function CategoryCard({ category, onChange }: { category: AdminCategory; onChang
               ) : (
                 <div className="flex items-center justify-between gap-3 text-sm">
                   <span>
-                    <span className="font-semibold text-[#222222]">{sub.name[locale] ?? sub.name.vi}</span>{' '}
-                    <span className="text-xs text-gray-400 font-mono">{sub.slug}</span>{' '}
-                    <span className="text-xs text-gray-500">
+                    <span className="font-semibold text-ink">{sub.name[locale] ?? sub.name.vi}</span>{' '}
+                    <span className="text-xs text-slate-400 font-mono">{sub.slug}</span>{' '}
+                    <span className="text-xs text-slate-500">
                       · {t('order', { n: sub.sortOrder })} · {t('productCount', { count: sub.productCount })}
                     </span>
                   </span>
@@ -255,7 +255,7 @@ function Editor({
   };
 
   return (
-    <form onSubmit={submit} className="space-y-3 rounded-xl bg-[#F9FBFD] border border-gray-200 p-3">
+    <form onSubmit={submit} className="space-y-3 rounded-xl bg-paper border border-slate-200 p-3">
       {error && <Alert>{error}</Alert>}
       <div className="grid grid-cols-1 md:grid-cols-[1fr_120px] gap-3">
         <input

@@ -32,17 +32,17 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
         {tiles.map(({ label, value, icon: Icon, href }) => (
           <Link key={label} href={href}>
-            <Card className="hover:border-[#008ECC] transition-colors">
-              <Icon className="w-5 h-5 text-[#008ECC] mb-2" />
-              <p className="text-3xl font-black text-[#222222]">{value ?? '…'}</p>
-              <p className="text-xs text-gray-500">{label}</p>
+            <Card className="hover:border-honey-500 transition-colors">
+              <Icon className="w-5 h-5 text-honey-700 mb-2" />
+              <p className="text-3xl font-black text-ink">{value ?? '…'}</p>
+              <p className="text-xs text-slate-500">{label}</p>
             </Card>
           </Link>
         ))}
       </div>
 
-      <h2 className="text-lg font-bold text-[#222222] mb-3 flex items-center gap-2">
-        <Eye className="w-5 h-5 text-[#008ECC]" />
+      <h2 className="text-lg font-bold text-ink mb-3 flex items-center gap-2">
+        <Eye className="w-5 h-5 text-honey-700" />
         {t('topViewed')}
       </h2>
       <Table>
@@ -57,7 +57,7 @@ export default function AdminDashboard() {
           {topViewed.map((p) => (
             <tr key={p.id}>
               <Td>
-                <Link href={`/admin/products/${p.id}`} className="font-semibold text-[#222222] hover:text-[#008ECC]">
+                <Link href={`/admin/products/${p.id}`} className="font-semibold text-ink hover:text-honey-700">
                   {p.name}
                 </Link>
               </Td>

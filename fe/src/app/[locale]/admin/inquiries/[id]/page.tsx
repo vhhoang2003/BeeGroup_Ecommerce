@@ -79,8 +79,8 @@ export default function AdminInquiryPage({ params }: PageProps<'/[locale]/admin/
 
   const details: [string, React.ReactNode][] = [
     [t('customer'), inquiry.fullName],
-    ['Email', inquiry.email && <a href={`mailto:${inquiry.email}`} className="text-[#008ECC] hover:underline">{inquiry.email}</a>],
-    [t('phone'), inquiry.phone && <a href={`tel:${inquiry.phone}`} className="text-[#008ECC] hover:underline">{formatPhone(inquiry.phone)}</a>],
+    ['Email', inquiry.email && <a href={`mailto:${inquiry.email}`} className="text-honey-700 hover:underline">{inquiry.email}</a>],
+    [t('phone'), inquiry.phone && <a href={`tel:${inquiry.phone}`} className="text-honey-700 hover:underline">{formatPhone(inquiry.phone)}</a>],
     [t('preferredContact'), inquiry.preferredContact && tc(inquiry.preferredContact)],
     [t('locale'), inquiry.locale],
     [t('account'), inquiry.userId ? t('member') : t('guest')],
@@ -89,7 +89,7 @@ export default function AdminInquiryPage({ params }: PageProps<'/[locale]/admin/
 
   return (
     <div className="space-y-6">
-      <Link href="/admin/inquiries" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#008ECC]">
+      <Link href="/admin/inquiries" className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-honey-700">
         <ArrowLeft className="w-4 h-4" />
         {t('back')}
       </Link>
@@ -103,8 +103,8 @@ export default function AdminInquiryPage({ params }: PageProps<'/[locale]/admin/
         <div className="xl:col-span-2 space-y-6">
           <Card>
             {inquiry.type === 'PRODUCT' && inquiry.product && (
-              <div className="rounded-xl bg-[#F3F9FB] border border-[#E0F0F8] p-3 mb-4 text-sm flex flex-wrap justify-between gap-2">
-                <Link href={`/products/${inquiry.product.slug}`} target="_blank" className="font-semibold text-[#008ECC] hover:underline">
+              <div className="rounded-xl bg-paper border border-honey-200 p-3 mb-4 text-sm flex flex-wrap justify-between gap-2">
+                <Link href={`/products/${inquiry.product.slug}`} target="_blank" className="font-semibold text-honey-700 hover:underline">
                   {inquiry.product.name}
                 </Link>
                 <span>
@@ -115,34 +115,34 @@ export default function AdminInquiryPage({ params }: PageProps<'/[locale]/admin/
             <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               {details.map(([label, value]) => (
                 <div key={label}>
-                  <dt className="text-xs text-gray-500">{label}</dt>
-                  <dd className="font-medium text-[#222222]">{value || '—'}</dd>
+                  <dt className="text-xs text-slate-500">{label}</dt>
+                  <dd className="font-medium text-ink">{value || '—'}</dd>
                 </div>
               ))}
             </dl>
             {inquiry.message && (
-              <p className="mt-4 text-sm text-gray-700 whitespace-pre-line bg-[#F8FAFB] rounded-xl p-3 border border-gray-100">
+              <p className="mt-4 text-sm text-slate-700 whitespace-pre-line bg-paper rounded-xl p-3 border border-slate-100">
                 {inquiry.message}
               </p>
             )}
           </Card>
 
           <Card>
-            <h2 className="font-bold text-[#222222] mb-3">{t('history')}</h2>
-            {inquiry.events.length === 0 && <p className="text-sm text-gray-500">{t('noHistory')}</p>}
-            <ol className="space-y-3 border-l-2 border-[#E0F0F8] pl-4">
+            <h2 className="font-bold text-ink mb-3">{t('history')}</h2>
+            {inquiry.events.length === 0 && <p className="text-sm text-slate-500">{t('noHistory')}</p>}
+            <ol className="space-y-3 border-l-2 border-honey-200 pl-4">
               {inquiry.events.map((ev, i) => (
                 <li key={`${ev.at}-${i}`} className="text-sm">
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-slate-500">
                     {formatDateTime(ev.at, locale)} · {ev.actorName ?? t('system')}
                   </p>
                   {ev.toStatus && (
-                    <p className="text-[#222222]">
+                    <p className="text-ink">
                       {ev.fromStatus ? `${tStatus(ev.fromStatus)} → ` : ''}
                       <b>{tStatus(ev.toStatus)}</b>
                     </p>
                   )}
-                  {ev.note && <p className="text-gray-700 whitespace-pre-line bg-amber-50 rounded-lg px-2 py-1 mt-1">{ev.note}</p>}
+                  {ev.note && <p className="text-slate-700 whitespace-pre-line bg-amber-50 rounded-lg px-2 py-1 mt-1">{ev.note}</p>}
                 </li>
               ))}
             </ol>
@@ -150,7 +150,7 @@ export default function AdminInquiryPage({ params }: PageProps<'/[locale]/admin/
         </div>
 
         <Card className="space-y-4">
-          <h2 className="font-bold text-[#222222]">{t('update')}</h2>
+          <h2 className="font-bold text-ink">{t('update')}</h2>
           {error && <Alert>{error}</Alert>}
           {saved && <Alert tone="success">{t('updated')}</Alert>}
           <Field id="inq-status" label={t('status')}>
@@ -179,7 +179,7 @@ export default function AdminInquiryPage({ params }: PageProps<'/[locale]/admin/
                   <button
                     type="button"
                     onClick={() => save({ assigneeId: me.id })}
-                    className="text-xs font-semibold text-[#008ECC] hover:underline cursor-pointer"
+                    className="text-xs font-semibold text-honey-700 hover:underline cursor-pointer"
                   >
                     {t('assignToMe')}
                   </button>

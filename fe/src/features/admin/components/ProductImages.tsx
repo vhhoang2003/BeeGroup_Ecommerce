@@ -59,11 +59,11 @@ export default function ProductImages({ product, onChange }: { product: AdminPro
 
   return (
     <Card>
-      <h2 className="text-base font-bold text-[#222222] mb-1">{t('title')}</h2>
-      <p className="text-xs text-gray-500 mb-4">{t('hint')}</p>
+      <h2 className="text-base font-bold text-ink mb-1">{t('title')}</h2>
+      <p className="text-xs text-slate-500 mb-4">{t('hint')}</p>
       {error && <Alert className="mb-4">{error}</Alert>}
 
-      {images.length === 0 && <p className="text-sm text-gray-500 mb-4">{t('none')}</p>}
+      {images.length === 0 && <p className="text-sm text-slate-500 mb-4">{t('none')}</p>}
       <ul className="space-y-3 mb-6">
         {images.map((image, index) => (
           <ImageRow
@@ -82,7 +82,7 @@ export default function ProductImages({ product, onChange }: { product: AdminPro
         ))}
       </ul>
 
-      <form onSubmit={upload} className="rounded-xl border border-dashed border-gray-300 p-4 space-y-3">
+      <form onSubmit={upload} className="rounded-xl border border-dashed border-slate-300 p-4 space-y-3">
         <Field id="img-file" label={t('file')} hint={t('fileHint')}>
           {(a) => <input {...a} ref={fileRef} type="file" accept={ACCEPT} required className="text-sm" />}
         </Field>
@@ -137,12 +137,12 @@ function ImageRow({
   const [credit, setCredit] = useState(image.credit ?? '');
 
   return (
-    <li className="flex flex-col md:flex-row gap-4 rounded-xl border border-gray-200 p-3">
+    <li className="flex flex-col md:flex-row gap-4 rounded-xl border border-slate-200 p-3">
       <div className="relative shrink-0">
         {/* eslint-disable-next-line @next/next/no-img-element -- variants are already resized WebP from the API */}
-        <img src={image.thumbnailUrl ?? image.url} alt={alt.vi ?? ''} className="w-32 h-24 object-cover rounded-lg bg-[#F5F5F5]" />
+        <img src={image.thumbnailUrl ?? image.url} alt={alt.vi ?? ''} className="w-32 h-24 object-cover rounded-lg bg-slate-100" />
         {index === 0 && (
-          <span className="absolute top-1 left-1 bg-[#F5B301] text-[#222222] text-[10px] font-bold px-1.5 py-0.5 rounded">
+          <span className="absolute top-1 left-1 bg-honey text-ink text-[10px] font-bold px-1.5 py-0.5 rounded">
             {t('primary')}
           </span>
         )}
@@ -166,7 +166,7 @@ function ImageRow({
           aria-label={t('credit')}
           className={inputClass}
         />
-        <p className="text-[11px] text-gray-400 md:col-span-2">
+        <p className="text-[11px] text-slate-400 md:col-span-2">
           {image.width && image.height ? `${image.width}×${image.height}px` : ''}
         </p>
       </div>

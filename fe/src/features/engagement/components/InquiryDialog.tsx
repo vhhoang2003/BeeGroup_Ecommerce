@@ -118,16 +118,16 @@ export default function InquiryDialog({ product, open, onClose }: InquiryDialogP
       {inquiryCode ? (
         <div className="text-center py-4">
           <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto mb-3" />
-          <p className="text-base font-bold text-[#222222] mb-1">{t('successTitle')}</p>
-          <p className="text-sm text-gray-600 mb-1">{t('successCode', { code: inquiryCode })}</p>
-          <p className="text-sm text-gray-500 mb-6">{t('successBody')}</p>
+          <p className="text-base font-bold text-ink mb-1">{t('successTitle')}</p>
+          <p className="text-sm text-slate-600 mb-1">{t('successCode', { code: inquiryCode })}</p>
+          <p className="text-sm text-slate-500 mb-6">{t('successBody')}</p>
           <Button onClick={close}>{tCommon('close')}</Button>
         </div>
       ) : (
         <form onSubmit={onSubmit} noValidate className="space-y-4">
-          <div className="rounded-xl bg-[#F3F9FB] border border-[#E0F0F8] p-3 text-sm">
-            <p className="font-semibold text-[#222222]">{product.name}</p>
-            <p className="text-gray-500">{formatPrice(product.price) ?? tCommon('contactForPrice')}</p>
+          <div className="rounded-xl bg-paper border border-honey-200 p-3 text-sm">
+            <p className="font-semibold text-ink">{product.name}</p>
+            <p className="text-slate-500">{formatPrice(product.price) ?? tCommon('contactForPrice')}</p>
           </div>
 
           {formError && <Alert>{formError}</Alert>}
@@ -181,7 +181,7 @@ export default function InquiryDialog({ product, open, onClose }: InquiryDialogP
           <Button type="submit" loading={isSubmitting} className="w-full">
             {t('submit')}
           </Button>
-          <p className="text-[11px] text-gray-500 text-center">{t('privacyNote')}</p>
+          <p className="text-[11px] text-slate-500 text-center">{t('privacyNote')}</p>
         </form>
       )}
     </Modal>

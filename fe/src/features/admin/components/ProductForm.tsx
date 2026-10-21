@@ -85,7 +85,7 @@ export default function ProductForm({ initial, submitLabel, onSubmit }: ProductF
       {saved && !isDirty && <Alert tone="success">{t('saved')}</Alert>}
 
       <Card>
-        <h2 className="text-base font-bold text-[#222222] mb-4">{t('basics')}</h2>
+        <h2 className="text-base font-bold text-ink mb-4">{t('basics')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Field id="pf-slug" label={t('slug')} error={errors.slug?.message} hint={t('slugHint')} required>
             {(a) => (
@@ -175,16 +175,16 @@ export default function ProductForm({ initial, submitLabel, onSubmit }: ProductF
             )}
           </Field>
         </div>
-        <label className="flex items-center gap-2 text-sm text-gray-700 mt-4 cursor-pointer w-fit">
-          <input type="checkbox" {...register('featured')} className="accent-[#008ECC] w-4 h-4" />
+        <label className="flex items-center gap-2 text-sm text-slate-700 mt-4 cursor-pointer w-fit">
+          <input type="checkbox" {...register('featured')} className="accent-ink w-4 h-4" />
           {t('featured')}
         </label>
       </Card>
 
       <Card>
-        <h2 className="text-base font-bold text-[#222222] mb-1">{t('content')}</h2>
-        <p className="text-xs text-gray-500 mb-4">{t('contentHint')}</p>
-        <div role="tablist" aria-label={t('content')} className="flex gap-2 mb-4 border-b border-gray-100">
+        <h2 className="text-base font-bold text-ink mb-1">{t('content')}</h2>
+        <p className="text-xs text-slate-500 mb-4">{t('contentHint')}</p>
+        <div role="tablist" aria-label={t('content')} className="flex gap-2 mb-4 border-b border-slate-100">
           {routing.locales.map((l) => (
             <button
               key={l}
@@ -196,7 +196,7 @@ export default function ProductForm({ initial, submitLabel, onSubmit }: ProductF
               onClick={() => setTab(l)}
               className={cn(
                 'px-4 py-2 text-sm font-semibold border-b-2 -mb-px cursor-pointer',
-                tab === l ? 'border-[#008ECC] text-[#008ECC]' : 'border-transparent text-gray-500 hover:text-gray-800',
+                tab === l ? 'border-honey-500 text-honey-700' : 'border-transparent text-slate-500 hover:text-slate-800',
                 tabError(l) && 'text-red-600'
               )}
             >
@@ -259,18 +259,18 @@ export default function ProductForm({ initial, submitLabel, onSubmit }: ProductF
       <Card>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-base font-bold text-[#222222]">{t('specs')}</h2>
-            <p className="text-xs text-gray-500">{t('specsHint')}</p>
+            <h2 className="text-base font-bold text-ink">{t('specs')}</h2>
+            <p className="text-xs text-slate-500">{t('specsHint')}</p>
           </div>
           <Button variant="secondary" onClick={() => specs.append(emptySpec())}>
             <Plus className="w-4 h-4" />
             {t('addSpec')}
           </Button>
         </div>
-        {specs.fields.length === 0 && <p className="text-sm text-gray-500">{t('noSpecs')}</p>}
+        {specs.fields.length === 0 && <p className="text-sm text-slate-500">{t('noSpecs')}</p>}
         <div className="space-y-3">
           {specs.fields.map((field, index) => (
-            <div key={field.id} className="rounded-xl border border-gray-200 p-3 grid grid-cols-1 md:grid-cols-[160px_1fr_1fr_auto] gap-3 items-start">
+            <div key={field.id} className="rounded-xl border border-slate-200 p-3 grid grid-cols-1 md:grid-cols-[160px_1fr_1fr_auto] gap-3 items-start">
               <input
                 {...register(`specs.${index}.key`)}
                 placeholder={t('specKey')}
