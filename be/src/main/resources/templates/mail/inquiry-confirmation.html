@@ -6,6 +6,8 @@
 <p><strong th:text="#{mail.inquiry-confirmation.code}">Code</strong>: <span th:text="${code}">INQ</span></p>
 <p th:if="${productName}"><strong th:text="#{mail.inquiry-confirmation.product}">Product</strong>:
   <span th:text="${productName}">Product</span> &times; <span th:text="${quantity}">1</span></p>
+<p style="background: #FFF8E6; border: 1px solid #F5E2B8; border-radius: 8px; padding: 10px 12px;"
+   th:text="#{mail.inquiry-confirmation.deposit}">Deposit</p>
 <p style="font-size: 12px; color: #888;" th:text="#{mail.footer}">Footer</p>
 </body>
 </html>

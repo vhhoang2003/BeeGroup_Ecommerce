@@ -219,7 +219,7 @@
       "bank": "Bank transfer",
       "vnpay": "VNPay (ATM card, Visa / Mastercard, QR)",
       "momo": "MoMo wallet",
-      "cod": "Cash on delivery (COD)"
+      "cod": "50% deposit, balance paid on delivery"
     },
     "soon": "Soon",
     "order": "Your order",
@@ -471,7 +471,7 @@
     },
     "terms": {
       "title": "Terms of use",
-      "updatedAt": "20 October 2026",
+      "updatedAt": "21 October 2026",
       "intro": "By using the Bee Store website you agree to the terms below.",
       "sections": [
         {
@@ -485,6 +485,13 @@
           "paragraphs": [
             "Displayed prices are reference prices in VND and may change with quantity, availability and time. The final price is the one in the official quote.",
             "Specifications are compiled from manufacturer sources. We aim for accuracy but errors are possible."
+          ]
+        },
+        {
+          "title": "Deposit and payment",
+          "paragraphs": [
+            "Bee Store takes a 50% deposit of the order value to confirm an order. Before taking the deposit, we check the price and availability with you.",
+            "For payment instructions, please contact our sales manager directly at +84 36 6789 371 (phone, Zalo or WhatsApp). The balance is paid on delivery."
           ]
         },
         {
@@ -807,5 +814,11 @@
         "BAD_STATUS": "Status \"{value}\" is not valid."
       }
     }
+  },
+  "deposit": {
+    "policy": "Bee Store takes a 50% deposit of the order value up front. Please contact our sales manager at <phone></phone> for payment instructions.",
+    "deposit": "Deposit due now (50%)",
+    "rest": "Balance, paid on delivery",
+    "unpriced": "Items priced on request are added to the deposit once quoted."
   }
 }

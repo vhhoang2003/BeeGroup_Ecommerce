@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Mail, MapPin, MessageCircle, MessagesSquare, Phone, Truck } from 'lucide-react';
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import ContactForm from '@/features/engagement/components/ContactForm';
+import DepositNote from '@/features/cart/components/DepositNote';
 import { siteConfig } from '@/config/site';
 import { alternates } from '@/lib/seo';
 import type { Locale } from '@/types/product';
@@ -63,6 +64,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
             <Truck className="w-4 h-4 text-[#008ECC] shrink-0 mt-0.5" />
             {tSite('delivery')}
           </p>
+          <DepositNote className="text-sm px-1" />
           <p className="text-xs text-gray-500 px-1">{t('hours')}</p>
         </aside>
       </div>

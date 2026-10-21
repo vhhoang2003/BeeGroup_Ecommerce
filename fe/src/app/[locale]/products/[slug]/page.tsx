@@ -11,6 +11,7 @@ import { siteConfig } from '@/config/site';
 import ProductGallery from '@/features/catalog/components/ProductGallery';
 import ProductCard from '@/features/catalog/components/ProductCard';
 import StockBadge from '@/features/catalog/components/StockBadge';
+import DepositNote from '@/features/cart/components/DepositNote';
 import SectionTitle from '@/components/ui/SectionTitle';
 import ProductActions, { ViewTracker } from '@/features/engagement/components/ProductActions';
 import type { Locale, ProductDetail, StockStatus } from '@/types/product';
@@ -163,6 +164,7 @@ export default async function ProductDetailPage({ params }: Props) {
               <Truck className="w-4 h-4 shrink-0" />
               {tSite('delivery')}
             </p>
+            <DepositNote className="mt-2" />
           </div>
 
           {/* Quote request, wishlist and direct channels (ENG-01, ENG-06) */}

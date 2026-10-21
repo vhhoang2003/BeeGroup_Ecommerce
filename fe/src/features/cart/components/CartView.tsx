@@ -9,6 +9,7 @@ import { formatPrice } from '@/lib/utils';
 import { cartTotals, useCartStore, useHydrated } from '../store';
 import QuantityInput from './QuantityInput';
 import CartLineThumb from './CartLineThumb';
+import { DepositSummary } from './DepositNote';
 
 /** `/cart`: lines with quantity steppers, subtotal and the way to checkout. */
 export default function CartView() {
@@ -106,6 +107,7 @@ export default function CartView() {
             <span className="text-2xl font-black text-[#222222]">{formatPrice(totals.subtotal)}</span>
           </div>
           {totals.hasUnpriced && <p className="text-xs text-amber-700">{t('unpricedNote')}</p>}
+          <DepositSummary subtotal={totals.subtotal} hasUnpriced={totals.hasUnpriced} />
           <p className="flex items-start gap-1.5 text-xs text-[#008ECC] font-medium">
             <Truck className="w-4 h-4 shrink-0" />
             {tSite('delivery')}

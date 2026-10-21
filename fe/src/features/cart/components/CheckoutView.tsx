@@ -17,6 +17,7 @@ import { applyFieldErrors, useErrorMessage } from '@/lib/api/errors';
 import { cn, formatPhone, formatPrice, toE164 } from '@/lib/utils';
 import { cartTotals, type CartItem, useCartStore, useHydrated } from '../store';
 import CartLineThumb from './CartLineThumb';
+import DepositNote, { DepositSummary, depositSplit } from './DepositNote';
 
 /** Online payment is not live yet; the methods are listed so customers see what is coming. */
 const PAYMENT_METHODS = [
@@ -42,6 +43,7 @@ export default function CheckoutView() {
   const tCommon = useTranslations('common');
   const tSite = useTranslations('site');
   const tInq = useTranslations('inquiry');
+  const tDeposit = useTranslations('deposit');
   const tv = useTranslations('validation');
   const errorMessage = useErrorMessage();
   const locale = useAppLocale();
@@ -101,6 +103,7 @@ export default function CheckoutView() {
       t('messageItems'),
       ...items.map(lineText),
       `${tCart('subtotal')}: ${formatPrice(totals.subtotal)}${totals.hasUnpriced ? ` (${tCart('unpricedShort')})` : ''}`,
+      `${tDeposit('deposit')}: ${formatPrice(depositSplit(totals.subtotal).deposit)}`,
       '',
       `${t('address')}: ${values.address.trim()}, ${values.city.trim()}`,
     ];
@@ -196,7 +199,8 @@ export default function CheckoutView() {
 
           <section className="bg-white rounded-2xl border border-gray-200/80 p-5 sm:p-6">
             <h2 className="text-lg font-bold text-[#222222] mb-1">{t('payment')}</h2>
-            <p className="text-xs text-gray-500 mb-4">{t('paymentComingSoon')}</p>
+            <p className="text-xs text-gray-500 mb-2">{t('paymentComingSoon')}</p>
+            <DepositNote className="mb-4" />
             <fieldset disabled className="space-y-2">
               <legend className="sr-only">{t('payment')}</legend>
               {PAYMENT_METHODS.map(({ id, icon: Icon }) => (
@@ -247,6 +251,7 @@ export default function CheckoutView() {
             <span className="text-2xl font-black text-[#222222]">{formatPrice(totals.subtotal)}</span>
           </div>
           {totals.hasUnpriced && <p className="text-xs text-amber-700">{tCart('unpricedNote')}</p>}
+          <DepositSummary subtotal={totals.subtotal} hasUnpriced={totals.hasUnpriced} />
           <p className="flex items-start gap-1.5 text-xs text-[#008ECC] font-medium">
             <Truck className="w-4 h-4 shrink-0" />
             {tSite('delivery')}

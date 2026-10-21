@@ -219,7 +219,7 @@
       "bank": "Chuyển khoản ngân hàng",
       "vnpay": "VNPay (thẻ ATM, Visa / Mastercard, QR)",
       "momo": "Ví MoMo",
-      "cod": "Thanh toán khi nhận hàng (COD)"
+      "cod": "Cọc 50%, phần còn lại thanh toán khi nhận hàng"
     },
     "soon": "Sắp có",
     "order": "Đơn hàng của bạn",
@@ -471,7 +471,7 @@
     },
     "terms": {
       "title": "Điều khoản sử dụng",
-      "updatedAt": "20/10/2026",
+      "updatedAt": "21/10/2026",
       "intro": "Bằng việc sử dụng website Bee Store, bạn đồng ý với các điều khoản dưới đây.",
       "sections": [
         {
@@ -485,6 +485,13 @@
           "paragraphs": [
             "Giá hiển thị là giá tham khảo bằng VND và có thể thay đổi theo số lượng, tình trạng hàng và thời điểm. Giá cuối cùng là giá trong báo giá chính thức.",
             "Thông số được tổng hợp từ nguồn của nhà sản xuất; chúng tôi cố gắng đảm bảo chính xác nhưng không loại trừ sai sót."
+          ]
+        },
+        {
+          "title": "Đặt cọc và thanh toán",
+          "paragraphs": [
+            "Bee Store nhận cọc trước 50% giá trị đơn hàng để xác nhận đơn. Trước khi nhận cọc, chúng tôi kiểm tra lại giá và tình trạng hàng với bạn.",
+            "Để được hướng dẫn thanh toán, vui lòng liên hệ trực tiếp quản lý bán hàng qua số +84 36 6789 371 (gọi điện, Zalo hoặc WhatsApp). Phần còn lại thanh toán khi nhận hàng."
           ]
         },
         {
@@ -807,5 +814,11 @@
         "BAD_STATUS": "Trạng thái \"{value}\" không hợp lệ."
       }
     }
+  },
+  "deposit": {
+    "policy": "Bee Store nhận cọc trước 50% giá trị đơn hàng. Vui lòng liên hệ quản lý bán hàng qua số <phone></phone> để được hướng dẫn thanh toán.",
+    "deposit": "Cọc trước (50%)",
+    "rest": "Còn lại, thanh toán khi nhận hàng",
+    "unpriced": "Sản phẩm \"Liên hệ\" sẽ được tính vào tiền cọc khi báo giá."
   }
 }
