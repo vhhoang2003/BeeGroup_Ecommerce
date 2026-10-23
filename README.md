@@ -1337,5 +1337,3 @@ Legend: ✅ implemented and verified by the listed evidence · 🟡 partial (see
 4. ~~No `/auth/verify-email` and `/auth/reset-password` pages~~: added; the unprefixed links in emails are redirected to the visitor's locale (D-18).
 5. The OpenAPI snapshot test ("BE contract" in §15) and the CI workflows (§13) are not set up.
 6. In production `TURNSTILE_SECRET` is mandatory: guest inquiries fail closed without it.
-
--- chez1s / I was here
