@@ -3,3 +3,6 @@ product/ổ cắm/
 
 # Local secrets
 .env
+.omc/state/sessions/*
+.omc/state/hud-stdin-cache.json
+.gitignore

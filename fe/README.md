@@ -1,130 +1,94 @@
-# MegaMart — Production-Ready E-Commerce Frontend
+# Bee Store — Frontend
 
-MegaMart is a modern, high-performance e-commerce storefront recreating the Figma reference design with pixel-level fidelity. Built with **Next.js 16 (App Router)**, **TypeScript (Strict Mode)**, **Tailwind CSS**, **TanStack Query**, and **Zustand**, it includes complete standalone mock adapters and is architected to seamlessly pair with a **Java Spring Boot REST API**.
+Storefront and admin panel for **Bee Store**, a catalog and lead-generation site for server and workstation hardware (CPU, GPU, mainboard, cooler, KVM). Visitors browse the catalog in Vietnamese, English or Chinese, sign in, keep a wishlist and send inquiries or quote requests; sales close offline. Online payment is not part of v1: the cart and checkout pages show the order but the pay button stays disabled.
 
----
+The full specification (requirements, API, security, deployment) lives in the [root README](../README.md); section numbers cited in code comments (`README §6.3`, `SEC-03`, `CAT-12`, …) refer to it.
 
-## 🎨 Visual Source of Truth & Design Fidelity
+## Stack
 
-The design matches the reference mockup:
-- **Top Utility Bar:** Delivery postal code (`423651`), order tracking, and active offers.
-- **Header:** MegaMart logo, debounced live autocomplete search bar, user sign-in/account link, and real-time cart indicator.
-- **Category Navigation Pills:** Horizontal pill navigation with active department (`Groceries`) highlighted in `#008ECC`.
-- **Hero Carousel Banner:** High-contrast navy (`#212844`) banner featuring the smart wearable, "UP to 80% OFF" badge, auto-slide and previous/next circular floating controls.
-- **Smartphone Deals:** Section header with signature cyan underline accent, 5 responsive product cards, discount badges (`56% OFF`), INR currency (`₹`), strikethrough original prices, and green savings highlights (`Save - ₹...`).
-- **Top Categories:** 7 circular department shortcuts (`Mobile`, `Cosmetics`, `Electronics`, `Furniture`, `Watches`, `Decor`, `Accessories`).
-- **Top Electronics Brands:** 3 promotional banners for **Apple (iPhone)**, **realme**, and **Xiaomi** with pagination indicators.
-- **Daily Essentials:** 6 grocery cards (`Daily Essentials`, `Vegitables`, `Fruits`, `Strowberry`, `Mango`, `Cherry`) with "UP to 50% OFF".
-- **Footer:** Cyan-blue (`#008ECC`) footer with WhatsApp/call contact details, App Store & Google Play badges, category tree, customer service policies, and copyright.
+- **Next.js 16** (App Router, Turbopack, `output: 'standalone'`) with **React 19** and strict **TypeScript**
+- **Tailwind CSS 4**
+- **next-intl**: locales `vi` (default), `en`, `zh`, always prefixed in the URL (`/vi/products`)
+- **TanStack Query** for client data, **Zustand** for the cart and auth state
+- **react-hook-form** + **zod** for forms
+- **Vitest** + Testing Library (unit/component), **Playwright** (e2e)
 
----
-
-## 🏗️ Architecture & Project Structure
+## Project structure
 
 ```
 src/
 ├── app/
-│   ├── layout.tsx             # Root layout with QueryProvider and MainLayout
-│   ├── page.tsx               # Homepage matching reference mockup
-│   ├── products/
-│   │   ├── page.tsx           # Product catalog with faceted filtering & sorting
-│   │   └── [id]/page.tsx      # Product Detail Page (PDP) with specs & Buy Now
-│   ├── category/[slug]/       # Department category listings
-│   ├── cart/page.tsx          # Full cart with promo codes & price breakdown
-│   ├── checkout/
-│   │   ├── page.tsx           # Checkout with Zod validation (COD, Card, UPI)
-│   │   └── success/page.tsx   # Order confirmation & delivery estimate
-│   ├── auth/
-│   │   ├── login/page.tsx     # Secure session sign-in
-│   │   └── register/page.tsx  # User account registration
-│   └── account/page.tsx       # Profile, address book, and order tracking
-├── components/
-│   ├── layout/                # TopUtilityBar, Header, CategoryNav, Footer, MobileNav
-│   ├── ui/                    # Reusable SectionTitle, Buttons, Badges
-│   └── providers/             # TanStack Query Client Provider
-├── features/
-│   ├── catalog/               # HeroBanner, SmartphoneDeals, BrandBanners, Search
-│   ├── cart/                  # Zustand store (persisted in localStorage) & CartDrawer
-│   ├── auth/                  # Zustand auth state & session storage
-│   └── checkout/              # Zod schemas & order forms
+│   ├── [locale]/            # All pages: home, products, products/[slug], category/[slug], cart, checkout,
+│   │                        # about, contact, privacy, terms, auth/*, account/*, admin/*
+│   ├── api/                 # Health check, on-demand revalidation (/api/revalidate)
+│   ├── mock-api/v1/         # Dev-only catalog API served from the ../product folder
+│   ├── storage/[...key]/    # Serves product images from ../product in mock mode
+│   └── robots.ts, sitemap.ts
+├── components/              # Layout (header, footer, nav), UI primitives, providers
+├── features/                # account, admin, auth, cart, catalog, engagement (inquiries, wishlist, contact), legal
+├── i18n/                    # next-intl routing, navigation and request config
+├── messages/                # vi.json, en.json, zh.json
 ├── lib/
-│   ├── api/                   # Spring Boot REST client abstraction
-│   ├── mocks/                 # Realistic mock database & async service
-│   └── utils.ts               # Currency formatting (₹ INR), styling utilities
-└── types/                     # Strongly-typed DTOs mirroring Spring Boot entities
+│   ├── api/                 # client.ts (browser, token refresh), server.ts (SSR/ISR reads), endpoints.ts
+│   ├── catalog/             # Mock catalog reader for the ../product folder
+│   └── seo.ts, utils.ts
+├── config/site.ts           # Brand name, contact channels, Turnstile key
+├── types/                   # DTOs mirroring the Spring Boot API
+└── proxy.ts                 # Locale-prefix redirect (next-intl middleware)
+test/                        # Vitest tests
+tests/e2e/                   # Playwright tests
 ```
 
----
+## Getting started
 
-## 🚀 Getting Started
+Requires Node.js 20+.
 
-### 1. Prerequisites
-- **Node.js**: `v20+` or `v24+`
-- **npm**: `v10+` or `v11+`
-
-### 2. Installation
 ```bash
 npm install
+npm run dev        # http://localhost:3000
 ```
 
-### 3. Running Development Server
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+By default the app runs in **mock mode**: the public catalog is read from the `../product` folder, so no backend is needed to browse. Auth, account, inquiries and admin need the real API.
 
-### 4. Running Production Build
-```bash
-npm run build
-npm run start
-```
+## Environment variables
 
----
+| Variable | Default | Purpose |
+|---|---|---|
+| `NEXT_PUBLIC_USE_MOCK` | mock unless `false` | `false` sends requests to the Spring Boot API |
+| `NEXT_PUBLIC_API_URL` | `http://localhost:8080/api/v1` | API base URL used by the browser (`/api/v1` behind the proxy) |
+| `INTERNAL_API_URL` | `NEXT_PUBLIC_API_URL` | API base URL for server-side rendering (Docker network) |
+| `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | Canonical URL for metadata, sitemap and links |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | empty (widget off) | Cloudflare Turnstile site key |
+| `REVALIDATE_SECRET` | — | Shared secret the API sends to `POST /api/revalidate` |
+| `CATALOG_SOURCE_DIR` | `../product` | Catalog folder read in mock mode |
 
-## ☕ Spring Boot REST Backend Integration
+`NEXT_PUBLIC_*` values are inlined at build time.
 
-The frontend uses an abstraction layer located in `src/lib/api/client.ts` and `src/lib/api/endpoints.ts`.
+To run against a local backend, put in `.env.local`:
 
-### Switching from Mock to Live Spring Boot:
-Set the environment variable in `.env.local`:
 ```env
 NEXT_PUBLIC_USE_MOCK=false
 NEXT_PUBLIC_API_URL=http://localhost:8080/api/v1
 ```
 
-### Expected Spring Boot REST Endpoints:
-- `GET /api/v1/products/deals/smartphones` -> Returns `Product[]`
-- `GET /api/v1/categories` -> Returns `Category[]`
-- `GET /api/v1/promotions/brands` -> Returns `BrandBanner[]`
-- `GET /api/v1/products?page=0&size=12&category=...&brand=...&sort=...` -> Returns `PaginatedResponse<Product>`
-- `GET /api/v1/products/{idOrSlug}` -> Returns `Product`
-- `GET /api/v1/products/suggestions?q=...` -> Returns `Product[]`
-- `POST /api/v1/orders` -> Accepts `CheckoutFormData` and creates order
+## Scripts
 
----
-
-## 🧪 Testing
-
-### Running Component and Unit Tests (Vitest)
 ```bash
-npm run test
-```
-Includes:
-- SectionTitle header rendering and link checks
-- ProductCard discount calculation and Add-to-Cart interactions
-- Zustand Cart Store price calculations and quantity mutation tests
-
-### Running E2E Tests (Playwright)
-```bash
-npx playwright test
+npm run dev          # Development server
+npm run build        # Production build
+npm run start        # Serve the production build
+npm run lint         # ESLint
+npm run test         # Vitest
+npx playwright test  # e2e
 ```
 
----
+## Docker
 
-## 🐳 Docker Deployment
+The multi-stage `Dockerfile` builds the standalone server. Public env values are build args:
 
-To build and run the production container:
 ```bash
-docker build -t megamart-frontend .
-docker run -p 3000:3000 megamart-frontend
+docker build -t beestore-fe --build-arg NEXT_PUBLIC_SITE_URL=https://example.com .
+docker run -p 3000:3000 -e INTERNAL_API_URL=http://be:8080/api/v1 beestore-fe
 ```
+
+For the full stack (frontend, API, database, proxy) use the `docker-compose.yml` at the repository root.
